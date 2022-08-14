@@ -89,7 +89,7 @@ h3 {
 }
 
 /*art wroks*/
-main section {
+main .artworks section {
 	width: 100%;
 }
 main section::after {
@@ -130,6 +130,16 @@ main section article div p {
 	text-align: center;
 }
 
+/*artworks_a_boundaries*/
+.boundaries section {
+	text-align: center;
+	float:center;
+	width:100%;
+	/*margin-left:20vw;*/
+}
+.boundaries iframe {
+	width:80%;
+}
 /*uxui*/
 .uxui section{
 	width:100%;
