@@ -115,7 +115,7 @@ main.artworks section article div {
 main .artworks section article div img {
 	width: 100%;
 }
-main.artworks section article h2 {
+main .artworks section article div h2 {
 	margin-top: 5px;
 	font: bold 12px/1 "arial";
 	letter-spacing: 1px;
