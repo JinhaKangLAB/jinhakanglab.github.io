@@ -1,0 +1,129 @@
+
+@charset "utf-8";
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+ul,
+ol {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+
+/* header */
+header {
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+}
+header .inner {
+	width: 1180px;
+	height: 60px;
+	margin: 0px auto;
+	position: relative; /*자식 absolute 요소의 기준점 설정*/
+}
+header .inner h1 {
+	position: absolute;
+	left: 0px;
+	bottom: 15px;
+}
+header .inner h1 a {
+	font: bold 20px/1 "arial";
+	color: #444;
+}
+
+header .inner #menu {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+header .inner #menu li {
+	float: left;
+}
+header .inner #menu li a {
+	display: block; /*인라인 요소는 block설정하여 크기를 조절가능*/
+	font: bold 0.9vw "arial";
+	color: #555;
+	padding: 20px 40px;
+	transition: all 0.5s;
+}
+header .inner #menu li a:hover {
+	background: #555;
+	color: #fff;
+}
+
+h3 {
+    font-size: 10px;
+}
+/*About*/
+main .about{
+		width:90vw;
+		height:90vh;
+}
+
+.about section{
+	margin-top:5%;
+	margin-left:5%;
+	margin-right:5%;
+	margin-bottom:5%;
+}
+
+.about section img{
+	width:20%;
+	height:20%;
+	float:left;
+	margin-left:10vw;
+	margin-top: 5vh;
+}
+
+h3 {
+ font-size: medium;
+ margin-left:15%;
+ margin-right:10vw;
+ margin-top:30vh;
+ font-family: Arial, Helvetica, sans-serif;
+}
+
+/*art wroks*/
+main section {
+	width: 100%;
+}
+main section::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+main section article {
+	width: 33.33%;
+	float: left;
+	box-sizing: border-box;
+	padding: 0.1px;
+}
+
+main section article div {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	border-radius: 0.5px;
+	box-sizing: border-box;
+}
+
+main section article div img {
+	width: 100%;
+}
+main section article div h2 {
+	margin-top: 5px;
+	font: bold 12px/1 "arial";
+	letter-spacing: 1px;
+	color: #444;
+	margin-bottom: 5px;
+	text-align: center;
+}
+main section article div p {
+	font: 10px/1.2 "arial";
+	color: #777;
+	margin-bottom: 10px;
+	text-align: center;
+}
