@@ -57,6 +57,7 @@ header .inner #menu li a:hover {
 h3 {
     font-size: 10px;
 }
+
 /*About*/
 main .about{
 		width:90vw;
@@ -75,15 +76,16 @@ main .about{
 	height:20%;
 	float:left;
 	margin-left:10vw;
-	margin-top: 5vh;
+	margin-bottom: 2%;
 }
 
 h3 {
  font-size: medium;
- margin-left:15%;
+ margin-left:33vw;
  margin-right:10vw;
  margin-top:30vh;
- font-family: Arial, Helvetica, sans-serif;
+ font-family: Arial;
+ font-weight: lighter;
 }
 
 /*art wroks*/
@@ -122,6 +124,48 @@ main section article div h2 {
 	text-align: center;
 }
 main section article div p {
+	font: 10px/1.2 "arial";
+	color: #777;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+/*uxui*/
+.uxui section{
+	width:100%;
+}
+.uxui section::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.uxui section article {
+	width: 33.33%;
+	float: left;
+	box-sizing: border-box;
+	padding: 0.1px;
+}
+
+.uxui section article div {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	border-radius: 0.5px;
+	box-sizing: border-box;
+}
+
+.uxui section article div img {
+	width: 100%;
+}
+.uxui section article div h2 {
+	margin-top: 5px;
+	font: bold 12px/1 "arial";
+	letter-spacing: 1px;
+	color: #444;
+	margin-bottom: 5px;
+	text-align: center;
+}
+.uxui section article div p {
 	font: 10px/1.2 "arial";
 	color: #777;
 	margin-bottom: 10px;
