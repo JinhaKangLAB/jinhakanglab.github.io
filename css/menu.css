@@ -134,11 +134,26 @@ main .artworks section article div p {
 .boundaries section {
 	text-align: center;
 	width:100%;
-	/*margin-left:20vw;*/
+	height: 100%;
+	margin-top:3vh;
+	margin-bottom:10vh;
+	float:center;
+	font: 10px/1.2 "arial";
 }
-.boundaries iframe {
-	width:80%;
+.boundaries section article ul li{
+	font: 15px "arial";
+	color: black;
+	margin-bottom:1.5vh;
 }
+.boundaries section article ul li:nth-of-type(1){
+	font: 55px "arial";
+	color: black;
+	margin-bottom:1.5vh;
+}
+.boundaries ul li iframe {
+
+}
+
 /*uxui*/
 .uxui section{
 	width:100%;
