@@ -55,11 +55,10 @@ header .inner #menu li a:hover {
 
 /*box*/
 section {
-    width: 200px;
+    width: 205px;
     height: 200px;
     border: 1px solid #000;
-    float: left;
-    margin: 50px;
+    margin: 250px;
     perspective: 400px;
     position:relative;
   }
@@ -82,12 +81,12 @@ section {
 #box article:nth-of-type(1){
   width:100px;
   height:200px;
+  float: left;
 }
 #box article:nth-of-type(2){
   width:100px;
   height:200px;
-  margin: auto auto;
-  border: 1px solid black;
+  float: left;
 }
 #box.caseOne {
   transform: rotateY(45deg);
