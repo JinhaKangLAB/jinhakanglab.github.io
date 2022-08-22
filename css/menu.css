@@ -150,8 +150,69 @@ main .artworks section article div p {
 	color: black;
 	margin-bottom:1.5vh;
 }
-.boundaries ul li iframe {
 
+/*artworks_a_bo*/
+.bodyOrchestra section {
+	text-align: center;
+	width:100%;
+	height: 100%;
+	margin-top:3vh;
+	margin-bottom:10vh;
+	float:center;
+	font: 10px/1.2 "arial";
+}
+.bodyOrchestra section article ul li{
+	font: 15px "arial";
+	color: black;
+	margin-bottom:1.5vh;
+}
+.bodyOrchestra section article ul li:nth-of-type(1){
+	font: 45px "arial";
+	color: black;
+	margin-bottom:1.5vh;
+}
+
+
+/*artworks_a_nim*/
+.natureInspiredMakeUp section {
+	text-align: center;
+	width:100%;
+	height: 100%;
+	margin-top:3vh;
+	margin-bottom:10vh;
+	float:center;
+	font: 10px/1.2 "arial";
+}
+.natureInspiredMakeUp section article ul li{
+	font: 15px "arial";
+	color: black;
+	margin-bottom:1.5vh;
+}
+.natureInspiredMakeUp section article ul li:nth-of-type(1){
+	font: 45px "arial";
+	color: black;
+	margin-bottom:1.5vh;
+}
+
+/*artworks_a_la*/
+.la section {
+	text-align: center;
+	width:100%;
+	height: 100%;
+	margin-top:3vh;
+	margin-bottom:10vh;
+	float:center;
+	font: 10px/1.2 "arial";
+}
+.la section article ul li{
+	font: 15px "arial";
+	color: black;
+	margin-bottom:1.5vh;
+}
+.la section article ul li:nth-of-type(1){
+	font: 45px "arial";
+	color: black;
+	margin-bottom:1.5vh;
 }
 
 /*uxui*/
