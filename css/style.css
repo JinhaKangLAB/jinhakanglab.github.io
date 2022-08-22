@@ -54,6 +54,10 @@ header .inner #menu li a:hover {
 }
 
 /*box*/
+.row {
+	align-items: center;
+	float:center;
+}
 section {
     width: 205px;
     height: 200px;
@@ -90,11 +94,11 @@ section {
 }
 #box.caseOne {
   transform: rotateY(45deg);
-	background: red;
+  background: blue;
 }
 #box.caseTwo {
   transform: rotateY(-45deg);
-	background: yellow;
+background: blue;
 }
 
 
