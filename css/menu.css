@@ -286,6 +286,7 @@ main .artworks section article div p {
 /*uxui*/
 .uxui section{
 	width:100%;
+	align-items: center;
 }
 .uxui section::after {
 	content: "";
@@ -293,7 +294,7 @@ main .artworks section article div p {
 	clear: both;
 }
 .uxui section article {
-	width: 33.33%;
+	width: 50%;
 	float: left;
 	box-sizing: border-box;
 	padding: 0.1px;
