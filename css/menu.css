@@ -165,6 +165,10 @@ main .artworks section article div p {
 	font: 15px "arial";
 	color: black;
 	margin-bottom:1.5vh;
+	text-align: center;
+	margin-left: 300px;
+	margin-right: 300px;
+	margin-top: 3px;
 }
 .bodyOrchestra section article ul li:nth-of-type(1){
 	font: 45px "arial";

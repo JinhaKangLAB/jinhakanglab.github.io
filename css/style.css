@@ -54,7 +54,7 @@ header .inner #menu li a:hover {
 }
 
 /*box*/
-.row {
+/*.row {
 	align-items: center;
 	float:center;
 }
@@ -65,6 +65,7 @@ section {
     margin: 250px;
     perspective: 400px;
     position:relative;
+	float:center;
   }
   section #box {
     width: 100%;
@@ -78,9 +79,9 @@ section {
     transition-timing-function: cubic-bezier(0.46, -0.64, 0.58, 1.39);
     /* transition 축약문
     transition: all 1s cubic-bezier(.46, -0.64, .58, 1.39) 0s;
-    */
+    *//*
 	position:absolute;
-  }
+  }*/
 
 #box article:nth-of-type(1){
   width:100px;
@@ -99,7 +100,7 @@ section {
 #box.caseTwo {
   transform: rotateY(-45deg);
 background: blue;
-}
+}*/
 
 
 /* footer */
