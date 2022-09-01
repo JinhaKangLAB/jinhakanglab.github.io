@@ -325,3 +325,9 @@ main .artworks section article div p {
 	margin-bottom: 10px;
 	text-align: center;
 }
+
+.cv section article ul img {
+	width:50%;
+	margin-top:1%;
+	margin-left: 25%;
+}
