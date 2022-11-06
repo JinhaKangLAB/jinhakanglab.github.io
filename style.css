@@ -83,7 +83,7 @@
   text-align: center;
   z-index: 9;
     font-weight: 400;
-    font-size: 23px;
+    font-size: 25px;
     mix-blend-mode: overlay;
     /* mix-blend-mode: overlay; */
 }
@@ -140,8 +140,16 @@
   color:black;
 }
 
-
-
+/*CV*/
+ .cv {
+  height:60%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+ }
+  object {
+    width: 80%;
+  }
 
 /*WEB*/
 body {
