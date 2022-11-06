@@ -151,6 +151,26 @@
     width: 80%;
   }
 
+  /*Contact*/
+ .contact {
+  height:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10%;
+ }
+ .contact h1{
+  font-weight: thin;
+  font-size: 20px;
+  letter-spacing: 5px;
+ }
+ .contact h2{
+  font-size:18px;
+  letter-spacing: 5px;
+  font-weight: thin;
+ }
+
 /*WEB*/
 body {
   margin:none;
