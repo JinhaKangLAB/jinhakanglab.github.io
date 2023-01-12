@@ -15,10 +15,10 @@
 
 .box {
   width:100%;
-  height:70vh;
+  height:50vh;
   position:absolute;
   background-color: #3A09FF;
-  top:49vh;
+  top:50vh;
   z-index: 1;
 }
 
