@@ -18,7 +18,7 @@
   height:60vh;
   position:absolute;
   background-color: #3A09FF;
-  top:50%;
+  top:46.4vh;
   z-index: 1;
 }
 
@@ -302,8 +302,97 @@ transform: rotate(-90deg);
 }
 
 #grounp_m1 {
-  width:67vw;
+  width:76vw;
   height:auto;
+}
+/*FUGITIVE*/
+.context {
+  text-align: center;
+}
+.context p {
+  font-size: 60px;
+  font-weight: 300;
+  color: green;
+}
+
+/*STARTUP*/
+.context_startup {
+  align-items: center;
+  text-align: center;
+}
+.context_startup img {
+  margin-top: 10vh;
+}
+.context_startup p {
+  margin-top: 15px;
+  font-size: 30px;
+  color:mediumspringgreen;
+  text-shadow: 1px 1px 1px  grey;
+  text-align: center;
+}
+
+
+/*HYUNDAI*/
+.content_h{
+  text-align: center;
+  align-items: center;
+}
+.content_h p{
+  text-align: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: 500;
+}
+.content_h img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-bottom: 1.5vh;
+}
+
+/*INTERSTYLE*/
+.context_i {
+  text-align: center;
+  align-items: center;
+}
+.context_i p{
+font-size: 50px;
+color:blueviolet;
+}
+.context_i img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-bottom: 1.5vh;
+}
+
+/*STR*/
+.context_s {
+  text-align: center;
+  align-items: center;
+}
+
+.context_s img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-bottom: 1.5vh;
+}
+
+/*WHYDOTS*/
+.context_w{
+  text-align: center;
+  align-items: center;
+}
+.context_w img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-bottom: 1.5vh;
 }
 
 .cv {
