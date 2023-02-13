@@ -18,7 +18,7 @@
   height:60vh;
   position:absolute;
   background-color: #3A09FF;
-  top:46.4vh;
+  top:50%;
   z-index: 1;
 }
 
@@ -210,9 +210,15 @@ color: #3A09FF;
 transform: rotate(-90deg);
 }
 
-.artworkcaption{
-  padding-top: 10px;
-  font-size: 20px;
+.artworktitle li {
+  text-align: center;
+  margin-left: 500px;
+}
+
+.miragetxt{
+  text-align: center;
+  padding-left: 20vw;
+  padding-right: 20vw;
 }
 
 .bodyOrchestra i {
