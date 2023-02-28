@@ -1,6 +1,13 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @function grid($grid-size) {
+	@return calc(100vw / 24 * #{$grid-size});
+} */
 
+@font-face {
+	font-family: "Anybody";
+	src: url("https://assets.codepen.io/1492907/Anybody.woff2") format("woff2");
+}
 
 * {
 	margin: 0px;
@@ -13,7 +20,10 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.box {
+
+
+
+/* .box {
   width:100%;
   height:60vh;
   position:absolute;
@@ -58,7 +68,38 @@ z-index: 2;
   color: #FFFFFF;
   transform: matrix(1, 0, 0, -1, 0, 0);
   z-index: 2;
+} */
+
+.Mname {
+	padding: 4rem;
+  padding-left: 13vw;
+  font-family: 'Anybody';
+  font-size: 400px;
+	filter: url(#distortionFilter);
+	/* font-size: grid(3); */
+	color: #0e0e0e;
+  align-items: center;
+	font-variation-settings: "wght" 500;
+	/* @media (max-width: 800px) {
+		font-size: rem;
+	} */
+  	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+  line-height: 90%;
 }
+
+svg {
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: -9999px;
+	pointer-events: none;
+}
+
 /* ABOUT PAGE */
 .aboutBox{
   display:flex;
@@ -174,7 +215,7 @@ z-index: 2;
 #name {
   /* padding-right: 880px; */
   font-size: 17px;
-  color: #3A09FF;
+  color: black;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -206,7 +247,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 70px;
 line-height: 121px;
-color: #3A09FF;
+color: grey;
 transform: rotate(-90deg);
 }
 
@@ -226,7 +267,7 @@ transform: rotate(-90deg);
    font-size: 20px;
    color: white;
    display: inline;
-   text-shadow: 1px 1px #3A09FF;
+   text-shadow: 1px 1px black;
    padding-bottom: 1000px;
 }
 
@@ -364,7 +405,7 @@ transform: rotate(-90deg);
 }
 .context_i p{
 font-size: 50px;
-color:blueviolet;
+color:black;
 }
 .context_i img{
   display: block;
