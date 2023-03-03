@@ -72,9 +72,9 @@ z-index: 2;
 
 .Mname {
 	padding: 4rem;
-  padding-left: 13vw;
+  padding-left: 15vw;
   font-family: 'Anybody';
-  font-size: 400px;
+  font-size: 500px;
 	filter: url(#distortionFilter);
 	/* font-size: grid(3); */
 	color: #0e0e0e;
