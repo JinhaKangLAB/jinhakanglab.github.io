@@ -291,7 +291,7 @@ transform: rotate(-90deg);
   
 }
 
-	.cool a span {
+	.cool span {
 		color: lightgray;
 		display: inline-block;
 		position: relative;
@@ -354,7 +354,7 @@ transform: rotate(-90deg);
   font-size: 6vh;
   padding-right:30px;
   text-shadow: 1px 1px 1px black;
-  font-family: 'Lato';
+  font-family: 'Palanquin', sans-serif;
   }
   
 .br section .block:nth-of-type(1) {
@@ -426,6 +426,23 @@ transform: rotate(-90deg);
   text-align: center;
 }
 
+
+/*Smart Cane*/
+.context_sc {
+  align-items: center;
+  text-align: center;
+}
+.context_sc img {
+  margin-top: 3vh;
+  align-items: center;
+}
+
+.context_sc p {
+  margin-top: 15px;
+  font-size: 30px;
+  color:black;
+  text-align: center;
+}
 
 /*HYUNDAI*/
 .content_h{
