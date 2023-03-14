@@ -426,6 +426,19 @@ transform: rotate(-90deg);
   text-align: center;
 }
 
+/*Computing Fabrics*/
+.context_cf {
+  align-items: center;
+  text-align: center;
+}
+.context_cf img {
+  margin-top: 10vh;
+}
+.context_cf p {
+  margin-top: 15px;
+  font-size: 30px;
+  text-align: center;
+}
 
 /*Smart Cane*/
 .context_sc {
