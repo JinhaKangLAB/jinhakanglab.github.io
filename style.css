@@ -280,18 +280,19 @@ transform: rotate(-90deg);
 .cool {
   padding-top: 1.5rem;
 	background: white;
-	height: 100%;
-	place-items: left;
-	font: bold 6rem;
-  font-size: 4rem;
-  padding-left: 2rem;
-  font-family: 'Palanquin', sans-serif;
-  font-weight: 100;
-  line-height: 1.5;
+  font-size: 1rem;
   
 }
 
 	.cool span {
+    height: 100%;
+    place-items: left;
+    font: bold 6rem;
+    font-size: 4rem;
+    padding-left: 2rem;
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 100;
+    line-height: 1.5;
 		color: lightgray;
 		display: inline-block;
 		position: relative;
