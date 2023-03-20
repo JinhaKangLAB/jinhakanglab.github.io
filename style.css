@@ -51,7 +51,7 @@ svg {
   background: white;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: auto;
   justify-content: center;
   align-items: center;
   margin-top: -5vh;
@@ -277,12 +277,12 @@ transform: rotate(-90deg);
 }
 
 /*Design Nav*/
+
 .cool {
-  padding-top: 1.5rem;
-	background: white;
+  padding-top: 1.8rem;
+	/* background: white; */
   font-size: 1rem;
-  color:grey;
-  
+  color:black;
 }
 
 	.cool span {
@@ -293,12 +293,30 @@ transform: rotate(-90deg);
     padding-left: 2rem;
     font-family: 'Palanquin', sans-serif;
     font-weight: 100;
-    line-height: 1.5;
-		color: rgb(199, 198, 198);
+    line-height: 1.1;
+		color: rgb(150, 150, 150);
 		display: inline-block;
 		position: relative;
+
   }
 
+  .thumb img { 
+	/* position:relative; */
+	position:absolute;
+	visibility:hidden;
+width: 100%;
+height: auto;
+padding-left: o;
+margin-left: 0;
+background-color: white;
+opacity: 70%;
+}
+.thumb:hover, .thumb:hover img { 
+	visibility:visible;
+	top:0;
+	left:-1px; 
+	z-index:-1;
+}
 /* @keyframes max-width {
 	from {
 		max-width: 0;
@@ -318,7 +336,8 @@ transform: rotate(-90deg);
 } */
 
 .cool span:hover{
-	color:dimgray;
+	color:rgb(27, 27, 27);
+
 }
 
 /*Brown*/
