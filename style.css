@@ -41,7 +41,7 @@
 .words span {
   font-size: 23rem;
   display: inline-block;
-  animation: move 3s ease-in-out infinite;
+  animation: move 2s ease-in-out infinite;
 }
 
 @keyframes move {
@@ -129,7 +129,7 @@
 .cell img{
     width:100%;
     opacity: 1;
-    transition: .5s ease;
+    transition: .4s ease;
 }
 
 .cell:hover .image {
@@ -141,7 +141,7 @@
 }
 
 .cell h1{
-  transition: .5s ease;
+  transition: .3s ease;
   opacity: 0;
   position: absolute;
   display: flex;
@@ -178,7 +178,7 @@
     flex-direction: row;
     justify-content: space-between;
     gap:8px;
-    padding: 15px;
+    padding: 14px;
     flex-wrap: wrap;
 }
 
@@ -207,6 +207,13 @@
 #name:hover{
   background-color: white;
   color:black; 
+}
+
+/*Artdirection*/
+.bodyText{
+  color:red;
+  background-color: aqua;
+  display: none;
 }
 
 /*ARTWORKS*/
@@ -256,15 +263,15 @@ transform: rotate(-90deg);
 .cool {
   padding-top: 1.8rem;
 	/* background: white; */
-  font-size: 1rem;
+  font-size: 0.5rem;
   color:black;
 }
 
 	.cool span {
     height: 100%;
     place-items: left;
-    font: bold 6rem;
-    font-size: 3rem;
+    font: bold 2rem;
+    font-size: 1rem;
     padding-left: 2rem;
     font-family: 'Palanquin', sans-serif;
     font-weight: 100;
@@ -277,14 +284,15 @@ transform: rotate(-90deg);
 
   .thumb img { 
 	/* position:relative; */
-	position:absolute;
+	position:relative;
+  overflow: hidden;
 	visibility:hidden;
 width: 100%;
 height: auto;
-padding-left: o;
+padding-left: 20vw;
 margin-left: 0;
 background-color: white;
-opacity: 70%;
+opacity: 100%;
 }
 .thumb:hover, .thumb:hover img { 
 	visibility:visible;

@@ -1,41 +1,22 @@
+const parentBgEl = document.querySelector(".bg");
+const childEls = document.querySelectorAll(".backcontainer .text span");
+const textEl = document.querySelector(".text");
 
+childEls.forEach((el) => {
+  el.addEventListener("mouseover", (e) => {
+    const id = el.getAttribute("data-text");
+    const bgEl = parentBgEl.querySelector(`.id-${id}`);
+ parentBgEl.querySelectorAll("img").forEach((img) => {
+      img.style.display = "none";
+      img.style.animation = "";
+    });
+    bgEl.style.display = "block";
+    bgEl.style.animation = "anima 0.3s ease forwards";
 
-const title = document.querySelector(".Mname");
-if (title) {
-	title.addEventListener("mouseenter", () => {
-		gsap.to(".distort feDisplacementMap", 1, {
-			attr: {
-				scale: 100
-			},
-			ease: "circ.out"
-		});
-		gsap.to(".distort feTurbulence", 1, {
-			attr: {
-				baseFrequency: '2.08 .08'
-			},
-			ease: "circ.out"
-		}, 1);
-		gsap.to(title, 1, {
-			fontVariationSettings: "'wght' 450",
-			ease: "back.out"
-		});
-	});
-	title.addEventListener("mouseleave", () => {
-		gsap.to(".distort feDisplacementMap", 1, {
-			attr: {
-				scale: 0
-			},
-			ease: "circ.out"
-		}, 1);
-		gsap.to(".distort feTurbulence", 1, {
-			attr: {
-				baseFrequency: '2.01 .01'
-			},
-			ease: "circ.out"
-		}, 1);
-		gsap.to(title, 1, {
-			fontVariationSettings: "'wght' 450",
-			ease: "back.out"
-		}, 1);
-	});
-}
+    // line animation
+    const cords = el.getBoundingClientRect();
+    const textCords = textEl.getBoundingClientRect();
+
+  });
+});
+
