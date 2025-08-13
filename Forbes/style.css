@@ -295,23 +295,24 @@
   position: relative;
 }
 .frame-53 {
-  display: flex;
-  flex-direction: column;
-  gap: 17px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 898px;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 898px;
+    position: relative;
 }
 .microplastic-mockup-3-2 {
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 787.92px;
-  position: relative;
-  object-fit: cover;
-  aspect-ratio: 1240/787.92;
+    height: 90%;
+    flex-shrink: 0;
+    height: auto;
+    position: relative;
+    object-fit: cover;
+    aspect-ratio: 1240/787.92;
+    width: 100%;
 }
 .frame-51 {
   display: flex;
@@ -428,7 +429,7 @@
 .microplastic-mockup-3-22 {
   flex-shrink: 0;
   width: 580px;
-  height: 832px;
+   height: 90%;
   position: relative;
   object-fit: cover;
   aspect-ratio: 580/832;
@@ -523,17 +524,19 @@
   gap: 17px;
   align-items: flex-start;
   justify-content: flex-start;
-  align-self: stretch;
+   height: 100%;
   flex-shrink: 0;
   position: relative;
 }
+
 .microplastic-mockup-3-23 {
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 849px;
-  position: relative;
-  object-fit: cover;
-  aspect-ratio: 592/849;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 80%;
+    width:80%;
+    position: relative;
+    object-fit: cover;
+    aspect-ratio: 592/849;
 }
 .wellness-graphic {
   color: #000000;
@@ -553,6 +556,7 @@
     height: 935px;
     position: relative;
     width: 500px;
+    height: 90%;
 }
 .frame-642 {
     padding: 10px;
@@ -688,12 +692,12 @@
   position: relative;
 }
 .microplastic-mockup-3-24 {
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 800.62px;
-  position: relative;
-  object-fit: cover;
-  aspect-ratio: 1260/800.62;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 90%;
+    position: relative;
+    object-fit: cover;
+    aspect-ratio: 1260/800.62;
 }
 .outbreak-map {
   color: #000000;
