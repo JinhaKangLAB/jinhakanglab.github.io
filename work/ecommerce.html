@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>JINHA KANG</title>
+
+</head>
+
+<body>
+
+
+    <nav>
+        <div class="nav">
+            <div class="nav-hug">
+                <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="../index.html" class="nav-link">WORK</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../creative/under.html" class="nav-link">CREATIVE</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../cv/cv.html" class="nav-link">CV</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
+                    <img class="linkedin" src="../images/linkedin.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="workContainer">
+        <div class="workTextContainer">
+            <div class="workHeadline">E-Commerce Campaigns Across Multiple Brands</div>
+            <div class="subHeadline"> A multi-brand e-commerce campaign crafted to unify beauty, wellness, fashion, and food & beverage into a cohesive visual story.<br /> Each product is deliberately placed to showcase its unique value, using refined color palettes, elevated lifestyle imagery, and modern design cues to guide the consumer journey.<br /> The layout balances clarity with impact, enhancing discoverability and driving engagement through a trend-aware and performance-driven approach tailored for high-conversion digital retail.</div>
+            <!--<div class="">Tools Photoshop, Illustrator, Flourish, HTML, and CSS</div>-->
+            <div class="workText">
+
+            </div>
+        </div>
+    </div>
+    <div class="imgContainer">
+        <img src="../images/ecommerce/e-commerce.jpg" />
+    </div>
+
+    <!--GALLERY-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* prevent horizontal scroll */
+        }
+
+        .ecommerceContainer {
+            position: relative;
+            width: 100vw; /* full width */
+            height: 100%;
+            background: #000;
+            margin: 0;
+            padding-left: 50px; /* left margin inside container */
+            padding-right: 50px; /* right margin inside container */
+            box-sizing: border-box;
+        }
+
+        .ecommerceImage {
+            position: absolute;
+            width: 38vw; /* responsive width */
+            max-width: 90%;
+            height: auto;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            cursor: zoom-in;
+        }
+
+            .ecommerceImage.visible {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+                .ecommerceImage.visible:hover {
+                    transform: scale(1.08);
+                    z-index: 2;
+                }
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0); /* start fully transparent */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: background 0.3s ease, opacity 0.3s ease; /* smooth transition */
+        }
+
+            .modal.open {
+                background: rgba(0,0,0,0.7); /* semi-transparent black */
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .modal img {
+                max-width: 90%;
+                max-height: 85%;
+            }
+    </style>
+
+    <div class="ecommerceContainer" id="gallery">
+        <img src="../images/ecommerce/banza.png" class="ecommerceImage" alt="img1">
+        <img src="../images/ecommerce/111skin.jpg" class="ecommerceImage" alt="img2">
+        <img src="../images/ecommerce/polo.png" class="ecommerceImage" alt="img3">
+        <img src="../images/ecommerce/waterloo.png" class="ecommerceImage" alt="img5">
+        <img src="../images/ecommerce/neededAcademy.jpg" class="ecommerceImage" alt="img4">
+        <img src="../images/ecommerce/mintMobile.gif" class="ecommerceImage" alt="img5">
+        <img src="../images/ecommerce/lipgloss.png" class="ecommerceImage" alt="img5">
+        <img src="../images/ecommerce/nakedsundays.png" class="ecommerceImage" alt="img4">
+        <img src="../images/ecommerce/jiyu.png" class="ecommerceImage" alt="img5">
+        <img src="../images/ecommerce/footPeelMask.png" class="ecommerceImage" alt="img5">
+        <img src="../images/ecommerce/coc1onut.png" class="ecommerceImage" alt="img4">
+
+    </div>
+
+    <div class="modal" id="modal">
+        <img id="modalImg" src="" alt="">
+    </div>
+
+    <script>
+        (function () {
+            const ecommerceImages = document.querySelectorAll('.ecommerceImage');
+
+            function placeSpread(images) {
+                const container = document.querySelector('.ecommerceContainer');
+                const containerWidth = container.clientWidth; // includes padding
+                const vw = containerWidth;
+                const paddingLeft = 50;
+                const paddingRight = 50;
+                let currentY = 100;
+
+                images.forEach(img => {
+                    const w = img.offsetWidth;
+                    const h = img.offsetHeight;
+
+                    // Random horizontal position inside padded area
+                    const numCols = 3;
+                    const colWidth = (vw - paddingLeft - paddingRight) / numCols;
+                    const col = Math.floor(Math.random() * numCols);
+                    let x = paddingLeft + col * colWidth + (colWidth - w) / 2;
+
+                    // Clamp so the entire image fits inside the container
+                    if (x + w > vw - paddingRight) x = vw - paddingRight - w;
+                    if (x < paddingLeft) x = paddingLeft;
+
+                    const y = currentY;
+                    img.style.left = x + "px";
+                    img.style.top = y + "px";
+
+                    currentY += h + 80 + Math.random() * 80;
+                });
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        placeSpread(ecommerceImages);
+                        img.classList.add("visible");
+                        observer.unobserve(img);
+                    }
+                });
+            }, { root: null, threshold: 0.1 });
+
+            ecommerceImages.forEach(img => observer.observe(img));
+
+            // Modal logic
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modalImg');
+            ecommerceImages.forEach(img => {
+                img.addEventListener("click", () => {
+                    modalImg.src = img.src;
+                    modal.classList.add("open");
+                });
+            });
+            modal.addEventListener("click", () => modal.classList.remove("open"));
+
+            // Recalculate positions on window resize
+            window.addEventListener('resize', () => {
+                placeSpread(ecommerceImages);
+            });
+        })();
+    </script>
+
+</body>
+</html>
