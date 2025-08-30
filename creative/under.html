@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
+    <title>JINHA KANG</title>
+
+    <style>
+        .message {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+            color: #111827;
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            justify-content: center;
+        }
+
+            .message dots {
+                justify-content: center;
+            }
+
+            /* Simple dot animation */
+            .dots::after {
+                content: '';
+                display: inline-block;
+                width: 0.5em;
+                text-align: left;
+                animation: dots 1.5s steps(3, end) infinite;
+            }
+
+        @keyframes dots {
+            0%, 20% {
+                content: '';
+            }
+
+            40% {
+                content: '.';
+            }
+
+            60% {
+                content: '..';
+            }
+
+            80%, 100% {
+                content: '...';
+            }
+        }
+    main {
+        margin-top:-100px;
+    }
+    
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="nav">
+                <div class="nav-hug">
+                    <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="../index.html" class="nav-link">WORK</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">CREATIVE</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="../cv/cv.html" class="nav-link">CV</a>
+                        </li>
+                    </ul>
+
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+
+                    <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
+                        <img class="linkedin" src="../images/linkedin.png" />
+                    </a>
+
+                </div>
+            </div>
+        </nav>
+        <main>
+            <div class="message">
+                <div class="message dots">Currently Updating</div>
+            </div>
+        </main>
+    </div>
+
+
+</body>
+
+</html>
