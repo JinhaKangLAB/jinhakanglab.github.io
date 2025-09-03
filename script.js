@@ -14,6 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }));
 });
 
+/*NAV FIXED ANIMATION*/
+document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) { // adjust trigger point
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    });
+});
 
 /*ECOMMERCE GALLERY*/
 (function () {

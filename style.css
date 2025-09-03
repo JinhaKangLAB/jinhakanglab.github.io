@@ -58,9 +58,22 @@ menu, ol, ul {
 }
 
 nav {
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
+    top: 0;
+    width: 100%;
     grid-area: nav;
-    border-radius: var(--main-radius);
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+    height: 82px;
+}
+
+nav.scrolled {
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(6px);
 }
 
 .nav {
@@ -72,8 +85,8 @@ nav {
     align-self: stretch;
     flex-shrink: 0;
     position: relative;
-
 }
+
 .nav-hug {
     padding: 10px 40px 10px 40px;
     display: flex;
@@ -86,6 +99,10 @@ nav {
     position: relative;
 }
 
+/*NAV SCROLL DIFFERENT DESIGN*/
+nav.scrolled .nav-hug {
+
+}
 .jinha-kang {
     color: #000000;
     text-align: left;
@@ -243,7 +260,7 @@ main {
     background: white;
     grid-area: main;
     border-radius: var(--main-radius);
-    padding-top: var(--main-padding);
+    padding-top: 0;
 }
 
 /*Gallery*/
@@ -389,6 +406,8 @@ main {
     padding-top: 0;
     margin: 8px;
     margin-top: 0;
+    position: relative;
+    padding-bottom: 32px;
 }
 #content5 img {
     width: 100%;
@@ -492,7 +511,7 @@ footer {
 .workContainer {
     text-align: center;
     margin: 50px;
-    margin-top: 30px;
+    margin-top: 100px;
     margin-bottom: 30px;
 }
 
@@ -519,40 +538,6 @@ footer {
     width:100%;
     height:auto;
 }
-
-/*.workHeadline {
-    /*  width: 100%;
-    text-align: center;
-    color: #000000;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-size: 30px;
-
-    position: relative;
-    align-self: stretch;
-    margin-bottom: 16px;
-    font-weight: bold;*/
- /*  font-weight: 600;
-    margin-bottom: 20px;
-    font-family: Montserrat;
-    font-size: 30px;
-    color: #333;
-}
-
-.subHeadline {
-    width: 100%;
-    color: #000000;
-    text-align: center;
-    font-family: "Inter-Regular", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    position: relative;
-    align-self: stretch;
-    margin-bottom: 16px;
-    gap: 48px;
-}*/
 
 #flex-credit {
    border-top: 1.2px solid grey;
