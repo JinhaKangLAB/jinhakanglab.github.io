@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>JINHA KANG</title>
+    <style>
+        :root {
+            --page-bg: #ffffff;
+            --max-width: 1100px;
+            --gap: clamp(16px, 4vw, 28px);
+            --radius: 0px;
+            --fade-duration: 700ms;
+            --lift: 24px; /* how far cards lift during parallax */
+        }
+
+        /* Base */
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: var(--page-bg);
+            line-height: 1.5;
+        }
+
+        .subHeadline {
+            text-align: center;
+        }
+
+        /* Stack of image cards */
+        .stack {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2vh var(--gap) 20vh;
+            display: grid;
+            gap: var(--gap);
+        }
+
+        /* Each card */
+        .scrollBox {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: clip;
+            box-shadow: var(--shadow);
+            transform: translateY(var(--lift));
+            opacity: 0;
+            will-change: transform, opacity;
+            transition: transform var(--fade-duration) cubic-bezier(.22,.61,.36,1), opacity var(--fade-duration) ease;
+            padding: 10px;
+        }
+
+            .scrollBox img {
+                display: block;
+                width: 100%;
+                height: auto;
+                vertical-align: middle;
+            }
+
+            .scrollBox.in-view {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        @media (hover: hover) {
+            .scrollBox.in-view:hover {
+                transform: translateY(-6px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scrollBox, .scrollBox.in-view {
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+
+
+
+        /* Optional: enable scroll snapping by toggling .snap on .stack */
+        .stack.snap {
+            scroll-snap-type: y proximity;
+        }
+
+            .stack.snap .scrollBox {
+                scroll-snap-align: start;
+            }
+    </style>
+
+</head>
+
+<body>
+
+
+    <nav>
+        <div class="nav">
+            <div class="nav-hug">
+                <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="../index.html" class="nav-link">WORK</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../creative/under.html" class="nav-link">CREATIVE</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../cv/cv.html" class="nav-link">CV</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
+                    <img class="linkedin" src="../images/linkedin.png" />
+                </a>
+
+
+            </div>
+        </div>
+    </nav>
+    <div class="workContainer">
+        <div class="workTextContainer">
+            <div class="workHeadline">On the GoGa</div>
+            <div class="subHeadline">
+                Standard Pop up Banner Design
+            </div>
+            <!--<div class="">Tools Photoshop, Illustrator, Flourish, HTML, and CSS</div>-->
+            <div class="workText">
+
+            </div>
+        </div>
+    </div>
+    <div class="imgContainer">
+        <img src="../images/onthegoga/onthegoga.jpg" />
+    </div>
+
+
+    <!-- Add class "snap" to .stack if you want soft scroll-snap behavior -->
+    <main class="stack" id="stack">
+
+
+        <figure class="scrollBox" data-speed="0.16">
+            <img loading="lazy" src="../images/onthegoga/popup.jpg" alt="Forest with soft morning light">
+            <figcaption class="caption"></figcaption>
+        </figure>
+
+        <figure class="scrollBox" data-speed="0.10">
+            <img loading="lazy" src="../images/onthegoga/standard pop up banner_1.jpg" alt="City skyline at dusk">
+            <figcaption class="caption"></figcaption>
+        </figure>
+
+        <figure class="scrollBox" data-speed="0.18">
+            <img loading="lazy" src="../images/onthegoga/standard pop up banner_2.jpg" alt="Desert sand dunes">
+            <figcaption class="caption"></figcaption>
+        </figure>
+
+        <figure class="scrollBox" data-speed="0.12">
+            <img loading="lazy" src="../images/onthegoga/onthegoga.jpg" alt="Mountain lake at sunrise">
+            <figcaption class="caption"></figcaption>
+        </figure>
+
+    </main>
+
+    <script>
+        /* Smooth scroll-reveal + subtle parallax
+           - IntersectionObserver toggles .in-view for fade/lift
+           - rAF parallax translates cards a few pixels based on viewport positionA
+        */
+
+        (function () {
+            const cards = Array.from(document.querySelectorAll('.scrollBox'));
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, { root: null, threshold: 0.12 });
+
+            cards.forEach(c => io.observe(c));
+
+            let ticking = false;
+            function onScroll() {
+                if (ticking || reduceMotion) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                    const vh = window.innerHeight || document.documentElement.clientHeight;
+                    for (const el of cards) {
+                        if (!el.classList.contains('in-view')) continue;
+
+                        const rect = el.getBoundingClientRect();
+                        const center = rect.top + rect.height / 2;
+                        const progress = (center - vh / 2) / (vh / 2);
+                        const speed = parseFloat(el.dataset.speed || '0.14');
+
+                        const maxLift = parseFloat(getComputedStyle(document.documentElement)
+                            .getPropertyValue('--lift')) || 24;
+                        const y = -progress * maxLift * speed * 2;
+                        el.style.transform = `translateY(${y}px)`;
+                    }
+                    ticking = false;
+                });
+            }
+
+            function onResize() {
+                if (reduceMotion) return;
+                for (const el of cards) {
+                    el.style.transform = '';
+                }
+                onScroll();
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onResize);
+
+            onScroll();
+        })();
+    </script>
+    <footer>
+        <div class="footerText">
+            <span>Email: jinhakang.usa@gmail.com </span><br />
+            <span>© 2025 Jinha Kang. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>

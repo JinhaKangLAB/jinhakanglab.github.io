@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
     <title>JINHA KANG</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
@@ -38,75 +39,11 @@
             color: inherit;
         }
 
-        /* NAVIGATION */
-        nav {
-            background: white;
-            border-radius: 0;
-        }
-
-        .nav-hug {
-            padding: 10px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 82px;
-        }
-
-        .jinha-kang {
-            font-family: "Montserrat-Medium", sans-serif;
-            font-size: 20px;
-            font-weight: 500;
-            color: #000;
-            width: 130px;
-        }
-
-        .menu {
-            display: flex;
-            gap: 46px;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
-            list-style: none; /* remove bullets */
-        }
-
-        .menu-item {
-            font-family: "Montserrat-Regular", sans-serif;
-            font-size: 15px;
-            font-weight: 400;
-            color: #000;
-            transition: 0.7s ease;
-        }
-
-            .menu-item a:hover {
-                color: #D3D3D3;
-            }
-
-        .linkedin {
-            width: 30px;
-            height: 30px;
-            object-fit: cover;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 5px;
-            z-index: 1000;
-        }
-
-        .bar {
-            width: 25px;
-            height: 3px;
-            background-color: black;
-            transition: all 0.3s ease-in-out;
-        }
-
         /*WORK HEADLINE*/
         .workContainer {
             text-align: center;
             margin: 50px;
-            margin-top: 30px;
+            margin-top: 100px;
             margin-bottom: 30px;
         }
 
@@ -240,10 +177,6 @@
                     display: flex;
                 }
 
-            .hamburger {
-                display: flex;
-            }
-
             .article-header h3 {
                 font-size: 1rem;
             }
@@ -266,20 +199,32 @@
 
 <body>
     <nav>
-        <div class="nav-hug">
-            <a href="../index.html" class="jinha-kang">JINHA KANG</a>
-            <ul class="menu">
-                <li class="menu-item"><a href="../index.html">WORK</a></li>
-                <li class="menu-item"><a href="../creative/under.html">CREATIVE</a></li>
-                <li class="menu-item"><a href="../cv/cv.html">CV</a></li>
-            </ul>
-            <a href="https://www.linkedin.com/in/jinha-kang/" target="_blank">
-                <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn Profile" />
-            </a>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+        <div class="nav">
+            <div class="nav-hug">
+                <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="../index.html" class="nav-link">WORK</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../creative/under.html" class="nav-link">CREATIVE</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../cv/cv.html" class="nav-link">CV</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
+                    <img class="linkedin" src="../images/linkedin.png" />
+                </a>
+
             </div>
         </div>
     </nav>
@@ -365,21 +310,6 @@
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const hamburger = document.querySelector(".hamburger");
-            const menu = document.querySelector(".menu");
-
-            hamburger.addEventListener("click", () => {
-                hamburger.classList.toggle("active");
-                menu.classList.toggle("active");
-            });
-
-            document.querySelectorAll(".nav-link").forEach(n =>
-                n.addEventListener("click", () => {
-                    hamburger.classList.remove("active");
-                    menu.classList.remove("active");
-                }));
-        });
 
         document.querySelectorAll(".view-btn").forEach(link => {
             link.addEventListener("click", function (event) {
@@ -388,7 +318,12 @@
             });
         });
     </script>
- 
+    <footer>
+        <div class="footerText">
+            <span>Email: jinhakang.usa@gmail.com </span><br />
+            <span>© 2025 Jinha Kang. All rights reserved.</span>
+        </div>
+    </footer>
 </body>
 
 </html>
