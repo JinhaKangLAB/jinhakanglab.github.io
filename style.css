@@ -548,7 +548,10 @@ footer {
     width:100%;
     height:auto;
 }
-
+.imgContainer video{
+    width:100%;
+    height:auto;
+}
 #flex-credit {
    border-top: 1.2px solid grey;
     display: flex;
