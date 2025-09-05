@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
+    <title>JINHA KANG</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --main-radius: 20px;
+            --main-padding: 16px;
+            --primary-color: #ffffff;
+            --primary-color-hover: #D3d3d3;
+            --text-color: #333;
+            --background-color: #f9f9f9;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /*WORK HEADLINE*/
+        .workContainer {
+            text-align: center;
+            margin: 50px;
+            margin-top: 100px;
+            margin-bottom: 30px;
+        }
+
+        .workHeadline {
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-family: Montserrat;
+            font-size: 30px;
+        }
+
+        .subHeadline {
+            text-align: center;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            font-size: 16px;
+        }
+
+        .role {
+            margin-top: 20px;
+        }
+
+        .tools {
+            margin-top: 20px;
+        }
+
+        .awards {
+            margin-bottom: 20px;
+        }
+        /* PROJECT GRID */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            background: none;
+        }
+
+        .project {
+            background: #fff;
+            border-radius: var(--main-radius);
+            padding: var(--main-padding);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .project:hover {
+                transform: translateY(-5px);
+            }
+
+            .project img {
+                width: 100%;
+                border-radius: var(--main-radius);
+                margin-bottom: 1rem;
+            }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 0.75rem;
+        }
+           
+            .article-header h3 {
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+
+        .description {
+            text-align: left;
+        }
+
+        .view-btn {
+            background: var(--primary-color);
+            color: #000000;
+            padding: 0.4rem 0.8rem;
+            border-radius: 16px;
+            border-style: solid;
+            border-width: 1px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+            .view-btn:hover {
+                background: var(--primary-color-hover);
+            }
+
+        .project p {
+            text-align: left;
+        }
+
+        #hoverAlert {
+            font-weight: 400;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .article-header h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+                padding: 0 0.5rem;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 82px;
+                right: 0;
+                background: white;
+                width: 100%;
+                padding: 1rem;
+                border-radius: var(--main-radius);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+                .menu.active {
+                    display: flex;
+                }
+
+            .article-header h3 {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+
+            .view-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav">
+            <div class="nav-hug">
+                <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="../index.html" class="nav-link">WORK</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../creative/under.html" class="nav-link">CREATIVE</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../cv/cv.html" class="nav-link">CV</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
+                    <img class="linkedin" src="../images/linkedin.png" />
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="workContainer">
+        <div class="workTextContainer">
+            <div class="workHeadline">Data Visualization</div>
+            <div class="subHeadline">
+                Transforming complex financial, technological, and geological data into visual insights that drive clarity and impact.
+            </div>
+        </div>
+        <!--<div class="role">
+            <b>Role</b> NY Multimedia Graphics Editor
+        </div>
+        <div class="client">
+            <b>Client</b> Daily Mail
+        </div>-->
+        <div class="tools">
+            <b>Tools</b> Photoshop, Illustrator, Flourish, HTML, and CSS
+        </div>
+    </div>
+
+    <main>
+
+        <section class="project">
+            <img src="../images/data/data.png" alt="Project Four" />
+            <div class="article-header">
+                <h3>Starbucks’ Green Apron Model: Streamlining Staff for Better Service</h3>
+                <a href="https://www.dailymail.co.uk/yourmoney/consumer/article-14806297/starbucks-plans-new-green-apron-staffing-model.html" class="view-btn" target="_blank">View the Article</a>
+            </div>
+            <p>This U-shaped graph illustrates Starbucks’ staffing journey: high pre-COVID levels, a dip during cost-cutting that impacted service, and the current hiring surge aimed at restoring efficiency, customer experience, and employee morale.</p>
+        </section>
+
+
+        <section class="project">
+            <script src="https://jinhakangwork-cpu.github.io/interactive//flourish.embed.js"></script>
+            <iframe scrolling="no" src="https://jinhakanglab.github.io/FlourishGraphics/TeslaStock/index.html#slide-0" data-id="visualisation/24477999" class="flourish-embed-iframe" title='Interactive or visual content' frameborder='0' style='width:100%;height:800px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+            <div class="article-header">
+                <h3>
+                    Tesla Stock in Motion
+                    <h4 id="hoverAlert">
+                        <?xml version="1.0" encoding="utf-8" ?>
+                        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.503 4.142l-.707-.707L13.3 1.932l.707.707zM10 1.134H9v2.833h1zm-2.86 2.3L5.637 1.933l-.707.707 1.503 1.503zm11.835 10.788a1.418 1.418 0 0 0-1.466-1.489 4.475 4.475 0 0 0-.693.064l-.042-.016A1.388 1.388 0 0 0 15.478 12a1.788 1.788 0 0 0-.587.064A1.84 1.84 0 0 0 13 11.06a2.768 2.768 0 0 0-1 .167V6.9a1.905 1.905 0 0 0-2-1.846A1.905 1.905 0 0 0 8 6.9v6.954L6.979 12.64a1.624 1.624 0 0 0-1.066-.733 1.775 1.775 0 0 0-1.264.161 1.478 1.478 0 0 0-.71.968 1.588 1.588 0 0 0 .167 1.137l2.154 4.38 3.32 4.064.773-.635-3.221-3.921-2.144-4.359a.619.619 0 0 1-.074-.446.485.485 0 0 1 .235-.322.796.796 0 0 1 .543-.051.708.708 0 0 1 .47.328L9 16.6V6.9a.908.908 0 0 1 1-.846.908.908 0 0 1 1 .846V14h1v-1.379c0-.373.336-.562 1-.562.374 0 1 .073 1 .562V14h1v-.563c0-.36.111-.47.478-.47.507 0 .522.684.522.762v1.063h1V13.76l-.005.002.005-.008v.006c.011-.005.362-.027.508-.027.129 0 .492.156.492.761.022.245 0 2.992 0 4.093a7.863 7.863 0 0 1-.463 2.657c-.16.421-.56 1.221-.56 1.221l.918.43s.272-.606.398-.925a7.32 7.32 0 0 0 .471-1.57A26.038 26.038 0 0 0 19 17.07z" /><path fill="none" d="M0 0h24v24H0z" /></svg> Hover over the orange dots to view the popups.
+                    </h4>
+                </h3>
+                <a href="https://jinhakanglab.github.io/FlourishGraphics/TeslaStock/index.html#slide-0" class="view-btn" target="_blank">View the Article </a>
+            </div>
+            <div class="description">
+                <p>This data visualization underscores the sensitivity of Tesla's market valuation to public perceptions of its leadership.</p>
+            </div>
+        </section>
+
+        <section class="project">
+            <script src="https://jinhakangwork-cpu.github.io/interactive//flourish.embed.js"></script>
+            <iframe scrolling="no" src="https://jinhakanglab.github.io/FlourishGraphics/incidenceRates/index.html" data-id="visualisation/24477999" class="flourish-embed-iframe" title='Interactive or visual content' frameborder='0' style='width:100%;height:800px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+            <div class="article-header">
+                <h3>
+                    Prostate Cancer Incidence Rates Across U.S. Counties
+                    <h4 id="hoverAlert">
+                        <?xml version="1.0" encoding="utf-8" ?>
+                        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.503 4.142l-.707-.707L13.3 1.932l.707.707zM10 1.134H9v2.833h1zm-2.86 2.3L5.637 1.933l-.707.707 1.503 1.503zm11.835 10.788a1.418 1.418 0 0 0-1.466-1.489 4.475 4.475 0 0 0-.693.064l-.042-.016A1.388 1.388 0 0 0 15.478 12a1.788 1.788 0 0 0-.587.064A1.84 1.84 0 0 0 13 11.06a2.768 2.768 0 0 0-1 .167V6.9a1.905 1.905 0 0 0-2-1.846A1.905 1.905 0 0 0 8 6.9v6.954L6.979 12.64a1.624 1.624 0 0 0-1.066-.733 1.775 1.775 0 0 0-1.264.161 1.478 1.478 0 0 0-.71.968 1.588 1.588 0 0 0 .167 1.137l2.154 4.38 3.32 4.064.773-.635-3.221-3.921-2.144-4.359a.619.619 0 0 1-.074-.446.485.485 0 0 1 .235-.322.796.796 0 0 1 .543-.051.708.708 0 0 1 .47.328L9 16.6V6.9a.908.908 0 0 1 1-.846.908.908 0 0 1 1 .846V14h1v-1.379c0-.373.336-.562 1-.562.374 0 1 .073 1 .562V14h1v-.563c0-.36.111-.47.478-.47.507 0 .522.684.522.762v1.063h1V13.76l-.005.002.005-.008v.006c.011-.005.362-.027.508-.027.129 0 .492.156.492.761.022.245 0 2.992 0 4.093a7.863 7.863 0 0 1-.463 2.657c-.16.421-.56 1.221-.56 1.221l.918.43s.272-.606.398-.925a7.32 7.32 0 0 0 .471-1.57A26.038 26.038 0 0 0 19 17.07z" /><path fill="none" d="M0 0h24v24H0z" /></svg> Hover over the orange dots to view the popups.
+                    </h4>
+                </h3>
+                <a href="https://jinhakanglab.github.io/FlourishGraphics/incidenceRates/index.html" class="view-btn" target="_blank">View the Article </a>
+            </div>
+            <div class="description">
+                <p>This interactive map visualizes prostate cancer incidence across U.S. counties, using color-coded age-adjusted rates to highlight regional disparities and help identify areas for targeted public health action.</p>
+            </div>
+        </section>
+
+
+
+
+    </main>
+
+    <script>
+
+        document.querySelectorAll(".view-btn").forEach(link => {
+            link.addEventListener("click", function (event) {
+                event.preventDefault(); // stop default same-tab behavior
+                window.open(this.href, "_blank"); // open in new tab
+            });
+        });
+    </script>
+    <footer>
+        <div class="footerText">
+            <span>Email: jinhakang.usa@gmail.com </span><br />
+            <span>© 2025 Jinha Kang. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+
+</html>
