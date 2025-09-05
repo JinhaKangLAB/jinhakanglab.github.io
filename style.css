@@ -791,6 +791,11 @@ footer {
             align-items: center;
         }
 
+.page4 {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;
+}
     /*mobile*/
     @media (max-width: 768px) {
         .hamburger {
