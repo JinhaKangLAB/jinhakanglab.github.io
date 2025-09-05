@@ -291,6 +291,16 @@ main {
         border-radius: var(--main-radius);
 }
 
+.imgBox video {
+    width: 100%; /* makes video scale like your image did */
+    height: auto; /* keeps aspect ratio */
+    display: block; /* removes unwanted inline spacing */
+    object-fit: cover; /* optional: crops video to fill the box */
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    border-radius: var(--main-radius);
+}
+
 .subBox {
     display: flex;
     flex-direction: row;
