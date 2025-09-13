@@ -126,7 +126,7 @@ nav.scrolled .nav-hug {
 }
 
 li{
-    list-style:none;
+   /*list-style:none;*/
 }
 a{
     color: black;
@@ -725,50 +725,90 @@ footer {
 
 .page1-container {
     display: flex;
-    flex-direction: row;
-    gap: 20px; /* optional spacing between columns */
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    gap: 2rem; /* spacing between logo and text */
+    padding: 2rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
+
 /* Make child divs take appropriate width */
-.page1-1, .page1-2 {
-    flex: 1;
-    min-width: 0;
-    margin:50px;
-    margin-bottom:10px;
+.page {
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    align-items: center;
 }
-.page1-2{
-    text-align:left;
+
+    .page p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #222;
+        text-align: left;
+    }
+
+.STARtitle {
+    display: block;
+    font-size: 1.1rem;
+    color: #111;
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+}
+
+.page1-1,
+.page1-2 {
+   
+}
+.page1-2 {
+    text-align: left; /* always left align */
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #222;
+    flex: 1 1 300px; /* responsive sizing */
+    min-width: 260px;
+}
+.page1-2 h3{
+    text-align: left;
+}
+.page1-2 p{
+    text-align: left;
 }
 
     /* Image responsiveness */
-    .page1-1 img {
-        max-width: 100%;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-    }
+.page1-1 img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* center logo */
+}
 
 .quote {
-    display: flex;
     font-weight: 600;
-    font-family: "Montserrat-SemiBold", sans-serif;
-    font-size: 26px;
-    margin: 50px;
-    justify-content: center;
+    font-family: "Global User Interface", sans-serif;
+    font-size: clamp(18px, 4vw, 26px); /* responsive scaling */
+    margin: 3rem auto;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 1rem;
 }
+
 .boost {
-    /*text-decoration-line: underline;*/
-    /*font-style: italic;*/
-    margin-left: 8px;
-    margin-right: 8px;
-    color:orangered;
+    color: orangered;
+    margin: 0 6px;
 }
+
 
 .page2 {
     display: flex;
+    width:100%;
+    justify-content: center; /* center horizontally */
+    align-items: center;
 }
     .page2 img {
         max-width: 100%;
@@ -776,7 +816,18 @@ footer {
         justify-content: center;
         align-items: center;
     }
-
+    .page2 video {
+        max-width: 100%;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+    }
+.imgContainer video {
+    max-width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
 
     .page3 {
         display: flex;
@@ -796,6 +847,17 @@ footer {
     justify-content: center; /* center horizontally */
     align-items: center;
 }
+ul.casestudy-list {
+    list-style-type: square; /* show squares */
+    padding-left: 1.5em; /* indent so bullets show */
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.casestudy-list li {
+    margin-bottom: 0.2em; /* spacing between bullets */
+    line-height: 1.5; /* improves readability */
+}
+
     /*mobile*/
     @media (max-width: 768px) {
         .hamburger {
@@ -924,7 +986,37 @@ footer {
             font-size: 15px;
         }
 
-        .page1-container {
-            flex-direction: column;
+        .align-with-credit {
+    max-width: calc(230px * 4 + 16px * 3); /* 4 items + 3 gaps */
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+          .page1-container {
+    padding: 1.5rem 1rem;
+  }
+  .page1-2 {
+  
+  }
+}
+.pageDivider {
+    background-color: #fcfaff;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+        .page {
+            padding: 1rem;
         }
+
+            .page p {
+                font-size: 0.95rem;
+            }
+              .page1-container {
+    padding: 1.5rem 1rem;
+  }
+  .page1-2 {
+    text-align: center; /* center text on smaller screens */
+  }
+}
     }
