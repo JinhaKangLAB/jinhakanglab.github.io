@@ -28,6 +28,7 @@ h5,
 
 
 body {
+    padding-top: 60px;
     font-family: 'Inter', Arial, sans-serif;
     background: var(--background-color);
     color: var(--text-color);
