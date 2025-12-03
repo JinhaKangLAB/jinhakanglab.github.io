@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-170PYF8XYX');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
     <title>JINHA KANG</title>
+    <style>
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 40px 0 20px 0;
+            flex-wrap: wrap;
+        }
 
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #000;
+            background: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+            .filter-btn.active, .filter-btn:hover {
+                background: #000;
+                color: white;
+            }
+    </style>
 </head>
 
 <body>
@@ -17,215 +46,105 @@
         <div class="nav">
             <div class="nav-hug">
                 <a href="index.html"><div class="jinha-kang">JINHA KANG</div></a>
-
                 <ul class="menu">
-                    <li class="menu-item">
-                        <a href="#" class="nav-link">WORK</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="creative/index.html" class="nav-link">CREATIVE</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="cv/cv.html" class="nav-link">CV</a>
-                    </li>
+                    <li class="menu-item"><a href="#" class="nav-link">WORK</a></li>
+                    <li class="menu-item"><a href="creative/index.html" class="nav-link">CREATIVE</a></li>
+                    <li class="menu-item"><a href="cv/cv.html" class="nav-link">CV</a></li>
                 </ul>
-
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-
+                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
                 <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
                     <img class="linkedin" src="images/linkedin.png" />
                 </a>
-
             </div>
         </div>
     </nav>
+
     <div class="container">
-
-
-
-
         <main>
             <div class="album">
                 <div class="intro">
-                    <div class="headline">
-                        <span>
-                            <span class="headline-span">
-                                Jinha Kang is an award-winning
-                            </span>
-                            <span class="headline-span2">
-                                multidisciplinary designer
-                            </span>
-                            <span class="headline-span">&amp;</span>
-                            <span class="headline-span2">art director</span>
-                            <span class="headline-span">
-                                based in New York City—the city where creativity never
-                                sleeps.
-                            </span>
-                        </span>
-                    </div>
-                    <div class="description">
-                        <span>
-                            <span class="description-span"></span>
-                            <span class="description-span2"></span>
-                            <span class="description-span">
-                                With experience across fast-paced newsrooms, cutting-edge
-                                tech, and global ad agencies, she blends aesthetics with strategy to create work that’s as impactful as it is inventive. <br />She holds an
-                                MFA in Digital + Media from Rhode Island School of Design
-                                (RISD) and graduated as valedictorian from Seoul National University.
-                                <br />
-                            </span>
-                            <span class="description-span3">Jinha’s mission?</span>
-                            <span class="description-span">
-                                To be the bridge that unites art, design, and technology into meaningful, human-centered experiences.
-                            </span>
-                        </span>
-                    </div>
+                    <div class="headline"><span><span class="headline-span">Jinha Kang is an award-winning</span><span class="headline-span2"> multidisciplinary designer</span><span class="headline-span">&amp;</span><span class="headline-span2">art director</span><span class="headline-span"> based in New York City—the city where creativity never sleeps.</span></span></div>
+                    <div class="description"><span><span class="description-span">With experience across fast-paced newsrooms, cutting-edge tech, and global ad agencies, she blends aesthetics with strategy to create impactful work. She holds an MFA in Digital + Media from RISD and was valedictorian at Seoul National University.</span><br /><span class="description-span3">Jinha’s mission?</span><span class="description-span"> To unite art, design, and technology into meaningful, human-centered experiences.</span></span></div>
                 </div>
+                <!-- FILTER BUTTONS -->
+                <!--<div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="campaign">Campaign</button>
+                    <button class="filter-btn" data-filter="editorial">Editorial</button>
+                    <button class="filter-btn" data-filter="advertisement">Advertisement</button>
+                    <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+                    <button class="filter-btn" data-filter="artdirection">Art Direction</button>
+                    <button class="filter-btn" data-filter="banner">Banner</button>
+                    <button class="filter-btn" data-filter="dataviz">Data Visualization</button>
+                </div>-->
             </div>
         </main>
 
+     
 
-        <div id="content1">
-            <a href="work/sports.html">
-                <div class="imgBox">
-                    <img src="images/grid/sports.png" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Campaign Poster</div>
-                <div class="subText2">Mail Sports</div>
-            </div>
-
-        </div>
-        <div id="content2">
-            <a href="work/editorial.html">
-                <div class="imgBox">
-                    <img src="images/grid/infographic.png" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Editorial Graphics</div>
-                <div class="subText2">Daily Mail</div>
-            </div>
-
+        <!-- PROJECT GRID -->
+        <div id="content1" class="project" data-category="campaign">
+            <a href="work/sports.html"><div class="imgBox"><img src="images/grid/sports.png" /></div></a>
+            <div class="subBox"><div class="subText1">Campaign Poster</div><div class="subText2">Mail Sports</div></div>
         </div>
 
-        <div id="content3">
-            <a href="work/amazon.html">
-                <div class="imgBox">
-                    <video autoplay loop muted playsinline>
-                        <source src="images/grid/amazonbanner.webm" type="video/webm">
-                        <!-- Optional fallback for browsers that don’t support webm -->
-                        Your browser does not support the video tag.
-                    </video><!-- <img src="images/grid/amazonZoomIn.gif" />-->
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1" ">Advertisement</div>
-                <div class="subText2">Amazon Prime Day</div>
-            </div>
-        </div>
-        <!--<video width="320" height="240" autoplay>
-      <source src="movie.mp4" type="video/mp4">
-      <source src="movie.ogg" type="video/ogg">
-      Your browser does not support the video tag.
-    </video>-->
-
-        <div id="content4">
-            <a href="work/ecommerce.html">
-                <div class="imgBox">
-                    <img src="images/grid/e-commerce.png" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">E-Commerce</div>
-                <div class="subText2">Various Brands</div>
-            </div>
+        <div id="content2" class="project" data-category="editorial">
+            <a href="work/editorial.html"><div class="imgBox"><img src="images/grid/infographic.png" /></div></a>
+            <div class="subBox"><div class="subText1">Editorial Graphics</div><div class="subText2">Daily Mail</div></div>
         </div>
 
-       <!-- <div id="content5">
-            <a href="work/newcomer.html">
-                <div class="imgBox">
-                    <img src="images/grid/newcomer.png" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">The Newcomer</div>
-                <div class="subText2">Exhibition Branding</div>
-            </div>
-
-        </div>-->
-        <div id="content5">
-            <a href="work/uclira.html">
-                <div class="imgBox">
-                    <img src="images/grid/uclira.png" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Art Direction</div>
-                <div class="subText2">Uclira</div>
-            </div>
+        <div id="content3" class="project" data-category="advertisement">
+            <a href="work/amazon.html"><div class="imgBox"><video autoplay loop muted playsinline><source src="images/grid/amazonbanner.webm" type="video/webm" />Your browser does not support the video tag.</video></div></a>
+            <div class="subBox"><div class="subText1">Advertisement</div><div class="subText2">Amazon Prime Day</div></div>
         </div>
 
-        <div id="content6">
-            <a href="work/onthegoga.html">
-                <div class="imgBox">
-                    <img src="images/grid/onTheGoga.png" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Banner Design</div>
-                <div class="subText2">On the Goga</div>
-            </div>
+        <div id="content4" class="project" data-category="ecommerce">
+            <a href="work/ecommerce.html"><div class="imgBox"><img src="images/grid/e-commerce.png" /></div></a>
+            <div class="subBox"><div class="subText1">E-Commerce</div><div class="subText2">Various Brands</div></div>
         </div>
 
-        <div id="content7">
-            <a href="work/datavisualization.html">
-                <div class="imgBox">
-                    <img src="images/grid/data.png" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Data Visualization</div>
-                <div class="subText2">Daily Mail</div>
-            </div>
-
+        <div id="content5" class="project" data-category="artdirection">
+            <a href="work/uclira.html"><div class="imgBox"><img src="images/grid/uclira.png" /></div></a>
+            <div class="subBox"><div class="subText1">Art Direction</div><div class="subText2">Uclira</div></div>
         </div>
-        <!--   <div id="content5">
-        <a href="work/onthegoga.html">
-            <div class="imgBox">
-                <img src="images/grid/onTheGoga.png" />
-            </div>
-        </a>
-        <div class="subBox">
-            <div class="subText1">Banner Design</div>
-            <div class="subText2">On The Goga</div>
+
+        <div id="content6" class="project" data-category="banner">
+            <a href="work/onthegoga.html"><div class="imgBox"><img src="images/grid/onTheGoga.png" /></div></a>
+            <div class="subBox"><div class="subText1">Banner Design</div><div class="subText2">On the Goga</div></div>
         </div>
-    </div>-->
-        <!-- <div id="content5">
-        <img src="images/grid/area23.png" />
-    </div>-->
-        <!-- <div id="content7">
-        <img src="images/grid/luminary.png" />
-    </div>
 
-    <div id="content8">
-        <img src="images/grid/headfone.png" />
-    </div>-->
-
+        <div id="content7" class="project" data-category="dataviz">
+            <a href="work/datavisualization.html"><div class="imgBox"><img src="images/grid/data.png" /></div></a>
+            <div class="subBox"><div class="subText1">Data Visualization</div><div class="subText2">Daily Mail</div></div>
+        </div>
 
         <footer>
             <div class="footerText">
-                <span>Email: jinhakang.usa@gmail.com </span><br />
+                <span>Email: jinhakang.usa@gmail.com</span><br />
                 <span>© 2025 Jinha Kang. All rights reserved.</span>
             </div>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".filter-btn");
+            const projects = document.querySelectorAll(".project");
+
+            buttons.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    buttons.forEach((b) => b.classList.remove("active"));
+                    btn.classList.add("active");
+
+                    const filter = btn.getAttribute("data-filter");
+
+                    projects.forEach((proj) => {
+                        const category = proj.getAttribute("data-category");
+                        proj.style.display = filter === "all" || category === filter ? "block" : "none";
+                    });
+                });
+            });
+        });
+    </script>
 </body>
-
-
 </html>
