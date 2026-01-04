@@ -1,22 +1,21 @@
 <div id="scroll-wrapper" style="height: 400vh; background:#f8f8f8;">
   <div
-    style="
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-      padding-top: 56px;
-      box-sizing: border-box;
-    "
-  >
+  style="
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible; /* ← FIX */
+    padding-top: 56px;
+    box-sizing: border-box;
+  "
+>
+
     <!-- DEVICE ICONS -->
-    <div
-      style="margin-bottom:10px; position:relative; height:40px; width:40px;"
-    >
+    <div style="margin-bottom:10px; position:relative; height:40px; width:40px;">
       <svg id="icon-mobile" style="position:absolute;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2">
         <rect x="5" y="2" width="14" height="20" rx="2"></rect>
       </svg>
@@ -28,32 +27,60 @@
       </svg>
     </div>
 
-    <!-- GRAPHIC -->
+    <!-- SCALING CONTAINER -->
     <div
       id="scaling-container"
       style="
         display:flex;
         justify-content:center;
         align-items:flex-start;
-        overflow:hidden;
+        overflow:visible;
         transform-origin: top center;
         transition: transform 0.2s ease-out;
       "
     >
-      <iframe
-        id="dynamic-iframe"
-        src="https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html"
-        scrolling="no"
+
+      <!-- DEVICE FRAME -->
+      <div
+        id="device-frame"
         style="
-          width:320px;
-          height:100%;
-          border:1px solid #ddd;
-          border-radius:8px;
-          background:white;
-          pointer-events:none;
-          display:block;
+          background:#000;
+          padding:14px;
+          border-radius:28px;
+          box-shadow:0 18px 40px rgba(0,0,0,0.25);
+          box-sizing:border-box;
         "
-      ></iframe>
+      >
+
+        <!-- WHITE SCREEN MAT -->
+        <div
+          id="screen-mat"
+          style="
+            background:#fff;
+            padding:8px;
+            border-radius:18px;
+            box-sizing:border-box;
+          "
+        >
+
+          <!-- SCREEN -->
+          <iframe
+            id="dynamic-iframe"
+            src="https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html"
+            scrolling="no"
+            style="
+              width:320px;
+              height:100%;
+              border:none;
+              border-radius:12px;
+              background:white;
+              pointer-events:none;
+              display:block;
+            "
+          ></iframe>
+
+        </div>
+      </div>
     </div>
 
     <p style="margin-top:14px;font-family:sans-serif;color:#aaa;font-size:11px;letter-spacing:2px;">
@@ -66,6 +93,8 @@
   const wrapper = document.getElementById("scroll-wrapper");
   const iframe = document.getElementById("dynamic-iframe");
   const scaler = document.getElementById("scaling-container");
+  const frame = document.getElementById("device-frame");
+  const mat = document.getElementById("screen-mat");
 
   const icons = {
     mobile: document.getElementById("icon-mobile"),
@@ -74,31 +103,38 @@
   };
 
   const MODES = {
-    mobile:  { width: 320, height: 480 },
-    tablet:  { width: 520, height: 720 },
-    desktop: { width: 800, height: 680 },
+    mobile:  { width: 320, height: 480, bezel: 14, radius: 28 },
+    tablet:  { width: 520, height: 720, bezel: 16, radius: 26 },
+    desktop: { width: 800, height: 680, bezel: 12, radius: 18 },
   };
 
   function setMode(mode) {
-    const { width, height } = MODES[mode];
+    const { width, height, bezel, radius } = MODES[mode];
 
     iframe.style.width = width + "px";
     scaler.style.height = height + "px";
 
-    // icons
+    frame.style.padding = bezel + "px";
+    frame.style.borderRadius = radius + "px";
+
+    mat.style.padding = mode === "desktop" ? "10px" : "8px";
+    mat.style.borderRadius = Math.max(radius - 10, 12) + "px";
+
+    iframe.style.borderRadius = Math.max(radius - 16, 8) + "px";
+
     Object.keys(icons).forEach(k => {
       icons[k].style.opacity = k === mode ? 1 : 0;
     });
 
-    // scale safety for small screens
+    const totalWidth = width + bezel * 2;
     const maxW = window.innerWidth * 0.9;
-    if (width > maxW) {
-      scaler.style.transform = `scale(${maxW / width})`;
+
+    if (totalWidth > maxW) {
+      scaler.style.transform = `scale(${maxW / totalWidth})`;
     } else {
       scaler.style.transform = "scale(1)";
     }
 
-    // ai2html resize
     try {
       iframe.contentWindow.dispatchEvent(new Event("resize"));
     } catch {
