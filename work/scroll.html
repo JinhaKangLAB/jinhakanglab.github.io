@@ -1,0 +1,130 @@
+<div id="scroll-wrapper" style="height: 400vh; background:#f8f8f8;">
+  <div
+    style="
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 56px;
+      box-sizing: border-box;
+    "
+  >
+    <!-- DEVICE ICONS -->
+    <div
+      style="margin-bottom:10px; position:relative; height:40px; width:40px;"
+    >
+      <svg id="icon-mobile" style="position:absolute;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2">
+        <rect x="5" y="2" width="14" height="20" rx="2"></rect>
+      </svg>
+      <svg id="icon-tablet" style="position:absolute;opacity:0;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2">
+        <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+      </svg>
+      <svg id="icon-desktop" style="position:absolute;opacity:0;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2">
+        <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+      </svg>
+    </div>
+
+    <!-- GRAPHIC -->
+    <div
+      id="scaling-container"
+      style="
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        overflow:hidden;
+        transform-origin: top center;
+        transition: transform 0.2s ease-out;
+      "
+    >
+      <iframe
+        id="dynamic-iframe"
+        src="https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html"
+        scrolling="no"
+        style="
+          width:320px;
+          height:100%;
+          border:1px solid #ddd;
+          border-radius:8px;
+          background:white;
+          pointer-events:none;
+          display:block;
+        "
+      ></iframe>
+    </div>
+
+    <p style="margin-top:14px;font-family:sans-serif;color:#aaa;font-size:11px;letter-spacing:2px;">
+      Scroll
+    </p>
+  </div>
+</div>
+
+<script>
+  const wrapper = document.getElementById("scroll-wrapper");
+  const iframe = document.getElementById("dynamic-iframe");
+  const scaler = document.getElementById("scaling-container");
+
+  const icons = {
+    mobile: document.getElementById("icon-mobile"),
+    tablet: document.getElementById("icon-tablet"),
+    desktop: document.getElementById("icon-desktop"),
+  };
+
+  const MODES = {
+    mobile:  { width: 320, height: 480 },
+    tablet:  { width: 520, height: 720 },
+    desktop: { width: 800, height: 680 },
+  };
+
+  function setMode(mode) {
+    const { width, height } = MODES[mode];
+
+    iframe.style.width = width + "px";
+    scaler.style.height = height + "px";
+
+    // icons
+    Object.keys(icons).forEach(k => {
+      icons[k].style.opacity = k === mode ? 1 : 0;
+    });
+
+    // scale safety for small screens
+    const maxW = window.innerWidth * 0.9;
+    if (width > maxW) {
+      scaler.style.transform = `scale(${maxW / width})`;
+    } else {
+      scaler.style.transform = "scale(1)";
+    }
+
+    // ai2html resize
+    try {
+      iframe.contentWindow.dispatchEvent(new Event("resize"));
+    } catch {
+      iframe.contentWindow.postMessage("resize", "*");
+    }
+  }
+
+  function onScroll() {
+    const rect = wrapper.getBoundingClientRect();
+    const winH = window.innerHeight;
+
+    const progress = Math.max(
+      0,
+      Math.min(1, -rect.top / (rect.height - winH))
+    );
+
+    if (progress < 0.33) {
+      setMode("mobile");
+    } else if (progress < 0.66) {
+      setMode("tablet");
+    } else {
+      setMode("desktop");
+    }
+  }
+
+  window.addEventListener("scroll", onScroll);
+  window.addEventListener("resize", onScroll);
+  onScroll();
+</script>
