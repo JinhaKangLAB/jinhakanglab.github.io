@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --main-radius: 20px;
     --main-padding: 16px;
     --primary-color: #ffffff;
@@ -279,30 +279,30 @@ main {
 
 .imgBox {
     width: 100%;
-    height: auto;
+    aspect-ratio: 16 / 9; /* or 1 / 1 if you want square */
     position: relative;
-    border-radius: 8px;   
-}
-
-#content1 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-}
-
-.imgBox video {
-    width: 100%; /* makes video scale like your image did */
-    height: auto; /* keeps aspect ratio */
-    display: block; /* removes unwanted inline spacing */
-    object-fit: cover; /* optional: crops video to fill the box */
-    border-radius: 8px;
-    transition: transform 0.3s ease;
+    overflow: hidden; /* REQUIRED for border-radius */
     border-radius: var(--main-radius);
 }
+
+    .imgBox img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: inherit;
+        transition: transform 0.3s ease;
+    }
+
+.imgBox video {
+    width: 100%;
+    height: 100%; /* 🔑 THIS IS CRITICAL */
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+    transition: transform 0.3s ease;
+}
+
 
 .subBox {
     display: flex;
@@ -334,11 +334,16 @@ main {
     position: relative;
 }
 
-  
-#content1 img:hover {
-    transform: scale(1.03);
+
+.project .imgBox img,
+.project .imgBox video {
+    transition: transform 0.35s ease;
 }
 
+.project:hover .imgBox img,
+.project:hover .imgBox video {
+    transform: scale(1.03);
+}
 
 
 /*content2*/
@@ -361,9 +366,6 @@ main {
     border-radius: var(--main-radius);
 }
 
-#content2 img:hover {
-        transform: scale(1.03);
-    }
 
 #content3 {
     grid-area: content3;
@@ -385,9 +387,6 @@ main {
     border-radius: var(--main-radius);
 }
 
-#content3 img:hover {
-    transform: scale(1.03);
-}
 
 #content4 {
     grid-area: content4;
@@ -408,9 +407,6 @@ main {
     border-radius: var(--main-radius);
 }
 
-#content4 img:hover {
-    transform: scale(1.03);
-}
 
 
 #content5 {
@@ -432,10 +428,6 @@ main {
     border-radius: var(--main-radius);
 }
 
-    #content5 img:hover {
-        transform: scale(1.03);
-    }
-
 #content6 {
     grid-area: content6;
     border-radius: var(--main-radius);
@@ -456,9 +448,7 @@ main {
         border-radius: var(--main-radius);
     }
 
-        #content6 img:hover {
-            transform: scale(1.03);
-        }
+
 
 #content7 {
     grid-area: content7;
@@ -480,10 +470,7 @@ main {
         border-radius: var(--main-radius);
     }
 
-        #content7 img:hover {
-            transform: scale(1.03);
-        }
-
+    
 #content8 {
     grid-area: content8;
     border-radius: var(--main-radius);
@@ -502,10 +489,13 @@ main {
         border-radius: var(--main-radius);
     }
 
-        #content8 img:hover {
-            transform: scale(1.03);
-        }
+.project {
+    transition: transform 0.35s ease;
+}
 
+    .project:hover {
+        transform: translateY(-2px);
+    }
 
 footer {
     background: black;
