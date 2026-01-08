@@ -932,41 +932,9 @@ ul.casestudy-list {
     padding: 14px;
     flex-wrap: wrap;
 }
-#content1 {
-    grid-area: content1;
-    padding-top: 0;
-    margin: 8px;
-    margin-top: 0;
-    position: relative;
-    padding-bottom: 32px;
-}
 
-.imgBox {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-radius: 8px;
-}
 
-#content1 img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: var(--main-radius);
-}
 
-.imgBox video {
-    width: 100%; /* makes video scale like your image did */
-    height: auto; /* keeps aspect ratio */
-    display: block; /* removes unwanted inline spacing */
-    object-fit: cover; /* optional: crops video to fill the box */
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    border-radius: var(--main-radius);
-}
 
 .subBox {
     display: flex;
@@ -996,11 +964,6 @@ ul.casestudy-list {
     font-family: "Inter", sans-serif;
     font-weight: 400;
     position: relative;
-}
-
-
-#content1 img:hover {
-    transform: scale(1.03);
 }
 
 /*ARTWORKS*/
