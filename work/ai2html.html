@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,22 +27,22 @@
             }
         });
     </script>
-<!--Flourish-->
-<script>
-    const flourishScript = document.createElement('script');
-    flourishScript.src = "https://jinhakangwork-cpu.github.io/interactive/flourish.embed.js";
-    flourishScript.async = true;
-    document.head.appendChild(flourishScript);
-</script>
+    <!--Flourish-->
+    <script>
+        const flourishScript = document.createElement('script');
+        flourishScript.src = "https://jinhakangwork-cpu.github.io/interactive/flourish.embed.js";
+        flourishScript.async = true;
+        document.head.appendChild(flourishScript);
+    </script>
 
-<!--MS-->
-<script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "uiz49swzp7");
-</script>
+    <!--MS-->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "uiz49swzp7");
+    </script>
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -123,7 +124,7 @@
                 </p>
 
                 <div class="flex gap-3">
-                    <a id="mockupDownload" href= "#work" style="cursor: pointer;" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded shadow hover:opacity-95">
+                    <a id="mockupDownload" href="#work" style="cursor: pointer;" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded shadow hover:opacity-95">
                         View the gallery
                     </a>
                     <button id="openPosterBtn"
@@ -182,23 +183,23 @@
     </footer>
     <script>
         const IMAGES = [
-        { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history." },
-        { id: 7, iframe: "https://jinhakanglab.github.io/ai2html/finalsub/index.html", title: "How the Submarine Works", subtitle: "Breaks down the mechanics behind submarine navigation and buoyancy.", height: 520 },
-        { id: 13, iframe: "https://jinhakanglab.github.io/ai2html/UScaptiol2_reveal/index.html", title: "U.S. Capitol Reconstruction", subtitle: "Maps the sequence of events in the Capitol reconstruction timeline.", height: 450 },
-        { id: 2, iframe: "https://jinhakanglab.github.io/FlourishGraphics/missing13locatormap/index.html", title: "Incident Locator Map", subtitle: "Highlights key events and geographic relationships.", height: 670 },
-        { id: 17, iframe: "https://jinhakanglab.github.io/FlourishGraphics/captain'sdoomedjourney/index.html", title: "Shipwrecked Captain's Doomed Journey", subtitle: "Chronicles the route and timeline of the ill-fated voyage.", height: 460 },
-        { id: 12, iframe: "https://jinhakanglab.github.io/FlourishGraphics/turkey/index.html", title: "What Makes a Turkey Look Unique", subtitle: "Illustrates how the male turkey’s anatomy changes during mating.", height: 420 },
-        { id: 5, iframe: "https://jinhakanglab.github.io/FlourishGraphics/otrovertquiz/index.html", title: "Are You an Otrovert?", subtitle: "Explains personality types through an interactive quiz.", height: 600 },
-        { id: 8, iframe: "https://jinhakanglab.github.io/FlourishGraphics/TheGermiestPlacesinAirports/index.html", title: "The Germiest Places in Airports", subtitle: "Reveals high-risk touchpoints in airports.", height: 600 },
-        { id: 15, iframe: "https://jinhakanglab.github.io/FlourishGraphics/newyorkmayoral/index.html", title: "New York Mayoral Election", subtitle: "Displays real-time polling trends and election updates.", height: 800 },
-        { id: 3, iframe: "https://jinhakanglab.github.io/ai2html/KamalaGavin_poll1_ani/index.html", title: "Kamala Harris vs. Gavin Newsom", subtitle: "Presents the latest poll results for a hypothetical matchup.", height: 450 },
-        { id: 6, iframe: "https://jinhakanglab.github.io/ai2html/SnoopDoggNoAddresses_git/index.html", title: "Snoop Dogg’s Real Estate Properties", subtitle: "Showcases a snapshot of Snoop Dogg’s property holdings.", height: 520 },    
-        { id: 16, iframe: "https://jinhakanglab.github.io/ai2html/plasticsinfastfood_interactive/index.html", title: "Fast Food and Microplastics", subtitle: "Highlights which chemicals are found in popular menu items.", height: 720 },  
-        { id: 11, iframe: "https://jinhakanglab.github.io/ai2html/waterboy_a/index.html", title: "NFL Waterboys: What They Earn", subtitle: "Breaks down salaries and compensation of NFL waterboys.", height: 450 },      
-        { id: 9, iframe: "https://jinhakanglab.github.io/ai2html/Venezuela/index.html", title: "Where Is Puerto López?", subtitle: "Shows Puerto López in relation to surrounding countries.", height: 550 },
-        { id: 10, iframe: "https://jinhakanglab.github.io/FlourishGraphics/TeslaStock/index.html#slide-0", title: "Tesla Stock Price Over Time", subtitle: "Tracks Tesla’s stock history alongside major milestones.", height: 400 },  
-        { id: 4, iframe: "https://jinhakanglab.github.io/ai2html/moodys_analytics/index.html", title: "10-Year Analysis of Housing Market Trends", subtitle: "Forecasts future home prices through an interactive geospatial map and historical analysis.", height: 400 },  
-        { id: 14, iframe: "https://jinhakanglab.github.io/ai2html/251230_10-year_forecast/index.html", title: "U.S. Housing Price Trajectory", subtitle: "Traces historical home value trends from 1990 and projects market growth through 2035.", height: 410 },  
+            { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history." },
+            { id: 7, iframe: "https://jinhakanglab.github.io/ai2html/finalsub/index.html", title: "How the Submarine Works", subtitle: "Breaks down the mechanics behind submarine navigation and buoyancy.", height: 520 },
+            { id: 13, iframe: "https://jinhakanglab.github.io/ai2html/UScaptiol2_reveal/index.html", title: "U.S. Capitol Reconstruction", subtitle: "Maps the sequence of events in the Capitol reconstruction timeline.", height: 450 },
+            { id: 2, iframe: "https://jinhakanglab.github.io/FlourishGraphics/missing13locatormap/index.html", title: "Incident Locator Map", subtitle: "Highlights key events and geographic relationships.", height: 670 },
+            { id: 17, iframe: "https://jinhakanglab.github.io/FlourishGraphics/captain'sdoomedjourney/index.html", title: "Shipwrecked Captain's Doomed Journey", subtitle: "Chronicles the route and timeline of the ill-fated voyage.", height: 460 },
+            { id: 12, iframe: "https://jinhakanglab.github.io/FlourishGraphics/turkey/index.html", title: "What Makes a Turkey Look Unique", subtitle: "Illustrates how the male turkey’s anatomy changes during mating.", height: 420 },
+            { id: 5, iframe: "https://jinhakanglab.github.io/FlourishGraphics/otrovertquiz/index.html", title: "Are You an Otrovert?", subtitle: "Explains personality types through an interactive quiz.", height: 600 },
+            { id: 8, iframe: "https://jinhakanglab.github.io/FlourishGraphics/TheGermiestPlacesinAirports/index.html", title: "The Germiest Places in Airports", subtitle: "Reveals high-risk touchpoints in airports.", height: 600 },
+            { id: 15, iframe: "https://jinhakanglab.github.io/FlourishGraphics/newyorkmayoral/index.html", title: "New York Mayoral Election", subtitle: "Displays real-time polling trends and election updates.", height: 800 },
+            { id: 3, iframe: "https://jinhakanglab.github.io/ai2html/KamalaGavin_poll1_ani/index.html", title: "Kamala Harris vs. Gavin Newsom", subtitle: "Presents the latest poll results for a hypothetical matchup.", height: 450 },
+            { id: 6, iframe: "https://jinhakanglab.github.io/ai2html/SnoopDoggNoAddresses_git/index.html", title: "Snoop Dogg’s Real Estate Properties", subtitle: "Showcases a snapshot of Snoop Dogg’s property holdings.", height: 520 },
+            { id: 16, iframe: "https://jinhakanglab.github.io/ai2html/plasticsinfastfood_interactive/index.html", title: "Fast Food and Microplastics", subtitle: "Highlights which chemicals are found in popular menu items.", height: 720 },
+            { id: 11, iframe: "https://jinhakanglab.github.io/ai2html/waterboy_a/index.html", title: "NFL Waterboys: What They Earn", subtitle: "Breaks down salaries and compensation of NFL waterboys.", height: 450 },
+            { id: 9, iframe: "https://jinhakanglab.github.io/ai2html/Venezuela/index.html", title: "Where Is Puerto López?", subtitle: "Shows Puerto López in relation to surrounding countries.", height: 550 },
+            { id: 10, iframe: "https://jinhakanglab.github.io/FlourishGraphics/TeslaStock/index.html#slide-0", title: "Tesla Stock Price Over Time", subtitle: "Tracks Tesla’s stock history alongside major milestones.", height: 400 },
+            { id: 4, iframe: "https://jinhakanglab.github.io/ai2html/moodys_analytics/index.html", title: "10-Year Analysis of Housing Market Trends", subtitle: "Forecasts future home prices through an interactive geospatial map and historical analysis.", height: 400 },
+            { id: 14, iframe: "https://jinhakanglab.github.io/ai2html/251230_10-year_forecast/index.html", title: "U.S. Housing Price Trajectory", subtitle: "Traces historical home value trends from 1990 and projects market growth through 2035.", height: 410 },
         ] //
 
         const galleryGrid = document.getElementById("galleryGrid");
@@ -224,12 +225,12 @@
             figure.className = "rounded-md overflow-hidden border hover:border-blue-600 shadow transition-transform hover:scale-105 bg-white relative";
 
             figure.innerHTML = `
-                            <div class="p-3">
-                                <iframe src="${item.iframe}" class="w-full rounded-md border" style="height:${item.height}px;" frameborder="0" loading="lazy"></iframe>
-                                <div class="font-semibold text-lg mt-2">${escapeHtml(item.title)}</div>
-                                <div class="text-sm text-gray-500">${escapeHtml(item.subtitle)}</div>
-                            </div>
-                        `;
+                                <div class="p-3">
+                                    <iframe src="${item.iframe}" class="w-full rounded-md border" style="height:${item.height}px;" frameborder="0" loading="lazy"></iframe>
+                                    <div class="font-semibold text-lg mt-2">${escapeHtml(item.title)}</div>
+                                    <div class="text-sm text-gray-500">${escapeHtml(item.subtitle)}</div>
+                                </div>
+                            `;
 
             galleryGrid.appendChild(figure);
             logHorizontalOrder();
@@ -293,6 +294,6 @@
         });
 
     </script>
-
+    <script src="../script.js"></script>
 </body>
 </html>
