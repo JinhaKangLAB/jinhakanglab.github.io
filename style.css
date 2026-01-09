@@ -56,6 +56,10 @@ menu, ol, ul {
         "footer footer footer footer";
     grid-gap: 0.2rem;
     text-align: center;
+    /* width: 95%;           /* Uses 85% of the screen width */
+   /* max-width: 1400px;    /* Prevents it from getting TOO wide on huge monitors */
+   /* margin: 0 auto;       /* Centers it */
+    /*padding: 0 20px;      Safety gap for mobile */
 }
 
 nav {
@@ -188,7 +192,7 @@ a{
 
 /*INTRO*/
 .intro {
-    padding: 200px;
+    /* padding: 200px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -196,18 +200,27 @@ a{
     justify-content: center;
     align-self: stretch;
     flex-shrink: 0;
-    position: relative;
+    position: relative; */
+    padding: 160px 40px 100px 40px; /* Reduced vertical padding */
+    max-width: 900px; /* Limits width for better eye-tracking */
+    margin: 0 auto; /* Centers the intro block */
+    align-items: flex-start; /* Left-aligned text is much easier to read than centered */
 }
 
+
 .headline {
-    color: #000000;
+    /* color: #000000;
     text-align: left;
     font-family: "-", sans-serif;
     font-size: 24px;
     line-height: 28px;
     font-weight: 400;
     position: relative;
-    align-self: stretch;
+    align-self: stretch; */
+    font-size: clamp(32px, 5vw, 48px); /* Fluid typography: gets bigger on desktops */
+    line-height: 1.1;
+    letter-spacing: -0.02em; /* Tighter tracking for large headlines looks more "designer" */
+    margin-bottom: 24px;
 }
 
 .headline-span {
@@ -231,14 +244,18 @@ a{
 }
 
 .description {
-    color: #000000;
+    /* color: #000000;
     text-align: left;
     font-family: "-", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
     font-weight: 400;
     position: relative;
-    align-self: stretch;
+    align-self: stretch; */
+    font-size: 20px;
+    line-height: 1.6; /* Increased for breathing room between lines */
+    max-width: 700px; /* Even narrower than the headline for a "staggered" look */
+    color: #444; /* Softening the black slightly reduces eye strain */
 }
 
 .description-span {
@@ -246,15 +263,20 @@ a{
 }
 
 .description-span2 {
-    font-family: "Roboto-SemiBold", sans-serif;
-    font-weight: 600;
+    /* font-family: "Roboto-SemiBold", sans-serif;
+    font-weight: 600; */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800; /* Use a heavier weight for the keywords "Visual Storyteller" */
 }
 
 .description-span3 {
-    font-family: "Montrserrat-MediumItalic", sans-serif;
+    /* font-family: "Montrserrat-MediumItalic", sans-serif;
     font-weight: 500;
     font-style: italic;
-    font-size:18px;
+    font-size:18px; */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: #000; /* Highlight the "Jinha's mission?" text */
 }
 
 main {
