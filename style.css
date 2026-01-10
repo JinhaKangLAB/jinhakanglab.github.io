@@ -221,6 +221,8 @@ a{
     line-height: 1.1;
     letter-spacing: -0.02em; /* Tighter tracking for large headlines looks more "designer" */
     margin-bottom: 24px;
+      font-weight: 400;
+      font-size: 24px;
 }
 
 .headline-span {
@@ -260,6 +262,8 @@ a{
 
 .description-span {
     font-family: "Roboto-Regular", sans-serif;
+        font-size: 14px;
+
 }
 
 .description-span2 {
