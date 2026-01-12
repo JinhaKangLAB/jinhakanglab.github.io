@@ -183,14 +183,25 @@
         </div>
     </footer>
     <script>
-          if (sessionStorage.getItem("portfolioUnlocked") !== "true") {
-    const input = prompt("🔒 Enter password to view this content:");
-    if (input === "2026") {
-      sessionStorage.setItem("portfolioUnlocked", "true");
+         const password = "2026";
+
+if (!sessionStorage.getItem("accessGranted")) {
+  document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
+
+  document.body.addEventListener("click", function unlock(e) {
+    let userInput = prompt("🔒 Please enter the password to view this content:");
+    
+    if (userInput === password) {
+      alert("Access granted!");
+      sessionStorage.setItem("accessGranted", "true");
+      document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
+      document.body.removeEventListener("click", unlock);
     } else {
-      window.location.href = "../index.html";
+      alert("❌ Incorrect password.");
     }
-  }
+  }, { once: true });
+}
+
         const IMAGES = [
             { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history." },
             { id: 7, iframe: "https://jinhakanglab.github.io/ai2html/finalsub/index.html", title: "How the Submarine Works", subtitle: "Breaks down the mechanics behind submarine navigation and buoyancy.", height: 520 },
