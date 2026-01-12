@@ -233,23 +233,54 @@
   const SESSION_KEY = "portfolioUnlocked";
 
   // Attach to all project links
-  document.querySelectorAll(".project a").forEach(link => {
-    link.addEventListener("click", function (e) {
-      // If already unlocked this session, allow navigation
-      if (sessionStorage.getItem(SESSION_KEY) === "true") return;
+//   document.querySelectorAll(".project a").forEach(link => {
+//     link.addEventListener("click", function (e) {
+//       // If already unlocked this session, allow navigation
+//       if (sessionStorage.getItem(SESSION_KEY) === "true") return;
 
-      e.preventDefault(); // stop navigation
+//       e.preventDefault(); // stop navigation
 
-      const input = prompt("🔒 Enter password to view this project:");
+//       const input = prompt("🔒 Enter password to view this project:");
 
-      if (input === PASSWORD) {
-        sessionStorage.setItem(SESSION_KEY, "true");
-        window.location.href = this.href; // continue to clicked page
-      } else {
-        alert("❌ Incorrect password");
-      }
-    });
-  });
+//       if (input === PASSWORD) {
+//         sessionStorage.setItem(SESSION_KEY, "true");
+//         window.location.href = this.href; // continue to clicked page
+//       } else {
+//         alert("❌ Incorrect password");
+//       }
+//     });
+//   });
+
+ // Password you want
+
+
+    // Check if the user already entered the password
+    const password = "2026";
+
+    // Only prompt if session doesn't already have access
+    if (!sessionStorage.getItem("accessGranted")) {
+      // Lock all content initially
+      document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
+
+      // First click anywhere unlocks password prompt
+      document.body.addEventListener("click", function unlock(e) {
+        // Prompt password
+        let userInput = prompt("🔒 Please enter the password to view this content:");
+        
+        if (userInput === password) {
+          alert("Access granted!");
+          sessionStorage.setItem("accessGranted", "true");
+
+          // Unlock content
+          document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
+
+          // Remove this click listener
+          document.body.removeEventListener("click", unlock);
+        } else {
+          alert("❌ Incorrect password.");
+        }
+      }, { once: true }); // Only trigger once
+    }
     </script>
 </body>
 </html>
