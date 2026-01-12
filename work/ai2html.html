@@ -183,24 +183,21 @@
         </div>
     </footer>
     <script>
-         const password = "2026";
+        /*password*/
+        document.addEventListener("DOMContentLoaded", function () {
+            const SESSION_KEY = "portfolioUnlocked";
+            const PASSWORD = "2026";
 
-if (!sessionStorage.getItem("accessGranted")) {
-  document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
+            // If the user hasn't unlocked, block content
+            if (sessionStorage.getItem(SESSION_KEY) !== "true") {
+                // Option 1: redirect to home page
+                alert("🔒 You must enter the password on the main portfolio page first.");
+                window.location.href = "../index.html";
+                return;
+            }
 
-  document.body.addEventListener("click", function unlock(e) {
-    let userInput = prompt("🔒 Please enter the password to view this content:");
-    
-    if (userInput === password) {
-      alert("Access granted!");
-      sessionStorage.setItem("accessGranted", "true");
-      document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
-      document.body.removeEventListener("click", unlock);
-    } else {
-      alert("❌ Incorrect password.");
-    }
-  }, { once: true });
-}
+            // If unlocked, nothing happens – content shows
+        });
 
         const IMAGES = [
             { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history." },
