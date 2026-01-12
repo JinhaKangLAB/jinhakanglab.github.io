@@ -272,6 +272,16 @@
 
             onScroll();
         })();
+    
+            if (sessionStorage.getItem("portfolioUnlocked") !== "true") {
+    const input = prompt("🔒 Enter password to view this content:");
+    if (input === "2026") {
+      sessionStorage.setItem("portfolioUnlocked", "true");
+    } else {
+      window.location.href = "../index.html";
+    }
+  }
+
     </script>
     <footer>
         <div class="footerText">

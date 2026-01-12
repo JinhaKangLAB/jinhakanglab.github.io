@@ -51,7 +51,7 @@
                         <a href="../index.html" class="nav-link">WORK</a>
                     </li>
                     <li class="menu-item">
-                        <a href="../creative/under.html" class="nav-link">CREATIVE</a>
+                        <a href="../creative/index.html" class="nav-link">CREATIVE</a>
                     </li>
                     <li class="menu-item">
                         <a href="../cv/cv.html" class="nav-link">CV</a>
@@ -449,6 +449,15 @@
             </div>
         </footer>
 
-
+<script>
+            if (sessionStorage.getItem("portfolioUnlocked") !== "true") {
+    const input = prompt("🔒 Enter password to view this content:");
+    if (input === "2026") {
+      sessionStorage.setItem("portfolioUnlocked", "true");
+    } else {
+      window.location.href = "../index.html";
+    }
+  }
+</script>
 </body>
 </html>
