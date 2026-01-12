@@ -183,6 +183,14 @@
         </div>
     </footer>
     <script>
+          if (sessionStorage.getItem("portfolioUnlocked") !== "true") {
+    const input = prompt("🔒 Enter password to view this content:");
+    if (input === "2026") {
+      sessionStorage.setItem("portfolioUnlocked", "true");
+    } else {
+      window.location.href = "../index.html";
+    }
+  }
         const IMAGES = [
             { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history." },
             { id: 7, iframe: "https://jinhakanglab.github.io/ai2html/finalsub/index.html", title: "How the Submarine Works", subtitle: "Breaks down the mechanics behind submarine navigation and buoyancy.", height: 520 },
