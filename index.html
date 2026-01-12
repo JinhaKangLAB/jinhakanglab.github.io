@@ -91,14 +91,14 @@
                     <div class="description">
                         <span>
                             <span class="description-span">
-                          With experience across fast-paced newsrooms and global agencies, I bridge the gap between complex information and intuitive user interfaces. 
-            My MFA in Digital + Media from RISD and valedictorian honors from Seoul National University have honed my ability to translate strategic business goals into scalable digital products. 
-            I don't just design screens; I architect systems that drive user engagement and measurable growth.
-        </span>
+                                With experience across fast-paced newsrooms and global agencies, I bridge the gap between complex information and intuitive user interfaces.
+                                My MFA in Digital + Media from RISD and valedictorian honors from Seoul National University have honed my ability to translate strategic business goals into scalable digital products.
+                                I don't just design screens; I architect systems that drive user engagement and measurable growth.
                             </span>
-                            <br />
-                            <!-- <span class="description-span3">Jinha’s mission?</span>
-                            <span class="description-span"> To unite art, design, and technology into meaningful, human-centered experiences.</span> -->
+                        </span>
+                        <br />
+                        <!-- <span class="description-span3">Jinha’s mission?</span>
+                        <span class="description-span"> To unite art, design, and technology into meaningful, human-centered experiences.</span> -->
                         </span>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
             <a href="work/ai2html.html">
                 <div class="imgBox">
                     <video autoplay loop muted playsinline>
-                        <source src="images/grid/ai2html_b.mp4" type="video/mp4" width: 100%; height: 100%; object-fit: cover"/>
+                        <source src="images/grid/ai2html_b.mp4" type="video/mp4" width: 100%; height: 100%; object-fit: cover" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -229,58 +229,67 @@
             });
         });
 
-          const PASSWORD = "2026";
-  const SESSION_KEY = "portfolioUnlocked";
+        //        const PASSWORD = "2026";
+        //const SESSION_KEY = "portfolioUnlocked";
 
-  // Attach to all project links
-//   document.querySelectorAll(".project a").forEach(link => {
-//     link.addEventListener("click", function (e) {
-//       // If already unlocked this session, allow navigation
-//       if (sessionStorage.getItem(SESSION_KEY) === "true") return;
+        // Attach to all project links
+        //   document.querySelectorAll(".project a").forEach(link => {
+        //     link.addEventListener("click", function (e) {
+        //       // If already unlocked this session, allow navigation
+        //       if (sessionStorage.getItem(SESSION_KEY) === "true") return;
 
-//       e.preventDefault(); // stop navigation
+        //       e.preventDefault(); // stop navigation
 
-//       const input = prompt("🔒 Enter password to view this project:");
+        //       const input = prompt("🔒 Enter password to view this project:");
 
-//       if (input === PASSWORD) {
-//         sessionStorage.setItem(SESSION_KEY, "true");
-//         window.location.href = this.href; // continue to clicked page
-//       } else {
-//         alert("❌ Incorrect password");
-//       }
-//     });
-//   });
+        //       if (input === PASSWORD) {
+        //         sessionStorage.setItem(SESSION_KEY, "true");
+        //         window.location.href = this.href; // continue to clicked page
+        //       } else {
+        //         alert("❌ Incorrect password");
+        //       }
+        //     });
+        //   });
 
- // Password you want
+        // Password you want
 
 
-    // Check if the user already entered the password
-    const password = "2026";
+        // Check if the user already entered the password
+    
+            document.addEventListener("DOMContentLoaded", function () {
+        const PASSWORD = "2026";
+            const SESSION_KEY = "portfolioUnlocked";
 
-    // Only prompt if session doesn't already have access
-    if (!sessionStorage.getItem("accessGranted")) {
-      // Lock all content initially
-      document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
+            // Select all project links
+            const projectLinks = document.querySelectorAll(".project a");
 
-      // First click anywhere unlocks password prompt
-      document.body.addEventListener("click", function unlock(e) {
-        // Prompt password
-        let userInput = prompt("🔒 Please enter the password to view this content:");
-        
-        if (userInput === password) {
-          alert("Access granted!");
-          sessionStorage.setItem("accessGranted", "true");
+        projectLinks.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    // If password already entered this session, allow navigation
+                    if (sessionStorage.getItem(SESSION_KEY) === "true") return;
 
-          // Unlock content
-          document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
+                    e.preventDefault(); // Stop navigation until password is correct
 
-          // Remove this click listener
-          document.body.removeEventListener("click", unlock);
-        } else {
-          alert("❌ Incorrect password.");
-        }
-      }, { once: true }); // Only trigger once
-    }
+                    // Prompt for password
+                    const userInput = prompt("🔒 Please enter the password to view this project:");
+
+                    if (userInput === PASSWORD) {
+                        sessionStorage.setItem(SESSION_KEY, "true");
+                        window.location.href = this.href; // navigate after correct password
+                    } else {
+                        // Cancel or wrong password
+                        if (userInput === null) {
+                            // User clicked Cancel
+                            alert("🔒 Access denied. To get the password, please email jinhakang.usa@gmail.com");
+                        } else {
+                            alert("❌ Incorrect password.");
+                        }
+                        // Do not navigate
+                    }
+                });
+        });
+});
+
     </script>
 </body>
 </html>
