@@ -228,6 +228,28 @@
                 });
             });
         });
+
+          const PASSWORD = "2026";
+  const SESSION_KEY = "portfolioUnlocked";
+
+  // Attach to all project links
+  document.querySelectorAll(".project a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      // If already unlocked this session, allow navigation
+      if (sessionStorage.getItem(SESSION_KEY) === "true") return;
+
+      e.preventDefault(); // stop navigation
+
+      const input = prompt("🔒 Enter password to view this project:");
+
+      if (input === PASSWORD) {
+        sessionStorage.setItem(SESSION_KEY, "true");
+        window.location.href = this.href; // continue to clicked page
+      } else {
+        alert("❌ Incorrect password");
+      }
+    });
+  });
     </script>
 </body>
 </html>
