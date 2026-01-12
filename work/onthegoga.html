@@ -268,14 +268,23 @@
             onScroll();
         })();
        
-            if (sessionStorage.getItem("portfolioUnlocked") !== "true") {
-    const input = prompt("🔒 Enter password to view this content:");
-    if (input === "2026") {
-      sessionStorage.setItem("portfolioUnlocked", "true");
+   if (!sessionStorage.getItem("accessGranted")) {
+  document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
+
+  document.body.addEventListener("click", function unlock(e) {
+    let userInput = prompt("🔒 Please enter the password to view this content:");
+    
+    if (userInput === password) {
+      alert("Access granted!");
+      sessionStorage.setItem("accessGranted", "true");
+      document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
+      document.body.removeEventListener("click", unlock);
     } else {
-      window.location.href = "../index.html";
+      alert("❌ Incorrect password.");
     }
-  }
+  }, { once: true });
+}
+
 
     </script>
     <footer>
