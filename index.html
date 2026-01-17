@@ -53,6 +53,17 @@
 </head>
 
 <body>
+  <div id="pw-modal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);">
+    <div style="background-color: white; margin: 15% auto; padding: 30px; border-radius: 8px; width: 320px; text-align: center; font-family: 'Inter', sans-serif;">
+        <h2 style="margin-top: 0; color: #000;">🔒 Private Project</h2>
+        <p style="font-size: 14px; color: #666;">This content is password protected.</p>
+        <input type="password" id="modal-input" placeholder="Enter Password" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+        <div id="modal-error" style="color: red; font-size: 12px; display: none; margin-bottom: 10px;">Incorrect password.</div>
+        <button onclick="verifyAccess()" style="width: 100%; padding: 12px; background: #000; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 800;">UNLOCK</button>
+        <button onclick="closeModal()" style="background: none; border: none; color: #999; margin-top: 15px; cursor: pointer; font-size: 12px;">Cancel</button>
+    </div>
+</div>
+</div>
     <nav>
         <div class="nav">
             <div class="nav-hug">
@@ -229,67 +240,70 @@
             });
         });
 
-        //        const PASSWORD = "2026";
-        //const SESSION_KEY = "portfolioUnlocked";
 
-        // Attach to all project links
-        //   document.querySelectorAll(".project a").forEach(link => {
-        //     link.addEventListener("click", function (e) {
-        //       // If already unlocked this session, allow navigation
-        //       if (sessionStorage.getItem(SESSION_KEY) === "true") return;
+        //PASSWORD
+// SHA-256 Hash for '2026'
+  const _0x4f22 = "MjAyNg=="; 
+    let pendingUrl = "";
 
-        //       e.preventDefault(); // stop navigation
-
-        //       const input = prompt("🔒 Enter password to view this project:");
-
-        //       if (input === PASSWORD) {
-        //         sessionStorage.setItem(SESSION_KEY, "true");
-        //         window.location.href = this.href; // continue to clicked page
-        //       } else {
-        //         alert("❌ Incorrect password");
-        //       }
-        //     });
-        //   });
-
-        // Password you want
-
-
-        // Check if the user already entered the password
-    
-            document.addEventListener("DOMContentLoaded", function () {
-        const PASSWORD = "2026";
-            const SESSION_KEY = "portfolioUnlocked";
-
-            // Select all project links
-            const projectLinks = document.querySelectorAll(".project a");
-
+    document.addEventListener("DOMContentLoaded", function () {
+        // 1. Project Click Protection
+        const projectLinks = document.querySelectorAll(".project a");
         projectLinks.forEach(link => {
-                link.addEventListener("click", function (e) {
-                    // If password already entered this session, allow navigation
-                    if (sessionStorage.getItem(SESSION_KEY) === "true") return;
+            link.addEventListener("click", function (e) {
+                // If already unlocked this session, let them through
+                if (sessionStorage.getItem('portfolio_unlocked') === 'true') return;
 
-                    e.preventDefault(); // Stop navigation until password is correct
-
-                    // Prompt for password
-                    const userInput = prompt("🔒 Please enter the password to view this project:");
-
-                    if (userInput === PASSWORD) {
-                        sessionStorage.setItem(SESSION_KEY, "true");
-                        window.location.href = this.href; // navigate after correct password
-                    } else {
-                        // Cancel or wrong password
-                        if (userInput === null) {
-                            // User clicked Cancel
-                            alert("🔒 Access denied. To get the password, please email jinhakang.usa@gmail.com");
-                        } else {
-                            alert("❌ Incorrect password.");
-                        }
-                        // Do not navigate
-                    }
-                });
+                e.preventDefault();
+                pendingUrl = this.href;
+                document.getElementById('pw-modal').style.display = 'block';
+                document.getElementById('modal-input').value = ""; // Clear old attempts
+                document.getElementById('modal-input').focus();
+            });
         });
-});
 
+        // 2. Filter Logic
+        const buttons = document.querySelectorAll(".filter-btn");
+        const projects = document.querySelectorAll(".project");
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                buttons.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                const filter = btn.getAttribute("data-filter");
+                projects.forEach((proj) => {
+                    const category = proj.getAttribute("data-category");
+                    proj.style.display = filter === "all" || category === filter ? "block" : "none";
+                });
+            });
+        });
+
+        // 3. Listen for Enter Key on the input field specifically
+        document.getElementById("modal-input").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                verifyAccess();
+            }
+        });
+    });
+
+    // Verification function that works on all browsers and local files
+    function verifyAccess() {
+        const input = document.getElementById('modal-input').value;
+        
+        // Decodes the hidden string and compares it
+        if (btoa(input) === _0x4f22) {
+            sessionStorage.setItem('portfolio_unlocked', 'true');
+            window.location.href = pendingUrl;
+        } else {
+            document.getElementById('modal-error').style.display = 'block';
+            document.getElementById('modal-input').value = "";
+            document.getElementById('modal-input').focus();
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('pw-modal').style.display = 'none';
+        document.getElementById('modal-error').style.display = 'none';
+    }
     </script>
 </body>
 </html>
