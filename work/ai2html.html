@@ -185,21 +185,14 @@
         </div>
     </footer>
     <script>
-        /*password*/
+       /* Security Check */
         document.addEventListener("DOMContentLoaded", function () {
-            const SESSION_KEY = "portfolioUnlocked";
-            const PASSWORD = "2026";
-
-            // If the user hasn't unlocked, block content
-            if (sessionStorage.getItem(SESSION_KEY) !== "true") {
-                // Option 1: redirect to home page
-                alert("🔒 You must enter the password on the main portfolio page first.");
-                window.location.href = "../index.html";
-                return;
-            }
-
-            // If unlocked, nothing happens – content shows
-        });
+    // We only check if the 'portfolio_unlocked' key exists from the home page
+    if (sessionStorage.getItem('portfolio_unlocked') !== 'true') {
+        // If not unlocked, redirect them back to the home page immediately
+        window.location.href = "../index.html"; 
+    }
+});
 
         const IMAGES = [
             { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history." },
