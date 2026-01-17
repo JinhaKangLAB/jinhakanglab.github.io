@@ -10,7 +10,13 @@
     <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
     <title>Sports Poster - JINHA KANG</title>
     <link rel="icon" href="../images/favicon_j.png">
-    
+       <!--SECURITY-->
+    <script>
+        if (sessionStorage.getItem('portfolio_unlocked') !== 'true') {
+            window.location.replace("../index.html");
+        }
+    </script>
+
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
 <script>
@@ -380,23 +386,6 @@
     </script>
     <script src="../script.js"></script>
     <script>
-  if (!sessionStorage.getItem("accessGranted")) {
-  document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
-
-  document.body.addEventListener("click", function unlock(e) {
-    let userInput = prompt("🔒 Please enter the password to view this content:");
-    
-    if (userInput === password) {
-      alert("Access granted!");
-      sessionStorage.setItem("accessGranted", "true");
-      document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
-      document.body.removeEventListener("click", unlock);
-    } else {
-      alert("❌ Incorrect password.");
-    }
-  }, { once: true });
-}
-
 </script>
 </body>
 </html>

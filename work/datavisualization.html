@@ -10,6 +10,12 @@
     <script src="../script.js"></script>
     <title>JINHA KANG</title>
     <link rel="icon" href="../images/favicon_j.png">
+    <!--SECURITY-->
+    <script>
+        if (sessionStorage.getItem('portfolio_unlocked') !== 'true') {
+            window.location.replace("../index.html");
+        }
+    </script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
 
