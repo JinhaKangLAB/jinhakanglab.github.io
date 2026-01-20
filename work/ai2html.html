@@ -80,7 +80,7 @@
         </div>
     </nav>
 
-    <section class="relative overflow-hidden py-14">
+    <!-- <section class="relative overflow-hidden py-14">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
             <div class="space-y-6">
@@ -113,6 +113,68 @@
                     </div>
                 </div>
                 <p class="mt-4 text-xs text-gray-500 text-center">Mobile-friendly graphic (left) and responsive desktop website (right).</p>
+            </div>
+        </div>
+    </section> -->
+    <!-- HERO -->
+    <section class="relative overflow-hidden pt-[0.12vh]"></section>
+
+    <section class="relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+            <!-- LEFT SIDE -->
+            <div class="space-y-6">
+                <div class="inline-flex items-center gap-3 bg-white/80 px-3 py-1 rounded-full shadow-sm">
+                    <span class="text-xs font-semibold text-blue-600 uppercase">Featured</span>
+                    <span class="text-xs text-gray-500">Editorial UX Design</span>
+                </div>
+
+                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Bridging the Mobile Illegibility Gap for 68% of Daily Mail Readers</h2>
+
+                <p class="text-gray-700 max-w-xl">
+                   Designed multimedia graphics that captivate online news readers, deliver high-quality information, and drive paid subscriptions for Daily Mail. Created in Illustrator and converted into responsive experiences using HTML, CSS, and JS.
+                </p>
+
+                <div class="flex gap-3">
+                    <a id="mockupDownload" href="#work" style="cursor: pointer;" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded shadow hover:opacity-95">
+                        Directly go to the gallery
+                    </a>
+                    <button id="openPosterBtn"
+                            class="inline-flex items-center gap-2 border border-blue-600 text-blue-600 px-4 py-2 rounded hover:bg-blue-600 hover:text-white">
+                    </button>
+                </div>
+
+                <div>
+                    <img id="dailymaillogo" src="../images/dailymail/dailymaillogo.png" width=200 />
+                </div>
+
+                <div class="mt-6 text-sm text-gray-500">
+                    <strong>Role:</strong> Multimedia Graphics Editor.
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE HERO IMAGE -->
+            <div class="relative" aria-hidden="true">
+                <div class="relative w-full h-96 md:h-80 lg:h-96 flex items-center justify-center">
+
+                    <div id="heroPoster"
+                         class="absolute left-1/2 -translate-x-1/2 w-[82%] h-[96%] rounded-2xl shadow-2xl overflow-hidden hero-poster">
+                        <img id="heroPosterImg" src="../images/ai2html/website_b.PNG" alt="Subway mockup"
+                             class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="absolute -left-8 top-10 w-45 h-64 rounded-lg overflow-hidden shadow-lg transform rotate-2">
+                        <img src="../images/ai2html/phone.png" alt="mobile" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="absolute inset-0 pointer-events-none">
+                        <div class="absolute -bottom-12 left-0 w-72 h-40 bg-gradient-to-tr from-blue-600/30 via-transparent to-transparent blur-3xl"></div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-xs text-gray-500">
+                    Mobile-friendly graphic (left) and fully responsive on desktop website (right).
+                </div>
             </div>
         </div>
     </section>
