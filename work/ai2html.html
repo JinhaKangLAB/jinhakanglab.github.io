@@ -74,48 +74,12 @@
                     <span class="bar"></span>
                 </div>
                 <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
-                    <img class="linkedin" src="images/linkedin.png" alt="LinkedIn" />
+                    <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn" />
                 </a>
             </div>
         </div>
     </nav>
-
-    <!-- <section class="relative overflow-hidden py-14">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            
-            <div class="space-y-6">
-                <div class="inline-flex items-center gap-3 bg-white/80 px-3 py-1 rounded-full shadow-sm">
-                    <span class="text-xs font-semibold text-blue-600 uppercase">Featured</span>
-                    <span class="text-xs text-gray-500">Editorial UX Design</span>
-                </div>
-                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Bridging the Mobile Illegibility Gap for 68% of Daily Mail Readers</h2>
-                <p class="text-gray-700 max-w-xl">
-                    Designed multimedia graphics that captivate online news readers, deliver high-quality information, and drive paid subscriptions for Daily Mail. Created in Illustrator and converted into responsive experiences using HTML, CSS, and JS.
-                <div class="flex gap-3">
-                    <button onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded shadow hover:bg-blue-700 transition">
-                        View the gallery
-                    </button>
-                </div>
-                <img src="../images/dailymail/dailymaillogo.png" width="200" alt="Daily Mail Logo" />
-                <div class="mt-6 text-sm text-gray-500"><strong>Role:</strong> Multimedia Graphics Editor.</div>
-            </div>
-
-            <div class="relative">
-                <div class="relative w-full h-96 flex items-center justify-center">
-                    <div id="heroPoster" class="absolute left-1/2 -translate-x-1/2 w-[82%] h-[96%] rounded-2xl shadow-2xl overflow-hidden hero-poster">
-                        <img src="../images/ai2html/website_b.PNG" alt="Desktop Mockup" class="w-full h-full object-cover">
-                    </div>
-                    <div class="absolute -left-8 top-10 w-48 h-64 rounded-lg overflow-hidden shadow-lg transform rotate-2">
-                        <img src="../images/ai2html/phone.png" alt="Mobile Mockup" class="w-full h-full object-cover">
-                    </div>
-                    <div class="absolute inset-0 pointer-events-none">
-                        <div class="absolute -bottom-12 left-0 w-72 h-40 bg-gradient-to-tr from-blue-600/30 blur-3xl"></div>
-                    </div>
-                </div>
-                <p class="mt-4 text-xs text-gray-500 text-center">Mobile-friendly graphic (left) and responsive desktop website (right).</p>
-            </div>
-        </div>
-    </section> -->
+    </section> 
     <!-- HERO -->
     <section class="relative overflow-hidden pt-[0.12vh]"></section>
 
@@ -179,165 +143,148 @@
         </div>
     </section>
 
-   <!--case study-->
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Mobile-First News Graphics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-900 leading-relaxed">
+     <!-- Case Study -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            
+            <!-- Sidebar Navigation (Desktop Only) -->
+            <aside class="hidden lg:block lg:col-span-3">
+                <nav class="sticky top-24 space-y-3 border-l-2 border-slate-200 pl-4">
+                    <a href="#challenge" class="block text-sm hover:text-blue-600 transition-all">The Challenge</a>
+                    <a href="#research" class="block text-sm hover:text-blue-600 transition-all">Research & Insights</a>
+                    <a href="#strategy" class="block text-sm hover:text-blue-600 transition-all">Design Strategy</a>
+                    <a href="#implementation" class="block text-sm hover:text-blue-600 transition-all">Implementation</a>
+                    <a href="#impact" class="block text-sm hover:text-blue-600 transition-all">Impact & Results</a>
+                </nav>
+            </aside>
 
-    <main class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
-        <aside class="hidden lg:block lg:col-span-3">
-            <nav class="sticky top-8 space-y-4 border-l-2 border-slate-200 ml-4">
-                <a href="#challenge" class="block pl-4 hover:border-blue-500 hover:text-blue-600 transition-all">The Challenge</a>
-                <a href="#research" class="block pl-4 hover:border-blue-500 hover:text-blue-600 transition-all">Research & Insights</a>
-                <a href="#strategy" class="block pl-4 hover:border-blue-500 hover:text-blue-600 transition-all">Design Strategy</a>
-                <a href="#implementation" class="block pl-4 hover:border-blue-500 hover:text-blue-600 transition-all">Implementation</a>
-                <a href="#impact" class="block pl-4 hover:border-blue-500 hover:text-blue-600 transition-all">Impact & Results</a>
-            </nav>
-        </aside>
+            <div class="lg:col-span-9 space-y-12 sm:space-y-16 lg:space-y-20">
 
-        <div class="lg:col-span-9 space-y-20">
-
-            <section id="challenge" class="scroll-mt-10">
-                <h2 class="text-3xl mb-6">1. The Challenge</h2>
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <p class="text-lg text-slate-700">
-                            The Daily Mail data showed a significant shift: <span class="font-bold text-slate-900">68% of traffic</span> originated from mobile devices by 2025. 
-                        </p>
-                        <blockquote class="mt-6 border-l-4 border-blue-500 pl-4 italic text-slate-600">
-                            "How do we overhaul the visual experience for the 68% mobile majority without degrading the experience for the 22% of loyal desktop/tablet users?"
-                        </blockquote>
-                    </div>
-                    <div class="bg-blue-600 p-8 rounded-2xl text-white">
-                        <div class="text-5xl font-bold mb-2">68%</div>
-                        <p class="opacity-80">Mobile traffic as of 2025</p>
-                        <div class="mt-6 h-2 bg-blue-400 rounded-full overflow-hidden">
-                            <div class="bg-white h-full w-[68%]"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="research" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                <h2 class="text-3xl mb-6">2. User Research & Insights</h2>
-                <!-- <div class="dailymailpersona">
-
-                </div> -->
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="p-4 border-t-2 border-slate-100">
-                        <h4 class="font-bold mb-2 text-blue-600">Pinch-to-Zoom Friction</h4>
-                        <p class="text-sm text-slate-600">Users dropped off when forced to manually zoom to read data points.</p>
-                    </div>
-                    <div class="p-4 border-t-2 border-slate-100">
-                         <!-- <img src="../images/ai2html/dailymailpersona.png" width="100%" margin-bottom=""> -->
-                        <h4 class="font-bold mb-2 text-blue-600">Information Density</h4>
-                        <p class="text-sm text-slate-600">Graphics failed the "glance test" on 6-inch smartphone screens.</p>
-                    </div>
-                    <div class="p-4 border-t-2 border-slate-100">
-                        <h4 class="font-bold mb-2 text-blue-600">Aspect Ratio Mismatch</h4>
-                        <p class="text-sm text-slate-600">Landscape graphics left massive wasted space on vertical screens.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="strategy">
-                <h2 class="text-3xl mb-8">3. Design Strategy: "Responsive Storytelling"</h2>
-                <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg">
-                    <table class="w-full text-left bg-white">
-                        <thead class="bg-slate-900 text-white">
-                            <tr>
-                                <th class="p-4">Feature</th>
-                                <th class="p-4">Mobile (68%)</th>
-                                <th class="p-4">Desktop (22%)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-200">
-                            <tr>
-                                <td class="p-4 font-semibold bg-slate-50">Layout</td>
-                                <td class="p-4">Vertical Stacking</td>
-                                <td class="p-4">Horizontal Spread</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-semibold bg-slate-50">Typography</td>
-                                <td class="p-4">Min 12px; High Contrast</td>
-                                <td class="p-4">12px - 16px</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-semibold bg-slate-50">Interactivity</td>
-                                <td class="p-4">Tap/Swipe Cards</td>
-                                <td class="p-4">Click/Hover Tooltips</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section id="implementation">
-                <h2 class="text-3xl mb-6">4. The "Dual-Path" Implementation</h2>
-                <div class="space-y-6">
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">1</div>
+                <!-- Challenge -->
+                <section id="challenge" class="scroll-mt-20">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">1. The Challenge</h2>
+                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
                         <div>
-                            <h4 class="font-bold text-lg">Vector-Based Rendering</h4>
-                            <p class="text-slate-600">Switched from static JPEGs to SVG/HTML5 for infinite scalability.</p>
+                            <p class="text-base sm:text-lg text-slate-700 mb-4">
+                                The Daily Mail data showed a significant shift: <span class="font-bold text-slate-900">68% of traffic</span> originated from mobile devices by 2025.
+                            </p>
+                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-sm sm:text-base text-slate-600">
+                                "How do we overhaul the visual experience for the 68% mobile majority without degrading the experience for the 22% of loyal desktop/tablet users?"
+                            </blockquote>
+                        </div>
+                        <div class="bg-blue-600 p-6 sm:p-8 rounded-2xl text-white">
+                            <div class="text-4xl sm:text-5xl font-bold mb-2">68%</div>
+                            <p class="opacity-80 text-sm sm:text-base">Mobile traffic as of 2025</p>
+                            <div class="mt-6 h-2 bg-blue-400 rounded-full overflow-hidden">
+                                <div class="bg-white h-full w-[68%]"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">2</div>
+                </section>
+
+                <!-- Research -->
+                <section id="research" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">2. User Research & Insights</h2>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        <div class="p-4 border-t-2 border-slate-100">
+                            <h4 class="font-bold mb-2 text-blue-600 text-sm sm:text-base">Pinch-to-Zoom Friction</h4>
+                            <p class="text-xs sm:text-sm text-slate-600">Users dropped off when forced to manually zoom to read data points.</p>
+                        </div>
+                        <div class="p-4 border-t-2 border-slate-100">
+                            <h4 class="font-bold mb-2 text-blue-600 text-sm sm:text-base">Information Density</h4>
+                            <p class="text-xs sm:text-sm text-slate-600">Graphics failed the "glance test" on 6-inch smartphone screens.</p>
+                        </div>
+                        <div class="p-4 border-t-2 border-slate-100 sm:col-span-2 lg:col-span-1">
+                            <h4 class="font-bold mb-2 text-blue-600 text-sm sm:text-base">Aspect Ratio Mismatch</h4>
+                            <p class="text-xs sm:text-sm text-slate-600">Landscape graphics left massive wasted space on vertical screens.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Strategy -->
+                <section id="strategy">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">3. Design Strategy: "Responsive Storytelling"</h2>
+                    <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-lg">
+                        <table class="w-full text-left bg-white min-w-[500px]">
+                            <thead class="bg-slate-900 text-white">
+                                <tr>
+                                    <th class="p-3 sm:p-4 text-sm sm:text-base">Feature</th>
+                                    <th class="p-3 sm:p-4 text-sm sm:text-base">Mobile (68%)</th>
+                                    <th class="p-3 sm:p-4 text-sm sm:text-base">Desktop (22%)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="p-3 sm:p-4 font-semibold bg-slate-50 text-sm sm:text-base">Layout</td>
+                                    <td class="p-3 sm:p-4 text-xs sm:text-sm">Vertical Stacking</td>
+                                    <td class="p-3 sm:p-4 text-xs sm:text-sm">Horizontal Spread</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 sm:p-4 font-semibold bg-slate-50 text-sm sm:text-base">Typography</td>
+                                    <td class="p-3 sm:p-4 text-xs sm:text-sm">Min 12px; High Contrast</td>
+                                    <td class="p-3 sm:p-4 text-xs sm:text-sm">12px - 16px</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 sm:p-4 font-semibold bg-slate-50 text-sm sm:text-base">Interactivity</td>
+                                    <td class="p-3 sm:p-4 text-xs sm:text-sm">Tap/Swipe Cards</td>
+                                    <td class="p-3 sm:p-4 text-xs sm:text-sm">Click/Hover Tooltips</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Implementation -->
+                <section id="implementation">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">4. The "Dual-Path" Implementation</h2>
+                    <div class="space-y-4 sm:space-y-6">
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">1</div>
+                            <div>
+                                <h4 class="font-bold text-base sm:text-lg">Vector-Based Rendering</h4>
+                                <p class="text-sm sm:text-base text-slate-600">Switched from static JPEGs to SVG/HTML5 for infinite scalability.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">2</div>
+                            <div>
+                                <h4 class="font-bold text-base sm:text-lg">Conditional Loading</h4>
+                                <p class="text-sm sm:text-base text-slate-600">Device detection serves a "Simplified Vertical" or "Detail-Rich Horizontal" version automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Impact -->
+                <section id="impact" class="bg-slate-900 text-white p-6 sm:p-10 rounded-3xl">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center text-blue-400">5. Impact & Results</h2>
+                    <div class="grid sm:grid-cols-3 gap-6 sm:gap-8 text-center">
                         <div>
-                            <h4 class="font-bold text-lg">Conditional Loading</h4>
-                            <p class="text-slate-600">Device detection serves a "Simplified Vertical" or "Detail-Rich Horizontal" version automatically.</p>
+                            <div class="text-3xl sm:text-4xl font-bold mb-2">+44%</div>
+                            <p class="text-xs sm:text-sm text-slate-400">Time-spent-on-page (Mobile)</p>
                         </div>
-                    </div>
-                    <!-- <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">3</div>
                         <div>
-                            <h4 class="font-bold text-lg">Progressive Disclosure</h4>
-                            <p class="text-slate-600">Headline data first. Deeper data hidden behind a "View Full Details" tap action.</p>
+                            <div class="text-3xl sm:text-4xl font-bold mb-2">WCAG</div>
+                            <p class="text-xs sm:text-sm text-slate-400">Full Accessibility Compliance</p>
                         </div>
-                    </div> -->
-                </div>
-            </section>
-
-            <section id="impact" class="bg-slate-900 text-white p-10 rounded-3xl">
-                <h2 class="text-3xl mb-8 text-center text-blue-400">5. Impact & Results</h2>
-                <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div>
-                        <div class="text-4xl font-bold mb-2">+44%</div>
-                        <p class="text-slate-400">Time-spent-on-page (Mobile)</p>
+                        <div class="sm:col-span-3 lg:col-span-1">
+                            <div class="text-3xl sm:text-4xl font-bold mb-2">Unified</div>
+                            <p class="text-xs sm:text-sm text-slate-400">One master dataset for all devices</p>
+                        </div>
                     </div>
-                    <div>
-                        <div class="text-4xl font-bold mb-2">WCAG</div>
-                        <p class="text-slate-400">Full Accessibility Compliance</p>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold mb-2">Unified</div>
-                        <p class="text-slate-400">One master dataset for all devices</p>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="reflection" class="pb-20">
-                <h2 class="text-3xl mb-6">6. Reflection</h2>
-                <p class="text-lg text-slate-700 leading-relaxed">
-                    The solution wasn't about choosing one platform over the other; it was about reframing the graphic as a <span class="font-semibold text-blue-600">container for information</span> rather than a fixed picture. By prioritizing the 68% through mobile-first design, we actually created a cleaner, more legible experience for the remaining 22% as well.
-                </p>
-            </section>
+                <!-- Reflection -->
+                <section id="reflection" class="pb-8 sm:pb-12 lg:pb-20">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">6. Reflection</h2>
+                    <p class="text-base sm:text-lg text-slate-700 leading-relaxed">
+                        The solution wasn't about choosing one platform over the other; it was about reframing the graphic as a <span class="font-semibold text-blue-600">container for information</span> rather than a fixed picture. By prioritizing the 68% through mobile-first design, we actually created a cleaner, more legible experience for the remaining 22% as well.
+                    </p>
+                </section>
 
+            </div>
         </div>
     </main>
-
 
     <main class="max-w-7xl mx-auto px-6 py-12" id="work">
         <h3 class="text-xl font-semibold mb-8">Gallery</h3>
