@@ -123,7 +123,7 @@
 
                     <div id="heroPoster"
                          class="absolute left-1/2 -translate-x-1/2 w-[82%] h-[96%] rounded-2xl shadow-2xl overflow-hidden hero-poster">
-                        <img id="heroPosterImg" src="../images/ai2html/website_b.PNG" alt="Subway mockup"
+                        <img id="heroPosterImg" src="../images/ai2html/website_c.PNG" alt="Subway mockup"
                              class="w-full h-full object-cover">
                     </div>
 
@@ -168,11 +168,16 @@
                             <p class="text-base sm:text-lg text-slate-700 mb-4">
                                 By 2025, Daily Mail data revealed a critical disconnect: <span class="font-bold text-slate-900">68%</span>  of users accessed news via mobile, yet data graphics remained optimized solely for desktop. These static, 1200px-wide assets became unreadable when scaled down to a 390px phone screen. 
                             </p>
+                               
                             <blockquote class="border-l-4 border-blue-500 pl-4 italic text-sm sm:text-base text-slate-600">
                                 The Problem Statement: How might we overhaul the visual experience for the 68% mobile majority without compromising the experience for our 22% loyal desktop/tablet audience?
                             </blockquote>
+                          
+                       
                         </div>
+                            
                         <div class="bg-blue-600 p-6 sm:p-8 rounded-2xl text-white">
+                            <img src="../images/ai2html/iphone_t.webp">
                             <div class="text-4xl sm:text-5xl font-bold mb-2">68%</div>
                             <p class="opacity-80 text-sm sm:text-base">Mobile traffic as of 2025</p>
                             <div class="mt-6 h-2 bg-blue-400 rounded-full overflow-hidden">
@@ -272,7 +277,386 @@
                         </div>
                     </div>
                 </section>
+                
+                <!--Example slides-->
+                <div>
+                <!-- <style>
+        #showcase-module {
+            --accent: #007aff;
+            --device-bezel: #1a1a1a;
+            --bg-transition: background-color 0.8s ease;
+            position: relative;
+            transition: var(--bg-transition);
+            overflow: clip;
+            background-color: #f5f5f7;
+        }
 
+        #showcase-module .sticky-stage-wrapper {
+            position: relative;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        #showcase-module .sticky-stage {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 2vw;
+            z-index: 1;
+            pointer-events: none;
+            padding-right: 5%;
+            box-sizing: border-box;
+        }
+
+        /* RESPONSIVE DEVICES */
+        #showcase-module .iphone {
+            width: 287px;
+            aspect-ratio: 1 / 2.1;
+            position: relative;
+            flex-shrink: 0;
+            margin: 10px;
+        }
+
+        #showcase-module .iphone::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            border: 4px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        #showcase-module .iphone {
+            width: 287px;
+            aspect-ratio: 1 / 2.1;
+            position: relative;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        #showcase-module .macbook {
+            width: 800px;
+            aspect-ratio: 1.6 / 1;
+            position: relative;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 10px;
+             margin: 10px;
+        }
+
+        #showcase-module .macbook::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            border: 8px solid var(--device-bezel);
+            border-bottom-width: 14px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        #showcase-module .screen {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            border-radius: 2px;
+            z-index: 1;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        #showcase-module .macbook .screen {
+            overflow: auto;
+        }
+
+        #showcase-module .screen img,
+        #showcase-module .screen iframe {
+            position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            object-fit: contain;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: auto;
+            z-index: 5;
+        }
+
+        #showcase-module .screen img.active,
+        #showcase-module .screen iframe.active { 
+            opacity: 1; 
+            z-index: 5;
+        }
+
+        /* CONTENT OVERLAY */
+        #showcase-module .content-layer {
+            position: relative;
+            z-index: 2;
+            margin-top: -100vh; 
+        }
+
+        #showcase-module section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-left: 5%;
+        }
+
+        #showcase-module .text-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 350px;
+            max-width: 80%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            pointer-events: auto;
+        }
+
+        #showcase-module .text-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: #1d1d1f;
+        }
+
+        #showcase-module .text-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #6e6e73;
+        }
+
+        /* NAVIGATION DOTS */
+        #showcase-module .nav-dots {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            pointer-events: auto;
+        }
+
+        #showcase-module .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        #showcase-module .dot:hover {
+            background: rgba(0,0,0,0.4);
+        }
+
+        #showcase-module .dot.active {
+            background: var(--accent);
+            transform: scale(1.4);
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            #showcase-module .sticky-stage {
+                flex-direction: column-reverse;
+                justify-content: center;
+                padding-right: 0;
+                gap: 10px;
+            }
+            #showcase-module .macbook { 
+                width: 75vw; 
+                max-width: 400px;
+            }
+            #showcase-module .iphone { 
+                width: 30vw; 
+                max-width: 120px;
+            }
+            #showcase-module section {
+                justify-content: center;
+                padding-left: 0;
+            }
+            #showcase-module .text-card {
+                margin-top: 55vh;
+                text-align: center;
+            }
+            #showcase-module .nav-dots { 
+                display: none; 
+            }
+        }
+    </style>
+
+    <div id="showcase-module">
+        <div class="nav-dots" id="mod-nav-dots"></div>
+
+        <div class="sticky-stage-wrapper">
+            <div class="sticky-stage">
+                <div class="iphone">
+                    <div class="screen" id="mod-mobile-screen"></div>
+                </div>
+                <div class="macbook">
+                    <div class="screen" id="mod-desktop-screen"></div>
+                </div>
+            </div>
+
+            <div class="content-layer" id="mod-sections-container"></div>
+        </div>
+    </div>
+
+    <script>
+        (function initShowcase() {
+            const totalStages = 2;
+            const colors = ['#f5f5f7', '#e3f2fd'];
+            
+            const features = [
+                {
+                    title: "Responsive Design",
+                    description: "Seamlessly adapts to any screen size. Your content looks perfect everywhere."
+                },
+                {
+                    title: "Smooth Transitions",
+                    description: "Beautiful animations that guide users through your story with elegance."
+                }
+            ];
+
+            const container = document.getElementById('showcase-module');
+            const mobileScreen = document.getElementById('mod-mobile-screen');
+            const desktopScreen = document.getElementById('mod-desktop-screen');
+            const sectionsContainer = document.getElementById('mod-sections-container');
+            const dotsContainer = document.getElementById('mod-nav-dots');
+
+            for (let i = 1; i <= totalStages; i++) {
+                // Mobile screen iframes
+                const mFrame = document.createElement('iframe');
+                if (i === 1) {
+                    mFrame.src = 'https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html';
+                } else {
+                    mFrame.src = 'https://jinhakanglab.github.io/ai2html/260105_arch_burger_v2/index.html';
+                }
+                mFrame.alt = `Mobile view ${i}`;
+                mFrame.dataset.index = i;
+                mFrame.setAttribute('frameborder', '0');
+                mFrame.setAttribute('scrolling', 'no');
+                if (i === 1) mFrame.classList.add('active');
+                mobileScreen.appendChild(mFrame);
+
+                // Desktop screen iframes
+                const dFrame = document.createElement('iframe');
+                if (i === 1) {
+                    dFrame.src = 'https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html';
+                } else {
+                    dFrame.src = 'https://jinhakanglab.github.io/ai2html/260105_arch_burger_v2/index.html';
+                }
+                dFrame.alt = `Desktop view ${i}`;
+                dFrame.dataset.index = i;
+                dFrame.setAttribute('frameborder', '0');
+                dFrame.setAttribute('scrolling', 'no');
+                if (i === 1) dFrame.classList.add('active');
+                desktopScreen.appendChild(dFrame);
+
+                // Sections with content
+                const section = document.createElement('section');
+                section.dataset.ref = i;
+                section.innerHTML = `
+                    <div class="text-card">
+                        <h3>${features[i-1].title}</h3>
+                        <p>${features[i-1].description}</p>
+                    </div>
+                `;
+                sectionsContainer.appendChild(section);
+
+                // Navigation dots
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 1 ? ' active' : '');
+                dot.dataset.index = i;
+                dot.addEventListener('click', () => {
+                    const targetSection = sectionsContainer.querySelector(`section[data-ref="${i}"]`);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+                dotsContainer.appendChild(dot);
+            }
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const idx = entry.target.getAttribute('data-ref');
+                        
+                        // Toggle active state for images
+                        container.querySelectorAll('.screen img, .screen iframe').forEach(el => {
+                            el.classList.toggle('active', el.dataset.index == idx);
+                        });
+                        
+                        // Toggle active state for dots
+                        container.querySelectorAll('.dot').forEach(dot => {
+                            dot.classList.toggle('active', dot.dataset.index == idx);
+                        });
+                        
+                        // Change background color
+                        container.style.backgroundColor = colors[idx - 1];
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            // Observe all sections
+            container.querySelectorAll('section').forEach(s => observer.observe(s));
+
+            // Mobile iframe scroll effect - scroll iframe content before moving to next section
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', () => {
+                const mobileScreenEl = document.getElementById('mod-mobile-screen');
+                if (!mobileScreenEl) return;
+
+                const currentScrollTop = window.scrollY;
+                const scrollingDown = currentScrollTop > lastScrollTop;
+                lastScrollTop = currentScrollTop;
+
+                // Get current section
+                const sections = container.querySelectorAll('section');
+                let currentSection = null;
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        currentSection = section;
+                    }
+                });
+
+                if (currentSection) {
+                    const canScrollDown = mobileScreenEl.scrollTop < (mobileScreenEl.scrollHeight - mobileScreenEl.clientHeight);
+                    const canScrollUp = mobileScreenEl.scrollTop > 0;
+
+                    // If scrolling down and mobile screen can scroll, scroll it
+                    if (scrollingDown && canScrollDown) {
+                        mobileScreenEl.scrollTop += 5;
+                        window.scrollTo(0, currentScrollTop - 5);
+                    }
+                    // If scrolling up and mobile screen can scroll, scroll it
+                    else if (!scrollingDown && canScrollUp) {
+                        mobileScreenEl.scrollTop -= 5;
+                        window.scrollTo(0, currentScrollTop + 5);
+                    }
+                }
+            });
+        })();
+    </script> -->
+    </div>
                 <!-- Impact -->
                 <section id="impact" class="bg-slate-900 text-white p-6 sm:p-10 rounded-3xl">
                     <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center text-blue-400">5. Impact & Results</h2>
@@ -322,7 +706,7 @@
             { id: 2, iframe: "https://jinhakanglab.github.io/FlourishGraphics/missing13locatormap/index.html", title: "Incident Locator Map", subtitle: "Highlights key events and geographic relationships.", height: 670 },
             { id: 3, iframe: "https://jinhakanglab.github.io/ai2html/KamalaGavin_poll1_ani/index.html", title: "Kamala Harris vs. Gavin Newsom", subtitle: "Presents latest poll results for a hypothetical matchup.", height: 450 },
             { id: 4, iframe: "https://jinhakanglab.github.io/ai2html/moodys_analytics/index.html", title: "10-Year Housing Market Analysis", subtitle: "Forecasts future home prices through geospatial maps.", height: 400 },
-            { id: 5, iframe: "https://jinhakanglab.github.io/FlourishGraphics/otrovertquiz/index.html", title: "Are You an Otrovert?", subtitle: "Explains personality types through an interactive quiz.", height: 600 },
+            { id: 5, iframe: "https://jinhakanglab.github.io/FlourishGraphics/otrovertquiz/index.html", title: "Are You an Otrovert?", subtitle: "Explains personality types through an interactive quiz.", height: 800 },
             { id: 6, iframe: "https://jinhakanglab.github.io/ai2html/SnoopDoggNoAddresses_git/index.html", title: "Snoop Dogg’s Real Estate", subtitle: "Showcases a snapshot of property holdings.", height: 520 },
             { id: 7, iframe: "https://jinhakanglab.github.io/ai2html/finalsub/index.html", title: "How the Submarine Works", subtitle: "Breaks down mechanics behind navigation and buoyancy.", height: 520 },
             { id: 8, iframe: "https://jinhakanglab.github.io/FlourishGraphics/TheGermiestPlacesinAirports/index.html", title: "The Germiest Places in Airports", subtitle: "Reveals high-risk touchpoints in airports.", height: 600 },
@@ -336,7 +720,9 @@
             { id: 16, iframe: "https://jinhakanglab.github.io/ai2html/plasticsinfastfood_interactive/index.html", title: "Fast Food and Microplastics", subtitle: "Chemicals found in popular menu items.", height: 720 },
             { id: 17, iframe: "https://jinhakanglab.github.io/FlourishGraphics/captain'sdoomedjourney/index.html", title: "Shipwrecked Captain's Journey", subtitle: "Chronicles the route of the ill-fated voyage.", height: 460 },
             { id: 18, iframe: "https://jinhakanglab.github.io/FlourishGraphics/turkey/index.html", title: "What Makes a Turkey Unique", subtitle: "Illustrates anatomy changes during mating.", height: 420 },
-           { id: 19, iframe: "https://jinhakanglab.github.io/ai2html/260120_Beerbody/index.html", title: "What Happens to Your Body When You Drink", subtitle: "", height: 520 }
+            { id: 19, iframe: "https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html", title: "Inside the Great Pyramid: Structure & Mechanics", subtitle: "Reveals the hidden structure of the Great Pyramid.", height: 1000 },
+            
+           
            
         ];
 
@@ -373,5 +759,4 @@
     </script>
     <script src="../script.js"></script>
 </body>
-
 </html>
