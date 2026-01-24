@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ai2html - JINHA KANG</title>
     
+    
     <!--SECURITY-->
     <script>
         if (sessionStorage.getItem('portfolio_unlocked') !== 'true') {
@@ -93,11 +94,11 @@
                     <span class="text-xs text-gray-500">Editorial UX Design</span>
                 </div>
 
-                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Solving the Mobile Illegibility Gap for 68% of Readers</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Scaling Responsive Editorial Design: A Newsroom System for Daily Mail</h2>
 
                 <p class="text-gray-700 max-w-xl">
-                   Designed multimedia graphics that captivate online news readers, deliver high-quality information, and drive paid subscriptions for Daily Mail. Created in Illustrator and converted into responsive experiences using HTML, CSS, and JS.
-                </p>
+                 Bridging the gap between high-fidelity Illustrator design and dynamic web graphics using the ai2html workflow.
+                <br><strong>Impact</strong>: Streamlined production for 20+ daily news graphics. Reduced mobile illegibility for 68% of users and increased time-on-page by 44%.
 
                 <div class="flex gap-3">
                     <a id="mockupDownload" href="#work" style="cursor: pointer;" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded shadow hover:opacity-95">
@@ -113,7 +114,8 @@
                 </div>
 
                 <div class="mt-6 text-sm text-gray-500">
-                    <strong>Role:</strong> Multimedia Graphics Editor.
+                    <strong>Role:</strong> Multimedia Graphics Editor<br>
+                    <strong>Tools:</strong> Adobe Illustrator, ai2html, HTML/CSS, and JavaScript<br>
                 </div>
             </div>
 
@@ -123,7 +125,7 @@
 
                     <div id="heroPoster"
                          class="absolute left-1/2 -translate-x-1/2 w-[82%] h-[96%] rounded-2xl shadow-2xl overflow-hidden hero-poster">
-                        <img id="heroPosterImg" src="../images/ai2html/website_c.PNG" alt="Subway mockup"
+                        <img id="heroPosterImg" src="../images/ai2html/website_b.PNG" alt="Subway mockup"
                              class="w-full h-full object-cover">
                     </div>
 
@@ -148,8 +150,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             
             <!-- Sidebar Navigation (Desktop Only) -->
-            <aside class="hidden lg:block lg:col-span-3">
-                <nav class="sticky top-24 space-y-3 border-l-2 border-slate-200 pl-4">
+            <aside class="lg:block lg:col-span-3">
+                <nav class="sticky top-24 w-full h-[calc(40vh-6rem)] w-full space-y-3 border-l-2 border-slate-200 pl-4 bg-white/70 backdrop-blur-sm py-6 px-3 rounded-lg shadow-sm">
                     <a href="#challenge" class="block text-sm hover:text-blue-600 transition-all">The Challenge</a>
                     <a href="#research" class="block text-sm hover:text-blue-600 transition-all">Research & Insights</a>
                     <a href="#strategy" class="block text-sm hover:text-blue-600 transition-all">Design Strategy</a>
@@ -166,12 +168,17 @@
                     <div class="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
                         <div>
                             <p class="text-base sm:text-lg text-slate-700 mb-4">
-                                By 2025, Daily Mail data revealed a critical disconnect: <span class="font-bold text-slate-900">68%</span>  of users accessed news via mobile, yet data graphics remained optimized solely for desktop. These static, 1200px-wide assets became unreadable when scaled down to a 390px phone screen. 
-                            </p>
+                                 In the high-velocity Daily Mail newsroom, complex data graphics were traditionally built as high-fidelity static images. While they looked great on desktop, they failed the mobile audience.
+
+                                <li>The Disconnect: As of 2025, 68% of users accessed news via mobile, yet graphics remained optimized for desktop (1200px).</li>
+
+                                <li>The Result: Static assets became unreadable "micro-text" on 390px phone screens.</li>
+
+                                <li>The Goal: Overhaul the visual experience for the mobile majority without compromising the experience for the 22% loyal desktop audience.</li>
                                
-                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-sm sm:text-base text-slate-600">
+                            <!-- <blockquote class="border-l-4 border-blue-500 pl-4 italic text-sm sm:text-base text-slate-600">
                                 The Problem Statement: How might we overhaul the visual experience for the 68% mobile majority without compromising the experience for our 22% loyal desktop/tablet audience?
-                            </blockquote>
+                            </blockquote> -->
                           
                        
                         </div>
@@ -277,386 +284,221 @@
                         </div>
                     </div>
                 </section>
-                
-                <!--Example slides-->
-                <div>
-                <!-- <style>
-        #showcase-module {
-            --accent: #007aff;
-            --device-bezel: #1a1a1a;
-            --bg-transition: background-color 0.8s ease;
-            position: relative;
-            transition: var(--bg-transition);
-            overflow: clip;
-            background-color: #f5f5f7;
-        }
+                <div> 
+  <!-- SLIDES / SCROLL SECTION -->
+<style>
+  :root {
+    --bg: #ffffff;
+    --device-bg: #000;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  }
 
-        #showcase-module .sticky-stage-wrapper {
-            position: relative;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
+  body {
+    margin: 0;
+    background: var(--bg);
+  }
 
-        #showcase-module .sticky-stage {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 2vw;
-            z-index: 1;
-            pointer-events: none;
-            padding-right: 5%;
-            box-sizing: border-box;
-        }
+  #scroll-wrapper {
+    height: 400vh;
+    background: var(--bg);
+  }
 
-        /* RESPONSIVE DEVICES */
-        #showcase-module .iphone {
-            width: 287px;
-            aspect-ratio: 1 / 2.1;
-            position: relative;
-            flex-shrink: 0;
-            margin: 10px;
-        }
+  #sticky-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-        #showcase-module .iphone::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            border: 4px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            z-index: 10;
-            pointer-events: none;
-        }
+  #scaling-container {
+    display: flex;
+    gap: 64px;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
 
-        #showcase-module .iphone {
-            width: 287px;
-            aspect-ratio: 1 / 2.1;
-            position: relative;
-            flex-shrink: 0;
-            overflow: hidden;
-            border-radius: 20px;
-        }
+  .device {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    will-change: transform, opacity;
+  }
 
-        #showcase-module .macbook {
-            width: 800px;
-            aspect-ratio: 1.6 / 1;
-            position: relative;
-            flex-shrink: 0;
-            overflow: hidden;
-            border-radius: 10px;
-             margin: 10px;
-        }
+  .device svg {
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
 
-        #showcase-module .macbook::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 10px;
-            border: 8px solid var(--device-bezel);
-            border-bottom-width: 14px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            z-index: 10;
-            pointer-events: none;
-        }
+  .device-shell {
+    background: var(--device-bg);
+    padding: 12px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+  }
 
-        #showcase-module .screen {
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: #fff;
-            border-radius: 2px;
-            z-index: 1;
-            padding: 40px;
-            box-sizing: border-box;
-        }
+  .device-frame {
+    background: #fff;
+    padding: 8px;
+    border-radius: 14px;
 
-        #showcase-module .macbook .screen {
-            overflow: auto;
-        }
+    
+  }
 
-        #showcase-module .screen img,
-        #showcase-module .screen iframe {
-            position: absolute;
-            top: 0; 
-            left: 0;
-            width: 100%; 
-            height: 100%;
-            object-fit: contain;
-            border: none;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            pointer-events: auto;
-            z-index: 5;
-        }
+  iframe {
+    border: none;
+    border-radius: 10px;
+    display: block;
+    background: #fff;
+  }
 
-        #showcase-module .screen img.active,
-        #showcase-module .screen iframe.active { 
-            opacity: 1; 
-            z-index: 5;
-        }
+  /* Smaller ratios */
+  #mobile-iframe {
+    width: 330px;
+    height: 560px;
+  }
 
-        /* CONTENT OVERLAY */
-        #showcase-module .content-layer {
-            position: relative;
-            z-index: 2;
-            margin-top: -100vh; 
-        }
+  #desktop-iframe {
+    width: 720px;
+    height: 380px;
+  }
 
-        #showcase-module section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-left: 5%;
-        }
+  .hidden {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
-        #showcase-module .text-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            width: 350px;
-            max-width: 80%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            pointer-events: auto;
-        }
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    font-family: system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #bbb;
+  }
 
-        #showcase-module .text-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            color: #1d1d1f;
-        }
+  iframe {
+  transition: height 0.3s ease;
+}
+</style>
 
-        #showcase-module .text-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #6e6e73;
-        }
-
-        /* NAVIGATION DOTS */
-        #showcase-module .nav-dots {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            pointer-events: auto;
-        }
-
-        #showcase-module .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        #showcase-module .dot:hover {
-            background: rgba(0,0,0,0.4);
-        }
-
-        #showcase-module .dot.active {
-            background: var(--accent);
-            transform: scale(1.4);
-        }
-
-        /* MOBILE RESPONSIVENESS */
-        @media (max-width: 768px) {
-            #showcase-module .sticky-stage {
-                flex-direction: column-reverse;
-                justify-content: center;
-                padding-right: 0;
-                gap: 10px;
-            }
-            #showcase-module .macbook { 
-                width: 75vw; 
-                max-width: 400px;
-            }
-            #showcase-module .iphone { 
-                width: 30vw; 
-                max-width: 120px;
-            }
-            #showcase-module section {
-                justify-content: center;
-                padding-left: 0;
-            }
-            #showcase-module .text-card {
-                margin-top: 55vh;
-                text-align: center;
-            }
-            #showcase-module .nav-dots { 
-                display: none; 
-            }
-        }
-    </style>
-
-    <div id="showcase-module">
-        <div class="nav-dots" id="mod-nav-dots"></div>
-
-        <div class="sticky-stage-wrapper">
-            <div class="sticky-stage">
-                <div class="iphone">
-                    <div class="screen" id="mod-mobile-screen"></div>
-                </div>
-                <div class="macbook">
-                    <div class="screen" id="mod-desktop-screen"></div>
-                </div>
-            </div>
-
-            <div class="content-layer" id="mod-sections-container"></div>
+<div id="scroll-wrapper">
+  <div id="sticky-stage">
+    <div id="scaling-container">
+      
+      <!-- MOBILE -->
+      <div id="mobile-device" class="device">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6">
+          <rect x="6" y="2" width="12" height="20" rx="2" />
+        </svg>
+        <div class="device-shell">
+          <div class="device-frame">
+            <iframe id="mobile-iframe"></iframe>
+          </div>
         </div>
+      </div>
+
+      <!-- DESKTOP -->
+      <div id="desktop-device" class="device">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6">
+          <rect x="2" y="4" width="20" height="14" rx="2" />
+        </svg>
+        <div class="device-shell">
+          <div class="device-frame">
+            <iframe id="desktop-iframe"></iframe>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <script>
-        (function initShowcase() {
-            const totalStages = 2;
-            const colors = ['#f5f5f7', '#e3f2fd'];
-            
-            const features = [
-                {
-                    title: "Responsive Design",
-                    description: "Seamlessly adapts to any screen size. Your content looks perfect everywhere."
-                },
-                {
-                    title: "Smooth Transitions",
-                    description: "Beautiful animations that guide users through your story with elegance."
-                }
-            ];
+    <div class="scroll-hint">SCROLL</div>
+  </div>
+</div>
 
-            const container = document.getElementById('showcase-module');
-            const mobileScreen = document.getElementById('mod-mobile-screen');
-            const desktopScreen = document.getElementById('mod-desktop-screen');
-            const sectionsContainer = document.getElementById('mod-sections-container');
-            const dotsContainer = document.getElementById('mod-nav-dots');
+<script>
+  const wrapper = document.getElementById("scroll-wrapper");
+  const scaler = document.getElementById("scaling-container");
 
-            for (let i = 1; i <= totalStages; i++) {
-                // Mobile screen iframes
-                const mFrame = document.createElement('iframe');
-                if (i === 1) {
-                    mFrame.src = 'https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html';
-                } else {
-                    mFrame.src = 'https://jinhakanglab.github.io/ai2html/260105_arch_burger_v2/index.html';
-                }
-                mFrame.alt = `Mobile view ${i}`;
-                mFrame.dataset.index = i;
-                mFrame.setAttribute('frameborder', '0');
-                mFrame.setAttribute('scrolling', 'no');
-                if (i === 1) mFrame.classList.add('active');
-                mobileScreen.appendChild(mFrame);
+  const mobileIframe = document.getElementById("mobile-iframe");
+  const desktopIframe = document.getElementById("desktop-iframe");
 
-                // Desktop screen iframes
-                const dFrame = document.createElement('iframe');
-                if (i === 1) {
-                    dFrame.src = 'https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html';
-                } else {
-                    dFrame.src = 'https://jinhakanglab.github.io/ai2html/260105_arch_burger_v2/index.html';
-                }
-                dFrame.alt = `Desktop view ${i}`;
-                dFrame.dataset.index = i;
-                dFrame.setAttribute('frameborder', '0');
-                dFrame.setAttribute('scrolling', 'no');
-                if (i === 1) dFrame.classList.add('active');
-                desktopScreen.appendChild(dFrame);
+  const mobileDevice = document.getElementById("mobile-device");
+  const desktopDevice = document.getElementById("desktop-device");
 
-                // Sections with content
-                const section = document.createElement('section');
-                section.dataset.ref = i;
-                section.innerHTML = `
-                    <div class="text-card">
-                        <h3>${features[i-1].title}</h3>
-                        <p>${features[i-1].description}</p>
-                    </div>
-                `;
-                sectionsContainer.appendChild(section);
+ const SLIDES = [
+  {
+    url: "https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html",
+    mobileHeight: 800,
+    desktopHeight: 630
+  },
+    {
+    url: "https://jinhakanglab.github.io/ai2html/260105_arch_burger_v2/index.html",
+    mobileHeight: 800,
+    desktopHeight: 530
+  },
+//   {
+//     url: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html",
+//     mobileHeight: 440,
+//     desktopHeight: 580
+//   }
+];
+  let currentSlide = -1;
 
-                // Navigation dots
-                const dot = document.createElement('div');
-                dot.className = 'dot' + (i === 1 ? ' active' : '');
-                dot.dataset.index = i;
-                dot.addEventListener('click', () => {
-                    const targetSection = sectionsContainer.querySelector(`section[data-ref="${i}"]`);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                });
-                dotsContainer.appendChild(dot);
-            }
+  function setSlide(index) {
+    if (index === currentSlide) return;
+    currentSlide = index;
 
-            // Intersection Observer for scroll animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const idx = entry.target.getAttribute('data-ref');
-                        
-                        // Toggle active state for images
-                        container.querySelectorAll('.screen img, .screen iframe').forEach(el => {
-                            el.classList.toggle('active', el.dataset.index == idx);
-                        });
-                        
-                        // Toggle active state for dots
-                        container.querySelectorAll('.dot').forEach(dot => {
-                            dot.classList.toggle('active', dot.dataset.index == idx);
-                        });
-                        
-                        // Change background color
-                        container.style.backgroundColor = colors[idx - 1];
-                    }
-                });
-            }, { threshold: 0.5 });
+    mobileDevice.classList.add("hidden");
+    desktopDevice.classList.add("hidden");
 
-            // Observe all sections
-            container.querySelectorAll('section').forEach(s => observer.observe(s));
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        mobileIframe.src = SLIDES[index].url;
+        desktopIframe.src = SLIDES[index].url;
+        mobileIframe.style.height = SLIDES[index].mobileHeight + "px";
+        desktopIframe.style.height = SLIDES[index].desktopHeight + "px";
 
-            // Mobile iframe scroll effect - scroll iframe content before moving to next section
-            let lastScrollTop = 0;
-            window.addEventListener('scroll', () => {
-                const mobileScreenEl = document.getElementById('mod-mobile-screen');
-                if (!mobileScreenEl) return;
+        mobileDevice.classList.remove("hidden");
+        desktopDevice.classList.remove("hidden");
+      }, 250);
+    });
+  }
 
-                const currentScrollTop = window.scrollY;
-                const scrollingDown = currentScrollTop > lastScrollTop;
-                lastScrollTop = currentScrollTop;
+  function onScroll() {
+    const rect = wrapper.getBoundingClientRect();
+    const winH = window.innerHeight;
 
-                // Get current section
-                const sections = container.querySelectorAll('section');
-                let currentSection = null;
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                        currentSection = section;
-                    }
-                });
+    const progress = Math.max(
+      0,
+      Math.min(1, -rect.top / (rect.height - winH))
+    );
 
-                if (currentSection) {
-                    const canScrollDown = mobileScreenEl.scrollTop < (mobileScreenEl.scrollHeight - mobileScreenEl.clientHeight);
-                    const canScrollUp = mobileScreenEl.scrollTop > 0;
+    setSlide(progress < 0.5 ? 0 : 1);
 
-                    // If scrolling down and mobile screen can scroll, scroll it
-                    if (scrollingDown && canScrollDown) {
-                        mobileScreenEl.scrollTop += 5;
-                        window.scrollTo(0, currentScrollTop - 5);
-                    }
-                    // If scrolling up and mobile screen can scroll, scroll it
-                    else if (!scrollingDown && canScrollUp) {
-                        mobileScreenEl.scrollTop -= 5;
-                        window.scrollTo(0, currentScrollTop + 5);
-                    }
-                }
-            });
-        })();
-    </script> -->
-    </div>
+    // Smooth responsive scale
+    const contentWidth = 330 + 64 + 720;
+    const maxWidth = window.innerWidth * 0.9;
+
+    const scale = Math.min(1, maxWidth / contentWidth);
+    scaler.style.transform = `scale(0.75)`;
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+
+  setSlide(0);
+  onScroll();
+</script>
+
+
+
+                </div>
                 <!-- Impact -->
                 <section id="impact" class="bg-slate-900 text-white p-6 sm:p-10 rounded-3xl">
                     <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center text-blue-400">5. Impact & Results</h2>
@@ -759,4 +601,5 @@
     </script>
     <script src="../script.js"></script>
 </body>
+
 </html>
