@@ -10,10 +10,13 @@
     
     <!--SECURITY-->
     <script>
-        if (sessionStorage.getItem('portfolio_unlocked') !== 'true') {
-            window.location.replace("../index.html");
-        }
-    </script>
+  const isEmbedded = window.self !== window.top;
+
+  if (!isEmbedded && sessionStorage.getItem('portfolio_unlocked') !== 'true') {
+    window.location.replace("../index.html");
+  }
+</script>
+<script src="https://public.flourish.studio/resources/embed.js"></script>
 
     <link rel="icon" href="../images/favicon_j.png">
     <link rel="stylesheet" href="../style.css">
@@ -94,7 +97,7 @@
                     <span class="text-xs text-gray-500">Editorial UX Design</span>
                 </div>
 
-                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Scaling Responsive Editorial Design: A Newsroom System for Daily Mail</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Scaling Responsive Editorial Design for 225M+ Daily Mail Readers Worldwide</h2>
 
                 <p class="text-gray-700 max-w-xl">
                  Bridging the gap between high-fidelity Illustrator design and dynamic web graphics using the ai2html workflow.
@@ -133,7 +136,7 @@
                         <img src="../images/ai2html/phone.png" alt="mobile" class="w-full h-full object-cover">
                     </div>
 
-                    <div class="absolute inset-0 pointer-events-none">
+                    <div class="absolute inset-0">
                         <div class="absolute -bottom-12 left-0 w-72 h-40 bg-gradient-to-tr from-blue-600/30 via-transparent to-transparent blur-3xl"></div>
                     </div>
                 </div>
@@ -543,6 +546,7 @@
     </footer>
 
     <script>
+        
         const IMAGES = [
             { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history.", height: 400 },
             { id: 2, iframe: "https://jinhakanglab.github.io/FlourishGraphics/missing13locatormap/index.html", title: "Incident Locator Map", subtitle: "Highlights key events and geographic relationships.", height: 670 },
@@ -563,9 +567,7 @@
             { id: 17, iframe: "https://jinhakanglab.github.io/FlourishGraphics/captain'sdoomedjourney/index.html", title: "Shipwrecked Captain's Journey", subtitle: "Chronicles the route of the ill-fated voyage.", height: 460 },
             { id: 18, iframe: "https://jinhakanglab.github.io/FlourishGraphics/turkey/index.html", title: "What Makes a Turkey Unique", subtitle: "Illustrates anatomy changes during mating.", height: 420 },
             { id: 19, iframe: "https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html", title: "Inside the Great Pyramid: Structure & Mechanics", subtitle: "Reveals the hidden structure of the Great Pyramid.", height: 1000 },
-            
-           
-           
+             { id: 20, iframe: "https://flo.uri.sh/visualisation/27354365/embed", title: "Inside the Great Pyramid: Structure & Mechanics", subtitle: "Reveals the hidden structure of the Great Pyramid.", height: 500},
         ];
 
         document.addEventListener("DOMContentLoaded", () => {
