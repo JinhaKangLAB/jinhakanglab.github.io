@@ -1,56 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <script src="../script.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>ecommerce - JINHA KANG</title>
+    <title>E-Commerce Campaigns - JINHA KANG</title>
     <link rel="icon" href="../images/favicon_j.png">
+    
     <!--SECURITY-->
     <script>
         if (sessionStorage.getItem('portfolio_unlocked') !== 'true') {
             window.location.replace("../index.html");
         }
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-170PYF8XYX');
+    
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        window.addEventListener("message", (event) => {
-            if (!event.data || event.data.type !== "embed-height") return;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
 
-            const iframe = document.querySelector(`iframe[src="${event.data.src}"]`);
-            if (iframe) {
-                iframe.style.height = event.data.height + "px";
+        .header {
+            padding: 80px 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 24px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .badge-primary {
+            font-size: 11px;
+            font-weight: 700;
+            color: #2563eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-secondary {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .headline {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .subheadline {
+            font-size: clamp(15px, 2vw, 18px);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 900px;
+            color: #4a5568;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background: transparent;
+            color: #666;
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .filter-btn.active {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+
+        .gallery {
+            padding: 40px 20px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-        });
-    </script>
+        }
 
-    <!--MS-->
-<script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "uiz49swzp7");
-</script>
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 0;
+            background: #f8f9fa;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
 
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            border-color: #d1d5db;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        .campaign-type {
+            font-size: 13px;
+            color: #d1d5db;
+            font-weight: 400;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal.open {
+            background: rgba(0,0,0,0.9);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 0;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 16px;
+            line-height: 1;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        footer {
+            border-top: 1px solid #e5e7eb;
+            background: #fafafa;
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 4px 0;
+        }
+    </style>
 </head>
-
 <body>
-
 
     <nav>
         <div class="nav">
@@ -76,200 +306,148 @@
                 </div>
 
                 <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
-                    <img class="linkedin" src="../images/linkedin.png" />
+                    <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn" />
                 </a>
-
-
             </div>
         </div>
     </nav>
 
-    <div class="workContainer">
-        <div class="workTextContainer">
-            <div class="workHeadline">E-Commerce Campaigns Across Multiple Brands</div>
-            <div class="subHeadline"> A multi-brand e-commerce campaign crafted to unify beauty, wellness, fashion, and food & beverage into a cohesive visual story.<br /> Each product is deliberately placed to showcase its unique value, using refined color palettes, elevated lifestyle imagery, and modern design cues to guide the consumer journey.<br /> The layout balances clarity with impact, enhancing discoverability and driving engagement through a trend-aware and performance-driven approach tailored for high-conversion digital retail.</div>
-            <!--<div class="">Tools Photoshop, Illustrator, Flourish, HTML, and CSS</div>-->
-            <div class="workText">
-
-            </div>
+    <div class="header">
+        <div class="badge">
+            <span class="badge-primary">Featured</span>
+            <span class="badge-secondary">Commercial Design</span>
+        </div>
+        <div class="headline">E-Commerce Campaigns Across Multiple Brands</div>
+        <div class="subheadline">
+            A multi-brand e-commerce campaign crafted to unify beauty, wellness, fashion, and food & beverage into a cohesive visual story. Each product is deliberately placed to showcase its unique value, using refined color palettes, elevated lifestyle imagery, and modern design cues to guide the consumer journey.
         </div>
     </div>
-    <div class="imgContainer">
-        <img src="../images/ecommerce/e-commerce.jpg" />
+
+    <div class="filters">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="beauty">Beauty</button>
+        <button class="filter-btn" data-category="wellness">Wellness</button>
+        <button class="filter-btn" data-category="fashion">Fashion</button>
+        <button class="filter-btn" data-category="food">Food & Beverage</button>
+        <button class="filter-btn" data-category="tech">Tech</button>
     </div>
 
-    <!--GALLERY-->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* prevent horizontal scroll */
-        }
-
-        .ecommerceContainer {
-            position: relative;
-            width: 100vw; /* full width */
-            height: 100%;
-            background: #000;
-            margin: 0;
-            padding-left: 50px; /* left margin inside container */
-            padding-right: 50px; /* right margin inside container */
-            box-sizing: border-box;
-        }
-
-        .ecommerceImage {
-            position: absolute;
-            width: 38vw; /* responsive width */
-            max-width: 90%;
-            height: auto;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.45);
-            opacity: 0;
-            transform: scale(0.7);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-            cursor: zoom-in;
-        }
-
-            .ecommerceImage.visible {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-                .ecommerceImage.visible:hover {
-                    transform: scale(1.08);
-                    z-index: 2;
-                }
-
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0); /* start fully transparent */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: background 0.3s ease, opacity 0.3s ease; /* smooth transition */
-        }
-
-            .modal.open {
-                background: rgba(0,0,0,0.7); /* semi-transparent black */
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .modal img {
-                max-width: 90%;
-                max-height: 85%;
-            }
-    </style>
-
-    <div class="ecommerceContainer" id="gallery">
-        <img src="../images/ecommerce/banza.png" class="ecommerceImage" alt="img1">
-        <img src="../images/ecommerce/111skin.jpg" class="ecommerceImage" alt="img2">
-        <img src="../images/ecommerce/polo.png" class="ecommerceImage" alt="img3">
-        <img src="../images/ecommerce/waterloo.png" class="ecommerceImage" alt="img5">
-        <img src="../images/ecommerce/neededAcademy.jpg" class="ecommerceImage" alt="img4">
-        <img src="../images/ecommerce/mintMobile.gif" class="ecommerceImage" alt="img5">
-        <img src="../images/ecommerce/lipgloss.png" class="ecommerceImage" alt="img5">
-        <img src="../images/ecommerce/nakedsundays.jpg" class="ecommerceImage" alt="img4">
-        <img src="../images/ecommerce/jiyu.png" class="ecommerceImage" alt="img5">
-        <img src="../images/ecommerce/footPeelMask.png" class="ecommerceImage" alt="img5">
-        <img src="../images/ecommerce/coc1onut.png" class="ecommerceImage" alt="img4">
-
+    <div class="gallery" id="gallery">
+        <!-- Items will be generated by JavaScript -->
     </div>
 
     <div class="modal" id="modal">
-        <img id="modalImg" src="" alt="">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <img id="modalImg" src="" alt="">
+        </div>
     </div>
-   
-   
+
+    <footer>
+        <p>Email: jinhakang.usa@gmail.com</p>
+        <p>© <span id="year"></span> Jinha Kang. All rights reserved.</p>
+    </footer>
+
     <script>
-        (function () {
-            const ecommerceImages = document.querySelectorAll('.ecommerceImage');
+        const projects = [
+            { src: '../images/ecommerce/banza.png', brand: 'Banza', type: 'Product Campaign', category: 'food' },
+            { src: '../images/ecommerce/111skin.jpg', brand: '111SKIN', type: 'Luxury Skincare', category: 'beauty' },
+            { src: '../images/ecommerce/polo.png', brand: 'Polo Ralph Lauren', type: 'Fashion Campaign', category: 'fashion' },
+            { src: '../images/ecommerce/waterloo.png', brand: 'Waterloo', type: 'Beverage Marketing', category: 'food' },
+            { src: '../images/ecommerce/neededAcademy.jpg', brand: 'Needed Academy', type: 'Wellness Brand', category: 'wellness' },
+            { src: '../images/ecommerce/mintMobile.gif', brand: 'Mint Mobile', type: 'Tech Campaign', category: 'tech' },
+            { src: '../images/ecommerce/lipgloss.png', brand: 'Lip Gloss', type: 'Beauty Product', category: 'beauty' },
+            { src: '../images/ecommerce/nakedsundays.jpg', brand: 'Naked Sundays', type: 'Skincare Launch', category: 'beauty' },
+            { src: '../images/ecommerce/jiyu.png', brand: 'Jiyu', type: 'Wellness Product', category: 'wellness' },
+            { src: '../images/ecommerce/footPeelMask.png', brand: 'Foot Peel Mask', type: 'Beauty Care', category: 'beauty' },
+            { src: '../images/ecommerce/coc1onut.png', brand: 'Coc1onut', type: 'Beverage Brand', category: 'food' }
+        ];
 
-            function placeSpread(images) {
-                const container = document.querySelector('.ecommerceContainer');
-                const containerWidth = container.clientWidth; // includes padding
-                const vw = containerWidth;
-                const paddingLeft = 50;
-                const paddingRight = 50;
-                let currentY = 100;
+        const gallery = document.getElementById('gallery');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const closeModal = document.getElementById('closeModal');
+        const filterBtns = document.querySelectorAll('.filter-btn');
 
-                images.forEach(img => {
-                    const w = img.offsetWidth;
-                    const h = img.offsetHeight;
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-                    // Random horizontal position inside padded area
-                    const numCols = 3;
-                    const colWidth = (vw - paddingLeft - paddingRight) / numCols;
-                    const col = Math.floor(Math.random() * numCols);
-                    let x = paddingLeft + col * colWidth + (colWidth - w) / 2;
+        // Create gallery items
+        projects.forEach((project, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.dataset.category = project.category;
+            item.style.transitionDelay = `${index * 0.08}s`;
+            
+            item.innerHTML = `
+                <div class="image-wrapper">
+                    <img src="${project.src}" alt="${project.brand}" loading="lazy">
+                    <div class="overlay">
+                        <div class="brand-name">${project.brand}</div>
+                        <div class="campaign-type">${project.type}</div>
+                    </div>
+                </div>
+            `;
+            
+            gallery.appendChild(item);
+        });
 
-                    // Clamp so the entire image fits inside the container
-                    if (x + w > vw - paddingRight) x = vw - paddingRight - w;
-                    if (x < paddingLeft) x = paddingLeft;
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
 
-                    const y = currentY;
-                    img.style.left = x + "px";
-                    img.style.top = y + "px";
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
 
-                    currentY += h + 80 + Math.random() * 80;
-                });
-            }
-
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        placeSpread(ecommerceImages);
-                        img.classList.add("visible");
-                        observer.unobserve(img);
+        // Filter functionality
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
                     }
                 });
-            }, { root: null, threshold: 0.1 });
-
-            ecommerceImages.forEach(img => observer.observe(img));
-
-            // Modal logic
-            const modal = document.getElementById('modal');
-            const modalImg = document.getElementById('modalImg');
-            ecommerceImages.forEach(img => {
-                img.addEventListener("click", () => {
-                    modalImg.src = img.src;
-                    modal.classList.add("open");
-                });
             });
-            modal.addEventListener("click", () => modal.classList.remove("open"));
+        });
 
-            // Recalculate positions on window resize
-            window.addEventListener('resize', () => {
-                placeSpread(ecommerceImages);
-            });
-        })();
+        // Modal functionality
+        gallery.addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item');
+            if (item) {
+                const img = item.querySelector('img');
+                modalImg.src = img.src;
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        });
 
- if (!sessionStorage.getItem("accessGranted")) {
-  document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
+        const closeModalFunc = () => {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        };
 
-  document.body.addEventListener("click", function unlock(e) {
-    let userInput = prompt("🔒 Please enter the password to view this content:");
-    
-    if (userInput === password) {
-      alert("Access granted!");
-      sessionStorage.setItem("accessGranted", "true");
-      document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
-      document.body.removeEventListener("click", unlock);
-    } else {
-      alert("❌ Incorrect password.");
-    }
-  }, { once: true });
-}
+        closeModal.addEventListener('click', closeModalFunc);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModalFunc();
+        });
 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModalFunc();
+        });
     </script>
 
 </body>
-
 </html>
-
-
-
