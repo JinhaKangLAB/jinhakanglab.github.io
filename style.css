@@ -1,17 +1,10 @@
-﻿
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
-
-:root {
+﻿:root {
     --main-radius: 20px;
     --main-padding: 16px;
     --primary-color: #ffffff;
     --primary-color-hover: #D3d3d3;
     --text-color: #333;
-    --brand-blue: #1a73e8;
-    --text-main: #000000;
-    --text-muted: #5f6368;
-    --text-detail: #3d3d3d;
+
 }
 
 a,
@@ -23,7 +16,7 @@ h2,
 h3,
 h4,
 h5,
-* {
+* { 
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -40,17 +33,6 @@ body {
     background: var(--background-color);
     color: var(--text-color);
     line-height: 1.5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #ffffff;
-    font-family: 'Inter', -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    text-align: center;
-    color: var(--text-main);
 }
 
 menu, ol, ul {
@@ -64,7 +46,7 @@ menu, ol, ul {
     height: 100vh;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 0.4fr 5fr 3fr 3fr 3fr 3fr 0.4fr;
-    grid-template-areas:
+    grid-template-areas: 
         "nav nav nav nav"
         "main main main main"
         "content1 content1 content2 content2"
@@ -75,8 +57,8 @@ menu, ol, ul {
     grid-gap: 0.2rem;
     text-align: center;
     /* width: 95%;           /* Uses 85% of the screen width */
-    /* max-width: 1400px;    /* Prevents it from getting TOO wide on huge monitors */
-    /* margin: 0 auto;       /* Centers it */
+   /* max-width: 1400px;    /* Prevents it from getting TOO wide on huge monitors */
+   /* margin: 0 auto;       /* Centers it */
     /*padding: 0 20px;      Safety gap for mobile */
 }
 
@@ -94,13 +76,13 @@ nav {
     height: 82px;
 }
 
-    nav.scrolled {
+nav.scrolled {
         background: rgba(255,255,255,0.5);
         backdrop-filter: blur(6px);
-    }
+}
 
 .nav {
-    display: flex;
+    display: flex; 
     flex-direction: column;
     gap: 0px;
     align-items: flex-start;
@@ -124,8 +106,8 @@ nav {
 
 /*NAV SCROLL DIFFERENT DESIGN*/
 nav.scrolled .nav-hug {
-}
 
+}
 .jinha-kang {
     color: #000000;
     text-align: left;
@@ -148,13 +130,12 @@ nav.scrolled .nav-hug {
     z-index: 999;
 }
 
-li {
-    /*list-style:none;*/
+li{
+   /*list-style:none;*/
 }
-
-a {
+a{
     color: black;
-    text-decoration: none;
+    text-decoration:none; 
 }
 
 .menu-item {
@@ -177,112 +158,39 @@ a {
     aspect-ratio: 1;
 }
 
-.nav-link {
+.nav-link{
     transition: 0.7s ease;
 }
-
-    .nav-link:hover {
+.nav-link:hover {
         color: #D3D3D3;
-    }
+ }
 
-.hamburger {
+.hamburger{
     display: none;
     cursor: pointer;
     z-index: 1000;
 }
 
-.bar {
+.bar{
     display: block;
     width: 25px;
-    height: 3px;
-    margin: 5px auto;
+    height:3px;
+    margin:5px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: black;
+    background-color:black;
 }
 
-.bar {
+.bar{
     display: block;
     width: 25px;
     height: 3px;
 }
 
-/*clarity*/
-/* 1. Fluid Headline */
-h1 {
-    font-size: clamp(40px, 8vw, 72px); /* Scales based on screen size */
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-}
 
-/* 2. Refined Gradient Animation */
-.gradient-text {
-    display: inline-block;
-    background: linear-gradient( to right, var(--brand-blue) 0%, #8ab4f8 25%, rgba(26, 115, 232, 0.1) 50%, /* Not fully clear, but soft */
-    #8ab4f8 75%, var(--brand-blue) 100% );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 6s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 200% center;
-    }
-
-    100% {
-        background-position: 0% center;
-    }
-}
-
-/* 3. The Lead Intro */
-p {
-    font-size: clamp(18px, 2vw, 21px);
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin: 32px auto;
-    font-weight: 400;
-}
-
-/* 4. The Detailed Bio (Aesthetics: smaller, lighter, wider) */
-.second-line {
-    font-size: 14px;
-    color: var(--text-detail);
-    line-height: 1.8; /* More breathing room for long text */
-    margin: 0 auto;
-    max-width: 620px;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    opacity: 0.8;
-}
-
-    /* Subtly highlighting her credentials */
-    .second-line b {
-        font-weight: 500;
-        color: var(--text-main);
-    }
-
-@media (max-width: 600px) {
-    .highlight-container {
-        padding-top: 60px;
-    }
-
-    p {
-        margin: 24px auto;
-    }
-}
 
 
 /*INTRO*/
-
-.highlight-container {
-    max-width: 720px;
-    padding: 40px 24px;
-}
-
 .intro {
     /* padding: 200px;
     display: flex;
@@ -293,7 +201,7 @@ p {
     align-self: stretch;
     flex-shrink: 0;
     position: relative; */
-    padding: 160px 40px 20px 40px; /* Reduced vertical padding */
+    padding: 160px 40px 100px 40px; /* Reduced vertical padding */
     max-width: 900px; /* Limits width for better eye-tracking */
     margin: 0 auto; /* Centers the intro block */
     align-items: flex-start; /* Left-aligned text is much easier to read than centered */
@@ -313,8 +221,8 @@ p {
     line-height: 1.1;
     letter-spacing: -0.02em; /* Tighter tracking for large headlines looks more "designer" */
     margin-bottom: 24px;
-    font-weight: 400;
-    font-size: 24px;
+      font-weight: 400;
+      font-size: 24px;
 }
 
 .headline-span {
@@ -354,7 +262,8 @@ p {
 
 .description-span {
     font-family: "Roboto-Regular", sans-serif;
-    font-size: 14px;
+        font-size: 14px;
+
 }
 
 .description-span2 {
@@ -385,14 +294,13 @@ main {
 .gallerybox {
     padding-top: 10px;
 }
-
 #content1 {
     grid-area: content1;
     padding-top: 0;
     margin: 8px;
     margin-top: 0;
     position: relative;
-    padding-bottom: 32px;
+    padding-bottom: 32px; 
 }
 
 .imgBox {
@@ -412,14 +320,14 @@ main {
         transition: transform 0.3s ease;
     }
 
-    .imgBox video {
-        width: 100%;
-        height: 100%; /* 🔑 THIS IS CRITICAL */
-        object-fit: cover;
-        display: block;
-        border-radius: inherit;
-        transition: transform 0.3s ease;
-    }
+.imgBox video {
+    width: 100%;
+    height: 100%; /* 🔑 THIS IS CRITICAL */
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+    transition: transform 0.3s ease;
+}
 
 
 .subBox {
@@ -474,15 +382,15 @@ main {
     padding-bottom: 32px; /*test*/
 }
 
-    #content2 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-    }
+#content2 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: var(--main-radius);
+}
 
 
 #content3 {
@@ -495,15 +403,15 @@ main {
 }
 
 
-    #content3 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-    }
+#content3 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: var(--main-radius);
+}
 
 
 #content4 {
@@ -515,15 +423,15 @@ main {
     padding-bottom: 32px;
 }
 
-    #content4 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-    }
+#content4 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: var(--main-radius);
+}
 
 
 
@@ -536,16 +444,15 @@ main {
     position: relative;
     padding-bottom: 32px;
 }
-
-    #content5 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-    }
+#content5 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: var(--main-radius);
+}
 
 #content6 {
     grid-area: content6;
@@ -589,7 +496,7 @@ main {
         border-radius: var(--main-radius);
     }
 
-
+    
 #content8 {
     grid-area: content8;
     border-radius: var(--main-radius);
@@ -652,32 +559,29 @@ footer {
     margin-right: 2rem;
     font-size: 16px;
 }
-
 .imgContainer {
-    display: block;
+    display:block;
     width: 100%;
     padding-bottom: 0px;
 }
 
-    .imgContainer img {
-        width: 100%;
-        height: auto;
-    }
-
-    .imgContainer video {
-        width: 100%;
-        height: auto;
-    }
-
+.imgContainer img{
+    width:100%;
+    height:auto;
+}
+.imgContainer video{
+    width:100%;
+    height:auto;
+}
 #flex-credit {
-    border-top: 1.2px solid grey;
+   border-top: 1.2px solid grey;
     display: flex;
     flex-wrap: wrap;
     gap: 16px 16px;
     width: 100%;
     justify-content: center;
-}
 
+}
     #flex-credit > .credit-container {
         width: 230px;
         aspect-ratio: 2;
@@ -685,7 +589,6 @@ footer {
         padding: 30px 30px 30px 30px;
         text-align: left;
     }
-
 .credit-container {
     display: flex;
     flex-direction: column;
@@ -696,7 +599,6 @@ footer {
     width: 200px;
     position: relative;
 }
-
 .HeadBox {
     border-radius: 16px;
     border-style: solid;
@@ -712,7 +614,6 @@ footer {
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .creditHead {
     text-align: left;
     font-family: "Inter-SemiBold", sans-serif;
@@ -760,8 +661,8 @@ footer {
 .group {
     display: flex;
     gap: 0;
-    margin: 0;
-    padding: 0;
+    margin:0;
+    padding:0;
     padding-right: 20px;
     will-change: transform; /* We should be nice to the browser - let it know what we're going to animate. */
     animation: scrolling 30s linear infinite;
@@ -883,8 +784,8 @@ footer {
 
 .page1-1,
 .page1-2 {
+   
 }
-
 .page1-2 {
     text-align: left; /* always left align */
     font-size: 1rem;
@@ -893,16 +794,14 @@ footer {
     flex: 1 1 300px; /* responsive sizing */
     min-width: 260px;
 }
+.page1-2 h3{
+    text-align: left;
+}
+.page1-2 p{
+    text-align: left;
+}
 
-    .page1-2 h3 {
-        text-align: left;
-    }
-
-    .page1-2 p {
-        text-align: left;
-    }
-
-/* Image responsiveness */
+    /* Image responsiveness */
 .page1-1 img {
     max-width: 100%;
     height: auto;
@@ -928,25 +827,22 @@ footer {
 
 .page2 {
     display: flex;
-    width: 100%;
+    width:100%;
     justify-content: center; /* center horizontally */
     align-items: center;
 }
-
     .page2 img {
         max-width: 100%;
         height: auto;
         justify-content: center;
         align-items: center;
     }
-
     .page2 video {
         max-width: 100%;
         height: auto;
         justify-content: center;
         align-items: center;
     }
-
 .imgContainer video {
     max-width: 100%;
     height: auto;
@@ -954,32 +850,30 @@ footer {
     align-items: center;
 }
 
-.page3 {
-    display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center;
-}
-
-    .page3 img {
-        max-width: 100%;
-        height: auto;
-        justify-content: center;
+    .page3 {
+        display: flex;
+        justify-content: center; /* center horizontally */
         align-items: center;
     }
+
+        .page3 img {
+            max-width: 100%;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+        }
 
 .page4 {
     display: flex;
     justify-content: center; /* center horizontally */
     align-items: center;
 }
-
 ul.casestudy-list {
     list-style-type: square; /* show squares */
     padding-left: 1.5em; /* indent so bullets show */
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-
 .casestudy-list li {
     margin-bottom: 0.2em; /* spacing between bullets */
     line-height: 1.5; /* improves readability */
@@ -990,9 +884,8 @@ ul.casestudy-list {
 
 /*GALLERY*/
 .gallerybox {
-    margin-top: 0.4fr;
+    margin-top:0.4fr;
 }
-
 .grid {
     margin-top: 0.4fr;
     padding: 0.4fr;
@@ -1148,6 +1041,7 @@ ul.casestudy-list {
     margin: 8px;
     margin-top: 0;
     position: relative;
+ 
 }
 
     #content2 img {
@@ -1160,13 +1054,14 @@ ul.casestudy-list {
         border-radius: var(--main-radius);
     }
 
-
+     
 #content3 {
     grid-area: content3;
     padding-top: 0;
     margin: 8px;
     margin-top: 0;
     position: relative;
+
 }
 
 
@@ -1187,6 +1082,7 @@ ul.casestudy-list {
     margin: 8px;
     margin-top: 0;
     position: relative;
+
 }
 
     #content4 img {
@@ -1199,7 +1095,7 @@ ul.casestudy-list {
         border-radius: var(--main-radius);
     }
 
-
+   
 
 #content5 {
     grid-area: content5;
@@ -1208,6 +1104,7 @@ ul.casestudy-list {
     margin: 8px;
     margin-top: 0;
     position: relative;
+
 }
 
     #content5 img {
@@ -1228,6 +1125,7 @@ ul.casestudy-list {
     margin: 8px;
     margin-top: 0;
     position: relative;
+
 }
 
     #content6 img {
@@ -1249,6 +1147,7 @@ ul.casestudy-list {
     margin: 8px;
     margin-top: 0;
     position: relative;
+
 }
 
     #content7 img {
@@ -1279,208 +1178,200 @@ ul.casestudy-list {
         border-radius: var(--main-radius);
     }
 
-/*DESKTOP*/
+    /*DESKTOP*/
 @media (min-width: 1024px) {
-    .subBox {
-        position: absolute;
-        bottom: 0;
-    }
-
+  .subBox {
+    position: absolute;
+    bottom: 0;
+  }
     .project {
-        margin: 8px;
-    }
+    margin: 8px;
+  }
 }
-
-@media (max-width: 1023px) {
-    .subBox {
-        position: static;
-        padding-top: 6px;
-        padding-bottom: 0;
-        line-height: 1.3;
+   @media (max-width: 1023px) {
+  .subBox {
+    position: static;
+    padding-top: 6px;
+    padding-bottom: 0;
+    line-height: 1.3;
         font-size: 14px;
-    }
-
-    .project {
-        margin: 8px 8px 12px 8px; /* tighter bottom */
-    }
-
-    #content1,
-    #content2,
-    #content3,
-    #content4,
-    #content5,
-    #content6,
-    #content7 {
-        padding-bottom: 0; /* 🔥 THIS FIXES IT */
-    }
+  }
+   .project {
+    margin: 8px 8px 12px 8px; /* tighter bottom */
+  }
+   #content1,
+  #content2,
+  #content3,
+  #content4,
+  #content5,
+  #content6,
+  #content7 {
+    padding-bottom: 0; /* 🔥 THIS FIXES IT */
+  }
 }
-/*mobile*/
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-
-        .hamburger.active .bar:nth-child(2) {
-            opacity: 0;
+    /*mobile*/
+    @media (max-width: 768px) {
+        .hamburger {
+            display: block;
         }
 
-        .hamburger.active .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+        .menu {
+            position: fixed;
+            left: -100%;
+            top: 70px;
+            gap: 0;
+            flex-direction: column;
+            background-color: #ffffff;
+            width: 100%;
+            text-align: center;
+            transition: 0.3s;
+            z-index: 999;
         }
 
-        .hamburger.active .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .menu-item {
+            margin: 16px 0;
         }
 
-    .menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        gap: 0;
-        flex-direction: column;
-        background-color: #ffffff;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        z-index: 999;
-    }
+        .menu.active {
+            left: 0;
+            z-index: 999;
+        }
 
-    .menu-item {
-        margin: 16px 0;
-    }
-
-    .menu.active {
-        left: 0;
-        z-index: 999;
-    }
-
-    .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.4fr 10fr 8fr 8fr 8fr 8fr 8fr 8fr 8fr 8fr 0.2fr;
-        grid-template-areas: "nav"
-            "main"
-            "content1"
-            "content2"
-            "content3"
-            "content4"
-            "content5"
-            "content6"
-            "content7"
-            "content8"
-            "footer"
-    }
-
-    .subBox {
-        position: static;
-        padding-top: 8px;
-    }
+        .container {
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.4fr 10fr 8fr 8fr 8fr 8fr 8fr 8fr 8fr 8fr 0.2fr;
+            grid-template-areas: "nav"
+                "main"
+                "content1"
+                "content2"
+                "content3"
+                "content4"
+                "content5"
+                "content6"
+                "content7"
+                "content8"
+                "footer"
+        }
+         .subBox {
+            position: static;
+            padding-top: 8px;
+        }
 }
-/*MOBILE INTRO*/
-.album {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    height: auto;
-    position: relative;
-}
+        /*MOBILE INTRO*/
+        .album {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            align-self: stretch;
+            flex-shrink: 0;
+            height: auto;
+            position: relative;
+        }
 
-.intro {
-    padding: 80px 50px 30px 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-}
+        .intro {
+            padding: 80px 50px 80px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: flex-start;
+            align-self: stretch;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
 
-.headline {
-    color: #000000;
-    text-align: left;
-    font-family: "-", sans-serif;
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 400;
-    position: relative;
-    align-self: stretch;
-}
+        .headline {
+            color: #000000;
+            text-align: left;
+            font-family: "-", sans-serif;
+            font-size: 20px;
+            line-height: 24px;
+            font-weight: 400;
+            position: relative;
+            align-self: stretch;
+        }
 
-.headline-span {
-    font-family: "Montserrat-Regular", sans-serif;
-}
+        .headline-span {
+            font-family: "Montserrat-Regular", sans-serif;
+        }
 
-.headline-span2 {
-    font-family: "Montserrat-SemiBold", sans-serif;
-    font-weight: 600;
-}
+        .headline-span2 {
+            font-family: "Montserrat-SemiBold", sans-serif;
+            font-weight: 600;
+        }
 
-.description {
-    color: #000000;
-    text-align: left;
-    font-family: "-", sans-serif;
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 400;
-    position: relative;
-    align-self: stretch;
-}
+        .description {
+            color: #000000;
+            text-align: left;
+            font-family: "-", sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 400;
+            position: relative;
+            align-self: stretch;
+        }
 
-.description-span {
-    font-family: "Roboto-Regular", sans-serif;
-}
+        .description-span {
+            font-family: "Roboto-Regular", sans-serif;
+        }
 
-.description-span2 {
-    font-family: "Roboto-SemiBold", sans-serif;
-    font-weight: 600;
-}
+        .description-span2 {
+            font-family: "Roboto-SemiBold", sans-serif;
+            font-weight: 600;
+        }
 
-.description-span3 {
-    font-family: "Montserrat-MediumItalic", sans-serif;
-    font-weight: 550;
-    font-style: italic;
-    font-size: 15px;
-}
+        .description-span3 {
+            font-family: "Montserrat-MediumItalic", sans-serif;
+            font-weight: 550;
+            font-style: italic;
+            font-size: 15px;
+        }
 
-.align-with-credit {
+        .align-with-credit {
     max-width: calc(230px * 4 + 16px * 3); /* 4 items + 3 gaps */
     margin: 0 auto;
     padding: 0 16px;
 }
 
-.page1-container {
+          .page1-container {
     padding: 1.5rem 1rem;
+  }
+  .page1-2 {
+  
+  }
 }
-
-.page1-2 {
-}
-
-}
-
 .pageDivider {
     background-color: #fcfaff;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
-.page {
-    padding: 1rem;
-}
+        .page {
+            padding: 1rem;
+        }
 
-    .page p {
-        font-size: 0.95rem;
-    }
-
-.page1-container {
+            .page p {
+                font-size: 0.95rem;
+            }
+              .page1-container {
     padding: 1.5rem 1rem;
-}
-
-.page1-2 {
+  }
+  .page1-2 {
     text-align: center; /* center text on smaller screens */
-}
+  }
+
