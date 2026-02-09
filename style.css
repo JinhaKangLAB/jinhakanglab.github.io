@@ -1,9 +1,15 @@
-﻿:root {
+﻿ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
     --main-radius: 20px;
     --main-padding: 16px;
     --primary-color: #ffffff;
     --primary-color-hover: #D3d3d3;
     --text-color: #333;
+      --brand-blue: #1a73e8;
+            --text-main: #000000;
+            --text-muted: #5f6368;
+            --text-detail: #3d3d3d;
 
 }
 
@@ -187,26 +193,79 @@ a{
     height: 3px;
 }
 
+/*HIGHLIGHTS*/
+.highlight-section {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+            text-align: center;
+            color: var(--text-main);
+        }
 
+        .highlight-container {
+            max-width: 720px;
+            padding: 40px 24px;
+        }
 
+        /* 1. Fluid Headline */
+        h1 {
+            font-size: clamp(40px, 8vw, 72px); /* Scales based on screen size */
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+        }
 
-/*INTRO*/
-.intro {
-    /* padding: 200px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative; */
-    padding: 160px 40px 100px 40px; /* Reduced vertical padding */
-    max-width: 900px; /* Limits width for better eye-tracking */
-    margin: 0 auto; /* Centers the intro block */
-    align-items: flex-start; /* Left-aligned text is much easier to read than centered */
-}
+        /* 2. Refined Gradient Animation */
+        .gradient-text {
+            display: inline-block;
+            background: linear-gradient(
+                to right, 
+                var(--brand-blue) 0%, 
+                #8ab4f8 25%, 
+                rgba(26, 115, 232, 0.1) 50%, /* Not fully clear, but soft */
+                #8ab4f8 75%, 
+                var(--brand-blue) 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 6s ease-in-out infinite;
+        }
+         @keyframes shimmer {
+            0% { background-position: 200% center; }
+            100% { background-position: 0% center; }
+        }
 
+        /* 3. The Lead Intro */
+        p {
+            font-size: clamp(18px, 2vw, 21px);
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 32px auto;
+            font-weight: 400;
+        }
+
+        /* 4. The Detailed Bio (Aesthetics: smaller, lighter, wider) */
+        .second-line {
+            font-size: 14px;
+            color: var(--text-detail);
+            line-height: 1.6; /* More breathing room for long text */
+            margin: 0 auto;
+            max-width: 620px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            opacity: 0.8;
+        }
+
+        /* Subtly highlighting her credentials */
+        .second-line b {
+            font-weight: 500;
+            color: var(--text-main);
+        }
 
 .headline {
     /* color: #000000;
@@ -329,38 +388,6 @@ main {
     transition: transform 0.3s ease;
 }
 
-
-.subBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    font-family: "Montserrat-Medium", sans-serif;
-    font-size: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-.subText1 {
-    color: black;
-    text-align: left;
-    font-weight: 600;
-    position: relative;
-    font-family: "Montserrat-Regular", sans-serif;
-}
-
-.subText2 {
-    color: black;
-    text-align: right;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    position: relative;
-}
-
-
 .project .imgBox img,
 .project .imgBox video {
     transition: transform 0.35s ease;
@@ -382,16 +409,6 @@ main {
     padding-bottom: 32px; /*test*/
 }
 
-#content2 img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: var(--main-radius);
-}
-
 
 #content3 {
     grid-area: content3;
@@ -403,16 +420,6 @@ main {
 }
 
 
-#content3 img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: var(--main-radius);
-}
-
 
 #content4 {
     grid-area: content4;
@@ -421,16 +428,6 @@ main {
     margin-top: 0;
     position: relative;
     padding-bottom: 32px;
-}
-
-#content4 img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: var(--main-radius);
 }
 
 
@@ -444,15 +441,6 @@ main {
     position: relative;
     padding-bottom: 32px;
 }
-#content5 img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: var(--main-radius);
-}
 
 #content6 {
     grid-area: content6;
@@ -464,17 +452,7 @@ main {
     padding-bottom: 32px;
 }
 
-    #content6 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-    }
-
-
+  
 
 #content7 {
     grid-area: content7;
@@ -486,16 +464,6 @@ main {
     padding-bottom: 32px;
 }
 
-    #content7 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-    }
-
     
 #content8 {
     grid-area: content8;
@@ -504,16 +472,6 @@ main {
     margin: 8px;
     margin-top: 0;
 }
-
-    #content8 img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: var(--main-radius);
-    }
 
 .project {
     transition: transform 0.35s ease;
@@ -959,9 +917,6 @@ ul.casestudy-list {
     flex-wrap: wrap;
 }
 
-
-
-
 .subBox {
     display: flex;
     flex-direction: row;
@@ -1035,14 +990,7 @@ ul.casestudy-list {
 }
 
 /*content2*/
-#content2 {
-    grid-area: content2;
-    padding-top: 0;
-    margin: 8px;
-    margin-top: 0;
-    position: relative;
- 
-}
+
 
     #content2 img {
         width: 100%;
@@ -1268,32 +1216,12 @@ ul.casestudy-list {
             position: static;
             padding-top: 8px;
         }
-}
-        /*MOBILE INTRO*/
-        .album {
-            display: flex;
-            flex-direction: column;
-            gap: 0px;
-            align-items: flex-start;
-            justify-content: flex-start;
-            align-self: stretch;
-            flex-shrink: 0;
-            height: auto;
-            position: relative;
-        }
 
-        .intro {
-            padding: 80px 50px 80px 50px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-            justify-content: flex-start;
-            align-self: stretch;
-            flex-shrink: 0;
-            position: relative;
-            overflow: hidden;
-        }
+         .highlight-container { padding-top: 60px; }
+             p { margin: 24px auto; }
+             .second-line {font-size: 12px; line-height: 1.4;}
+
+              /*MOBILE INTRO*/
 
         .headline {
             color: #000000;
@@ -1354,7 +1282,7 @@ ul.casestudy-list {
   .page1-2 {
   
   }
-}
+
 .pageDivider {
     background-color: #fcfaff;
     padding-top: 2rem;
@@ -1374,4 +1302,6 @@ ul.casestudy-list {
   .page1-2 {
     text-align: center; /* center text on smaller screens */
   }
+}
+       
 
