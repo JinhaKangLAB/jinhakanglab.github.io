@@ -216,11 +216,12 @@ a{
             font-weight: 700;
             margin: 0;
             letter-spacing: -0.04em;
-            line-height: 1.05;
+            line-height: 1.10;
         }
 
         /* 2. Refined Gradient Animation */
         .gradient-text {
+            padding-bottom: 0.08em;
             display: inline-block;
             background: linear-gradient(
                 to right, 
