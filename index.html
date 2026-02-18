@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <!-- <script src="./script.js"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
     <title>JINHA KANG</title>
     <link rel="icon" href="./images/favicon-16x16.png">
 
@@ -27,32 +31,10 @@
             y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "uiz49swzp7");
     </script>
-    <style>
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            margin: 40px 0 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            border: 1px solid #000;
-            background: #fff;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-            .filter-btn.active,
-            .filter-btn:hover {
-                background: #000;
-                color: white;
-            }
-    </style>
 </head>
 
 <body>
+    <div id="cursor"></div>
   <div id="pw-modal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);">
     <div style="background-color: white; margin: 15% auto; padding: 30px; border-radius: 8px; width: 320px; text-align: center; font-family: 'Inter', sans-serif;">
         <h2 style="margin-top: 0; color: #000;">🔒 Private Project</h2>
@@ -78,43 +60,63 @@
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </div>
-                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
+                <a href="#" onclick="window.open('https://www.linkedin.com/in/jinha-kang/', 'LinkedInWindow', 'width=600,height=300'); return false;">
                     <img class="linkedin" src="images/linkedin.png" alt="LinkedIn" />
                 </a>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <main>
-                    <div class="highlight-section">
-                        <div class="highlight-container">
-                            <h1>
-                                Complexity into
-                                <span class="gradient-text">Clarity</span>
-                            </h1>
-                            
-                            <p>
-                                Jinha Kang is an award-winning <b>Digital Product Designer</b> and <b>Visual Strategist</b>, specializing in transforming complex data into seamless human experiences.
-                            </p>
 
-                            <div class="second-line">
-                                Bridging the gap between intricate data and intuitive interfaces, Jinha brings experience from global newsrooms and agencies. A <b>RISD</b> MFA graduate and <b>SNU</b> Valedictorian, she is currently a Multimedia Graphics Editor at the <b>Daily Mail</b>.
-                            </div>
-                        </div>
-                    </div>
-        </main>
+        <main class="hero">
+    <div class="portrait-wrap">
+      <canvas id="ascii-main"></canvas>
+    </div>
+    <div class="hero-copy">
+      <h1 class="headline">Complexity into <span class="accent-word">Clarity</span></h1>
+      <p class="bio-lead">
+        Jinha Kang is an <strong>award-winning Digital Product Designer</strong> and Visual Strategist, specializing in transforming complex data into seamless human experiences.
+      </p>
+      <p class="bio-sub">
+        Bridging the gap between intricate data and intuitive interfaces, Jinha brings experience from global newsrooms and agencies. A RISD MFA graduate and SNU Valedictorian, she is currently a Multimedia Graphics Editor at the Daily Mail.
+      </p>
+      <div class="logos-track-wrap">
+  <div class="logos-track">
+    <img class="logo-ipg" src="./images/id0Htv5kpD_1771207149400.png" alt="IPG Health">
+    <img class="logo-dm"  src="./images/idNouLGMJm_1771207068620.png" alt="DM">
+    <img class="logo-dm"  src="./images/Hyundai_Motor_Company_logo (1).svg" alt="DM">
+        <img class="logo-dm"  src="./images/images (1).png" alt="DM">
+    <img class="logo-dm"  src="./images/RISD_Seal.svg" alt="DM">
+    <img class="logo-dm"  src="./images/Brown.svg" alt="DM">
+    <img class="logo-dm"  src="./images/SNU.svg" alt="DM">
+    <img class="logo-dm"  src="./images/Graphic-Design-USA-Logo-Vertical-1500x546.png" alt="DM">
+     <img class="logo-dm"  src="./images/Titan.webp" alt="DM">
+       <img class="logo-dm"  src="./images/images.png" alt="DM">
+
+    <!-- <span class="logo-dm">Daily Mail</span>
+    <span class="logo-ipg">IPG Health</span>
+    <span class="logo-hyu">Hyundai</span>
+    <span class="logo-dm">Daily Mail</span>
+    <span class="logo-ipg">IPG Health</span>
+    <span class="logo-hyu">Hyundai</span> -->
+  </div>
+</div>
+    </div>
+  </main>
+    <script src="script.js"></script>
+<!---HERO PORTRAIT-->
 
         <!-- PROJECT GRID -->
 
-
+    <div class="container">
         <div id="content1" class="project" data-category="campaign">
             <a href="work/ai2html.html">
                 <div class="imgBox">
-                    <video autoplay loop muted playsinline>
-                        <source src="images/grid/ai2html_pyramid.mp4" type="video/mp4" width: 100%; height: 100%; object-fit: cover" />
-                        Your browser does not support the video tag.
-                    </video>
+                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+  <source src="images/grid/ai2html_pyramid.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
                 </div>
             </a>
             <div class="subBox">
@@ -130,7 +132,7 @@
                 </div>
             </a>
             <div class="subBox">
-                <div class="subText1">Campaign Poster</div>
+                <div class="subText1">Branding</div>
                 <div class="subText2">Mail Sports</div>
             </div>
         </div>
@@ -209,6 +211,7 @@
         </footer>
     </div>
 
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const buttons = document.querySelectorAll(".filter-btn");
@@ -293,9 +296,10 @@
         document.getElementById('modal-error').style.display = 'none';
     }
     </script>
+
+    
 </body>
 </html>
-
 
 
 
