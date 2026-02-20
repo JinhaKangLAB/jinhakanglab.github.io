@@ -1,5 +1,6 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important;}
 :root {
     --main-radius: 20px;
     --main-padding: 16px;
@@ -19,9 +20,6 @@
     --mid: #888884;
     --border: #E4E4E0;
 
-}
-*, *::before, *::after, a, button, input, textarea, select, iframe {
-    cursor: none !important;
 }
 a,
 button,
