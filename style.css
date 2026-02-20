@@ -20,7 +20,9 @@
     --border: #E4E4E0;
 
 }
-
+*, *::before, *::after, a, button, input, textarea, select, iframe {
+    cursor: none !important;
+}
 a,
 button,
 input,
