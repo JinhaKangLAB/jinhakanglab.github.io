@@ -72,7 +72,7 @@ h5,
   border: 1.5px solid #000052;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 999999;
   transform: translate(-50%, -50%);
   transition: width 0.18s, height 0.18s, border-color 0.18s;
 }
@@ -1040,6 +1040,73 @@ ul.casestudy-list {
 }
 
 /*ARTWORKS*/
+/* ── Artwork pages – responsive ── */
+@media (max-width: 900px) {
+  .artworktitle {
+position: static;
+    transform: none;
+    font-size: clamp(28px, 8vw, 60px);
+    line-height: 1.2;
+    width: 100%;
+    height: auto;
+    left: auto;
+    top: auto;
+    margin: 2rem 0 1rem 0;
+    padding: 0 1rem;
+    text-align: center !important;
+     opacity: 0.2 !important;
+     z-index: 100;
+  }
+}
+
+.artworks iframe {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  max-width: 970px;
+  display: block;
+  margin: 0 auto;
+}
+
+.artworks img {
+  width: 100% !important;
+  max-width: 970px;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.artworks ul {
+  list-style: none;
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 970px;
+}
+
+.artworks li {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+/*ARTWORK */
+/* ── Artwork pages – responsive images & iframes ── */
+.artworks img {
+  width: 100% !important;
+  max-width: 970px;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.artworks iframe {
+  width: 100% !important;
+  max-width: 970px;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  display: block;
+  margin: 0 auto;
+}
+
 .artworks {
     text-align: center;
 }
@@ -1065,19 +1132,11 @@ ul.casestudy-list {
         text-align: center;
         margin-left: 500px;
     }
-
-.miragetxt {
-    text-align: center;
-    padding-left: 20vw;
-    padding-right: 20vw;
-}
-
 .bodyOrchestra i {
     padding-top: 100px;
     font-size: 20px;
-    color: white;
+    color: grey;
     display: inline;
-    text-shadow: 1px 1px black;
     padding-bottom: 1000px;
 }
 
