@@ -152,6 +152,14 @@ nav.scrolled {
     position: relative;
 }
 
+/* Example: make a wrapper sticky */
+.scroll-wrapper {
+  position: sticky;
+  top: 0;
+  /* optional: set z-index if it should sit above other elements */
+  z-index: 10;
+}
+
 /*NAV SCROLL DIFFERENT DESIGN*/
 nav.scrolled .nav-hug {
 
@@ -1451,4 +1459,5 @@ position: static;
   .page1-2 {
     text-align: center; /* center text on smaller screens */
   }
+
 }
