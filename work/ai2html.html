@@ -5,7 +5,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="./images/jinha-favicon.png">
+    <link rel="icon" href="../images/jinha-favicon.png">
     <title>ai2html - JINHA KANG</title>
    
     
@@ -18,8 +18,6 @@
   }
 </script>
 <script src="https://public.flourish.studio/resources/embed.js"></script>
-
-    <link rel="icon" href="../images/favicon-16x16.png">
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
 
@@ -60,11 +58,17 @@
         #galleryGrid { column-gap: 1.5rem; }
         #galleryGrid figure { break-inside: avoid; margin-bottom: 1.5rem; transition: all 0.3s ease; }
     </style>
+<style>
+  /* overflow-x:hidden on html/body creates a scroll container that silently
+     breaks position:sticky on every descendant. "clip" fixes this. */
+  html, body { overflow-x: clip !important; }
+</style>
 </head>
- <div id="cursor"></div>
-<body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
 
-   <nav>
+<body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
+<div id="cursor"></div>
+
+<nav>
         <div class="nav">
             <div class="nav-hug">
                 <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
@@ -84,12 +88,12 @@
             </div>
         </div>
     </nav>
-    </section> 
-    <!-- HERO -->
-    <section class="relative overflow-hidden pt-[0.12vh]"></section>
 
-    <section class="relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<!-- HERO -->
+    <section class="relative pt-[0.12vh]"></section>
+
+    <section class="relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
             <!-- LEFT SIDE -->
             <div class="space-y-6">
@@ -133,7 +137,7 @@
                              class="w-full h-full object-cover">
                     </div>
 
-                    <div class="absolute -left-8 top-10 w-45 h-64 rounded-lg overflow-hidden shadow-lg transform rotate-2">
+                    <div id="heroPhone" class="absolute -left-8 top-10 w-45 h-64 rounded-lg overflow-hidden shadow-lg transform rotate-2">
                         <img src="../images/ai2html/phone.png" alt="mobile" class="w-full h-full object-cover">
                     </div>
 
@@ -150,11 +154,13 @@
     </section>
 
      <!-- Case Study -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             
             <!-- Sidebar Navigation (Desktop Only) -->
-            <aside class="lg:block lg:col-span-3">
+            <aside class="hidden lg:block lg:col-span-3">
                 <nav class="sticky top-24 w-full h-[calc(40vh-6rem)] w-full space-y-3 border-l-2 border-slate-200 pl-4 bg-white/70 backdrop-blur-sm py-6 px-3 rounded-lg shadow-sm">
                     <a href="#challenge" class="block text-sm hover:text-blue-600 transition-all">The Challenge</a>
                     <a href="#research" class="block text-sm hover:text-blue-600 transition-all">Research & Insights</a>
@@ -288,25 +294,27 @@
                         </div>
                     </div>
                 </section>
-                <div> 
-  <!-- SLIDES / SCROLL SECTION -->
+                
+            </div>
+        </div>
+    </main>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SCROLL DEMO - direct child of <body>, NO ancestor containers.
+     ═══════════════════════════════════════════════════════════════════════ -->
 <style>
-  :root {
-    --bg: #ffffff;
-    --device-bg: #000;
-    --shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-  }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-  }
-
+  /* ── Scroll section ─────────────────────────────────────────────────────
+     iframe sizes match the FULL graphic height so nothing is cropped.
+     applyScale() scales the whole group down to fit viewport with whitespace.
+     NEVER change iframe sizes in CSS — only JS applyScale() scales things.
+  ── */
   #scroll-wrapper {
     height: 400vh;
-    background: var(--bg);
+    background: #f8f9fb;
+    margin-top: 80px;
+    margin-bottom: 80px;
   }
-
   #sticky-stage {
     position: sticky;
     top: 0;
@@ -314,196 +322,185 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
-
   #scaling-container {
     display: flex;
-    gap: 64px;
+    gap: 56px;
     align-items: center;
     justify-content: center;
-    transform-origin: center;
-    transition: transform 0.3s ease-out;
+    transform-origin: center center;
     will-change: transform;
   }
-
-  .device {
+  .sw-device {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    will-change: transform, opacity;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
   }
-
-  .device svg {
-    margin-bottom: 12px;
-    opacity: 0.6;
+  .sw-device svg { margin-bottom: 12px; opacity: 0.5; flex-shrink: 0; }
+  .sw-shell {
+    background: #111;
+    padding: 14px;
+    border-radius: 28px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.22);
   }
-
-  .device-shell {
-    background: var(--device-bg);
-    padding: 12px;
-    border-radius: 24px;
-    box-shadow: var(--shadow);
-  }
-
-  .device-frame {
+  .sw-frame {
     background: #fff;
-    padding: 8px;
-    border-radius: 14px;
-
-    
+    padding: 6px;
+    border-radius: 16px;
   }
-
-  iframe {
-    border: none;
-    border-radius: 10px;
-    display: block;
-    background: #fff;
+  /* iframe sizes = FULL graphic dimensions. applyScale shrinks to fit. */
+  #sw-mobile-iframe {
+    width: 320px;
+    height: 800px; /* matches tallest mobileHeight across slides */
+    border: none; border-radius: 10px; display: block;
   }
-
-  /* Smaller ratios */
-  #mobile-iframe {
-    width: 330px;
-    height: 560px;
-  }
-
-  #desktop-iframe {
+  #sw-desktop-iframe {
     width: 720px;
-    height: 380px;
+    height: 630px; /* matches tallest desktopHeight across slides */
+    border: none; border-radius: 10px; display: block;
   }
-
-  .hidden {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 40px;
+  .sw-device-hidden { opacity: 0 !important; transform: translateY(20px) !important; }
+  .sw-hint {
+    position: absolute; bottom: 20px;
     font-family: system-ui, sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #bbb;
+    font-size: 11px; letter-spacing: 2px; color: #bbb; pointer-events: none;
   }
+  .sw-label {
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    font-family: system-ui, sans-serif;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: #999; pointer-events: none; white-space: nowrap;
+  }
+  .sw-dots {
+    position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; pointer-events: none;
+  }
+  .sw-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #ccc;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .sw-dot.active { background: #000052; transform: scale(1.4); }
 
-  iframe {
-  transition: height 0.3s ease;
-}
+  /* ── Global responsiveness ───────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .nav-hug { padding-left: 16px !important; padding-right: 16px !important; }
+    #scroll-wrapper { margin-top: 48px; margin-bottom: 48px; }
+    footer > div { padding-left: 16px; padding-right: 16px; }
+  }
+  @media (max-width: 1023px) {
+    aside { display: none !important; }
+  }
+  @media (max-width: 480px) {
+    #galleryGrid { columns: 1 !important; }
+  }
+  #galleryGrid iframe { width: 100% !important; max-width: 100%; }
 </style>
 
 <div id="scroll-wrapper">
   <div id="sticky-stage">
     <div id="scaling-container">
-      
-      <!-- MOBILE -->
-      <div id="mobile-device" class="device">
+      <div id="sw-mobile-device" class="sw-device">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6">
-          <rect x="6" y="2" width="12" height="20" rx="2" />
+          <rect x="6" y="2" width="12" height="20" rx="2"/>
         </svg>
-        <div class="device-shell">
-          <div class="device-frame">
-            <iframe id="mobile-iframe"></iframe>
-          </div>
-        </div>
+        <div class="sw-shell"><div class="sw-frame">
+          <iframe id="sw-mobile-iframe" title="Mobile preview"></iframe>
+        </div></div>
       </div>
-
-      <!-- DESKTOP -->
-      <div id="desktop-device" class="device">
+      <div id="sw-desktop-device" class="sw-device">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6">
-          <rect x="2" y="4" width="20" height="14" rx="2" />
+          <rect x="2" y="4" width="20" height="14" rx="2"/>
         </svg>
-        <div class="device-shell">
-          <div class="device-frame">
-            <iframe id="desktop-iframe"></iframe>
-          </div>
-        </div>
+        <div class="sw-shell"><div class="sw-frame">
+          <iframe id="sw-desktop-iframe" title="Desktop preview"></iframe>
+        </div></div>
       </div>
-
     </div>
-
-    <div class="scroll-hint">SCROLL</div>
+    <div class="sw-label" id="sw-label">Graphic 1 of 2</div>
+    <div class="sw-dots">
+      <div class="sw-dot active"></div>
+      <div class="sw-dot"></div>
+    </div>
+    <div class="sw-hint">SCROLL</div>
   </div>
 </div>
 
 <script>
-  const wrapper = document.getElementById("scroll-wrapper");
-  const scaler = document.getElementById("scaling-container");
+(function () {
+  var wrapper       = document.getElementById("scroll-wrapper");
+  var scaler        = document.getElementById("scaling-container");
+  var mobileIframe  = document.getElementById("sw-mobile-iframe");
+  var desktopIframe = document.getElementById("sw-desktop-iframe");
+  var mobileDevice  = document.getElementById("sw-mobile-device");
+  var desktopDevice = document.getElementById("sw-desktop-device");
+  var label         = document.getElementById("sw-label");
+  var dots          = document.querySelectorAll(".sw-dot");
 
-  const mobileIframe = document.getElementById("mobile-iframe");
-  const desktopIframe = document.getElementById("desktop-iframe");
+  var SLIDES = [
+    { label: "Graphic 1 of 2", url: "https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html",      mobileHeight: 800, desktopHeight: 630 },
+    { label: "Graphic 2 of 2", url: "https://jinhakanglab.github.io/ai2html/260105_arch_burger_v2/index.html",    mobileHeight: 800, desktopHeight: 530 }
+  ];
+  var current = -1;
 
-  const mobileDevice = document.getElementById("mobile-device");
-  const desktopDevice = document.getElementById("desktop-device");
+  function setSlide(i) {
+    if (i === current) return;
+    current = i;
+    mobileDevice.classList.add("sw-device-hidden");
+    desktopDevice.classList.add("sw-device-hidden");
+    setTimeout(function () {
+      var s = SLIDES[i];
+      mobileIframe.src  = s.url;
+      desktopIframe.src = s.url;
+      /* Heights are fixed to full graphic size in CSS — no resize needed */
+      if (label) label.textContent = s.label;
+      dots.forEach(function (d, j) { d.classList.toggle("active", j === i); });
+      mobileDevice.classList.remove("sw-device-hidden");
+      desktopDevice.classList.remove("sw-device-hidden");
+    }, 250);
+  }
 
- const SLIDES = [
-  {
-    url: "https://jinhakanglab.github.io/ai2html/260121_GreatPyramid/index.html",
-    mobileHeight: 800,
-    desktopHeight: 630
-  },
-    {
-    url: "https://jinhakanglab.github.io/ai2html/260105_arch_burger_v2/index.html",
-    mobileHeight: 800,
-    desktopHeight: 530
-  },
-//   {
-//     url: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html",
-//     mobileHeight: 440,
-//     desktopHeight: 580
-//   }
-];
-  let currentSlide = -1;
-
-  function setSlide(index) {
-    if (index === currentSlide) return;
-    currentSlide = index;
-
-    mobileDevice.classList.add("hidden");
-    desktopDevice.classList.add("hidden");
-
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        mobileIframe.src = SLIDES[index].url;
-        desktopIframe.src = SLIDES[index].url;
-        mobileIframe.style.height = SLIDES[index].mobileHeight + "px";
-        desktopIframe.style.height = SLIDES[index].desktopHeight + "px";
-
-        mobileDevice.classList.remove("hidden");
-        desktopDevice.classList.remove("hidden");
-      }, 250);
-    });
+  function applyScale() {
+    // Natural dimensions matching the fixed CSS iframe sizes + shells + gap
+    // mobile:  320 + (14+6)*2 = 360w,  800 + (14+6)*2 = 840h
+    // desktop: 720 + (14+6)*2 = 760w,  630 + (14+6)*2 = 670h
+    // svg icon + margin: 36 + 12 = 48 added to height of each device
+    // total natural width:  360 + 56 + 760 = 1176
+    // total natural height: max(840, 670) + 48 (svg) = 888
+    var NATURAL_W = 1176;
+    var NATURAL_H = 888;
+    // Leave whitespace: 10% on each side horizontally, 15% top+bottom for label/dots/breathing room
+    var availW = window.innerWidth  * 0.80;
+    var availH = window.innerHeight * 0.70;
+    var scale  = Math.min(1, availW / NATURAL_W, availH / NATURAL_H);
+    scaler.style.transform = "scale(" + scale + ")";
   }
 
   function onScroll() {
-    const rect = wrapper.getBoundingClientRect();
-    const winH = window.innerHeight;
-
-    const progress = Math.max(
-      0,
-      Math.min(1, -rect.top / (rect.height - winH))
-    );
-
+    var rect       = wrapper.getBoundingClientRect();
+    var winH       = window.innerHeight;
+    var scrollable = rect.height - winH;
+    if (scrollable <= 0) return;
+    var progress = Math.max(0, Math.min(1, -rect.top / scrollable));
     setSlide(progress < 0.5 ? 0 : 1);
-
-    // Smooth responsive scale
-    const contentWidth = 330 + 64 + 720;
-    const maxWidth = window.innerWidth * 0.9;
-
-    const scale = Math.min(1, maxWidth / contentWidth);
-    scaler.style.transform = `scale(0.75)`;
+    applyScale();
   }
 
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-
+  window.addEventListener("resize", function () { applyScale(); onScroll(); });
   setSlide(0);
-  onScroll();
+  applyScale();
+})();
 </script>
 
 
 
-                </div>
-                <!-- Impact -->
+<!-- Impact + Reflection: wrapped to match case study width -->
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-0">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+    <div class="lg:col-start-4 lg:col-span-9 space-y-12 sm:space-y-16">
+
                 <section id="impact" class="bg-slate-900 text-white p-6 sm:p-10 rounded-3xl">
                     <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center text-blue-400">5. Impact & Results</h2>
                     <div class="grid sm:grid-cols-3 gap-6 sm:gap-8 text-center">
@@ -530,23 +527,27 @@
                     </p>
                 </section>
 
-            </div>
-        </div>
-    </main>
+    </div>
+  </div>
+</div>
 
-    <main class="max-w-7xl mx-auto px-6 py-12" id="work">
+    
+
+<main class="max-w-7xl mx-auto px-6 py-12" id="work">
         <h3 class="text-xl font-semibold mb-8">Gallery</h3>
         <div id="galleryGrid" class="columns-1 sm:columns-2 lg:columns-3"></div>
     </main>
 
-    <footer class="border-t bg-white">
+    
+
+<footer class="border-t bg-white">
         <div class="text-center py-8 text-gray-600 text-sm">
-            <p>Email: jinhakang.usa@gmail.com</p>
+            <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e983808781888288878ec79c9a88a98e84888085c78a8684">[email&#160;protected]</a></p>
             <p>© <span id="year"></span> Jinha Kang. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         
         const IMAGES = [
             { id: 1, iframe: "https://jinhakanglab.github.io/ai2html/hiphopfamilytree/index.html", title: "Hip-hop Family Tree", subtitle: "Illustrates the lineage and influence across hip-hop history.", height: 400 },
@@ -596,14 +597,17 @@
 
         function setupParallax() {
             const heroPoster = document.getElementById('heroPoster');
+            const heroPhone  = document.getElementById('heroPhone');
             window.addEventListener('scroll', () => {
-                const depth = Math.min(window.scrollY * 0.15, 120);
-                heroPoster.style.transform = `translateX(-50%) translateY(${depth}px)`;
+                const depth = Math.min(window.scrollY * 0.08, 30);
+                // heroPoster uses left-1/2 + translateX(-50%) for centering,
+                // so we must keep translateX(-50%) when adding the parallax Y offset.
+                if (heroPoster) heroPoster.style.transform = "translateX(-50%) translateY(" + depth + "px)";
+                if (heroPhone)  heroPhone.style.transform  = "translateY(" + depth + "px)";
             }, { passive: true });
         }
     </script>
-    <script src="../script.js"></script>
+
+<script src="script.js"></script>
 </body>
-
 </html>
-
