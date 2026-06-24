@@ -1,58 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta name="robots" content="noindex, nofollow">
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <!-- <script src="./script.js"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
-    <title>JINHA KANG</title>
-    <link rel="icon" href="./images/jinha-favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JINHA KANG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;700;900&family=Urbanist:wght@200;300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-170PYF8XYX');
-    </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!--MS-->
-    <script type="text/javascript">
-        (function (c, l, a, r, i, t, y) {
-            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "uiz49swzp7");
-    </script>
+    :root {
+      --bg:   #ffffff;/* #f4f3f0;*/
+      --fg:    #0c0c0c;
+      --mid:   #7a7a7a;
+      --faint: #F5F5F7;/*#c0bfba;*/
+    }
+
+    html, body {
+      width: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Urbanist', sans-serif;
+      overflow-x: hidden;
+      /* allow full-page scroll */
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    body { cursor: none; }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--fg);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width .18s ease, height .18s ease, opacity .18s ease, border-color .18s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 5px; height: 5px;
+      background: var(--fg);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    body:not(.mouse-moved) #cursor-ring,
+    body:not(.mouse-moved) #cursor-dot { opacity: 0; }
+
+    /* ── NAV ── */
+  /* nav {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px);
+    top: 0;
+    width: 100%;
+    grid-area: nav;
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+    height: 82px;
+}
+
+nav.scrolled {
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(6px);
+}
+
+.nav {
+    display: flex; 
+     border-radius: 100px;
+    flex-direction: column;
+    gap: 0px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.nav-hug {
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 82px;
+    position: relative;
+}
+*/
+nav {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
+    top: 0;
+    width: 100%;
+    grid-area: nav;
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+    height: 82px;
+}
+
+nav.scrolled {
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(6px);
+}
+
+.nav {
+    display: flex; 
+    flex-direction: column;
+    gap: 0px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.nav-hug {
+    padding: 10px 40px 10px 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 82px;
+    position: relative;
+}
+
+/* Example: make a wrapper sticky */
+.scroll-wrapper {
+  position: sticky;
+  top: 0;
+  /* optional: set z-index if it should sit above other elements */
+  z-index: 10;
+}
+
+/*NAV SCROLL DIFFERENT DESIGN*/
+nav.scrolled .nav-hug {
+
+}
+.jinha-kang {
+    color: #000000;
+    text-align: left;
+    font-family: "Montserrat-Medium", sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    position: relative;
+    width: 130px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    gap: 46px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    z-index: 999;
+}
+
+li{
+   /*list-style:none;*/
+}
+a{
+    color: black;
+    text-decoration:none; 
+}
+
+.menu-item {
+    color: #000000;
+    text-align: left;
+    font-family: "Montserrat-Regular", sans-serif;
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 400;
+    position: relative;
+    z-index: 999;
+}
+
+.linkedin {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    object-fit: cover;
+    aspect-ratio: 1;
+}
+
+.nav-link{
+    transition: 0.7s ease;
+}
+.nav-link:hover {
+        color: #D3D3D3;
+ }
+
+.hamburger{
+    display: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.bar{
+    display: block;
+    width: 25px;
+    height:3px;
+    margin:5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color:black;
+}
+
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+}
+
+/* Example: make a wrapper sticky */
+.scroll-wrapper {
+  position: sticky;
+  top: 0;
+  /* optional: set z-index if it should sit above other elements */
+  z-index: 10;
+}
+
+/*NAV SCROLL DIFFERENT DESIGN*/
+nav.scrolled .nav-hug {
+
+}
+.jinha-kang {
+    color: #000000;
+    text-align: left;
+    font-family: "Montserrat-Medium", sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    position: relative;
+    width: 130px;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 46px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    z-index: 999;
+}
+
+li{
+   /*list-style:none;*/
+}
+a{
+    color: black;
+    text-decoration:none; 
+}
+
+.menu-item {
+    color: #000000;
+    text-align: left;
+    font-family: "Montserrat-Regular", sans-serif;
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 400;
+    position: relative;
+    z-index: 999;
+}
+
+.linkedin {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    object-fit: cover;
+    aspect-ratio: 1;
+}
+
+.nav-link{
+    transition: 0.7s ease;
+}
+.nav-link:hover {
+        color: #D3D3D3;
+ }
+
+.hamburger{
+    display: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.bar{
+    display: block;
+    width: 25px;
+    height:3px;
+    margin:5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color:black;
+}
+
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+}
+
+
+    /* ── HERO ── */
+    .hero {
+       height: calc(100vh - 82px);
+       padding-top: 82px;  
+      display: grid;
+      grid-template-columns: 54% 46%;
+      width: 100%;
+      height: 100vh;
+      /* snap target */
+    }
+
+    /* ── LEFT PANEL ── */
+    .panel-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 48px 52px 64px; position: relative;
+    }
+    .hero-title {
+      font-family: "Inter", sans-serif;
+      font-feature-settings: "cv11", "ss01";
+      font-size: clamp(80px, 10.5vw, 172px);
+      font-weight: 500;
+      line-height: .86;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      margin-bottom: 52px;
+      animation: fadeUp .95s cubic-bezier(.22,1,.36,1) .12s both;
+    }
+    .hero-sub {
+      display: flex; flex-direction: column; gap: 6px;
+      margin-bottom: 56px;
+      animation: fadeUp .95s cubic-bezier(.22,1,.36,1) .28s both;
+    }
+    .hero-sub span {
+      padding-left: 5px;
+      font-size: 16px; font-weight: 400;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--fg);
+    }
+    .hero-sub span.intro {
+      font-size: 0.7rem;
+      line-height: 1rem;
+      font-family: "Inter", sans-serif;
+      font-weight: 200;
+    }
+    .brands-row {
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+      animation: fadeUp .95s cubic-bezier(.22,1,.36,1) .42s both;
+    }
+    .brand-item {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--mid); opacity: .65;
+      border: 1px dashed #7a7a7a;
+      padding:12px;
+      border-radius: 50%;
+    }
+    .brand-sep { width: 1px; height: 12px; background: var(--faint); }
+
+    /* scroll arrow button */
+    .scroll-btn {
+      position: absolute; right: 68px; bottom: 76px;
+      width: 58px; height: 58px; border-radius: 50%;
+      border: 1.5px solid var(--fg); background: transparent;
+      cursor: none; color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .28s, color .28s, transform .28s;
+      animation: fadeIn 1s ease .6s both;
+      z-index: 10;
+    }
+    .scroll-btn:hover {
+      background: var(--fg); color: var(--bg); transform: scale(1.06);
+    }
+
+    /* ── RIGHT PANEL (ASCII) ── */
+    .panel-right { position: relative; overflow: hidden; }
+    .panel-right::before,
+    .panel-right::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 2;
+      pointer-events: none;
+    }
+    .panel-right::before {
+      top: 0; height: 120px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+    }
+    .panel-right::after {
+      bottom: 0; height: 100px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    #ascii-canvas {
+      display: block; width: 100%; height: 100%;
+      animation: fadeIn 1.1s ease .35s both;
+    }
+
+    /* ── BOTTOM LABEL ── */
+    .bottom-label {
+      position: fixed; bottom: 32px; left: 52px; z-index: 200;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      animation: fadeIn 1.2s ease .75s both;
+      transition: opacity .4s ease;
+    }
+    .bottom-label.hidden { opacity: 0; pointer-events: none; }
+    .bottom-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--fg);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════════════════
+       WORK GRID SECTION
+    ══════════════════════════════════════════ */
+    #work {
+      min-height: 100vh;
+      padding: 120px 52px 100px;
+      background: var(--bg);
+    }
+
+    /* section header */
+    .work-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 56px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .work-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 10px;
+    }
+    .work-heading {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+
+    /* filter bar */
+    .pg-filter {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      align-items: center;
+    }
+    .pg-count {
+      margin-left: auto;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--mid);
+    }
+    .pg-btn {
+      font-family: 'Urbanist', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      padding: 8px 20px;
+      border: 1.5px solid var(--mid);
+      background: transparent;
+      color: var(--mid);
+      cursor: none;
+      transition: border-color .2s, color .2s, background .2s;
+      border-radius: 50%;
+      padding: 12px;
+    }
+    .pg-btn:hover { border-color: var(--fg); color: var(--fg); }
+    .pg-btn.active {
+      border-color: var(--fg);
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    /* grid */
+    .pg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 40px;
+    }
+
+    /* card */
+    .pg-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--faint);
+      transition: opacity .35s ease;
+      cursor: none;
+    }
+    .pg-card.hidden { display: none; }
+
+    .pg-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      position: relative;
+    }
+    .pg-thumb img,
+    .pg-thumb video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .55s cubic-bezier(.22,1,.36,1);
+    }
+    .pg-card:hover .pg-thumb img,
+    .pg-card:hover .pg-thumb video {
+      transform: scale(1.04);
+    }
+
+    /* placeholder for cards without real images yet */
+    .pg-thumb-placeholder {
+      width: 100%; height: 100%;
+      background: #e0deda;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pg-thumb-placeholder span {
+      font-size: 9px; font-weight: 500;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .pg-info {
+      padding: 20px 24px 22px;
+      border-top: 1px solid rgba(12,12,12,.07);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .pg-cat {
+      font-size: 9px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+    .pg-title {
+      font-size: 16px; font-weight: 500;
+      color: var(--fg); line-height: 1.2;
+    }
+    .pg-client {
+      font-size: 12px; font-weight: 400;
+      color: var(--mid); margin-top: 4px;
+    }
+    .pg-arrow {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--faint);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .2s, background .2s;
+    }
+    .pg-card:hover .pg-arrow {
+      border-color: var(--fg);
+      background: var(--fg);
+    }
+    .pg-card:hover .pg-arrow svg { stroke: var(--bg); }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .3; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      body { cursor: auto; }
+      #cursor-ring, #cursor-dot { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(56vw, 380px);
+        height: auto;
+         overflow: hidden;
+  position: relative;
+      }
+      .panel-left { min-height: 64vh; padding: 32px 28px 56px; min-height: calc(64vh - 82px);}
+      .hero-title { font-size: clamp(68px, 18vw, 140px); }
+      nav { padding: 20px 28px; }
+      .scroll-btn { right: 28px; bottom: 32px; cursor: pointer; }
+      .bottom-label { left: 28px; }
+      #work { padding: 80px 24px 80px; }
+      .work-header { flex-direction: column; align-items: flex-start; gap: 28px; }
+      .pg-filter { width: 100%; }
+      .pg-count { margin-left: 0; }
+    }
+    @media (max-width: 620px) {
+      .pg-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 18px; }
+      .hero-title { font-size: clamp(60px, 20vw, 110px); }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="cursor"></div>
-  <div id="pw-modal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);">
-    <div style="background-color: white; margin: 15% auto; padding: 30px; border-radius: 8px; width: 320px; text-align: center; font-family: 'Inter', sans-serif;">
-        <h2 style="margin-top: 0; color: #000;">🔒 Private Project</h2>
-        <p style="font-size: 14px; color: #666;">This content is password protected.</p>
-        <input type="password" id="modal-input" placeholder="Enter Password" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
-        <div id="modal-error" style="color: red; font-size: 12px; display: none; margin-bottom: 10px;">Incorrect password.</div>
-        <button onclick="verifyAccess()" style="width: 100%; padding: 12px; background: #000; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 800;">UNLOCK</button>
-        <button onclick="closeModal()" style="background: none; border: none; color: #999; margin-top: 15px; cursor: pointer; font-size: 12px;">Cancel</button>
-    </div>
-</div>
-</div>
-    <nav>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+
+<!-- NAV -->
+<nav>
         <div class="nav">
             <div class="nav-hug">
                 <a href="index.html"><div class="jinha-kang">JINHA KANG</div></a>
                 <ul class="menu">
-                    <li class="menu-item"><a href="#" class="nav-link">WORK</a></li>
-                    <li class="menu-item"><a href="../creative/index.html" class="nav-link">CREATIVE</a></li>
+                    <li id="work-menu" class="menu-item"><a href="javascript:void(0)" class="nav-link">WORK</a></li>
+                    <li class="menu-item"><a href="creative/index.html" class="nav-link">CREATIVE</a></li>
                     <li class="menu-item"><a href="cv/cv.html" class="nav-link">CV</a></li>
                 </ul>
                 <div class="hamburger">
@@ -67,247 +645,735 @@
         </div>
     </nav>
 
-
-        <main class="hero">
-    <div class="portrait-wrap">
-      <canvas id="ascii-main"></canvas>
+<!-- ══ SECTION 1: HERO ══ -->
+<section class="hero">
+  <div class="panel-left">
+    <h1 class="hero-title">JINHA<br>KANG</h1>
+    <div class="hero-sub">
+      <span>Digital Product Designer</span><br>
+      <span class="intro">I design digital products that make complex information easy to navigate and understand.
+ My work spans UX, UI, and interaction design, with a focus on structuring information, simplifying flows, and improving usability in high-density environments.
+ With experience in newsroom and agency settings, I’m comfortable designing under tight constraints and evolving products through fast iteration cycles.
+</span>
     </div>
-    <div class="hero-copy">
-      <h1 class="headline">Complexity into <span class="accent-word">Clarity</span></h1>
-      <p class="bio-lead">
-        Jinha Kang is an <strong>award-winning Digital Product Designer</strong> and Visual Strategist, specializing in transforming complex data into seamless human experiences.
-      </p>
-      <p class="bio-sub">
-        Bridging the gap between intricate data and intuitive interfaces, Jinha brings experience from global newsrooms and agencies. A RISD MFA graduate and SNU Valedictorian, she is currently a Multimedia Graphics Editor at the Daily Mail.
-      </p>
-      <div class="logos-track-wrap">
-  <div class="logos-track">
-    <img class="logo-ipg" src="./images/id0Htv5kpD_1771207149400.png" alt="IPG Health">
-    <img class="logo-dm"  src="./images/idNouLGMJm_1771207068620.png" alt="DM">
-    <img class="logo-dm"  src="./images/Hyundai_Motor_Company_logo (1).svg" alt="DM">
-        <img class="logo-dm"  src="./images/images (1).png" alt="DM">
-    <img class="logo-dm"  src="./images/RISD_Seal.svg" alt="DM">
-    <img class="logo-dm"  src="./images/Brown.svg" alt="DM">
-    <img class="logo-dm"  src="./images/SNU.svg" alt="DM">
-    <img class="logo-dm"  src="./images/Graphic-Design-USA-Logo-Vertical-1500x546.png" alt="DM">
-     <img class="logo-dm"  src="./images/Titan.webp" alt="DM">
-       <img class="logo-dm"  src="./images/images.png" alt="DM">
+    <div class="brands-row">
+      <span class="brand-item">RISD Digital + Media</span>
+      <div class="brand-sep"></div>
+      <span class="brand-item">Daily Mail</span>
+      <div class="brand-sep"></div>
+      <span class="brand-item">IPG Health</span>
+      <div class="brand-sep"></div>
+      <span class="brand-item">Hyundai</span>
+      <div class="brand-sep"></div>
+      <span class="brand-item">SNU</span>
+    </div>
 
-    <!-- <span class="logo-dm">Daily Mail</span>
-    <span class="logo-ipg">IPG Health</span>
-    <span class="logo-hyu">Hyundai</span>
-    <span class="logo-dm">Daily Mail</span>
-    <span class="logo-ipg">IPG Health</span>
-    <span class="logo-hyu">Hyundai</span> -->
+    <button class="scroll-btn" id="scrollBtn" aria-label="Scroll to work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20">
+        <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="panel-right">
+    <canvas id="ascii-canvas"></canvas>
+  </div>
+</section>
+
+<!-- ══ SECTION 2: WORK GRID ══ -->
+<section id="work">
+  <div class="work-header">
+    <div>
+      <div class="work-label">Selected work</div>
+      <div class="work-heading">Projects</div>
+    </div>
+    <div class="pg-filter" id="pgFilter">
+      <button class="pg-btn active" data-filter="all">All</button>
+      <button class="pg-btn" data-filter="uxui">UX / UI</button>
+      <button class="pg-btn" data-filter="branding">Branding</button>
+      <button class="pg-btn" data-filter="artdirection">Art direction</button>
+      <span class="pg-count" id="pgCount">7 projects</span>
+    </div>
+  </div>
+
+  <div class="pg-grid" id="pgGrid">
+
+    <a href="./work/productdesign_ai2html.html" class="pg-card" data-category="uxui">
+      <div class="pg-thumb">
+      
+     <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+  <source src="images/grid/ai2html_pyramid.mp4" type="video/mp4" /></video>
+      </div>
+      <div class="pg-info">
+        <div>
+          <div class="pg-cat">UX / UI</div>
+          <div class="pg-title">Responsive editorial design</div>
+          <div class="pg-client">Daily Mail</div>
+        </div>
+        <div class="pg-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#0c0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="./work/sports.html" class="pg-card" data-category="branding">
+      <div class="pg-thumb">
+        <img src="images/grid/subway.png" alt="Mail Sports Branding" />
+      </div>
+      <div class="pg-info">
+        <div>
+          <div class="pg-cat">Branding</div>
+          <div class="pg-title">Branding</div>
+          <div class="pg-client">Mail Sports</div>
+        </div>
+        <div class="pg-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#0c0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="./work/ecommerce.html" class="pg-card" data-category="uxui">
+      <div class="pg-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="images/grid/amazonbanner.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="pg-info">
+        <div>
+          <div class="pg-cat">UX / UI</div>
+          <div class="pg-title">Advertisement</div>
+          <div class="pg-client">Amazon Prime Day</div>
+        </div>
+        <div class="pg-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#0c0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="./work/ecommerce.html" class="pg-card" data-category="uxui">
+      <div class="pg-thumb">
+        <img src="images/grid/e-commerce.png" alt="E-Commerce Projects" />
+      </div>
+      <div class="pg-info">
+        <div>
+          <div class="pg-cat">UX / UI</div>
+          <div class="pg-title">E-commerce</div>
+          <div class="pg-client">Various brands</div>
+        </div>
+        <div class="pg-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#0c0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="./work/editorial.html" class="pg-card" data-category="uxui">
+      <div class="pg-thumb">
+        <img src="images/grid/infographic.png" alt="Editorial Infographics" />
+      </div>
+      <div class="pg-info">
+        <div>
+          <div class="pg-cat">UX / UI</div>
+          <div class="pg-title">Editorial graphics</div>
+          <div class="pg-client">Daily Mail</div>
+        </div>
+        <div class="pg-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#0c0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="./work/uclira.html" class="pg-card" data-category="artdirection">
+      <div class="pg-thumb">
+        <img src="images/grid/uclira.png" alt="Uclira Art Direction" />
+      </div>
+      <div class="pg-info">
+        <div>
+          <div class="pg-cat">Art direction</div>
+          <div class="pg-title">Art direction</div>
+          <div class="pg-client">Uclira</div>
+        </div>
+        <div class="pg-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#0c0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="./work/onthegoga.html" class="pg-card" data-category="branding">
+      <div class="pg-thumb">
+        <img src="images/grid/onTheGoga.png" alt="On the Goga Banner" />
+      </div>
+      <div class="pg-info">
+        <div>
+          <div class="pg-cat">Branding</div>
+          <div class="pg-title">Banner design</div>
+          <div class="pg-client">On the Goga</div>
+        </div>
+        <div class="pg-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#0c0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- BOTTOM LABEL -->
+<div class="bottom-label" id="bottomLabel">
+  <!--<span>jinhakang.usa@gmail.com</span>--><!--sticky email-->
+  <div class="bottom-dot"></div>
+</div>
+
+<!-- ── PASSWORD MODAL ── -->
+<div id="pw-overlay" style="display:none; position:fixed; inset:0; z-index:10000;
+  background:rgba(255,255,255,0.88); backdrop-filter:blur(10px);
+  align-items:center; justify-content:center;">
+  <div id="pw-box" style="display:flex; flex-direction:column; align-items:center;
+    gap:28px; padding:56px 48px; border:1.5px solid var(--fg);
+    background:var(--bg); min-width:320px; position:relative;">
+    <div style="font-size:10px; font-weight:500; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--mid);">Portfolio access</div>
+    <input id="pw-input" type="password" placeholder="Password"
+      style="font-family:'Urbanist',sans-serif; font-size:16px; font-weight:300;
+      letter-spacing:.12em; width:100%; border:none;
+      border-bottom:1.5px solid var(--fg); background:transparent;
+      padding:10px 0; outline:none; color:var(--fg); text-align:center;" />
+    <div id="pw-error" style="font-size:10px; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--fg); opacity:0;
+      transition:opacity .2s; margin-top:-16px;">Incorrect password</div>
+    <button id="pw-submit"
+      style="font-family:'Urbanist',sans-serif; font-size:11px; font-weight:500;
+      letter-spacing:.18em; text-transform:uppercase; padding:14px 32px;
+      border:1.5px solid var(--fg); background:transparent; color:var(--fg);
+      cursor:none; transition:background .2s, color .2s;">
+      Enter
+    </button>
+    <button id="pw-close" aria-label="Close"
+      style="position:absolute; top:16px; right:20px; background:none; border:none;
+      font-size:18px; color:var(--mid); cursor:none; line-height:1;">✕</button>
   </div>
 </div>
-    </div>
-  </main>
-    <script src="script.js"></script>
-<!---HERO PORTRAIT-->
 
-        <!-- PROJECT GRID -->
+<script>
+/* ================================================================
+   ASCII ART DATA
+   ================================================================ */
+const ASCII_LINES = [
+"------------------------------------------------------------------------==-----------=-===--=====-===---------------------------------------------------------------------------------------------------------",
+"----------------------------------------------------------------------==--==----=============================-------------------------------------------------------------------------------------------------",
+"---------------------------------------------------------------=----====-===================+++++++++++++==========-------------------------------------------------------------------------------------------",
+"---------------------------------------------------------------=--==========+=+=======++++*+++++++*++++++++++++++++======---=---------------------------------------------------------------------------------",
+"--------------------------------------------------------------=-=========++++++++++++++**++***++++++++=++++++++++++++++++===-======---------------------------------------------------------------------------",
+"-----------------------------------------------------------------++===+++*+++++*++++++=++++++++++++++++++=======+++=+++++++++===-----==-----------------------------------------------------------------------",
+"----------------------------------------------------------------++===+***+************+++++===+++***###********+++++==+++++++++++===---=-=--------------------------------------------------------------------",
+"----------------------------------------------------------------+=+++*****************++++++=+++==+++********++++++++**++++++++++++++==--=-=------------------------------------------------------------------",
+"---------------------------------------------------------------++++*******###%#%%%%%%%@@@%%*+*+=+++==+**#%%%########****++++++++++++++======------------------------------------------------------------------",
+"--------------------------------------------------------------++*+****#######******%@@%@@@@@%%*+++==++=++**##*#****+*******##******++++++======---------------------------------------------------------------",
+"------------------------------------------------------------+-++**#*######*###*##%@%%#*#@%%#%@%%#*+++==++===++****++*+++++++++*##%#*++*+++++==---=------------------------------------------------------------",
+"----------------------------------------------------------==+=+*#*#%#%%##%%@##**++++*##%*+##%###%%##*++++==+===++++++++++++=====++*%%##*++++++==----=---------------------------------------------------------",
+"----------------------------------------------------------=+***###%%%%%%%@%%@%%%%#**++++***+*#%%@####**++=+=======+++++++++========++*#%#***+*++===---=-------------------------------------------------------",
+"---------------------------------------------------------=++**###%%@%%%@%@@@%%%###***+++=++**++*##%%#***+++===========+++=============+++#%%**++++===---------------------------------------------------------",
+"---------------------------------------------------------=+**###%%@@@@@@@@@@@%#***+++**+++=++*++++******+*++++=++========================++*%%#**+++===-------------------------------------------------------",
+"-------------------------------------------------------===+*#%%%@@@@@@@@@@@@@@%%##*+*++++++===+++=+++*****++++=====+=+=================++==++*#%@*++++==------------------------------------------------------",
+"-------------------------------------------------------=+*####%@@@@%%%%%%%%%%%%%%%##+++++++=+===+*+==*++*+*++++=========++=======+==+===++++=++*#%#*+++=-==---------------------------------------------------",
+"------------------------------------------------------=++##%@@@@@%#********##%%%%@####+=++==+==+==++===++++**+++=+====+====++=======++==+=+++++++*#%*+++====--------------------------------------------------",
+"-----------------------------------------------------==**#%%@@%#**++++++++****###%%#****+==+========++==+++++++*+============++++=====++++++++++++*%%#*++==-=-------------------------------------------------",
+"------------------------------------------------------+*#%%@%*++++++++++++++****#####*++#+============+===++++++++++=========+==+++++===++++++++++++#%#***=====-----------------------------------------------",
+"-----------------------------------------------------=*##%%*+++++++++++++++++++****###*++*++============+===++*++++++++===+++=++=+=+++++++++++++++++**%#***=--=-----------------------------------------------",
+"-----------------------------------------------------=*###++++++++++++++++++++++++***#**+=++++===+=======++==+=+*+++=+++=+==+++++++=+++++++++++*+++****%#**+=--=----------------------------------------------",
+"----------------------------------------------------=+*#*+++++++++++++++++++++++++++******++++=+===========+====+*+++++++++++++++++++++++++++++++**+*+**##**+=-=----------------------------------------------",
+"----------------------------------------------------==*+++++++++++++++++++++++++++++++*****+++*++===========++====++++++++++++++++++++++++++++++++*******##**=--=---------------------------------------------",
+"----------------------------------------------------=+*+++++++++++++==++++++++++++++++++*+***+++++================+++*+++*+++++++++++++++++++++++++*******#**+------------------------------------------------",
+"----------------------------------------------------=*++++++++++++==++++====+=++++++++++++****+++*++========+===+====++******+++++*******+++++++++++*******##+==----------------------------------------------",
+"---------------------------------------------------=*+++++++++++++++=+============++++++++++****+=*+*+===+=======+====+++*##+***++++**+**+**++++*++++******##+=-----------------------------------------------",
+"--------------------------------------------------=**+++++++++++++==================++++++++*****+=**#+++=++==++===++==++*+#*#***++++++*********+***++******#*+===--------------------------------------------",
+"--------------------------------------------------+*++++++++++++=++======================+++++**#**++**#++++++=++===+++=+++*##*****++++++**********+********#*+===--===-=-------------------------------------",
+"-------------------------------------------------=*++++++++++++==++=======================++++****#*+++#**+++++++++==++++=++*##***#*++++++**********+********#*+===========------------------------------------",
+"------------------------------------------------=*++++++++++++++++++=======================++++****###++*#*#+++++++++=++*+++**##***#******+++*******************++++======------------------------------------",
+"------------------------------------------------+*++++++++++++++++++++======================+++****##*#*++#*%*++++++++=+++++++*#**#******#********************+++**++====-------------------------------------",
+"-----------------------------------------------=**+++++++**####%%%%####*+====================++++***##*##*++*##*+++++++++++*+++**##************#*###########********++++====---=------------------------------",
+"----------------------------------------------=****+++**#%%%%%%%%%%######**+=================++++****##*##***+**##+++**+++++*++**##***************#*#*#######**++****+*++==-==========------------------------",
+"---------------------------------------------=#%#**++**##%%%%%##**++++++++***++================++++*******#*#**++*##*++**+++++*++**###**************#*#*######**++**#**+===+=---------------------------------",
+"----------------------------------------------+%%#**+***#####*****++++=======++++==============+++++***#****##*##***###++**++++*+*******************########*++++*+**++==-==--------------------------------",
+"----------------------------------------------=#%%#*++####**#%%*++++++++========================++++****#*****##**#***###++**++++*+*******************########*++++*+**++==-==--------------------------------",
+"----------------------------------------------=####**%*********#%+++++++++======================+++++**##%###************##*****++**+***************#**###**##****+**++**++=======----------------------------",
+"--------------------------------------+##++#+-****###******###%##@***++++++++===================+++++**######%###******+***##****+++*****************##**######@%%#*++**++===--=------------------------------",
+"-------------------------------------+#%#+++*%###**#*+++**#%@@@@@@@@#@%%#@###******++++++++++++++++++*#####%###########****++*#**+**+*****************###*####%@@%##**###+==----==----------------------------",
+"------------------------------------=##%#+++*#@@@@@%*+++**##@@@@%#%#%@@%%#***+++++++++++++*****#####%%%%@%@%@@@%%%%##*****#*********+*+*****##*****#*#*#######%@@@%*+*#*=======-------------------------------",
+"-----------------------------------=+##%#**++**%@@@%%*++++**#%@@@%*@*##%%%@%%##**++++++++=========+++***#######%%%%%%%#*++++*+=======++*******######**##**##*##*@@@%#*#%+====-=--------------------------------",
+"-----------------------------------=###%#*++++%@@@##+++++**#%%%%##@####*******+++++===============+++***####*******+++****++=+*###*+==++*******######*###*####%@@@%#%%*===-=-==----=--------------------------",
+"------------------------------------+*#%*+++++%@@*+##+#++***####**@*****++++++++==================+++***##%##******#*****++*%#****###++++#*******#####*######%@@*@@@@%%@@#*=-------=--------------------------",
+"------------------------------------=**#*+++++%@+++***@#*****####*@*++++++++======================+++***###########******+*#***++++**##++###*******#%#########%@@@@@@@%@@@@@%=-----=--------------------------",
+"------------------------------------=+*#*+++++#++=+***+++*+*******%++++++++======================+++++***########*******+*+++++++==++***++#%###*******#%#######%@@@@#@@@@@@@@%*--------------------------------",
+"------------------------------------=+*#+++++*++===+*++**++++****@*+++++=========================++++++****#####*******++##+==++====+***++#%######**#*##%###%@@@@@@@@@@@@@@@@*--------------------------------",
+"-------------------------------------=*#*++*++======+*++++++++++*@+++++========================++++++++************++***+*###*++===++=#*++#####*###*#*#####%%@@@@@@@@*@@@@@@%+--------------------------------",
+"--------------------------------------**#++++========+*+++++++++@+++++=======================+++++++++*+*****+++++++++**+****##*++=+*##+*%*#####*####*########@@@@@@@@@@@@@@@%=--------------------------------",
+"---------------------------------------+*++=========++*#++++++*%++++++=====================++++++++++++*+**++++++++==*****++++***+=+*++*%%%#**##***%######@@@@@@@@@@@@@@@@%=----------------------------------",
+"---------------------------------------=++===========++**#**#%#*++++=====================++++++++++++++***+++++++++==*****++=++**+=+*++*@%#%##*###**#######@@@@@@@@@@@@@@@%=----------------------------------",
+"--------------------------------------=+++========++++++******+++++=====================+++++++++++++++**++++++++++++++++++++=+++=++++*@%#%##*###**########@@@@@@@@@@@@@%+------------------------------------",
+"--------------------------------------+*++++========++++**+++++++++==================++++++++++++++++++++++++++++++**+++=+++++++=+*+=+@@@######*****######%@@@#%%#++++=---------------------------------------",
+"--------------------------------------=#***+++++=====+++**++++++++==================++++++++++++++++++++++++++++++**++++=======++*++*@@@@%#######*+*###*##@@@#*##*=-==----------------------------------------",
+"---------------------------------------=*##*##%**++++++****++++++++================+++++++++++++++++++++++++++++++=====+++++++**+++*%@@@@%####*####+*###%%%%#*#*=++=------------------------------------------",
+"------------------------------------------+#%###%%#********+++++++++==============++++++++++++++++++++++++++++++++++++++++++++==+*#%%@@@@@%#%%#####+##%%%######*======----------------------------------------",
+"-------------------------------------------*#####**###*++***++++++++=============+++++++++++++++++++++++++++++++========++====+*#%%%@@@@@@@##%#####***#%%#%####*+====-==--------------------------------------",
+"-------------------------------------------+###**+++++++++***+++++++++++==++==++++++++++++++++++++++++++++++++++===++===*++++*###%%%@@@@%%@%#######*#**#%##%##***==-==----------------------------------------",
+"-------------------------------------------=*#***++++++++++****++++++++++++=+=++++++++++++++++++++++++++++++++*++==*++=+*+*#%###%%%%@@@@@%%@%#######***#%%###*+=+==-===---------------------------------------",
+"--------------------------------------------=*+**+++++++++++***+++++++++++========+========++++++++++++++++++**%#**+*++*#*%#####%%%@@@@@%@@%%%%#####*#***###*+======-=-=--------------------------------------",
+"--------------------------------------------=*+*+++++++++++*++*++++++++++++++++==========+++++++++++++++++++**##%%#*%%##########%%%@@@@@@%%%@@%%%######***#**++==--=------------------------------------------",
+"--------------------------------------------=%####**+++++++*****+++++++++++++=====+=====+++++++++++++++++++***#######%###@#####%%%%@@@@@%%#%%%%#%%%%###*****++====--------------------------------------------",
+"---------------------------------------------=#%%%%%%%%##**##%#*+++++++++++++++=======+++++++++++++++++++*****#***#%#%#*****#####%%@@@@@@%%##*####********#*++======------------------------------------------",
+"----------------------------------------------=%%%%%#########**#*+++++++++++++++==+++++++++++++++++++++********************######%%@@@@%%%%#********+*******++=====---=---------------------------------------",
+"----------------------------------------------+########**++++++**++++++++++++++++++++++++++++++++++++***********+***********#####%%@@@@@@%%####**********#**+===-=-=------------------------------------------",
+"----------------------------------------------=%%%###**+++++++++**+++++++++++++++++++++++++++++++++***********+++++++++*****######%%@@@@%%####********#***+++====--=------------------------------------------",
+"-----------------------------------------------=####***+++++++++++++++++++++++++++++++++++++++++************+++++++++++*****######%%@@@@%@@%@%%%%###**+++=+====----==-----------------------------------------",
+"------------------------------------------------+###***++++++++++++++++++++++++++++++++++++++**************++++++++++++******#####%@@@@@@@@@@@@@#####*++====----=---=-----------------------------------------",
+"------------------------------------------------+*****++++++++++++++++++++++++++++++++++**********##*****++++++++++++++*****#####%%@@@@@@@@@@@@@*******+======------=-----------------------------------------",
+"------------------------------------------------+**++++++++++++++++++++++++++++++++++*******#######*****+++++++++++++++******##%@@@@@@@@@@@@@@@@++**===++===--------=-----------------------------------------",
+"-----------------------------------------------=**+++++++++++=+++++++++++++++++*********##########****+++++++++++++++++****#%@@@@@@@@@@@@@@@@@@@*++*=========------=------------------------------------------",
+"-----------------------------------------------=**+++++++++++++++++++++++++*********############****++++++++++++++++++**#%@@@@@@@@@@@@@@@@@@@@@@#+=+==-=======------------------------------------------------",
+"-----------------------------------------------=***++++++++++++++++++++********######%%%%#####******+++++++++++++++++*@@@@@@@@@@@@@@@@@@@@@@@@@@%==+=-=-=-=====-----------------------------------------------",
+"------------------------------------------------+****+++++++++++++++******#####%%%%%%%%#####*******+++++++++++++++%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%==+-====-=====-----------------------------------------------",
+"-------------------------------------------------*#*****++++********#####%%%%%%%%%%%%%#####*******++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#===----=--====-----------------------------------------------",
+"--------------------------------------------------=#####****#####%%%%%%%%%%%%%%%%%%%%#####******+++++++++++*%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=-----=---=--=-----------------------------------------------",
+"-----------------------------------------------------+*#######*++===#@@@@@@@@@%%%%#####********+++++++++##%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+-------=-=--------------------------------------------------",
+"------------------------------------------------------------------=@@@@@@@@@@@@@@%%###*********++++++++#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=-------==--------------------------------------------------",
+"-----------------------------------------------------------------#@@@@@@@@@@@@@@%###*****+*++++++*%@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=-----==---------------------------------------------------",
+"----------------------------------------------------------------#@@@@@@@@@@@@@@@@%###****+++++*#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=----=----------------------------------------------------",
+"---------------------------------------------------------------#@@@@@@@@@@@@@@@@@@%##*****#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@==-------------------------------------------------------",
+"--------------------------------------------------------------%@@@@@@@@@@@@@@@@@@@@%##%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=-------------------------------------------------------",
+"-------------------------------------------------------------+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=------------------------------------------------------",
+"------------------------------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=-----------------------------------------------------",
+"------------------------------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=-----------------------------------------------------",
+"-------------------------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=---------------------------------------------------",
+"-------------------------------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+--------------------------------------------------",
+"--------------------------------------------------------------%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*-------------------------------------------------",
+"--------------------------------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*------------------------------------------------",
+"---------------------------------------------------------------+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%-----------------------------------------------",
+"----------------------------------------------------------------*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=---------------------------------------------",
+"---------------------------------------------------------------=+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+--------------------------------------------",
+"----------------------------------------------------------==*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=------------------------------------------",
+"-------------------------------------------------------=*%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*=----------------------------------------",
+"-----------------------------------------------------+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%+---------------------------------------",
+"---------------------------------------------------*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=-------------------------------------",
+"-------------------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*=-----------------------------------",
+"-----------------------------------------------=#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=----------------------------------",
+"----------------------------------------------=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*---------------------------------",
+"---------------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=-------------------------------",
+"--------------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=------------------------------",
+"-------------------------------------------=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=-----------------------------",
+"-------------------------------------------#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=----------------------------",
+"------------------------------------------*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+---------------------------",
+"-----------------------------------------=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=--------------------------",
+"-----------------------------------------*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=-------------------------",
+"----------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=------------------------",
+"----------------------------------------*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#------------------------",
+"---------------------------------------=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*-----------------------",
+"---------------------------------------*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=----------------------",
+"--------------------------------------=%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#----------------------",
+"--------------------------------------*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+---------------------"
+];
 
-    <div class="container">
-        <div id="content1" class="project" data-category="campaign">
-            <a href="work/productdesign_ai2html.html">
-                <div class="imgBox">
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
-  <source src="images/grid/ai2html_pyramid.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Responsive Editorial Design</div>
-                <div class="subText2">Daily Mail</div>
-            </div>
-        </div>
-
-        <div id="content2" class="project" data-category="campaign">
-            <a href="work/sports.html">
-                <div class="imgBox">
-                    <img src="images/grid/subway.png" alt="Mail Sports Campaign Poster" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Branding</div>
-                <div class="subText2">Mail Sports</div>
-            </div>
-        </div>
-
-
-        <div id="content3" class="project" data-category="advertisement">
-            <a href="work/amazon.html">
-                <div class="imgBox">
-                    <video autoplay loop muted playsinline>
-                        <source src="images/grid/amazonbanner.webm" type="video/webm" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Advertisement</div>
-                <div class="subText2">Amazon Prime Day</div>
-            </div>
-        </div>
-
-
-        <div id="content4" class="project" data-category="ecommerce">
-            <a href="work/ecommerce.html">
-                <div class="imgBox">
-                    <img src="images/grid/e-commerce.png" alt="E-Commerce Projects" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">E-Commerce</div>
-                <div class="subText2">Various Brands</div>
-            </div>
-        </div>
-
-        <div id="content5" class="project" data-category="editorial">
-            <a href="work/editorial.html">
-                <div class="imgBox">
-                    <img src="images/grid/infographic.png" alt="Editorial Infographics" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Editorial Graphics</div>
-                <div class="subText2">Daily Mail</div>
-            </div>
-        </div>
-
-        <div id="content6" class="project" data-category="artdirection">
-            <a href="work/uclira.html">
-                <div class="imgBox">
-                    <img src="images/grid/uclira.png" alt="Uclira Art Direction" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Art Direction</div>
-                <div class="subText2">Uclira</div>
-            </div>
-        </div>
-
-        <div id="content7" class="project" data-category="banner">
-            <a href="work/onthegoga.html">
-                <div class="imgBox">
-                    <img src="images/grid/onTheGoga.png" alt="On the Goga Banner" />
-                </div>
-            </a>
-            <div class="subBox">
-                <div class="subText1">Banner Design</div>
-                <div class="subText2">On the Goga</div>
-            </div>
-        </div>
-
-
-        <footer>
-            <div class="footerText">
-                <span>Email: jinhakang.usa@gmail.com</span><br />
-                <span>© 2025 Jinha Kang. All rights reserved.</span>
-            </div>
-        </footer>
-    </div>
-
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const buttons = document.querySelectorAll(".filter-btn");
-            const projects = document.querySelectorAll(".project");
-
-            buttons.forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    buttons.forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
-
-                    const filter = btn.getAttribute("data-filter");
-
-                    projects.forEach((proj) => {
-                        const category = proj.getAttribute("data-category");
-                        proj.style.display = filter === "all" || category === filter ? "block" : "none";
-                    });
-                });
-            });
-        });
-
-
-        //PASSWORD
-    const _0x4f22 = "MjAyNg=="; 
-    let pendingUrl = "";
-
-    document.addEventListener("DOMContentLoaded", function () {
-        // 1. Project Click Protection
-        const projectLinks = document.querySelectorAll(".project a");
-        projectLinks.forEach(link => {
-            link.addEventListener("click", function (e) {
-                // If already unlocked this session, let them through
-                if (sessionStorage.getItem('portfolio_unlocked') === 'true') return;
-
-                e.preventDefault();
-                pendingUrl = this.href;
-                document.getElementById('pw-modal').style.display = 'block';
-                document.getElementById('modal-input').value = ""; // Clear old attempts
-                document.getElementById('modal-input').focus();
-            });
-        });
-
-        // 2. Filter Logic
-        const buttons = document.querySelectorAll(".filter-btn");
-        const projects = document.querySelectorAll(".project");
-        buttons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                buttons.forEach((b) => b.classList.remove("active"));
-                btn.classList.add("active");
-                const filter = btn.getAttribute("data-filter");
-                projects.forEach((proj) => {
-                    const category = proj.getAttribute("data-category");
-                    proj.style.display = filter === "all" || category === filter ? "block" : "none";
-                });
-            });
-        });
-
-        // 3. Listen for Enter Key on the input field specifically
-        document.getElementById("modal-input").addEventListener("keypress", function(e) {
-            if (e.key === "Enter") {
-                verifyAccess();
-            }
-        });
-    });
-
-    // Verification function that works on all browsers and local files
-    function verifyAccess() {
-        const input = document.getElementById('modal-input').value;
-        
-        // Decodes the hidden string and compares it
-        if (btoa(input) === _0x4f22) {
-            sessionStorage.setItem('portfolio_unlocked', 'true');
-            window.location.href = pendingUrl;
-        } else {
-            document.getElementById('modal-error').style.display = 'block';
-            document.getElementById('modal-input').value = "";
-            document.getElementById('modal-input').focus();
+/* ================================================================
+   CANVAS ANIMATION ENGINE
+   ================================================================ */
+const canvas  = document.getElementById('ascii-canvas');
+const ctx     = canvas.getContext('2d');
+const ROWS    = ASCII_LINES.length;
+const COLS    = Math.max(...ASCII_LINES.map(l => l.length));
+const BRIGHT  = { '@':0.02,'%':0.09,'#':0.17,'*':0.27,'+':0.39,'=':0.54,'-':0.71,' ':0.97 };
+function b(ch){ return BRIGHT[ch] !== undefined ? BRIGHT[ch] : 0.45; }
+const BG = { r:244, g:243, b:240 };
+const FG = { r:12,  g:12,  b:12  };
+function lerpCh(t){
+  return [
+    Math.round(FG.r + t*(BG.r-FG.r)),
+    Math.round(FG.g + t*(BG.g-FG.g)),
+    Math.round(FG.b + t*(BG.b-FG.b))
+  ];
+}
+let charW, charH, fontSize;
+let glitchMap  = new Map();
+let lastGlitch = 0;
+const GLITCH_CHARS = '-=+*#%@';
+const NOISE_CHARS  = '-=+*';
+let mouseCol = -9999, mouseRow = -9999, mouseActive = false;
+let smoothMouseCol = -9999, smoothMouseRow = -9999;
+const ripples = [];
+const MAX_RIPPLES = 6;
+function resize(){
+  const pr = window.devicePixelRatio || 1;
+  const cw = canvas.parentElement.clientWidth;
+  const ch = canvas.parentElement.clientHeight;
+  canvas.width  = cw * pr;
+  canvas.height = ch * pr;
+  canvas.style.width  = cw + 'px';
+  canvas.style.height = ch + 'px';
+  ctx.setTransform(pr, 0, 0, pr, 0, 0);
+  const fsByW = cw / (COLS * 0.54);
+  const fsByH = ch / ROWS;
+  fontSize = Math.min(fsByW, fsByH);
+  charW = fontSize * 0.54;
+  charH = fontSize;
+}
+canvas.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouseCol = (e.clientX - rect.left) / charW;
+  mouseRow = (e.clientY - rect.top)  / charH;
+  mouseActive = true;
+});
+canvas.addEventListener('mouseleave', () => { mouseActive = false; });
+const N_BUCKETS = 16;
+let buckets;
+function initBuckets(){ buckets = Array.from({length: N_BUCKETS}, () => []); }
+function clearBuckets(){ for(let i=0; i<N_BUCKETS; i++) buckets[i].length = 0; }
+let startTime = null;
+let prevMouseCol = -9999, prevMouseRow = -9999, lastRippleTime = -999;
+function render(ts){
+  if(!startTime) startTime = ts;
+  const t = (ts - startTime) / 1000;
+  const W = canvas.clientWidth;
+  const H = canvas.clientHeight;
+  const MOUSE_LERP = 0.11;
+  if(mouseActive){
+    if(smoothMouseCol < -100){ smoothMouseCol = mouseCol; smoothMouseRow = mouseRow; }
+    smoothMouseCol += (mouseCol - smoothMouseCol) * MOUSE_LERP;
+    smoothMouseRow += (mouseRow - smoothMouseRow) * MOUSE_LERP;
+    const dx = mouseCol - prevMouseCol;
+    const dy = mouseRow - prevMouseRow;
+    const speed = Math.sqrt(dx*dx + dy*dy);
+    if(speed > 1.5 && t - lastRippleTime > 0.12){
+      if(ripples.length < MAX_RIPPLES){
+        ripples.push({ col: mouseCol, row: mouseRow, born: t, strength: Math.min(1, speed / 8) });
+      } else {
+        ripples.sort((a,b) => a.born - b.born);
+        ripples[0] = { col: mouseCol, row: mouseRow, born: t, strength: Math.min(1, speed / 8) };
+      }
+      lastRippleTime = t;
+    }
+    prevMouseCol = mouseCol;
+    prevMouseRow = mouseRow;
+  }
+  const REVEAL_DUR  = 2.8;
+  const revealFront = Math.min(1, t / REVEAL_DUR) * ROWS;
+  const scanCol = ((Math.sin(t * 0.22) + 1) / 2) * COLS;
+  const wt = t * 0.9;
+  if(t > 3 && t - lastGlitch > 2.5 + Math.random()*3.5){
+    const gc = Math.floor(Math.random() * COLS);
+    glitchMap.set(gc, 6 + Math.floor(Math.random()*10));
+    if(Math.random() < 0.5)
+      glitchMap.set(gc + Math.floor(Math.random()*5)-2, 4 + Math.floor(Math.random()*7));
+    lastGlitch = t;
+  }
+  for(const [col, f] of glitchMap){
+    if(f <= 1) glitchMap.delete(col);
+    else glitchMap.set(col, f-1);
+  }
+  for(let i = ripples.length - 1; i >= 0; i--){
+    if(t - ripples[i].born > 1.6) ripples.splice(i, 1);
+  }
+  ctx.clearRect(0, 0, W, H);
+  clearBuckets();
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.font = `${fontSize}px "Courier New",monospace`;
+  const transChars = [];
+  for(let row=0; row < ROWS; row++){
+    const line = ASCII_LINES[row] || '';
+    const dist = revealFront - row;
+    const inTransition = dist >= 0 && dist < 5;
+    const fullyHidden  = dist < 0;
+    for(let col=0; col < COLS; col++){
+      let ch = col < line.length ? line[col] : ' ';
+      if(glitchMap.has(col) && Math.random() < 0.72)
+        ch = GLITCH_CHARS[Math.floor(Math.random()*GLITCH_CHARS.length)];
+      if(fullyHidden){
+        ch = NOISE_CHARS[Math.floor(Math.random()*NOISE_CHARS.length)];
+      } else if(inTransition){
+        const mixP = dist / 5;
+        if(Math.random() > mixP)
+          ch = NOISE_CHARS[Math.floor(Math.random()*NOISE_CHARS.length)];
+      }
+      let bv = b(ch);
+      const dScan = Math.abs(col - scanCol);
+      bv += Math.exp(-(dScan*dScan) / 110) * 0.22;
+      bv += Math.sin(col * 0.11 - wt) * 0.035;
+      bv += Math.sin(row * 0.07 + wt * 0.45) * 0.018;
+      if(mouseActive){
+        const dc = col - smoothMouseCol;
+        const dr = row - smoothMouseRow;
+        const distSq = dc*dc + dr*dr;
+        const SPOT_R = 9.0;
+        const spotInfluence = Math.exp(-distSq / (SPOT_R * SPOT_R));
+        bv += spotInfluence * 0.38;
+        const innerDist = Math.sqrt(distSq);
+        if(innerDist < 2.8){
+          bv -= (1 - innerDist / 2.8) * 0.45;
+          if(Math.random() < 0.55)
+            ch = GLITCH_CHARS[Math.floor(Math.random()*GLITCH_CHARS.length)];
         }
+        const dxTrail = col - (smoothMouseCol + (smoothMouseCol - mouseCol) * 3);
+        const dyTrail = row - (smoothMouseRow + (smoothMouseRow - mouseRow) * 3);
+        const trailSq = dxTrail*dxTrail + dyTrail*dyTrail;
+        bv += Math.exp(-trailSq / 28) * 0.14;
+      }
+      for(const rip of ripples){
+        const age = t - rip.born;
+        const lifeP = age / 1.6;
+        const ripRadius = 2 + age * 14;
+        const dc = col - rip.col;
+        const dr = row - rip.row;
+        const ripDist = Math.sqrt(dc*dc + dr*dr);
+        const ringWidth = 3.5;
+        const proximity = Math.abs(ripDist - ripRadius);
+        if(proximity < ringWidth){
+          const ringStr = Math.exp(-(proximity*proximity) / (ringWidth*0.7)) * rip.strength * (1 - lifeP * lifeP);
+          bv += ringStr * 0.3;
+          if(ringStr > 0.35 && Math.random() < 0.4)
+            ch = GLITCH_CHARS[Math.floor(Math.random()*GLITCH_CHARS.length)];
+        }
+      }
+      bv = Math.max(0, Math.min(1, bv));
+      const x = col * charW;
+      const y = row * charH;
+      if(inTransition || fullyHidden){
+        const alpha = fullyHidden ? 0.18 : 0.2 + (dist/5) * 0.8;
+        transChars.push({ch, x, y, alpha, bv});
+      } else {
+        const bi = Math.min(N_BUCKETS-1, Math.floor(bv * N_BUCKETS));
+        buckets[bi].push({ch, x, y});
+      }
     }
+  }
+  for(let i=0; i<N_BUCKETS; i++){
+    if(buckets[i].length === 0) continue;
+    const bv = i / (N_BUCKETS - 1);
+    const [r,g,bl] = lerpCh(bv);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = `rgb(${r},${g},${bl})`;
+    for(const {ch,x,y} of buckets[i]) ctx.fillText(ch, x, y);
+  }
+  for(const {ch,x,y,alpha,bv} of transChars){
+    const [r,g,bl] = lerpCh(bv);
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = `rgb(${r},${g},${bl})`;
+    ctx.fillText(ch, x, y);
+  }
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(render);
+}
 
-    function closeModal() {
-        document.getElementById('pw-modal').style.display = 'none';
-        document.getElementById('modal-error').style.display = 'none';
+/* ================================================================
+   CUSTOM CURSOR
+   ================================================================ */
+const cursorRing = document.getElementById('cursor-ring');
+const cursorDot  = document.getElementById('cursor-dot');
+let cursorX = 0, cursorY = 0;
+let ringX = 0, ringY = 0;
+document.addEventListener('mousemove', (e) => {
+  document.body.classList.add('mouse-moved');
+  cursorX = e.clientX;
+  cursorY = e.clientY;
+  cursorDot.style.left = cursorX + 'px';
+  cursorDot.style.top  = cursorY + 'px';
+});
+function animateCursor(){
+  ringX += (cursorX - ringX) * 0.13;
+  ringY += (cursorY - ringY) * 0.13;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursorRing.style.width  = '52px';
+    cursorRing.style.height = '52px';
+    cursorRing.style.opacity = '0.5';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursorRing.style.width  = '36px';
+    cursorRing.style.height = '36px';
+    cursorRing.style.opacity = '1';
+  });
+});
+
+/* ================================================================
+   WORK NAV MENU → WORK SECTION
+   ================================================================ */
+// NEW
+document.getElementById('work-menu').addEventListener('click', () => {
+  document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+
+  // Reset filter to "all"
+  document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
+  const allBtn = document.querySelector('.pg-btn[data-filter="all"]');
+  if (allBtn) allBtn.classList.add('active');
+
+  let visible = 0;
+  pgCards.forEach(c => {
+    c.classList.remove('hidden');
+    visible++;
+  });
+  pgCount.textContent = visible + (visible === 1 ? ' project' : ' projects');
+});
+
+/* ================================================================
+   SCROLL BUTTON → WORK SECTION
+   ================================================================ */
+document.getElementById('scrollBtn').addEventListener('click', () => {
+  document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* hide "scroll to explore" label once user scrolls past hero */
+const bottomLabel = document.getElementById('bottomLabel');
+window.addEventListener('scroll', () => {
+  const heroH = document.querySelector('.hero').offsetHeight;
+  if(window.scrollY > heroH * 0.4){
+    bottomLabel.classList.add('hidden');
+  } else {
+    bottomLabel.classList.remove('hidden');
+  }
+}, { passive: true });
+
+/* ================================================================
+   FILTER BAR
+   ================================================================ */
+const pgCards = document.querySelectorAll('.pg-card');
+const pgCount = document.getElementById('pgCount');
+document.querySelectorAll('.pg-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    let visible = 0;
+    pgCards.forEach(c => {
+      const show = f === 'all' || c.dataset.category === f;
+      c.classList.toggle('hidden', !show);
+      if(show) visible++;
+    });
+    pgCount.textContent = visible + (visible === 1 ? ' project' : ' projects');
+  });
+});
+
+/* ================================================================
+   PASSWORD GATE
+   ================================================================ */
+const API_URL = 'https://portfolio-auth-two.vercel.app/api/unlock';
+
+const overlay  = document.getElementById('pw-overlay');
+const pwInput  = document.getElementById('pw-input');
+const pwError  = document.getElementById('pw-error');
+const pwSubmit = document.getElementById('pw-submit');
+const pwClose  = document.getElementById('pw-close');
+let pendingHref = null;
+
+function tokenValid() {
+  const token = sessionStorage.getItem('portfolio_token');
+  if (!token) return false;
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.unlocked === true && payload.exp * 1000 > Date.now();
+  } catch { return false; }
+}
+
+function showModal(href) {
+  pendingHref = href;
+  pwInput.value = '';
+  pwError.style.opacity = '0';
+  overlay.style.display = 'flex';
+  setTimeout(() => pwInput.focus(), 50);
+}
+
+function closeModal() {
+  overlay.style.display = 'none';
+  pendingHref = null;
+}
+
+async function tryUnlock() {
+  const password = pwInput.value.trim();
+  if (!password) return;
+  pwSubmit.textContent = '...';
+  pwSubmit.disabled = true;
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    });
+    const data = await res.json();
+    if (res.ok && data.token) {
+      sessionStorage.setItem('portfolio_token', data.token);
+      overlay.style.display = 'none';
+      window.location.href = pendingHref;
+    } else {
+      pwError.style.opacity = '1';
+      pwInput.value = '';
+      pwInput.animate([
+        { transform: 'translateX(-6px)' },
+        { transform: 'translateX(6px)' },
+        { transform: 'translateX(-4px)' },
+        { transform: 'translateX(4px)' },
+        { transform: 'translateX(0)' }
+      ], { duration: 320, easing: 'ease-out' });
     }
-    </script>
+  } catch (err) {
+    pwError.style.opacity = '1';
+    console.error('Auth error:', err);
+  }
+  pwSubmit.textContent = 'Enter';
+  pwSubmit.disabled = false;
+}
 
-    
+// Intercept all card clicks
+document.querySelectorAll('.pg-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = card.getAttribute('href');
+    if (tokenValid()) {
+      window.location.href = href;
+    } else {
+      showModal(href);
+    }
+  });
+});
+
+pwSubmit.addEventListener('click', tryUnlock);
+pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
+pwClose.addEventListener('click', closeModal);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+
+[pwSubmit, pwClose].forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursorRing.style.width = '52px';
+    cursorRing.style.height = '52px';
+    cursorRing.style.opacity = '0.5';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursorRing.style.width = '36px';
+    cursorRing.style.height = '36px';
+    cursorRing.style.opacity = '1';
+  });
+});
+
+/* ---- BOOT ---- */
+initBuckets();
+resize();
+window.addEventListener('resize', resize);
+requestAnimationFrame(render);
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
