@@ -1,446 +1,787 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="robots" content="noindex, nofollow">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Campaigns - JINHA KANG</title>
-    <link rel="icon" href="../images/jinha-favicon.png">
-    
-    <link rel="stylesheet" href="../style.css">
-    <script src="../script.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>E-Commerce Campaigns – JINHA KANG</title>
+  <link rel="icon" href="../images/jinha-favicon.png">
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #fff;
-            color: #1a1a1a;
-            overflow-x: hidden;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;700;900&family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,700;0,900;1,300&family=Inter:wght@300;400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
 
-        .header {
-            padding: 80px 20px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-170PYF8XYX');
+  </script>
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 16px;
-            border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            margin-bottom: 24px;
-            border: 1px solid #e5e5e5;
-        }
+  <style>
+    /* ══════════════════════════════════════
+       RESET & TOKENS
+    ══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .badge-primary {
-            font-size: 11px;
-            font-weight: 700;
-            color: #2563eb;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    :root {
+      --bg:     #ffffff;
+      --fg:     #0c0c0c;
+      --mid:    #7a7a7a;
+      --faint:  #F5F5F7;
+      --border: rgba(12,12,12,.09);
+    }
 
-        .badge-secondary {
-            font-size: 11px;
-            color: #666;
-        }
+    html, body {
+      width: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Urbanist', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-        .headline {
-            font-size: clamp(28px, 5vw, 48px);
-            font-weight: 800;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-            line-height: 1.1;
-        }
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
 
-        .subheadline {
-            font-size: clamp(15px, 2vw, 18px);
-            font-weight: 300;
-            line-height: 1.7;
-            max-width: 900px;
-            color: #4a5568;
-        }
+    /* ── CUSTOM CURSOR ── */
+    body { cursor: none; }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--fg); border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width .18s ease, height .18s ease, opacity .18s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 5px; height: 5px;
+      background: var(--fg); border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    body:not(.mouse-moved) #cursor-ring,
+    body:not(.mouse-moved) #cursor-dot { opacity: 0; }
 
-        .filters {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    /* ── NAV ── */
+    nav {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      top: 0; width: 100%; border-radius: 0;
+      position: fixed; z-index: 1000;
+      transition: background 0.3s ease; height: 82px;
+    }
+    nav.scrolled { background: rgba(255,255,255,0.5); backdrop-filter: blur(6px); }
+    .nav {
+      display: flex; flex-direction: column; gap: 0px;
+      align-items: flex-start; justify-content: flex-start;
+      align-self: stretch; flex-shrink: 0; position: relative;
+    }
+    .nav-hug {
+      padding: 10px 40px 10px 40px; display: flex; flex-direction: row;
+      align-items: center; justify-content: space-between;
+      align-self: stretch; flex-shrink: 0; height: 82px; position: relative;
+    }
+    .jinha-kang {
+      color: #000000; text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px; line-height: 24px; font-weight: 500;
+      position: relative; width: 130px;
+    }
+    .menu {
+      list-style: none; display: flex; flex-direction: row;
+      gap: 46px; align-items: center; justify-content: center;
+      flex: 1; position: relative; z-index: 999;
+    }
+    .menu-item {
+      color: #000000; text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px; line-height: 24px; font-weight: 400;
+      position: relative; z-index: 999;
+    }
+    .nav-link { transition: 0.7s ease; }
+    .nav-link:hover { color: #D3D3D3; }
+    .linkedin { flex-shrink: 0; width: 30px; height: 30px; position: relative; object-fit: cover; aspect-ratio: 1; }
+    .hamburger { display: none; cursor: pointer; z-index: 1000; }
+    .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: black; }
 
-        .filter-btn {
-            padding: 10px 24px;
-            background: transparent;
-            color: #666;
-            border: 1px solid #e0e0e0;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      position: fixed; top: 50%; left: 40px; z-index: 100;
+      transform: translateY(-50%);
+      writing-mode: vertical-lr; text-orientation: mixed;
+      transition: color 0.3s ease;
+      opacity: 0; animation: fadeIn 1s ease 0.8s both;
+    }
+    .back-link:hover { color: var(--fg); }
+    .back-link::before {
+      content: ''; display: block; width: 1px; height: 32px;
+      background: var(--mid); margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+    .back-link:hover::before { background: var(--fg); }
 
-        .filter-btn:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-            background: rgba(37, 99, 235, 0.05);
-        }
+    /* ══════════════════════════════════════
+       PAGE HEADER
+    ══════════════════════════════════════ */
+    .page-header {
+      max-width: 1280px; margin: 0 auto;
+      padding: 168px 80px 64px;
+      container-type: inline-size;
+      container-name: page-header;
+    }
+    .page-eyebrow {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 24px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .1s both;
+    }
+    .page-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(40px, 9cqi, 88px);
+      font-weight: 500; line-height: .96;
+      letter-spacing: -.02em; max-width: 920px;
+      margin-bottom: 28px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .18s both;
+    }
+    .page-sub {
+      font-size: 16px; line-height: 1.75; font-weight: 300;
+      color: var(--mid); max-width: 560px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .26s both;
+    }
 
-        .filter-btn.active {
-            background: #1a1a1a;
-            color: #fff;
-            border-color: #1a1a1a;
-        }
+    /* ── HERO IMAGE ── */
+    .hero-image {
+      max-width: 1280px; margin: 48px auto 0;
+      padding: 0 80px;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: auto; display: block;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+    }
+    .hero-image img.revealed { opacity: 1; transform: translateY(0); }
 
-        .gallery {
-            padding: 40px 20px 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            align-items: start;
-        }
+    /* ══════════════════════════════════════
+       CASE STUDY
+    ══════════════════════════════════════ */
+    #case-study {
+      padding: 8px 80px 96px;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .section-divider {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 56px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 80px; align-items: start;
+    }
+    .case-block {
+      margin-bottom: 56px; opacity: 0; transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .case-block.revealed { opacity: 1; transform: translateY(0); }
+    .case-block:last-child { margin-bottom: 0; }
+    .case-block-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 16px;
+    }
+    .case-block-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 400; line-height: 1.08;
+      letter-spacing: -.02em; margin-bottom: 20px;
+    }
+    .case-block p {
+      font-size: 16px; line-height: 1.75;
+      color: var(--fg); font-weight: 300; max-width: 620px;
+    }
+    .decision-list {
+      list-style: none; margin-top: 24px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .decision-item {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--fg);
+      transition: border-color .3s;
+    }
+    .decision-item:hover { border-color: var(--fg); }
+    .decision-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .decision-text {
+      font-size: 14px; line-height: 1.7;
+      color: var(--mid); font-weight: 300;
+    }
+    .case-aside { position: sticky; top: 100px; }
+    .aside-block {
+      padding: 28px 0; border-bottom: 1px solid var(--border);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .aside-block.revealed { opacity: 1; transform: translateY(0); }
+    .aside-block:first-child { padding-top: 0; }
+    .aside-block:last-child { border-bottom: none; }
+    .aside-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 10px;
+    }
+    .aside-value { font-size: 15px; font-weight: 400; line-height: 1.6; }
+    .outcomes-stat { display: flex; align-items: baseline; gap: 6px; margin-top: 16px; }
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(36px, 4.2vw, 52px);
+      font-weight: 500; line-height: 1; letter-spacing: -.03em;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 400;
+      color: var(--mid); letter-spacing: .1em; text-transform: uppercase;
+    }
 
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
+    /* ══════════════════════════════════════
+       GALLERY
+    ══════════════════════════════════════ */
+    #gallery-section { padding: 0 0 120px; border-top: 1px solid var(--faint); }
 
-        .gallery-item {
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 0;
-            background: #f8f9fa;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-            border: 1px solid #e5e7eb;
-        }
+    .gallery-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding: 80px 80px 0;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .gallery-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 500; line-height: 1; letter-spacing: -.02em;
+    }
+    .gallery-count {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--mid);
+    }
 
-        .gallery-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      padding: 40px 80px 48px;
+      max-width: 1280px; margin: 0 auto;
+      border-bottom: 1px solid var(--faint);
+    }
+    .filter-btn {
+      padding: 10px 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      background: transparent;
+      color: var(--mid);
+      font-family: 'Urbanist', sans-serif;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      cursor: none;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .filter-btn:hover { border-color: var(--fg); color: var(--fg); }
+    .filter-btn.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 
-        .gallery-item.hidden {
-            display: none;
-        }
+    /* ── GRID ── */
+    .gallery-grid {
+      max-width: 1280px; margin: 0 auto;
+      padding: 48px 80px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2px;
+    }
 
-        .gallery-item:hover {
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-            border-color: #d1d5db;
-        }
+    .gallery-item {
+      position: relative; overflow: hidden;
+      background: #ffffff; cursor: none;
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item.revealed { opacity: 1; transform: translateY(0); }
+    .gallery-item.hidden { display: none; }
 
-        .image-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background: #fff;
-        }
+    .gallery-img-wrap { overflow: hidden; position: relative; }
+    .gallery-img-wrap img {
+      width: 100%; height: auto; display: block;
+      transition: transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item:hover .gallery-img-wrap img { transform: scale(1.03); }
 
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.4s ease;
-        }
+    /* slide-up overlay on hover (preserved from original) */
+    .gallery-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(12,12,12,.88), transparent);
+      padding: 40px 24px 24px;
+      transform: translateY(100%);
+      transition: transform .35s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+    .overlay-brand {
+      font-size: 14px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: #fff; margin-bottom: 4px;
+    }
+    .overlay-type {
+      font-size: 12px; color: rgba(255,255,255,.6); font-weight: 300;
+    }
 
-        .gallery-item:hover img {
-            transform: scale(1.03);
-        }
+    .gallery-caption {
+      padding: 20px 0 8px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .caption-title { font-size: 15px; font-weight: 500; line-height: 1.3; }
+    .caption-sub { font-size: 12px; color: var(--mid); margin-top: 4px; font-weight: 300; }
+    .caption-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; color: var(--mid); flex-shrink: 0; padding-top: 2px;
+    }
 
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-            padding: 30px 20px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      opacity: 0; pointer-events: none; transition: opacity .35s ease;
+    }
+    #lightbox.open { opacity: 1; pointer-events: all; }
+    .lb-inner {
+      position: relative; max-width: 1080px; width: 100%;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .lb-top { display: flex; align-items: center; justify-content: space-between; }
+    .lb-meta { display: flex; flex-direction: column; gap: 4px; }
+    .lb-title { font-size: 16px; font-weight: 500; }
+    .lb-sub { font-size: 12px; color: var(--mid); font-weight: 300; }
+    .lb-close {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1.5px solid var(--fg); background: transparent; cursor: none;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s; color: var(--fg);
+    }
+    .lb-close:hover { background: var(--fg); color: var(--bg); }
+    #lb-img { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
 
-        .gallery-item:hover .overlay {
-            transform: translateY(0);
-        }
+    /* ── FOOTER ── */
+    footer {
+      padding: 56px 80px;
+      border-top: 1px solid var(--faint);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-left {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--mid);
+    }
+    .footer-right { font-size: 12px; color: var(--mid); }
 
-        .brand-name {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
 
-        .campaign-type {
-            font-size: 13px;
-            color: #d1d5db;
-            font-weight: 400;
-        }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .page-header { padding: 152px 56px 56px; }
+      .hero-image { padding: 0 56px; margin-top: 40px; }
+      #case-study { padding: 8px 56px 72px; }
+      .gallery-header { padding: 60px 56px 0; }
+      .filter-bar { padding: 32px 56px 40px; }
+      .gallery-grid { padding: 40px 56px 0; }
+      footer { padding: 48px 56px; }
+    }
+    @media (max-width: 1024px) {
+      .back-link { display: none; }
+      .page-header { padding: 140px 40px 48px; }
+      .hero-image { padding: 0 40px; margin-top: 32px; }
+      #case-study { padding: 8px 40px 64px; }
+      .case-study-grid { grid-template-columns: 1fr; gap: 56px; }
+      .case-aside { position: static; }
+      .gallery-header { padding: 56px 40px 0; }
+      .filter-bar { padding: 28px 40px 36px; }
+      .gallery-grid { padding: 36px 40px 0; }
+      footer { padding: 48px 40px; }
+    }
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      #cursor-ring, #cursor-dot { display: none; }
+      .hamburger { display: block; }
+      .menu {
+        position: fixed; left: -100%; top: 82px;
+        gap: 0; flex-direction: column;
+        background: #fff; width: 100%; text-align: center;
+        transition: 0.3s; z-index: 999;
+      }
+      .menu.active { left: 0; }
+      .menu-item { margin: 16px 0; }
+      .hamburger.active .bar:nth-child(2) { opacity: 0; }
+      .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            padding: 20px;
-        }
-
-        .modal.open {
-            background: rgba(0,0,0,0.9);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90vh;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.open .modal-content {
-            transform: scale(1);
-        }
-
-        .modal img {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 0;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 28px;
-            cursor: pointer;
-            padding: 8px 16px;
-            line-height: 1;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            transition: all 0.2s ease;
-        }
-
-        .close-modal:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        footer {
-            border-top: 1px solid #e5e7eb;
-            background: #fafafa;
-            text-align: center;
-            padding: 40px 20px;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        footer p {
-            margin: 4px 0;
-        }
-    </style>
+      .page-header { padding: 120px 24px 40px; }
+      .hero-image { padding: 0 24px; margin-top: 28px; }
+      #case-study { padding: 0 24px 48px; }
+      .gallery-header { padding: 48px 24px 0; }
+      .filter-bar { padding: 24px 24px 32px; }
+      .gallery-grid { padding: 32px 24px 0; grid-template-columns: 1fr; }
+      footer { padding: 40px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .nav-hug { padding: 10px 16px; }
+      .jinha-kang { font-size: 18px; width: auto; }
+      .page-header { padding: 108px 16px 32px; }
+      .hero-image { padding: 0 16px; margin-top: 24px; }
+      #case-study { padding: 0 16px 40px; }
+      .gallery-header { padding: 40px 16px 0; }
+      .filter-bar { padding: 20px 16px 28px; gap: 8px; }
+      .gallery-grid { padding: 28px 16px 0; }
+      footer { padding: 32px 16px; }
+    }
+  </style>
 </head>
 <body>
- <div id="cursor"></div>
-    <nav>
-        <div class="nav">
-            <div class="nav-hug">
-                <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
 
-                <ul class="menu">
-                    <li class="menu-item">
-                        <a href="../index.html" class="nav-link">WORK</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../creative/under.html" class="nav-link">CREATIVE</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../cv/cv.html" class="nav-link">CV</a>
-                    </li>
-                </ul>
+<!-- ── CURSORS ── -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
 
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+<!-- ── BACK LINK ── -->
+<a href="../index.html" class="back-link">← Back to work</a>
 
-                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
-                    <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn" />
-                </a>
-            </div>
-        </div>
-    </nav>
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav">
+    <div class="nav-hug">
+      <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+      <ul class="menu">
+        <li class="menu-item"><a href="../index.html" class="nav-link">WORK</a></li>
+        <li class="menu-item"><a href="../creative/under.html" class="nav-link">CREATIVE</a></li>
+        <li class="menu-item"><a href="../cv/cv.html" class="nav-link">CV</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <a href="https://www.linkedin.com/in/jinha-kang/" onclick="window.open(this.href,'_blank','width=600,height=300');return false;">
+        <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn" />
+      </a>
+    </div>
+  </div>
+</nav>
 
-    <div class="header">
-        <div class="badge">
-            <span class="badge-primary">Featured</span>
-            <span class="badge-secondary">Commercial Design</span>
-        </div>
-        <div class="headline">E-Commerce Campaigns Across Multiple Brands</div>
-        <div class="subheadline">
-            A multi-brand e-commerce campaign crafted to unify beauty, wellness, fashion, and food & beverage into a cohesive visual story. Each product is deliberately placed to showcase its unique value, using refined color palettes, elevated lifestyle imagery, and modern design cues to guide the consumer journey.
-        </div>
+<!-- ══ PAGE HEADER ══ -->
+<header class="page-header">
+  <div class="page-eyebrow">Commercial Design &nbsp;/ &nbsp;Daily Mail Commerce Team</div>
+  <h1 class="page-title">E-Commerce Campaigns</h1>
+  <p class="page-sub">A multi-brand collection spanning beauty, wellness, fashion, food and beverage, and tech, each piece built to showcase product value through refined color palettes, elevated lifestyle imagery, and modern design cues.</p>
+</header>
+
+<!-- ══ HERO IMAGE ══ -->
+<div class="hero-image">
+  <img src="../images/ecommerce/e-commerce.jpg" alt="E-Commerce campaign collage" />
+</div>
+
+<!-- ══ CASE STUDY ══ -->
+<section id="case-study">
+  <div class="section-divider">Case study</div>
+
+  <div class="case-study-grid">
+    <div class="case-body">
+
+      <div class="case-block">
+        <div class="case-block-label">Challenge</div>
+        <h2 class="case-block-title">One cohesive practice,<br>eleven distinct brands</h2>
+        <p>Each brand in this collection has its own audience, tone, and product category. The challenge was delivering creative that felt native to each brand while maintaining a consistent level of visual quality and design intention across all of them, without letting any single style dominate the body of work.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">Approach</div>
+        <h2 class="case-block-title">Category-specific creative,<br>consistently elevated</h2>
+        <p>Rather than applying a single template, I developed category-specific visual frameworks: clean, high-contrast layouts for beauty and skincare; warm, lifestyle-led compositions for food and beverage; modern, editorial framing for fashion. Each piece was designed to feel native to its platform and category while meeting the same standard of craft.</p>
+      </div>
+
     </div>
 
-    <div class="filters">
-        <button class="filter-btn active" data-category="all">All</button>
-        <button class="filter-btn" data-category="beauty">Beauty</button>
-        <button class="filter-btn" data-category="wellness">Wellness</button>
-        <button class="filter-btn" data-category="fashion">Fashion</button>
-        <button class="filter-btn" data-category="food">Food & Beverage</button>
-        <button class="filter-btn" data-category="tech">Tech</button>
-    </div>
-
-    <div class="gallery" id="gallery">
-        <!-- Items will be generated by JavaScript -->
-    </div>
-
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <img id="modalImg" src="" alt="">
+    <aside class="case-aside">
+      <div class="aside-block">
+        <div class="aside-label">Agency</div>
+        <div class="aside-value">Daily Mail Commerce Team</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Categories</div>
+        <div class="aside-value">Beauty &amp; Skincare<br>Wellness<br>Fashion<br>Food &amp; Beverage<br>Tech</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Tools</div>
+        <div class="aside-value">Photoshop<br>Illustrator</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Output</div>
+        <div class="outcomes-stat">
+          <span class="stat-num">11</span>
         </div>
+        <span class="stat-label">Brand campaigns</span>
+        <p style="font-size:13px; color:var(--mid); margin-top:14px; line-height:1.65; font-weight:300;">Spanning static, animated, and lifestyle-led formats, each piece was designed to drive engagement and conversion within its specific product category.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section id="gallery-section">
+  <div class="gallery-header">
+    <div>
+      <div class="section-label" style="font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;">Selected work</div>
+      <h2 class="gallery-heading">Campaign Deliverables</h2>
     </div>
+    <div class="gallery-count" id="gallery-count"></div>
+  </div>
 
-    <footer>
-        <p>Email: jinhakang.usa@gmail.com</p>
-        <p>© <span id="year"></span> Jinha Kang. All rights reserved.</p>
-    </footer>
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="beauty">Beauty</button>
+    <button class="filter-btn" data-category="wellness">Wellness</button>
+    <button class="filter-btn" data-category="fashion">Fashion</button>
+    <button class="filter-btn" data-category="food">Food &amp; Bev</button>
+    <button class="filter-btn" data-category="tech">Tech</button>
+  </div>
 
-    <script>
-        const projects = [
-            { src: '../images/ecommerce/banza.png', brand: 'Banza', type: 'Product Campaign', category: 'food' },
-            { src: '../images/ecommerce/111skin.jpg', brand: '111SKIN', type: 'Luxury Skincare', category: 'beauty' },
-            { src: '../images/ecommerce/polo.png', brand: 'Polo Ralph Lauren', type: 'Fashion Campaign', category: 'fashion' },
-            { src: '../images/ecommerce/waterloo.png', brand: 'Waterloo', type: 'Beverage Marketing', category: 'food' },
-            { src: '../images/ecommerce/neededAcademy.jpg', brand: 'Needed Academy', type: 'Wellness Brand', category: 'wellness' },
-            { src: '../images/ecommerce/mintMobile.gif', brand: 'Mint Mobile', type: 'Tech Campaign', category: 'tech' },
-            { src: '../images/ecommerce/lipgloss.png', brand: 'Lip Gloss', type: 'Beauty Product', category: 'beauty' },
-            { src: '../images/ecommerce/nakedsundays.jpg', brand: 'Naked Sundays', type: 'Skincare Launch', category: 'beauty' },
-            { src: '../images/ecommerce/jiyu.png', brand: 'Jiyu', type: 'Wellness Product', category: 'wellness' },
-            { src: '../images/ecommerce/footPeelMask.png', brand: 'Foot Peel Mask', type: 'Beauty Care', category: 'beauty' },
-            { src: '../images/ecommerce/coc1onut.png', brand: 'Coc1onut', type: 'Beverage Brand', category: 'food' }
-        ];
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
 
-        const gallery = document.getElementById('gallery');
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modalImg');
-        const closeModal = document.getElementById('closeModal');
-        const filterBtns = document.querySelectorAll('.filter-btn');
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-inner">
+    <div class="lb-top">
+      <div class="lb-meta">
+        <div class="lb-title" id="lb-title"></div>
+        <div class="lb-sub" id="lb-sub"></div>
+      </div>
+      <button class="lb-close" id="lb-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M2 2l12 12M14 2L2 14"/>
+        </svg>
+      </button>
+    </div>
+    <img id="lb-img" src="" alt="" />
+  </div>
+</div>
 
-        // Set current year
-        document.getElementById('year').textContent = new Date().getFullYear();
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">jinhakang.usa@gmail.com</div>
+  <div class="footer-right">© <span id="year"></span> Jinha Kang. All rights reserved.</div>
+</footer>
 
-        // Create gallery items
-        projects.forEach((project, index) => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.dataset.category = project.category;
-            item.style.transitionDelay = `${index * 0.08}s`;
-            
-            item.innerHTML = `
-                <div class="image-wrapper">
-                    <img src="${project.src}" alt="${project.brand}" loading="lazy">
-                    <div class="overlay">
-                        <div class="brand-name">${project.brand}</div>
-                        <div class="campaign-type">${project.type}</div>
-                    </div>
-                </div>
-            `;
-            
-            gallery.appendChild(item);
-        });
+<script>
+/* ================================================================
+   CUSTOM CURSOR
+   ================================================================ */
+const cursorRing = document.getElementById('cursor-ring');
+const cursorDot  = document.getElementById('cursor-dot');
+let cursorX = 0, cursorY = 0, ringX = 0, ringY = 0;
 
-        // Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+document.addEventListener('mousemove', (e) => {
+  document.body.classList.add('mouse-moved');
+  cursorX = e.clientX; cursorY = e.clientY;
+  cursorDot.style.left = cursorX + 'px';
+  cursorDot.style.top  = cursorY + 'px';
+});
 
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            observer.observe(item);
-        });
+function animateCursor() {
+  ringX += (cursorX - ringX) * 0.13;
+  ringY += (cursorY - ringY) * 0.13;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
 
-        // Filter functionality
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const category = btn.dataset.category;
-                
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                document.querySelectorAll('.gallery-item').forEach(item => {
-                    if (category === 'all' || item.dataset.category === category) {
-                        item.classList.remove('hidden');
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-            });
-        });
+function cursorGrow()  { cursorRing.style.width='52px'; cursorRing.style.height='52px'; cursorRing.style.opacity='0.5'; }
+function cursorReset() { cursorRing.style.width='36px'; cursorRing.style.height='36px'; cursorRing.style.opacity='1'; }
 
-        // Modal functionality
-        gallery.addEventListener('click', (e) => {
-            const item = e.target.closest('.gallery-item');
-            if (item) {
-                const img = item.querySelector('img');
-                modalImg.src = img.src;
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-        });
+function bindCursor(el) {
+  el.addEventListener('mouseenter', cursorGrow);
+  el.addEventListener('mouseleave', cursorReset);
+}
+document.querySelectorAll('a, button').forEach(bindCursor);
 
-        const closeModalFunc = () => {
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
-        };
+/* ================================================================
+   NAV SCROLL STATE
+   ================================================================ */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
 
-        closeModal.addEventListener('click', closeModalFunc);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModalFunc();
-        });
+/* ================================================================
+   HAMBURGER MENU
+   ================================================================ */
+const hamburger = document.getElementById('hamburger');
+const menu = document.querySelector('.menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('active');
+});
+document.querySelectorAll('.menu-item a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    menu.classList.remove('active');
+  });
+});
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModalFunc();
-        });
-    </script>
+/* ================================================================
+   PROJECTS DATA (preserved from original)
+   ================================================================ */
+const projects = [
+  { src: '../images/ecommerce/banza.png',          brand: 'Banza',            type: 'Product Campaign',    category: 'food'     },
+  { src: '../images/ecommerce/111skin.jpg',         brand: '111SKIN',          type: 'Luxury Skincare',     category: 'beauty'   },
+  { src: '../images/ecommerce/polo.png',            brand: 'Polo Ralph Lauren',type: 'Fashion Campaign',    category: 'fashion'  },
+  { src: '../images/ecommerce/waterloo.png',        brand: 'Waterloo',         type: 'Beverage Marketing',  category: 'food'     },
+  { src: '../images/ecommerce/neededAcademy.jpg',   brand: 'Needed Academy',   type: 'Wellness Brand',      category: 'wellness' },
+  { src: '../images/ecommerce/mintMobile.gif',      brand: 'Mint Mobile',      type: 'Tech Campaign',       category: 'tech'     },
+  { src: '../images/ecommerce/lipgloss.png',        brand: 'Lip Gloss',        type: 'Beauty Product',      category: 'beauty'   },
+  { src: '../images/ecommerce/nakedsundays.jpg',    brand: 'Naked Sundays',    type: 'Skincare Launch',     category: 'beauty'   },
+  { src: '../images/ecommerce/jiyu.png',            brand: 'Jiyu',             type: 'Wellness Product',    category: 'wellness' },
+  { src: '../images/ecommerce/footPeelMask.png',    brand: 'Foot Peel Mask',   type: 'Beauty Care',         category: 'beauty'   },
+  { src: '../images/ecommerce/coc1onut.png',        brand: 'Coc1onut',         type: 'Beverage Brand',      category: 'food'     },
+];
 
+/* ================================================================
+   BUILD GALLERY
+   ================================================================ */
+const galleryGrid = document.getElementById('galleryGrid');
+document.getElementById('gallery-count').textContent = projects.length + ' projects';
+
+function escapeHtml(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+projects.forEach((p, i) => {
+  const item = document.createElement('div');
+  item.className = 'gallery-item';
+  item.dataset.category = p.category;
+  item.style.transitionDelay = Math.min(i * 0.07, 0.6) + 's';
+
+  item.innerHTML = `
+    <div class="gallery-img-wrap">
+      <img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.brand)}" loading="lazy" />
+      <div class="gallery-overlay">
+        <div class="overlay-brand">${escapeHtml(p.brand)}</div>
+        <div class="overlay-type">${escapeHtml(p.type)}</div>
+      </div>
+    </div>
+    <div class="gallery-caption">
+      <div>
+        <div class="caption-title">${escapeHtml(p.brand)}</div>
+        <div class="caption-sub">${escapeHtml(p.type)}</div>
+      </div>
+      <div class="caption-num">${String(i + 1).padStart(2,'0')}</div>
+    </div>
+  `;
+
+  item.addEventListener('click', () => openLightbox(p));
+  bindCursor(item);
+  galleryGrid.appendChild(item);
+});
+
+/* ================================================================
+   FILTER
+   ================================================================ */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cat = btn.dataset.category;
+    let visible = 0;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const show = cat === 'all' || item.dataset.category === cat;
+      item.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    document.getElementById('gallery-count').textContent = visible + ' projects';
+  });
+});
+
+/* ================================================================
+   LIGHTBOX
+   ================================================================ */
+const lightbox = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lb-img');
+const lbTitle  = document.getElementById('lb-title');
+const lbSub    = document.getElementById('lb-sub');
+const lbClose  = document.getElementById('lb-close');
+
+function openLightbox(p) {
+  lbImg.src = p.src; lbImg.alt = p.brand;
+  lbTitle.textContent = p.brand;
+  lbSub.textContent   = p.type;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+}
+
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+bindCursor(lbClose);
+
+/* ================================================================
+   SCROLL-TRIGGERED REVEALS
+   ================================================================ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.case-block, .aside-block, .gallery-item, .hero-image img').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.aside-block').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.1) + 's';
+});
+
+/* ================================================================
+   FOOTER YEAR
+   ================================================================ */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
