@@ -13,7 +13,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
     <title>JINHA KANG</title>
-    <link rel="icon" href="../images/jinha-favicon.png">
+    <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <script>
+  /* ================================================================
+     ANIMATED FAVICON (manual frame-cycling — most browsers only
+     render the first frame of an animated GIF favicon natively)
+     ================================================================ */
+  (function () {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) return;
+    const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+    let frame = 0;
+    setInterval(() => {
+      frame = (frame + 1) % 30;
+      favicon.href = base + String(frame).padStart(2, '0') + '.png';
+    }, 80);
+  })();
+  </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
@@ -94,11 +110,11 @@
     <meta name="framer-search-index-fallback" content="https://framerusercontent.com/sites/7KQseKFeW0IpNSRtcaBdzI/searchIndex-IDVouMps0xFT.json">
     
     <meta property="og:type" content="website">
-   <!-- <meta property="og:title" content="My Framer Site">-->
+<!-- <meta property="og:title" content="Framer Site">-->
    <!-- <meta property="og:description" content="Made with Framer">-->
     
     <meta name="twitter:card" content="summary_large_image">
-    <!--<meta name="twitter:title" content="My Framer Site">-->
+    <!--<meta name="twitter:title" content="ai2html">-->
     <!--<meta name="twitter:description" content="Made with Framer">-->
 	
 	<style data-framer-font-css>/* cyrillic-ext */
@@ -371,7 +387,7 @@
     
 </head>
 <body>
-  <div id="cursor"></div>
+  <div id="cursor-ring"></div><div id="cursor-dot"></div>
   <link rel="stylesheet" href="../style.css">
 	<script async src="https://events.framer.com/script?v=2" data-fid="ba528f0d5bab8d21dedf31b849337690e9eabf820a23f033e692913dcca727de" data-no-nt></script>
 	<nav>
@@ -519,7 +535,5 @@
   });
 })();
 </script>
-    
-    
-</body>
-</html>
+
+<sc

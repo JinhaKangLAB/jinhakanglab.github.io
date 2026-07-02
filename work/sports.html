@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>Newcastle Confidential — JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon.png">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
 
   <!-- Fonts — exact match with index.html -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -846,6 +846,21 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ================================================================
+   ANIMATED FAVICON (manual frame-cycling — most browsers only
+   render the first frame of an animated GIF favicon natively)
+   ================================================================ */
+(function () {
+  const favicon = document.querySelector('link[rel="icon"]');
+  if (!favicon) return;
+  const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+  let frame = 0;
+  setInterval(() => {
+    frame = (frame + 1) % 30;
+    favicon.href = base + String(frame).padStart(2, '0') + '.png';
+  }, 80);
+})();
+
+/* ================================================================
    HAMBURGER MENU
    ================================================================ */
 const hamburger = document.getElementById('hamburger');
@@ -1002,21 +1017,4 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
-
-reveals.forEach(el => observer.observe(el));
-
-/* ================================================================
-   STAGGER ASIDE BLOCKS
-   ================================================================ */
-document.querySelectorAll('.aside-block').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.1) + 's';
-});
-
-/* ================================================================
-   FOOTER YEAR
-   ================================================================ */
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+}, { threshold: 0.12, rootMargin: '0px 0px -48

@@ -1,473 +1,952 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta name="robots" content="noindex, nofollow">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <script src="../script.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Amazon - JINHA KANG</title>
-    <link rel="icon" href="../images/jinha-favicon.png">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>Amazon Prime Day 2024 — JINHA KANG</title>
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <script>
+  /* ================================================================
+     ANIMATED FAVICON (manual frame-cycling — most browsers only
+     render the first frame of an animated GIF favicon natively)
+     ================================================================ */
+  (function () {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) return;
+    const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+    let frame = 0;
+    setInterval(() => {
+      frame = (frame + 1) % 30;
+      favicon.href = base + String(frame).padStart(2, '0') + '.png';
+    }, 80);
+  })();
+  </script>
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
-<script>
+  <!-- Fonts — exact match with index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;700;900&family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,700;0,900;1,300&family=Inter:wght@300;400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-170PYF8XYX');
-</script>
+  </script>
 
-<!--MS-->
-<script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+  <!--MS-->
+  <script type="text/javascript">
+   (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
         t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "uiz49swzp7");
-</script>
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+  })(window, document, "clarity", "script", "uiz49swzp7");
+  </script>
+
+  <style>
+    /* ══════════════════════════════════════
+       RESET & TOKENS — mirrors index.html
+    ══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #ffffff;
+      --fg:    #0c0c0c;
+      --mid:   #7a7a7a;
+      --faint: #F5F5F7;
+      --border: rgba(12,12,12,.09);
+    }
+
+    html, body {
+      width: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Urbanist', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+
+    /* ── CUSTOM CURSOR (identical to index.html) ── */
+    body { cursor: none; }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--fg);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width .18s ease, height .18s ease, opacity .18s ease, border-color .18s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 5px; height: 5px;
+      background: var(--fg); border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    body:not(.mouse-moved) #cursor-ring,
+    body:not(.mouse-moved) #cursor-dot { opacity: 0; }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      position: fixed;
+      z-index: 1000;
+      transition: background 0.3s ease;
+      height: 82px;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(6px);
+    }
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .nav-hug {
+      padding: 10px 40px 10px 40px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      align-self: stretch;
+      flex-shrink: 0;
+      height: 82px;
+      position: relative;
+    }
+    .jinha-kang {
+      color: #000000;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+      position: relative;
+      width: 130px;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 46px;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      position: relative;
+      z-index: 999;
+    }
+    .menu-item {
+      color: #000000;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      line-height: 24px;
+      font-weight: 400;
+      position: relative;
+      z-index: 999;
+    }
+    .nav-link { transition: 0.7s ease; }
+    .nav-link:hover { color: #D3D3D3; }
+    .linkedin {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      object-fit: cover;
+      aspect-ratio: 1;
+    }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: black;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      position: fixed; top: 50%; left: 40px; z-index: 100;
+      transform: translateY(-50%);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      transition: color 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.8s both;
+    }
+    .back-link:hover { color: var(--fg); }
+    .back-link::before {
+      content: '';
+      display: block;
+      width: 1px; height: 32px;
+      background: var(--mid);
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+    .back-link:hover::before { background: var(--fg); }
+
+    /* ══════════════════════════════════════
+       HERO — editorial split layout
+    ══════════════════════════════════════ */
+    .project-hero {
+      min-height: 100vh; padding-top: 82px;
+      display: grid;
+      grid-template-columns: 54% 46%;
+    }
+
+    /* LEFT */
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 52px 64px 80px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      container-type: inline-size;
+      container-name: hero-left;
+    }
+
+    .project-eyebrow {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 28px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .1s both;
+    }
+
+    .project-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(52px, 14cqi, 108px);
+      font-weight: 500;
+      line-height: .88;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .18s both;
+    }
+
+    .project-meta-row {
+      display: flex; flex-direction: column; gap: 6px;
+      margin-bottom: 48px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .26s both;
+    }
+    .project-meta-row span {
+      font-size: 13px; font-weight: 400;
+      letter-spacing: .08em; color: var(--mid);
+    }
+    .project-meta-row strong {
+      font-weight: 500; color: var(--fg);
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .34s both;
+    }
+    .hero-tag {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      padding: 10px 18px;
+      border: 1.5px solid var(--mid);
+      color: var(--mid);
+      border-radius: 50px;
+      transition: border-color .2s, color .2s;
+    }
+    .hero-tag:hover { border-color: var(--fg); color: var(--fg); }
+
+    .scroll-cta {
+      position: absolute; right: 52px; bottom: 64px;
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      animation: fadeIn 1s ease .7s both;
+    }
+    .scroll-cta-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1.5px solid var(--fg); background: transparent;
+      cursor: none; color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .28s, color .28s, transform .28s;
+    }
+    .scroll-cta-btn:hover {
+      background: var(--fg); color: var(--bg); transform: scale(1.06);
+    }
+
+    /* RIGHT — hero media */
+    .hero-right {
+      position: relative; overflow: hidden;
+      min-height: 420px;
+      background: var(--faint);
+    }
+    .hero-right::before, .hero-right::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none;
+    }
+    .hero-right::before {
+      top: 0; height: 120px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+    }
+    .hero-right::after {
+      bottom: 0; height: 80px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    #hero-img-wrap {
+      position: absolute; inset: 0; will-change: transform;
+    }
+    #hero-img-wrap img,
+    #hero-img-wrap video {
+      width: 100%; height: 100%; object-fit: cover;
+      animation: fadeIn 1.1s ease .35s both;
+    }
+
+
+
+    /* ══════════════════════════════════════
+       CASE STUDY SECTION
+    ══════════════════════════════════════ */
+    #case-study {
+      padding: 120px 80px 80px;
+      max-width: 1280px; margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 56px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* left: challenge / approach / decisions */
+    .case-body {}
+
+    .case-block {
+      margin-bottom: 56px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .case-block.revealed { opacity: 1; transform: translateY(0); }
+
+    .case-block-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 16px;
+    }
+
+    .case-block-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400; line-height: 1.05;
+      letter-spacing: -.02em; margin-bottom: 20px;
+    }
+
+    .case-block p {
+      font-size: 16px; line-height: 1.75;
+      color: var(--fg); font-weight: 300;
+      max-width: 620px;
+    }
+
+    .decision-list {
+      list-style: none; margin-top: 24px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .decision-item {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--fg);
+      transition: border-color .3s;
+    }
+    .decision-item:hover { border-color: var(--fg); }
+    .decision-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .decision-text {
+      font-size: 14px; line-height: 1.7;
+      color: var(--mid); font-weight: 300;
+    }
+
+    /* right: aside specs */
+    .case-aside {
+      position: sticky; top: 100px;
+    }
+    .aside-block {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .aside-block.revealed { opacity: 1; transform: translateY(0); }
+    .aside-block:first-child { padding-top: 0; }
+    .aside-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 10px;
+    }
+    .aside-value {
+      font-size: 15px; font-weight: 400; line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════
+       OUTCOME — inverted highlight band
+    ══════════════════════════════════════ */
+    #outcome {
+      background: var(--fg);
+      color: var(--bg);
+      padding: 96px 80px;
+    }
+    .outcome-inner {
+      max-width: 1280px; margin: 0 auto;
+    }
+    .outcome-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 48px;
+    }
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 56px;
+    }
+    .outcome-item {
+      border-left: 1px solid rgba(255,255,255,.2);
+      padding-left: 28px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .outcome-item.revealed { opacity: 1; transform: translateY(0); }
+    .outcome-num {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 500; line-height: 1;
+      letter-spacing: -.02em;
+      color: rgba(255,255,255,.32);
+      margin-bottom: 20px;
+    }
+    .outcome-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 21px; font-weight: 500;
+      letter-spacing: -.01em;
+      margin-bottom: 14px;
+    }
+    .outcome-text {
+      font-size: 14px; line-height: 1.75;
+      font-weight: 300;
+      color: rgba(255,255,255,.68);
+      max-width: 320px;
+    }
+
+    /* ══════════════════════════════════════
+       GALLERY
+    ══════════════════════════════════════ */
+    #gallery {
+      padding: 0 0 120px;
+      border-top: 1px solid var(--faint);
+    }
+
+    .gallery-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding: 80px 80px 48px;
+      border-bottom: 1px solid var(--faint);
+      max-width: 1280px; margin: 0 auto;
+    }
+    .gallery-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 500; line-height: 1; letter-spacing: -.02em;
+    }
+    .gallery-count {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .gallery-grid {
+      max-width: 1280px; margin: 0 auto;
+      padding: 48px 80px 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+
+    .gallery-item {
+      position: relative; overflow: hidden;
+      background: #ffffff;
+      cursor: none;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item.revealed { opacity: 1; transform: translateY(0); }
+
+    .gallery-img-wrap {
+      overflow: hidden; position: relative;
+    }
+    .gallery-img-wrap img,
+    .gallery-img-wrap video {
+      width: 100%; height: auto;
+      display: block;
+      transition: transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item:hover .gallery-img-wrap img,
+    .gallery-item:hover .gallery-img-wrap video { transform: scale(1.03); }
+
+    /* true-to-size ad units (MPU / skyscraper) — shown at actual px dimensions, not stretched */
+    .gallery-img-wrap.is-ad {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--faint);
+      padding: 64px;
+    }
+    .gallery-img-wrap.is-ad img {
+      width: auto; max-width: 100%; height: auto;
+      box-shadow: 0 10px 32px rgba(12,12,12,.12);
+    }
+    .gallery-img-wrap.is-ad:hover img { transform: scale(1.03); }
+
+    /* hover overlay */
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: rgba(12,12,12,.0);
+      transition: background .4s ease;
+      display: flex; align-items: flex-end; padding: 32px;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(12,12,12,.04); }
+
+    .gallery-caption {
+      padding: 24px 0 8px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .caption-title {
+      font-size: 15px; font-weight: 500; line-height: 1.3;
+    }
+    .caption-sub {
+      font-size: 12px; color: var(--mid); margin-top: 4px;
+      font-weight: 300;
+    }
+    .caption-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; color: var(--mid);
+      flex-shrink: 0; padding-top: 2px;
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    #lightbox.open { opacity: 1; pointer-events: all; }
+
+    .lb-inner {
+      position: relative;
+      max-width: 1080px; width: 100%;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .lb-top {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .lb-meta { display: flex; flex-direction: column; gap: 4px; }
+    .lb-title { font-size: 16px; font-weight: 500; }
+    .lb-sub { font-size: 12px; color: var(--mid); font-weight: 300; }
+    .lb-actions { display: flex; align-items: center; gap: 12px; }
+    .lb-close {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1.5px solid var(--fg);
+      background: transparent; cursor: none;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .lb-close:hover { background: var(--fg); color: var(--bg); }
+    .lb-close svg { stroke: currentColor; }
+    #lb-img, #lb-video { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
+
+    /* ── FOOTER (matches index.html style) ── */
+    footer {
+      padding: 56px 80px;
+      border-top: 1px solid var(--faint);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-left {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+    }
+    .footer-right {
+      font-size: 12px; color: var(--mid);
+    }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+
+    /* ≤1200px: slightly tighter padding */
+    @media (max-width: 1200px) {
+      .hero-left { padding: 56px 40px 56px 56px; }
+    }
+
+    /* ≤1024px: collapse hero to stacked, hide back-link, single-col case study */
+    @media (max-width: 1024px) {
+      .back-link { display: none; }
+      .scroll-cta { display: none; }
+
+      .project-hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 55vw;
+        min-height: auto;
+        padding-top: 82px;
+      }
+      .hero-left {
+        padding: 56px 40px 48px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        justify-content: flex-start;
+      }
+      /* image panel: fixed height row, no absolute fill needed */
+      .hero-right {
+        min-height: 0; /* row height drives it */
+      }
+
+      .project-title { font-size: clamp(48px, 14cqi, 88px); }
+
+      #case-study { padding: 80px 40px; }
+      .case-study-grid { grid-template-columns: 1fr; gap: 56px; }
+      .case-aside { position: static; }
+      #outcome { padding: 72px 40px; }
+      .outcome-grid { grid-template-columns: 1fr; gap: 40px; }
+      .gallery-header { padding: 60px 40px 40px; }
+      .gallery-grid { padding: 40px 40px 0; }
+      footer { padding: 48px 40px; }
+    }
+
+    /* ≤768px: mobile nav, smaller text */
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      #cursor-ring, #cursor-dot { display: none; }
+      .hamburger { display: block; }
+      .menu {
+        position: fixed; left: -100%; top: 82px;
+        gap: 0; flex-direction: column;
+        background: #fff; width: 100%; text-align: center;
+        transition: 0.3s; z-index: 999;
+      }
+      .menu.active { left: 0; }
+      .menu-item { margin: 16px 0; }
+      .hamburger.active .bar:nth-child(2) { opacity: 0; }
+      .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+      .project-hero { grid-template-rows: auto 70vw; }
+      .hero-left { padding: 40px 24px 40px; }
+
+      #case-study { padding: 60px 24px; }
+      #outcome { padding: 56px 24px; }
+      .outcome-item { padding-left: 20px; }
+      .gallery-header { padding: 48px 24px 32px; }
+      .gallery-grid { padding: 32px 24px 0; }
+      .gallery-img-wrap.is-ad { padding: 32px; }
+      footer { padding: 40px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    /* ≤480px: compact everything */
+    @media (max-width: 480px) {
+      .nav-hug { padding: 10px 16px; }
+      .jinha-kang { font-size: 18px; width: auto; }
+      .project-hero { grid-template-rows: auto 80vw; }
+      .hero-tags { gap: 8px; }
+      .hero-tag { padding: 8px 14px; font-size: 9px; }
+      .project-meta-row span { font-size: 12px; }
+    }
+  </style>
 </head>
-
 <body>
-     <div id="cursor"></div>
-    <style>
-        .subHeadline {
-            text-align: center;
-        }
-    </style>
 
-    <nav>
-        <div class="nav">
-            <div class="nav-hug">
-                <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+<!-- ── CURSORS ── -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
 
-                <ul class="menu">
-                    <li class="menu-item">
-                        <a href="../index.html" class="nav-link">WORK</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../creative/index.html" class="nav-link">CREATIVE</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../cv/cv.html" class="nav-link">CV</a>
-                    </li>
-                </ul>
+<!-- ── BACK LINK (vertical, left rail) ── -->
+<a href="../index.html" class="back-link">← Back to work</a>
 
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-
-                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
-                    <img class="linkedin" src="../images/linkedin.png" />
-                </a>
-
-
-            </div>
-        </div>
-    </nav>
-
-    <div class="workContainer">
-        <div class="workTextContainer">
-            <div class="workHeadline">Amazon Prime Day 2024</div>
-            <div class="subHeadline">Bold, eye popping rich media Ads for Amazon Primeday</div>
-            <!--<div class="">Tools Photoshop, Illustrator, Flourish, HTML, and CSS</div>-->
-
-        </div>
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav">
+    <div class="nav-hug">
+      <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+      <ul class="menu">
+        <li class="menu-item"><a href="../index.html" class="nav-link">WORK</a></li>
+        <li class="menu-item"><a href="../creative/index.html" class="nav-link">CREATIVE</a></li>
+        <li class="menu-item"><a href="../cv/cv.html" class="nav-link">CV</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <a href="https://www.linkedin.com/in/jinha-kang/" onclick="window.open(this.href,'_blank','width=600,height=300');return false;">
+        <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn" />
+      </a>
     </div>
-    <div class="imgContainer">
-        <!--  <img src="../images/amazon/amazonZoomIn.gif" -->
-        <video autoplay=autoplay loop=loop muted=muted playsinline=playsinline>
-            <source src="../images/grid/amazonbanner.webm" type="video/webm" />
-            <!-- Optional fallback for browsers that don’t support webm -->
-            Your browser does not support the video tag.
-        </video>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="project-hero">
+  <div class="hero-left">
+    <div class="project-eyebrow">Rich Media Advertising &nbsp;/ &nbsp;Amazon via Daily Mail</div>
+    <h1 class="project-title">Amazon<br>Prime Day</h1>
+    <div class="project-meta-row">
+      <span><strong>Role</strong>&nbsp;&nbsp;NY Multimedia Graphics Editor</span>
+      <span><strong>Scope</strong>&nbsp;&nbsp;Art Direction &amp; Rich Media Production</span>
+      <span><strong>Output</strong>&nbsp;&nbsp;Digital, Rich Media, Vertical &amp; Leaderboard Ads</span>
     </div>
-    <hr style="height:1px;border-width:0;color:lightgray;background-color:lightgray" />
-
-    <div id="flex-credit">
-
-        <div class="credit-container">
-            <div class="HeadBox">
-                <div class="creditHead">
-                    Service(s)
-                </div>
-            </div>
-            <div class="creditText">
-                Rich Media Ads <br />
-                Advertisment
-            </div>
-        </div>
-        <div class="credit-container">
-            <div class="HeadBox">
-                <div class="creditHead">
-                    Credit
-                </div>
-            </div>
-            <div class="creditText">
-                Jinha Kang (NY Multimedia Grpaphics Editor) <br /><br />
-                Emanuel Ramirez (US Deputy Photo Editor)
-            </div>
-        </div>
-        <div class="credit-container">
-            <div class="HeadBox">
-                <div class="creditHead">
-                    Client
-                </div>
-            </div>
-            <div class="creditText">
-                Amazon via DailyMail.com
-            </div>
-        </div>
-        <div class="credit-container">
-            <div class="HeadBox">
-                <div class="creditHead">
-                    Tools
-                </div>
-            </div>
-            <div class="creditText">
-                Photoshop & Illustrator
-            </div>
-        </div>
+    <div class="hero-tags">
+      <span class="hero-tag">Rich Media Ads</span>
+      <span class="hero-tag">Digital Advertising</span>
+      <span class="hero-tag">Art Direction</span>
+      <span class="hero-tag">Photo Editing</span>
+      <span class="hero-tag">Photoshop · Illustrator</span>
     </div>
 
+    <div class="scroll-cta">
+      <button class="scroll-cta-btn" id="scrollBtn" aria-label="Scroll to gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18">
+          <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span>View work</span>
+    </div>
+  </div>
 
-    <div class="carousel">
-        <div class="group">
-            <div class="card">Digital Design</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-		                c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-		                c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-		                c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-		                c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-		                c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-		                c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-		                c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-		                c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-		                c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-		                c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-		                c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-		                c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-		                 M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-		                c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-		                c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                        </g>
-                        </svg>
-            </div>
-            <div class="card">Art Direction</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-                          c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-                          c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-                          c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-                          c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-                          c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-                          c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-                          c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-                          c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-                          c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-                          c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-                          c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-                          c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-                           M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-                          c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-                          c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                          </g>
-                          </svg>
-            </div>
-            <div class="card">Photo Editing</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-                           c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-                           c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-                           c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-                           c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-                           c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-                           c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-                           c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-                           c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-                           c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-                           c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-                           c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-                           c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-                            M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-                           c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-                           c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                           </g>
-                           </svg>
-            </div>
-            <div class="card">Digital Ads</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-                         c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-                         c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-                         c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-                         c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-                         c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-                         c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-                         c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-                         c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-                         c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-                         c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-                         c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-                         c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-                          M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-                         c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-                         c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                         </g>
-                         </svg>
-            </div>
-        </div>
-        <div area-hidden=area-hidden class="group">
-            <div class="card">Digital Design</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-                         c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-                         c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-                         c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-                         c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-                         c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-                         c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-                         c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-                         c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-                         c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-                         c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-                         c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-                         c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-                          M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-                         c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-                         c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                         </g>
-                         </svg>
-            </div>
-            <div class="card">Art Direction</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-                         c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-                         c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-                         c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-                         c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-                         c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-                         c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-                         c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-                         c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-                         c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-                         c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-                         c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-                         c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-                          M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-                         c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-                         c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                         </g>
-                         </svg>
-            </div>
-            <div class="card">Photo Editing</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-                         c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-                         c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-                         c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-                         c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-                         c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-                         c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-                         c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-                         c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-                         c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-                         c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-                         c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-                         c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-                          M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-                         c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-                         c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                         </g>
-                         </svg>
-            </div>
-            <div class="card">Digital Ads</div>
-            <div class="card">
-                <?xml version="1.0" encoding="iso-8859-1" ?>
-                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="18px" height="18px" viewBox="0 0 35.418 35.418"
-                     xml:space="preserve">
-                <g>
-                <path d="M20.948,9.891c-0.857,0.068-1.847,0.136-2.837,0.269c-1.516,0.195-3.032,0.461-4.284,1.053
-                         c-2.439,0.994-4.088,3.105-4.088,6.209c0,3.898,2.506,5.875,5.669,5.875c1.057,0,1.913-0.129,2.703-0.328
-                         c1.255-0.396,2.31-1.123,3.562-2.441c0.727,0.99,0.923,1.453,2.177,2.509c0.329,0.133,0.658,0.133,0.922-0.066
-                         c0.791-0.659,2.174-1.848,2.901-2.508c0.328-0.267,0.263-0.66,0.066-0.992c-0.727-0.924-1.45-1.718-1.45-3.498v-5.943
-                         c0-2.513,0.195-4.822-1.647-6.537c-1.518-1.391-3.891-1.916-5.735-1.916c-0.264,0-0.527,0-0.792,0
-                         c-3.362,0.197-6.921,1.647-7.714,5.811c-0.13,0.525,0.267,0.726,0.53,0.793l3.691,0.464c0.396-0.07,0.593-0.398,0.658-0.73
-                         c0.333-1.449,1.518-2.176,2.836-2.309c0.067,0,0.133,0,0.265,0c0.79,0,1.646,0.332,2.109,0.987
-                         c0.523,0.795,0.461,1.853,0.461,2.775L20.948,9.891L20.948,9.891z M20.223,17.749c-0.461,0.925-1.253,1.519-2.11,1.718
-                         c-0.131,0-0.327,0.068-0.526,0.068c-1.45,0-2.31-1.123-2.31-2.775c0-2.11,1.254-3.104,2.836-3.565
-                         c0.857-0.197,1.847-0.265,2.836-0.265v0.793C20.948,15.243,21.01,16.43,20.223,17.749z M35.418,26.918v0.215
-                         c-0.035,1.291-0.716,3.768-2.328,5.131c-0.322,0.25-0.645,0.107-0.503-0.254c0.469-1.145,1.541-3.803,1.04-4.412
-                         c-0.355-0.465-1.826-0.43-3.079-0.322c-0.572,0.072-1.075,0.105-1.469,0.183c-0.357,0.033-0.431-0.287-0.071-0.537
-                         c0.466-0.323,0.969-0.573,1.541-0.756c2.039-0.608,4.406-0.25,4.729,0.146C35.348,26.414,35.418,26.629,35.418,26.918z
-                          M32.016,29.428c-0.466,0.357-0.965,0.682-1.468,0.973c-3.761,2.261-8.631,3.441-12.856,3.441c-6.807,0-12.895-2.512-17.514-6.709
-                         c-0.396-0.324-0.073-0.789,0.393-0.539C5.549,29.5,11.709,31.26,18.084,31.26c4.013,0,8.342-0.754,12.463-2.371
-                         c0.285-0.104,0.608-0.252,0.895-0.356C32.087,28.242,32.661,28.965,32.016,29.428z" />
-                         </g>
-                         </svg>
-            </div>
-        </div>
+  <div class="hero-right">
+    <div id="hero-img-wrap">
+      <video autoplay loop muted playsinline aria-label="Amazon Prime Day rich media banner">
+        <source src="../images/grid/amazonbanner.webm" type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASE STUDY ══ -->
+<section id="case-study">
+  <div class="section-label">Case study</div>
+
+  <div class="case-study-grid">
+    <!-- LEFT: narrative -->
+    <div class="case-body">
+
+      <div class="case-block">
+        <div class="case-block-label">Challenge</div>
+        <h2 class="case-block-title">Cutting through visual<br>fatigue on Prime Day</h2>
+        <p>In a sea of breaking news and bold headlines on DailyMail.com, Amazon Prime Day ads had to break through visual fatigue. The challenge was to drive high click-through rates and boost sales among U.S. deal-hunters, while staying aligned with Daily Mail's brand identity.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">Approach</div>
+        <h2 class="case-block-title">Bold, high-contrast<br>rich media</h2>
+        <p>I partnered with Daily Mail's shopping team to align design decisions with audience behavior and proven performance patterns, then directed the creative execution toward digital formats optimized for visibility in a fast-paced news environment.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">Design decisions</div>
+        <ul class="decision-list">
+          <li class="decision-item">
+            <div class="decision-label">Strategy</div>
+            <div class="decision-text">Partnered with Daily Mail's shopping team to align design decisions with audience behavior and proven performance patterns.</div>
+          </li>
+          <li class="decision-item">
+            <div class="decision-label">Visual Language</div>
+            <div class="decision-text">Bold, high-contrast rich media ads with strong hierarchy — large imagery and clean layouts built to cut through visual noise and catch the eye quickly.</div>
+          </li>
+          <li class="decision-item">
+            <div class="decision-label">Production</div>
+            <div class="decision-text">Photoshop and Illustrator for polished graphics and precise photo editing, ensuring clarity, impact, and visual consistency across every format.</div>
+          </li>
+          <li class="decision-item">
+            <div class="decision-label">Format</div>
+            <div class="decision-text">Creative execution directed toward digital formats optimized for visibility — leaderboards, skyscrapers, MPUs, and vertical banners.</div>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
-        <div class="page1-container">
-            <div class="page1-1">
-                <img src="../images/amazon/amazonPrimeDayLogo.png" alt="Amazon Prime Day Logo" />
-            </div>
-            <div class="page1-2">
-                <h3>#PROJECT OVERVIEW</h3>
-                <p>
-                    With Amazon Prime Day approaching, DailyMail.com faced a challenge: create bold, eye-catching ads that stand out on its content-heavy pages and capture the attention of deal-hungry U.S. shoppers ready to click.
-                </p>
-            </div>
-        </div>
+    <!-- RIGHT: aside specs -->
+    <aside class="case-aside">
+      <div class="aside-block">
+        <div class="aside-label">Client</div>
+        <div class="aside-value">Amazon via DailyMail.com</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Credit</div>
+        <div class="aside-value">Jinha Kang<br>(NY Multimedia Graphics Editor)<br><br>Emanuel Ramirez<br>(US Deputy Photo Editor)</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Tools</div>
+        <div class="aside-value">Photoshop<br>Illustrator</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Service(s)</div>
+        <div class="aside-value">Rich Media Ads<br>Advertisement</div>
+      </div>
+    </aside>
+  </div>
+</section>
 
-        <div class="pageDivider">
-            <div class="quote">
-                How Did I Grab More Attention and
-                <span class="boost">Boost Sales</span> on Amazon Prime Day?
-            </div>
+<!-- ══ OUTCOME ══ -->
+<section id="outcome">
+  <div class="outcome-inner">
+    <div class="outcome-label">Outcome</div>
+    <div class="outcome-grid">
+      <div class="outcome-item">
+        <div class="outcome-num">01</div>
+        <div class="outcome-title">Greater Visibility</div>
+        <div class="outcome-text">Bold, high-impact ads helped Prime Day promotions stand out against competing content on DailyMail.com.</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">02</div>
+        <div class="outcome-title">Higher Engagement</div>
+        <div class="outcome-text">Achieved stronger click-through rates, driving more traffic to Amazon's featured deals.</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">03</div>
+        <div class="outcome-title">Boosted Sales</div>
+        <div class="outcome-text">Contributed to increased Amazon sales via DailyMail.com during Prime Day through an effective visual strategy.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="page">
-                <p>
-                    <b>#PROBLEM:</b><br />
-                    In a sea of breaking news and bold headlines on DailyMail.com, Amazon Prime
-                    Day ads had to break through visual fatigue. The challenge was to drive high
-                    click-through rates and boost sales among U.S. deal-hunters, while staying
-                    aligned with DailyMail’s brand identity.
-                </p>
-            </div>
+<!-- ══ GALLERY ══ -->
+<section id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="section-label" style="border:none; margin:0 0 16px; padding:0;">Selected assets</div>
+      <h2 class="gallery-heading">Campaign Deliverables</h2>
+    </div>
+    <div class="gallery-count" id="gallery-count"></div>
+  </div>
 
-            <div class="page">
-                <p><b>#APPROACH:</b></p>
-                <ul class="casestudy-list">
-                    <li>Partnered with DailyMail’s shopping team to align design decisions with audience behavior and proven performance patterns.</li>
-                    <li>Designed bold, high-contrast rich media ads with strong hierarchy to cut through visual noise.</li>
-                    <li>Leveraged Photoshop and Illustrator for polished graphics and precise photo editing.</li>
-                    <li>Directed the creative execution toward digital formats optimized for visibility in a fast-paced news environment.</li>
-                </ul>
-            </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- JS-rendered -->
+  </div>
+</section>
 
-            <div class="page">
-                <p><b>#SOLUTION:</b></p>
-                <ul class="casestudy-list">
-                    <li>Produced a set of rich media advertisements tailored for Amazon Prime Day, designed to stand out in a crowded environment.</li>
-                    <li>Emphasized visual boldness: strong colors, large imagery, clean layouts to catch the eye quickly.</li>
-                    <li>Leveraged photo editing and digital graphics to ensure clarity, impact, and visual consistency.</li>
-                </ul></div>
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-inner">
+    <div class="lb-top">
+      <div class="lb-meta">
+        <div class="lb-title" id="lb-title"></div>
+        <div class="lb-sub" id="lb-sub"></div>
+      </div>
+      <div class="lb-actions">
+        <button class="lb-close" id="lb-close" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round">
+            <path d="M2 2l12 12M14 2L2 14"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <img id="lb-img" src="" alt="" />
+    <video id="lb-video" autoplay loop muted playsinline style="display:none;"></video>
+  </div>
+</div>
 
-            <div class="page">
-                <p><b>#OUTCOME: </b></p>
-                <ul class="casestudy-list">
-                    <li><b>Greater visibility</b>: Bold, high-impact ads helped Prime Day promotions stand out against competing content.</b></li>
-                    <li><b>Higher engagement</b>: Achieved stronger click-through rates, driving more traffic to Amazon’s featured deals.</b></li>
-                    <li><b>Boosted sales</b>: Contributed to increased Amazon sales via DailyMail.com during Prime Day through an effective visual strategy.</b></li>
-                    <li><b>Proven impact</b>: Showcased ability to merge design expertise with art direction and advertising strategy to influence consumer behavior.</b></li>
-                </ul></div>
-        </div>
-
-        <div class="page2">
-            <video autoplay=autoplay loop=loop muted=muted playsinline=playsinline>
-                <source src="../images/amazon/verticalBanner.webm" type="video/webm" width="100%" />
-                <!-- Optional fallback for browsers that don’t support webm -->
-                Your browser does not support the video tag.
-            </video>
-            <!-- <img src="../images/amazon/verticalBanner.gif" />-->
-        </div>
-
-        <div class="page3">
-            <img src="../images/amazon/amazon3.gif" />
-        </div>
-
-        <div class="page4" style="align-items:center;margin:100px; ">
-            <img src="../images/amazon/970 x 250 copy 4.png" />
-        </div>
-
-        <footer>
-            <div class="footerText">
-                <span>Email: jinhakang.usa@gmail.com </span><br />
-                <span>© 2025 Jinha Kang. All rights reserved.</span>
-            </div>
-        </footer>
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">jinhakang.usa@gmail.com</div>
+  <div class="footer-right">© <span id="year"></span> Jinha Kang. All rights reserved.</div>
+</footer>
 
 <script>
-if (!sessionStorage.getItem("accessGranted")) {
-  document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
+/* ================================================================
+   CUSTOM CURSOR
+   ================================================================ */
+const cursorRing = document.getElementById('cursor-ring');
+const cursorDot  = document.getElementById('cursor-dot');
+let cursorX = 0, cursorY = 0, ringX = 0, ringY = 0;
 
-  document.body.addEventListener("click", function unlock(e) {
-    let userInput = prompt("🔒 Please enter the password to view this content:");
-    
-    if (userInput === password) {
-      alert("Access granted!");
-      sessionStorage.setItem("accessGranted", "true");
-      document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
-      document.body.removeEventListener("click", unlock);
-    } else {
-      alert("❌ Incorrect password.");
-    }
-  }, { once: true });
+document.addEventListener('mousemove', (e) => {
+  document.body.classList.add('mouse-moved');
+  cursorX = e.clientX; cursorY = e.clientY;
+  cursorDot.style.left = cursorX + 'px';
+  cursorDot.style.top  = cursorY + 'px';
+});
+
+function animateCursor() {
+  ringX += (cursorX - ringX) * 0.13;
+  ringY += (cursorY - ringY) * 0.13;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(animateCursor);
 }
+animateCursor();
 
-</script>
-</body>
-</html>
+function cursorGrow() { cursorRing.style.width='52px'; cursorRing.style.height='52px'; cursorRing.style.opacity='0.5'; }
+function cursorReset() { cursorRing.style.width='36px'; cursorRing.style.height='36px'; cursorRing.style.opacity='1'; }
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', cursorGrow);
+  el.addEventListener('mouseleave', cursorReset);
+});
+
+/* ================================================================
+   NAV SCROLL STATE
+   ================================================================ */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });

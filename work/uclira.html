@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>UCLIRA – JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon.png">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
 
   <!-- Fonts — exact match with index.html / sports.html -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -471,12 +471,14 @@
     .gallery-img-wrap {
       overflow: hidden; position: relative;
     }
-    .gallery-img-wrap img {
+    .gallery-img-wrap img,
+    .gallery-img-wrap video {
       width: 100%; height: auto;
       display: block;
       transition: transform .65s cubic-bezier(.22,1,.36,1);
     }
-    .gallery-item:hover .gallery-img-wrap img { transform: scale(1.03); }
+    .gallery-item:hover .gallery-img-wrap img,
+    .gallery-item:hover .gallery-img-wrap video { transform: scale(1.03); }
 
     .gallery-overlay {
       position: absolute; inset: 0;
@@ -540,7 +542,7 @@
     }
     .lb-close:hover { background: var(--fg); color: var(--bg); }
     .lb-close svg { stroke: currentColor; }
-    #lb-img { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
+    #lb-img, #lb-video { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
 
     /* ── FOOTER ── */
     footer {
@@ -805,6 +807,7 @@
       </div>
     </div>
     <img id="lb-img" src="" alt="" />
+    <video id="lb-video" autoplay loop muted playsinline style="display:none;"></video>
   </div>
 </div>
 
@@ -853,6 +856,21 @@ document.querySelectorAll('a, button').forEach(bindCursor);
 window.addEventListener('scroll', () => {
   document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
+
+/* ================================================================
+   ANIMATED FAVICON (manual frame-cycling — most browsers only
+   render the first frame of an animated GIF favicon natively)
+   ================================================================ */
+(function () {
+  const favicon = document.querySelector('link[rel="icon"]');
+  if (!favicon) return;
+  const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+  let frame = 0;
+  setInterval(() => {
+    frame = (frame + 1) % 30;
+    favicon.href = base + String(frame).padStart(2, '0') + '.png';
+  }, 80);
+})();
 
 /* ================================================================
    HAMBURGER MENU
@@ -928,8 +946,9 @@ const IMAGES = [
   {
     id: 5,
     title: "Facebook Animated Post",
-    subtitle: "Looping animated GIF created for the Facebook campaign page",
-    src: "../images/uclira/facebook.gif",
+    subtitle: "Looping animated post created for the Facebook campaign page",
+    src: "../images/uclira/facebook.webm",
+    isVideo: true,
   },
 ];
 
@@ -951,9 +970,13 @@ IMAGES.forEach((img, i) => {
   item.className = 'gallery-item';
   item.style.transitionDelay = (i * 0.08) + 's';
 
+  const media = img.isVideo
+    ? `<video src="${escapeHtml(img.src)}" autoplay loop muted playsinline></video>`
+    : `<img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.title)}" loading="lazy" />`;
+
   item.innerHTML = `
     <div class="gallery-img-wrap">
-      <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.title)}" loading="lazy" />
+      ${media}
       <div class="gallery-overlay"></div>
     </div>
     <div class="gallery-caption">
@@ -976,13 +999,24 @@ IMAGES.forEach((img, i) => {
    ================================================================ */
 const lightbox = document.getElementById('lightbox');
 const lbImg    = document.getElementById('lb-img');
+const lbVideo  = document.getElementById('lb-video');
 const lbTitle  = document.getElementById('lb-title');
 const lbSub    = document.getElementById('lb-sub');
 const lbClose  = document.getElementById('lb-close');
 
 function openLightbox(img) {
-  lbImg.src   = img.src;
-  lbImg.alt   = img.title;
+  if (img.isVideo) {
+    lbVideo.src = img.src;
+    lbVideo.style.display = 'block';
+    lbImg.style.display = 'none';
+    lbImg.src = '';
+  } else {
+    lbImg.src = img.src;
+    lbImg.alt = img.title;
+    lbImg.style.display = 'block';
+    lbVideo.style.display = 'none';
+    lbVideo.removeAttribute('src');
+  }
   lbTitle.textContent = img.title;
   lbSub.textContent   = img.subtitle;
   lightbox.classList.add('open');
@@ -993,37 +1027,4 @@ function openLightbox(img) {
 function closeLightbox() {
   lightbox.classList.remove('open');
   document.body.style.overflow = '';
-  lbImg.src = '';
-}
-
-lbClose.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-bindCursor(lbClose);
-
-/* ================================================================
-   SCROLL-TRIGGERED REVEALS (IntersectionObserver)
-   ================================================================ */
-const reveals = document.querySelectorAll('.case-block, .aside-block, .gallery-item');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
-
-reveals.forEach(el => observer.observe(el));
-
-document.querySelectorAll('.aside-block').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.1) + 's';
-});
-
-/* ================================================================
-   FOOTER YEAR
-   ================================================================ */
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+  l

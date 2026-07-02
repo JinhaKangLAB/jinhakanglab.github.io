@@ -9,7 +9,23 @@
     <link rel="stylesheet" href="../style.css" />
     <script src="../script.js"></script>
     <title>JINHA KANG</title>
-    <link rel="icon" href="../images/jinha-favicon.png">
+    <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <script>
+  /* ================================================================
+     ANIMATED FAVICON (manual frame-cycling — most browsers only
+     render the first frame of an animated GIF favicon natively)
+     ================================================================ */
+  (function () {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) return;
+    const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+    let frame = 0;
+    setInterval(() => {
+      frame = (frame + 1) % 30;
+      favicon.href = base + String(frame).padStart(2, '0') + '.png';
+    }, 80);
+  })();
+  </script>
     <!--SECURITY-->
     <script>
         if (sessionStorage.getItem('portfolio_unlocked') !== 'true') {
@@ -238,7 +254,7 @@
 </head>
 
 <body>
-     <div id="cursor"></div>
+     <div id="cursor-ring"></div><div id="cursor-dot"></div>
     <nav>
         <div class="nav">
             <div class="nav-hug">
@@ -406,9 +422,4 @@
             <span>Email: jinhakang.usa@gmail.com </span><br />
             <span>© 2025 Jinha Kang. All rights reserved.</span>
         </div>
-    </footer>
-</body>
-
-</html>
-
-
+    </f

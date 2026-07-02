@@ -5,7 +5,23 @@
     <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../images/jinha-favicon.png">
+    <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <script>
+  /* ================================================================
+     ANIMATED FAVICON (manual frame-cycling — most browsers only
+     render the first frame of an animated GIF favicon natively)
+     ================================================================ */
+  (function () {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) return;
+    const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+    let frame = 0;
+    setInterval(() => {
+      frame = (frame + 1) % 30;
+      favicon.href = base + String(frame).padStart(2, '0') + '.png';
+    }, 80);
+  })();
+  </script>
     <title>ai2html - JINHA KANG</title>
    
     
@@ -58,7 +74,7 @@
 </head>
 
 <body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
-<div id="cursor"></div>
+<div id="cursor-ring"></div><div id="cursor-dot"></div>
 
 <nav>
         <div class="nav">
@@ -600,6 +616,4 @@
         }
     </script>
 
-<script src="script.js"></script>
-</body>
-</html>
+<script src="../scr

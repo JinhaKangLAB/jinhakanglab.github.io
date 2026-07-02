@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>E-Commerce Campaigns – JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon.png">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -131,46 +131,111 @@
     .back-link:hover::before { background: var(--fg); }
 
     /* ══════════════════════════════════════
-       PAGE HEADER
+       HERO — split layout, matches sports.html/editorial.html/amazon.html
     ══════════════════════════════════════ */
-    .page-header {
-      max-width: 1280px; margin: 0 auto;
-      padding: 168px 80px 64px;
-      container-type: inline-size;
-      container-name: page-header;
-    }
-    .page-eyebrow {
-      font-size: 10px; font-weight: 500;
-      letter-spacing: .28em; text-transform: uppercase;
-      color: var(--mid); margin-bottom: 24px;
-      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .1s both;
-    }
-    .page-title {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(40px, 9cqi, 88px);
-      font-weight: 500; line-height: .96;
-      letter-spacing: -.02em; max-width: 920px;
-      margin-bottom: 28px;
-      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .18s both;
-    }
-    .page-sub {
-      font-size: 16px; line-height: 1.75; font-weight: 300;
-      color: var(--mid); max-width: 560px;
-      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .26s both;
+    .project-hero {
+      min-height: 100vh; padding-top: 82px;
+      display: grid;
+      grid-template-columns: 54% 46%;
     }
 
-    /* ── HERO IMAGE ── */
-    .hero-image {
-      max-width: 1280px; margin: 48px auto 0;
-      padding: 0 80px;
-      overflow: hidden;
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 52px 64px 80px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      container-type: inline-size;
+      container-name: hero-left;
     }
-    .hero-image img {
-      width: 100%; height: auto; display: block;
-      opacity: 0; transform: translateY(24px);
-      transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+
+    .project-eyebrow {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 28px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .1s both;
     }
-    .hero-image img.revealed { opacity: 1; transform: translateY(0); }
+
+    .project-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(44px, 10.5cqi, 96px);
+      font-weight: 500;
+      line-height: .92;
+      letter-spacing: -.02em;
+      margin-bottom: 40px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .18s both;
+    }
+
+    .project-sub {
+      font-size: 16px; line-height: 1.75; font-weight: 300;
+      color: var(--mid); max-width: 480px;
+      margin-bottom: 40px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .22s both;
+    }
+
+    .project-meta-row {
+      display: flex; flex-direction: column; gap: 6px;
+      margin-bottom: 40px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .26s both;
+    }
+    .project-meta-row span {
+      font-size: 13px; font-weight: 400;
+      letter-spacing: .08em; color: var(--mid);
+    }
+    .project-meta-row strong { font-weight: 500; color: var(--fg); }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .34s both;
+    }
+    .hero-tag {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      padding: 10px 18px;
+      border: 1.5px solid var(--mid);
+      color: var(--mid);
+      border-radius: 50px;
+      transition: border-color .2s, color .2s;
+    }
+    .hero-tag:hover { border-color: var(--fg); color: var(--fg); }
+
+    .scroll-cta {
+      position: absolute; right: 52px; bottom: 64px;
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      animation: fadeIn 1s ease .7s both;
+    }
+    .scroll-cta-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1.5px solid var(--fg); background: transparent;
+      cursor: none; color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .28s, color .28s, transform .28s;
+    }
+    .scroll-cta-btn:hover { background: var(--fg); color: var(--bg); transform: scale(1.06); }
+
+    /* RIGHT — hero image */
+    .hero-right {
+      position: relative; overflow: hidden;
+      min-height: 420px;
+    }
+    .hero-right::before, .hero-right::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none;
+    }
+    .hero-right::before {
+      top: 0; height: 120px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+    }
+    .hero-right::after {
+      bottom: 0; height: 80px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    #hero-img-wrap { position: absolute; inset: 0; will-change: transform; }
+    #hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      animation: fadeIn 1.1s ease .35s both;
+    }
 
     /* ══════════════════════════════════════
        CASE STUDY
@@ -318,11 +383,13 @@
     .gallery-item.hidden { display: none; }
 
     .gallery-img-wrap { overflow: hidden; position: relative; }
-    .gallery-img-wrap img {
+    .gallery-img-wrap img,
+    .gallery-img-wrap video {
       width: 100%; height: auto; display: block;
       transition: transform .65s cubic-bezier(.22,1,.36,1);
     }
-    .gallery-item:hover .gallery-img-wrap img { transform: scale(1.03); }
+    .gallery-item:hover .gallery-img-wrap img,
+    .gallery-item:hover .gallery-img-wrap video { transform: scale(1.03); }
 
     /* slide-up overlay on hover (preserved from original) */
     .gallery-overlay {
@@ -379,7 +446,7 @@
       transition: background .2s, color .2s; color: var(--fg);
     }
     .lb-close:hover { background: var(--fg); color: var(--bg); }
-    #lb-img { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
+    #lb-img, #lb-video { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
 
     /* ── FOOTER ── */
     footer {
@@ -405,8 +472,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1200px) {
-      .page-header { padding: 152px 56px 56px; }
-      .hero-image { padding: 0 56px; margin-top: 40px; }
+      .hero-left { padding: 56px 40px 56px 56px; }
       #case-study { padding: 8px 56px 72px; }
       .gallery-header { padding: 60px 56px 0; }
       .filter-bar { padding: 32px 56px 40px; }
@@ -415,9 +481,25 @@
     }
     @media (max-width: 1024px) {
       .back-link { display: none; }
-      .page-header { padding: 140px 40px 48px; }
-      .hero-image { padding: 0 40px; margin-top: 32px; }
-      #case-study { padding: 8px 40px 64px; }
+      .scroll-cta { display: none; }
+
+      .project-hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 55vw;
+        min-height: auto;
+        padding-top: 82px;
+      }
+      .hero-left {
+        padding: 56px 40px 48px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        justify-content: flex-start;
+      }
+      .hero-right { min-height: 0; }
+
+      .project-title { font-size: clamp(40px, 12cqi, 76px); }
+
+      #case-study { padding: 64px 40px; }
       .case-study-grid { grid-template-columns: 1fr; gap: 56px; }
       .case-aside { position: static; }
       .gallery-header { padding: 56px 40px 0; }
@@ -441,9 +523,10 @@
       .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
       .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-      .page-header { padding: 120px 24px 40px; }
-      .hero-image { padding: 0 24px; margin-top: 28px; }
-      #case-study { padding: 0 24px 48px; }
+      .project-hero { grid-template-rows: auto 70vw; }
+      .hero-left { padding: 40px 24px 40px; }
+
+      #case-study { padding: 48px 24px; }
       .gallery-header { padding: 48px 24px 0; }
       .filter-bar { padding: 24px 24px 32px; }
       .gallery-grid { padding: 32px 24px 0; grid-template-columns: 1fr; }
@@ -452,9 +535,10 @@
     @media (max-width: 480px) {
       .nav-hug { padding: 10px 16px; }
       .jinha-kang { font-size: 18px; width: auto; }
-      .page-header { padding: 108px 16px 32px; }
-      .hero-image { padding: 0 16px; margin-top: 24px; }
-      #case-study { padding: 0 16px 40px; }
+      .project-hero { grid-template-rows: auto 80vw; }
+      .hero-tags { gap: 8px; }
+      .hero-tag { padding: 8px 14px; font-size: 9px; }
+      #case-study { padding: 40px 16px; }
       .gallery-header { padding: 40px 16px 0; }
       .filter-bar { padding: 20px 16px 28px; gap: 8px; }
       .gallery-grid { padding: 28px 16px 0; }
@@ -493,17 +577,41 @@
   </div>
 </nav>
 
-<!-- ══ PAGE HEADER ══ -->
-<header class="page-header">
-  <div class="page-eyebrow">Commercial Design &nbsp;/ &nbsp;Daily Mail Commerce Team</div>
-  <h1 class="page-title">E-Commerce Campaigns</h1>
-  <p class="page-sub">A multi-brand collection spanning beauty, wellness, fashion, food and beverage, and tech, each piece built to showcase product value through refined color palettes, elevated lifestyle imagery, and modern design cues.</p>
-</header>
+<!-- ══ HERO ══ -->
+<section class="project-hero">
+  <div class="hero-left">
+    <div class="project-eyebrow">Commercial Design &nbsp;/ &nbsp;Daily Mail Commerce Team</div>
+    <h1 class="project-title">E-Commerce<br>Campaigns</h1>
+    <p class="project-sub">A multi-brand collection spanning beauty, wellness, fashion, food and beverage, and tech, each piece built to showcase product value through refined color palettes, elevated lifestyle imagery, and modern design cues.</p>
+    <div class="project-meta-row">
+      <span><strong>Agency</strong>&nbsp;&nbsp;Daily Mail Commerce Team</span>
+      <span><strong>Categories</strong>&nbsp;&nbsp;Beauty, Wellness, Fashion, Food &amp; Bev, Tech</span>
+      <span><strong>Output</strong>&nbsp;&nbsp;Static, Animated &amp; Lifestyle Campaigns</span>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">Beauty &amp; Skincare</span>
+      <span class="hero-tag">Wellness</span>
+      <span class="hero-tag">Fashion</span>
+      <span class="hero-tag">Food &amp; Beverage</span>
+      <span class="hero-tag">Tech</span>
+    </div>
 
-<!-- ══ HERO IMAGE ══ -->
-<div class="hero-image">
-  <img src="../images/ecommerce/e-commerce.jpg" alt="E-Commerce campaign collage" />
-</div>
+    <div class="scroll-cta">
+      <button class="scroll-cta-btn" id="scrollBtn" aria-label="Scroll to gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18">
+          <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span>View work</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div id="hero-img-wrap">
+      <img src="../images/ecommerce/e-commerce.jpg" alt="E-Commerce campaign collage" />
+    </div>
+  </div>
+</section>
 
 <!-- ══ CASE STUDY ══ -->
 <section id="case-study">
@@ -589,6 +697,7 @@
       </button>
     </div>
     <img id="lb-img" src="" alt="" />
+    <video id="lb-video" autoplay loop muted playsinline style="display:none;"></video>
   </div>
 </div>
 
@@ -639,6 +748,21 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ================================================================
+   ANIMATED FAVICON (manual frame-cycling — most browsers only
+   render the first frame of an animated GIF favicon natively)
+   ================================================================ */
+(function () {
+  const favicon = document.querySelector('link[rel="icon"]');
+  if (!favicon) return;
+  const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+  let frame = 0;
+  setInterval(() => {
+    frame = (frame + 1) % 30;
+    favicon.href = base + String(frame).padStart(2, '0') + '.png';
+  }, 80);
+})();
+
+/* ================================================================
    HAMBURGER MENU
    ================================================================ */
 const hamburger = document.getElementById('hamburger');
@@ -655,6 +779,33 @@ document.querySelectorAll('.menu-item a').forEach(link => {
 });
 
 /* ================================================================
+   PARALLAX HERO IMAGE
+   ================================================================ */
+const heroWrap = document.getElementById('hero-img-wrap');
+(function setupParallax() {
+  let latestScroll = 0, ticking = false;
+  function onScroll() {
+    latestScroll = window.scrollY;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const depth = Math.min(latestScroll * 0.18, 140);
+        heroWrap.style.transform = `translateY(${depth}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* ================================================================
+   SCROLL TO GALLERY
+   ================================================================ */
+document.getElementById('scrollBtn')?.addEventListener('click', () => {
+  document.getElementById('gallery-section').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ================================================================
    PROJECTS DATA (preserved from original)
    ================================================================ */
 const projects = [
@@ -662,126 +813,4 @@ const projects = [
   { src: '../images/ecommerce/111skin.jpg',         brand: '111SKIN',          type: 'Luxury Skincare',     category: 'beauty'   },
   { src: '../images/ecommerce/polo.png',            brand: 'Polo Ralph Lauren',type: 'Fashion Campaign',    category: 'fashion'  },
   { src: '../images/ecommerce/waterloo.png',        brand: 'Waterloo',         type: 'Beverage Marketing',  category: 'food'     },
-  { src: '../images/ecommerce/neededAcademy.jpg',   brand: 'Needed Academy',   type: 'Wellness Brand',      category: 'wellness' },
-  { src: '../images/ecommerce/mintMobile.gif',      brand: 'Mint Mobile',      type: 'Tech Campaign',       category: 'tech'     },
-  { src: '../images/ecommerce/lipgloss.png',        brand: 'Lip Gloss',        type: 'Beauty Product',      category: 'beauty'   },
-  { src: '../images/ecommerce/nakedsundays.jpg',    brand: 'Naked Sundays',    type: 'Skincare Launch',     category: 'beauty'   },
-  { src: '../images/ecommerce/jiyu.png',            brand: 'Jiyu',             type: 'Wellness Product',    category: 'wellness' },
-  { src: '../images/ecommerce/footPeelMask.png',    brand: 'Foot Peel Mask',   type: 'Beauty Care',         category: 'beauty'   },
-  { src: '../images/ecommerce/coc1onut.png',        brand: 'Coc1onut',         type: 'Beverage Brand',      category: 'food'     },
-];
-
-/* ================================================================
-   BUILD GALLERY
-   ================================================================ */
-const galleryGrid = document.getElementById('galleryGrid');
-document.getElementById('gallery-count').textContent = projects.length + ' projects';
-
-function escapeHtml(s) {
-  return String(s || '')
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
-}
-
-projects.forEach((p, i) => {
-  const item = document.createElement('div');
-  item.className = 'gallery-item';
-  item.dataset.category = p.category;
-  item.style.transitionDelay = Math.min(i * 0.07, 0.6) + 's';
-
-  item.innerHTML = `
-    <div class="gallery-img-wrap">
-      <img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.brand)}" loading="lazy" />
-      <div class="gallery-overlay">
-        <div class="overlay-brand">${escapeHtml(p.brand)}</div>
-        <div class="overlay-type">${escapeHtml(p.type)}</div>
-      </div>
-    </div>
-    <div class="gallery-caption">
-      <div>
-        <div class="caption-title">${escapeHtml(p.brand)}</div>
-        <div class="caption-sub">${escapeHtml(p.type)}</div>
-      </div>
-      <div class="caption-num">${String(i + 1).padStart(2,'0')}</div>
-    </div>
-  `;
-
-  item.addEventListener('click', () => openLightbox(p));
-  bindCursor(item);
-  galleryGrid.appendChild(item);
-});
-
-/* ================================================================
-   FILTER
-   ================================================================ */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const cat = btn.dataset.category;
-    let visible = 0;
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      const show = cat === 'all' || item.dataset.category === cat;
-      item.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
-    document.getElementById('gallery-count').textContent = visible + ' projects';
-  });
-});
-
-/* ================================================================
-   LIGHTBOX
-   ================================================================ */
-const lightbox = document.getElementById('lightbox');
-const lbImg    = document.getElementById('lb-img');
-const lbTitle  = document.getElementById('lb-title');
-const lbSub    = document.getElementById('lb-sub');
-const lbClose  = document.getElementById('lb-close');
-
-function openLightbox(p) {
-  lbImg.src = p.src; lbImg.alt = p.brand;
-  lbTitle.textContent = p.brand;
-  lbSub.textContent   = p.type;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  lbClose.focus();
-}
-
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-  lbImg.src = '';
-}
-
-lbClose.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-bindCursor(lbClose);
-
-/* ================================================================
-   SCROLL-TRIGGERED REVEALS
-   ================================================================ */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.case-block, .aside-block, .gallery-item, .hero-image img').forEach(el => observer.observe(el));
-
-document.querySelectorAll('.aside-block').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.1) + 's';
-});
-
-/* ================================================================
-   FOOTER YEAR
-   ================================================================ */
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+  { src: '../images/ecommerce/neededAcademy.jpg',   brand: 'Needed Academy',   type: 'Wellness Brand',      category: 'welln

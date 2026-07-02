@@ -1,300 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta name="robots" content="noindex, nofollow">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <script src="../script.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>On the Goga - JINHA KANG</title>
-    <link rel="icon" href="../images/jinha-favicon.png">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>On the GoGa — JINHA KANG</title>
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <script>
+  /* ================================================================
+     ANIMATED FAVICON (manual frame-cycling — most browsers only
+     render the first frame of an animated GIF favicon natively)
+     ================================================================ */
+  (function () {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) return;
+    const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+    let frame = 0;
+    setInterval(() => {
+      frame = (frame + 1) % 30;
+      favicon.href = base + String(frame).padStart(2, '0') + '.png';
+    }, 80);
+  })();
+  </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-170PYF8XYX');
+  <!-- Fonts — exact match with index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;700;900&family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,700;0,900;1,300&family=Inter:wght@300;400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
 
-        window.addEventListener("message", (event) => {
-            if (!event.data || event.data.type !== "embed-height") return;
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-170PYF8XYX');
+  </script>
 
-            const iframe = document.querySelector(`iframe[src="${event.data.src}"]`);
-            if (iframe) {
-                iframe.style.height = event.data.height + "px";
-            }
-        });
-    </script>
+  <!--MS-->
+  <script type="text/javascript">
+   (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+  })(window, document, "clarity", "script", "uiz49swzp7");
+  </script>
 
-    <!--MS-->
-    <script type="text/javascript">
-        (function (c, l, a, r, i, t, y) {
-            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "uiz49swzp7");
-    </script> 
+  <style>
+    /* ══════════════════════════════════════
+       RESET & TOKENS — mirrors index.html
+    ══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <style>
-        :root {
-            --page-bg: #ffffff;
-            --max-width: 1100px;
-            --gap: clamp(16px, 4vw, 28px);
-            --radius: 0px;
-            --fade-duration: 700ms;
-            --lift: 24px; /* how far cards lift during parallax */
-        }
-
-        /* Base */
-        * {
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            background: var(--page-bg);
-            line-height: 1.5;
-        }
-
-        .subHeadline {
-            text-align: center;
-        }
-
-        /* Stack of image cards */
-        .stack {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 2vh var(--gap) 20vh;
-            display: grid;
-            gap: var(--gap);
-        }
-
-        /* Each card */
-        .scrollBox {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: clip;
-            box-shadow: var(--shadow);
-            transform: translateY(var(--lift));
-            opacity: 0;
-            will-change: transform, opacity;
-            transition: transform var(--fade-duration) cubic-bezier(.22,.61,.36,1), opacity var(--fade-duration) ease;
-            padding: 10px;
-        }
-
-            .scrollBox img {
-                display: block;
-                width: 100%;
-                height: auto;
-                vertical-align: middle;
-            }
-
-            .scrollBox.in-view {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        @media (hover: hover) {
-            .scrollBox.in-view:hover {
-                transform: translateY(-6px);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .scrollBox, .scrollBox.in-view {
-                transition: none !important;
-                transform: none !important;
-            }
-        }
-
-
-
-        /* Optional: enable scroll snapping by toggling .snap on .stack */
-        .stack.snap {
-            scroll-snap-type: y proximity;
-        }
-
-            .stack.snap .scrollBox {
-                scroll-snap-align: start;
-            }
-    </style>
-
-</head>
-
-<body>
- <div id="cursor"></div>
-
-    <nav>
-        <div class="nav">
-            <div class="nav-hug">
-                <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
-
-                <ul class="menu">
-                    <li class="menu-item">
-                        <a href="../index.html" class="nav-link">WORK</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../creative/under.html" class="nav-link">CREATIVE</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../cv/cv.html" class="nav-link">CV</a>
-                    </li>
-                </ul>
-
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-
-                <a href="https://www.linkedin.com/in/jinha-kang/" onClick="MyWindow=window.open('https://www.linkedin.com/in/jinha-kang/','MyWindow','width=600,height=300'); return false;">
-                    <img class="linkedin" src="../images/linkedin.png" />
-                </a>
-
-
-            </div>
-        </div>
-    </nav>
-    <div class="workContainer">
-        <div class="workTextContainer">
-            <div class="workHeadline">On the GoGa</div>
-            <div class="subHeadline">
-                Standard Pop up Banner Design
-            </div>
-            <!--<div class="">Tools Photoshop, Illustrator, Flourish, HTML, and CSS</div>-->
-            <div class="workText">
-
-            </div>
-        </div>
-    </div>
-    <div class="imgContainer">
-        <img src="../images/onthegoga/onthegoga.jpg" />
-    </div>
-
-
-    <!-- Add class "snap" to .stack if you want soft scroll-snap behavior -->
-    <main class="stack" id="stack">
-
-
-        <figure class="scrollBox" data-speed="0.16">
-            <img loading="lazy" src="../images/onthegoga/popup.jpg" alt="Forest with soft morning light">
-            <figcaption class="caption"></figcaption>
-        </figure>
-
-        <figure class="scrollBox" data-speed="0.10">
-            <img loading="lazy" src="../images/onthegoga/standard pop up banner_1.jpg" alt="City skyline at dusk">
-            <figcaption class="caption"></figcaption>
-        </figure>
-
-        <figure class="scrollBox" data-speed="0.18">
-            <img loading="lazy" src="../images/onthegoga/standard pop up banner_2.jpg" alt="Desert sand dunes">
-            <figcaption class="caption"></figcaption>
-        </figure>
-
-        <figure class="scrollBox" data-speed="0.12">
-            <img loading="lazy" src="../images/onthegoga/onthegoga.jpg" alt="Mountain lake at sunrise">
-            <figcaption class="caption"></figcaption>
-        </figure>
-
-    </main>
-
-    <script>
-        /* Smooth scroll-reveal + subtle parallax
-           - IntersectionObserver toggles .in-view for fade/lift
-           - rAF parallax translates cards a few pixels based on viewport positionA
-        */
-
-        (function () {
-            const cards = Array.from(document.querySelectorAll('.scrollBox'));
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    } else {
-                        entry.target.classList.remove('in-view');
-                    }
-                });
-            }, { root: null, threshold: 0.12 });
-
-            cards.forEach(c => io.observe(c));
-
-            let ticking = false;
-            function onScroll() {
-                if (ticking || reduceMotion) return;
-                ticking = true;
-                requestAnimationFrame(() => {
-                    const vh = window.innerHeight || document.documentElement.clientHeight;
-                    for (const el of cards) {
-                        if (!el.classList.contains('in-view')) continue;
-
-                        const rect = el.getBoundingClientRect();
-                        const center = rect.top + rect.height / 2;
-                        const progress = (center - vh / 2) / (vh / 2);
-                        const speed = parseFloat(el.dataset.speed || '0.14');
-
-                        const maxLift = parseFloat(getComputedStyle(document.documentElement)
-                            .getPropertyValue('--lift')) || 24;
-                        const y = -progress * maxLift * speed * 2;
-                        el.style.transform = `translateY(${y}px)`;
-                    }
-                    ticking = false;
-                });
-            }
-
-            function onResize() {
-                if (reduceMotion) return;
-                for (const el of cards) {
-                    el.style.transform = '';
-                }
-                onScroll();
-            }
-
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', onResize);
-
-            onScroll();
-        })();
-       
-   if (!sessionStorage.getItem("accessGranted")) {
-  document.querySelectorAll(".content").forEach(el => el.classList.add("locked"));
-
-  document.body.addEventListener("click", function unlock(e) {
-    let userInput = prompt("🔒 Please enter the password to view this content:");
-    
-    if (userInput === password) {
-      alert("Access granted!");
-      sessionStorage.setItem("accessGranted", "true");
-      document.querySelectorAll(".content").forEach(el => el.classList.remove("locked"));
-      document.body.removeEventListener("click", unlock);
-    } else {
-      alert("❌ Incorrect password.");
+    :root {
+      --bg:    #ffffff;
+      --fg:    #0c0c0c;
+      --mid:   #7a7a7a;
+      --faint: #F5F5F7;
+      --border: rgba(12,12,12,.09);
     }
-  }, { once: true });
-}
+
+    html, body {
+      width: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Urbanist', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+
+    /* ── CUSTOM CURSOR (identical to index.html) ── */
+    body { cursor: none; }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--fg);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width .18s ease, height .18s ease, opacity .18s ease, border-color .18s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 5px; height: 5px;
+      background: var(--fg); border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    body:not(.mouse-moved) #cursor-ring,
+    body:not(.mouse-moved) #cursor-dot { opacity: 0; }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      position: fixed;
+      z-index: 1000;
+      transition: background 0.3s ease;
+      height: 82px;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(6px);
+    }
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .nav-hug {
+      padding: 10px 40px 10px 40px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      align-self: stretch;
+      flex-shrink: 0;
+      height: 82px;
+      position: relative;
+    }
+    .jinha-kang {
+      color: #000000;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+      position: relative;
+      width: 130px;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 46px;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      position: relative;
+      z-index: 999;
+    }
+    .menu-item {
+      color: #000000;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      line-height: 24px;
+      font-weight: 400;
+      position: relative;
+      z-index: 999;
+    }
+    .nav-link { transition: 0.7s ease; }
+    .nav-link:hover { color: #D3D3D3; }
+    .linkedin {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      object-fit: cover;
+      aspect-ratio: 1;
+    }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: black;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      position: fixed; top: 50%; left: 40px; z-index: 100;
+      transform: translateY(-50%);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      transition: color 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.8s both;
+    }
+    .back-link:hover { color: var(--fg); }
+    .back-link::before {
+      content: '';
+      display: block;
+      width: 1px; height: 32px;
+      background: var(--mid);
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+    .back-link:hover::before { background: var(--fg); }
+
+    /* ══════════════════════════════════════
+       HERO — editorial split layout
+    ══════════════════════════════════════ */
+    .project-hero {
+      min-height: 100vh; padding-top: 82px;
+      display: grid;
+      grid-template-columns: 54% 46%;
+    }
+
+    /* LEFT */
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 52px 64px 80px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      container-type: inline-size;
+      container-name: hero-left;
+    }
+
+    .project-eyebrow {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 28px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .1s both;
+    }
+
+    .project-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(52px, 14cqi, 108px);
+      font-weight: 500;
+      line-height: .88;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .18s both;
+    }
+
+    .project-meta-row {
+      display: flex; flex-direction: column; gap: 6px;
+      margin-bottom: 48px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .26s both;
+    }
+    .project-meta-row span {
+      font-size: 13px; font-weight: 400;
+      letter-spacing: .08em; color: var(--mid);
+    }
+    .project-meta-row strong {
+      font-weight: 500; color: var(--fg);
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .34s both;
+    }
+    .hero-tag {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      padding: 10px 18px;
+      border: 1.5px solid var(--mid);
+      color: var(--mid);
+      border-radius: 50px;
+      transition: border-color .2s, color .2s;
+    }
+    .hero-tag:hover { border-color: var(--fg); color: var(--fg); }
+
+    .scroll-cta {
+      position: absolute; right: 52px; bottom: 64px;
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      animation: fadeIn 1s ease .7s both;
+    }
+    .scroll-cta-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1.5px solid var(--fg); background: transparent;
+      cursor: none; color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .28s, color .28s, transform .28s;
+    }
+    .scroll-cta-btn:hover {
+      background: var(--fg); color: var(--bg); transform: scale(1.06);
+    }
+
+    /* RIGHT — hero image */
+    .hero-right {
+      position: relative; overflow: hidden;
+      min-height: 420px;
+    }
+    .hero-right::before, .hero-right::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none;
+    }
+    .hero-right::before {
+      top: 0; height: 120px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+    }
+    .hero-right::after {
+      bottom: 0; height: 80px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    #hero-img-wrap {
+      position: absolute; inset: 0; will-change: transform;
+    }
+    #hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      animation: fadeIn 1.1s ease .35s both;
+    }
 
 
-    </script>
-    <footer>
-        <div class="footerText">
-            <span>Email: jinhakang.usa@gmail.com </span><br />
-            <span>� 2025 Jinha Kang. All rights reserved.</span>
-        </div>
-    </footer>
-</body>
 
-</html>
+    /* ══════════════════════════════════════
+       CASE STUDY SECTION
+    ══════════════════════════════════════ */
+    #case-study {
+      padding: 120px 80px 80px;
+      max-width: 1280px; margin: 0 auto;
+    }
 
+    .section-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 56px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--faint);
+    }
 
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* left: challenge / approach / decisions */
+    .case-body {}
+
+    .case-block {
+      margin-bottom: 56px;
+      opacity: 0;
+      transform: translateY(24
