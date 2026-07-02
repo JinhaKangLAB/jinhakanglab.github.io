@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JINHA KANG</title>
+  <link rel="icon" href="images/jinha-favicon-fallback.gif">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;700;900&family=Urbanist:wght@200;300;400;500;700;900&display=swap" rel="stylesheet" />
@@ -505,7 +506,7 @@ a{
     .pg-card {
       position: relative;
       overflow: hidden;
-      background: var(--faint);
+      background: #ffffff;
       transition: opacity .35s ease;
       cursor: none;
     }
@@ -609,6 +610,20 @@ a{
       .work-header { flex-direction: column; align-items: flex-start; gap: 28px; }
       .pg-filter { width: 100%; }
       .pg-count { margin-left: 0; }
+
+      /* hamburger nav */
+      .hamburger { display: block; }
+      .menu {
+        position: fixed; left: -100%; top: 82px;
+        gap: 0; flex-direction: column;
+        background: #fff; width: 100%; text-align: center;
+        transition: 0.3s; z-index: 999;
+      }
+      .menu.active { left: 0; }
+      .menu-item { margin: 16px 0; }
+      .hamburger.active .bar:nth-child(2) { opacity: 0; }
+      .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     }
     @media (max-width: 620px) {
       .pg-grid { grid-template-columns: 1fr; }
@@ -633,7 +648,7 @@ a{
                     <li class="menu-item"><a href="creative/index.html" class="nav-link">CREATIVE</a></li>
                     <li class="menu-item"><a href="cv/cv.html" class="nav-link">CV</a></li>
                 </ul>
-                <div class="hamburger">
+                <div class="hamburger" id="hamburger" aria-label="Toggle menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -690,8 +705,9 @@ a{
     <div class="pg-filter" id="pgFilter">
       <button class="pg-btn active" data-filter="all">All</button>
       <button class="pg-btn" data-filter="uxui">UX / UI</button>
-      <button class="pg-btn" data-filter="branding">Branding</button>
       <button class="pg-btn" data-filter="artdirection">Art direction</button>
+      <button class="pg-btn" data-filter="branding">Branding</button>
+      <button class="pg-btn" data-filter="editorial">Editorial</button>
       <span class="pg-count" id="pgCount">7 projects</span>
     </div>
   </div>
@@ -736,7 +752,7 @@ a{
       </div>
     </a>
 
-    <a href="./work/amazon.html" class="pg-card" data-category="uxui">
+    <a href="./work/amazon.html" class="pg-card" data-category="artdirection">
       <div class="pg-thumb">
         <video autoplay loop muted playsinline>
           <source src="images/grid/amazonbanner.webm" type="video/webm" />
@@ -744,7 +760,7 @@ a{
       </div>
       <div class="pg-info">
         <div>
-          <div class="pg-cat">UX / UI</div>
+          <div class="pg-cat">Art direction</div>
           <div class="pg-title">Advertisement</div>
           <div class="pg-client">Amazon Prime Day</div>
         </div>
@@ -756,13 +772,13 @@ a{
       </div>
     </a>
 
-    <a href="./work/ecommerce.html" class="pg-card" data-category="uxui">
+    <a href="./work/ecommerce.html" class="pg-card" data-category="artdirection">
       <div class="pg-thumb">
         <img src="images/grid/e-commerce.png" alt="E-Commerce Projects" />
       </div>
       <div class="pg-info">
         <div>
-          <div class="pg-cat">UX / UI</div>
+          <div class="pg-cat">Art direction</div>
           <div class="pg-title">E-commerce</div>
           <div class="pg-client">Various brands</div>
         </div>
@@ -774,13 +790,13 @@ a{
       </div>
     </a>
 
-    <a href="./work/editorial.html" class="pg-card" data-category="uxui">
+    <a href="./work/editorial.html" class="pg-card" data-category="editorial">
       <div class="pg-thumb">
         <img src="images/grid/infographic.png" alt="Editorial Infographics" />
       </div>
       <div class="pg-info">
         <div>
-          <div class="pg-cat">UX / UI</div>
+          <div class="pg-cat">Editorial</div>
           <div class="pg-title">Editorial graphics</div>
           <div class="pg-client">Daily Mail</div>
         </div>
@@ -1209,6 +1225,37 @@ document.querySelectorAll('a, button').forEach(el => {
     cursorRing.style.opacity = '1';
   });
 });
+
+/* ================================================================
+   HAMBURGER MENU (mobile nav)
+   ================================================================ */
+const hamburger = document.getElementById('hamburger');
+const navMenu   = document.querySelector('.menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+document.querySelectorAll('.menu-item a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
+
+/* ================================================================
+   ANIMATED FAVICON (manual frame-cycling — most browsers only
+   render the first frame of an animated GIF favicon natively)
+   ================================================================ */
+(function () {
+  const favicon = document.querySelector('link[rel="icon"]');
+  if (!favicon) return;
+  const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+  let frame = 0;
+  setInterval(() => {
+    frame = (frame + 1) % 30;
+    favicon.href = base + String(frame).padStart(2, '0') + '.png';
+  }, 80);
+})();
 
 /* ================================================================
    WORK NAV MENU → WORK SECTION
