@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>UCLIRA – JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif?v=2">
 
   <!-- Fonts — exact match with index.html / sports.html -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1027,4 +1027,46 @@ function openLightbox(img) {
 function closeLightbox() {
   lightbox.classList.remove('open');
   document.body.style.overflow = '';
-  l
+  lbImg.src = '';
+  lbVideo.pause();
+  lbVideo.removeAttribute('src');
+  lbVideo.style.display = 'none';
+  lbImg.style.display = 'block';
+}
+
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+bindCursor(lbClose);
+
+/* ================================================================
+   SCROLL-TRIGGERED REVEALS (IntersectionObserver)
+   ================================================================ */
+const reveals = document.querySelectorAll('.case-block, .aside-block, .gallery-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+/* ================================================================
+   ANIMATED FAVICON (manual frame-cycling)
+   ================================================================ */
+(function () {
+  const favicon = document.querySelector('link[rel="icon"]');
+  if (!favicon) return;
+  const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+  let frame = 0;
+  setInterval(() => {
+    frame = (frame + 1) % 16;
+    favicon.href = base + String(frame).padStart(2, '0') + '.png';
+  }, 80);
+})();
+</script>
+</body>
+</html>

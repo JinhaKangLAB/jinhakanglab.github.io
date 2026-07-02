@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>E-Commerce Campaigns – JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif?v=2">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -813,4 +813,144 @@ const projects = [
   { src: '../images/ecommerce/111skin.jpg',         brand: '111SKIN',          type: 'Luxury Skincare',     category: 'beauty'   },
   { src: '../images/ecommerce/polo.png',            brand: 'Polo Ralph Lauren',type: 'Fashion Campaign',    category: 'fashion'  },
   { src: '../images/ecommerce/waterloo.png',        brand: 'Waterloo',         type: 'Beverage Marketing',  category: 'food'     },
-  { src: '../images/ecommerce/neededAcademy.jpg',   brand: 'Needed Academy',   type: 'Wellness Brand',      category: 'welln
+  { src: '../images/ecommerce/neededAcademy.jpg',   brand: 'Needed Academy',   type: 'Wellness Brand',      category: 'wellness' },
+  { src: '../images/ecommerce/AB.jpg',              brand: 'Augustinus Bader', type: 'Skincare Campaign',   category: 'beauty'   },
+  { src: '../images/ecommerce/jiyu.png',            brand: 'JIYU',             type: 'Skincare Campaign',   category: 'beauty'   },
+  { src: '../images/ecommerce/lipgloss.png',        brand: 'Charlotte Tilbury',type: 'Beauty Campaign',     category: 'beauty'   },
+  { src: '../images/ecommerce/nakedsundays.jpg',    brand: 'Naked Sundays',    type: 'Suncare Campaign',    category: 'beauty'   },
+  { src: '../images/ecommerce/coc1onut.png',        brand: 'Bold Uniq',        type: 'Haircare Campaign',   category: 'beauty'   },
+  { src: '../images/ecommerce/footPeelMask.png',    brand: 'Plantifique',      type: 'Self-Care Product',   category: 'beauty'   },
+  { src: '../images/ecommerce/SawPalmetto.png',     brand: "Nature's Craft",   type: 'Supplement Branding', category: 'wellness' },
+  { src: '../images/ecommerce/hers.jpg',             brand: 'Hers',             type: 'Telehealth Branding', category: 'wellness' },
+  { src: '../images/ecommerce/12829473 - luxe loungewear sets.png', brand: 'Elwood', type: 'Apparel Campaign', category: 'fashion' },
+  { src: '../images/ecommerce/mintMobile.webm',     brand: 'Mint Mobile',      type: 'Tech Campaign',       category: 'tech', isVideo: true },
+];
+
+/* ================================================================
+   BUILD GALLERY
+   ================================================================ */
+const galleryGrid = document.getElementById('galleryGrid');
+const galleryCount = document.getElementById('gallery-count');
+
+function escapeHtml(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function updateCount() {
+  const visible = galleryGrid.querySelectorAll('.gallery-item:not(.hidden)').length;
+  galleryCount.textContent = visible + ' assets';
+}
+
+projects.forEach((p, i) => {
+  const item = document.createElement('div');
+  item.className = 'gallery-item';
+  item.dataset.category = p.category;
+  item.style.transitionDelay = (i * 0.06) + 's';
+
+  const media = p.isVideo
+    ? `<video src="${escapeHtml(p.src)}" autoplay loop muted playsinline></video>`
+    : `<img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.brand)}" loading="lazy" />`;
+
+  item.innerHTML = `
+    <div class="gallery-img-wrap">
+      ${media}
+      <div class="gallery-overlay">
+        <div class="overlay-brand">${escapeHtml(p.brand)}</div>
+        <div class="overlay-type">${escapeHtml(p.type)}</div>
+      </div>
+    </div>
+    <div class="gallery-caption">
+      <div>
+        <div class="caption-title">${escapeHtml(p.brand)}</div>
+        <div class="caption-sub">${escapeHtml(p.type)}</div>
+      </div>
+      <div class="caption-num">0${i + 1}</div>
+    </div>
+  `;
+
+  item.addEventListener('click', () => openLightbox(p));
+  bindCursor(item);
+
+  galleryGrid.appendChild(item);
+});
+updateCount();
+
+/* ================================================================
+   FILTER
+   ================================================================ */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.category;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.classList.toggle('hidden', cat !== 'all' && item.dataset.category !== cat);
+    });
+    updateCount();
+  });
+});
+
+/* ================================================================
+   LIGHTBOX
+   ================================================================ */
+const lightbox = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lb-img');
+const lbVideo  = document.getElementById('lb-video');
+const lbTitle  = document.getElementById('lb-title');
+const lbSub    = document.getElementById('lb-sub');
+const lbClose  = document.getElementById('lb-close');
+
+function openLightbox(p) {
+  if (p.isVideo) {
+    lbVideo.src = p.src;
+    lbVideo.style.display = 'block';
+    lbImg.style.display = 'none';
+    lbImg.src = '';
+  } else {
+    lbImg.src = p.src;
+    lbImg.alt = p.brand;
+    lbImg.style.display = 'block';
+    lbVideo.style.display = 'none';
+    lbVideo.removeAttribute('src');
+  }
+  lbTitle.textContent = p.brand;
+  lbSub.textContent   = p.type;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+  lbVideo.pause();
+  lbVideo.removeAttribute('src');
+  lbVideo.style.display = 'none';
+  lbImg.style.display = 'block';
+}
+
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+bindCursor(lbClose);
+
+/* ================================================================
+   SCROLL-TRIGGERED REVEALS (IntersectionObserver)
+   ================================================================ */
+const reveals = document.querySelectorAll('.case-block, .aside-block, .gallery-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

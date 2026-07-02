@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>Amazon Prime Day 2024 — JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif?v=2">
   <script>
   /* ================================================================
      ANIMATED FAVICON (manual frame-cycling — most browsers only
@@ -950,3 +950,197 @@ document.querySelectorAll('a, button').forEach(el => {
 window.addEventListener('scroll', () => {
   document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
+
+/* ================================================================
+   HAMBURGER MENU
+   ================================================================ */
+const hamburger = document.getElementById('hamburger');
+const menu = document.querySelector('.menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('active');
+});
+document.querySelectorAll('.menu-item a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    menu.classList.remove('active');
+  });
+});
+
+/* ================================================================
+   PARALLAX HERO VIDEO
+   ================================================================ */
+const heroWrap = document.getElementById('hero-img-wrap');
+(function setupParallax() {
+  let latestScroll = 0, ticking = false;
+  function onScroll() {
+    latestScroll = window.scrollY;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const depth = Math.min(latestScroll * 0.18, 140);
+        heroWrap.style.transform = `translateY(${depth}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* ================================================================
+   SCROLL TO GALLERY
+   ================================================================ */
+document.getElementById('scrollBtn')?.addEventListener('click', () => {
+  document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ================================================================
+   IMAGES DATA
+   ================================================================ */
+const IMAGES = [
+  {
+    id: 1,
+    title: "Vertical Web Banner",
+    subtitle: "Animated vertical banner unit built for Amazon Prime Day digital placements",
+    src: "../images/amazon/verticalBanner.webm",
+    isVideo: true,
+  },
+  {
+    id: 2,
+    title: "Digital Campaign Banner",
+    subtitle: "Animated banner variant produced for Prime Day programmatic placements",
+    src: "../images/amazon/amazon3.webm",
+    isVideo: true,
+  },
+  {
+    id: 3,
+    title: "Campaign Key Visual",
+    subtitle: "Primary campaign artwork used across Prime Day marketing materials",
+    src: "../images/amazon/amazonprime2024.png",
+  },
+  {
+    id: 4,
+    title: "Skyscraper Ad Unit",
+    subtitle: "300×600 rich media ad, shown at true pixel size",
+    src: "../images/amazon/300x600 copy 6.png",
+    isAd: true,
+    adWidth: 300,
+  },
+  {
+    id: 5,
+    title: "MPU Ad Unit",
+    subtitle: "300×250 mid-page unit, shown at true pixel size",
+    src: "../images/amazon/300 x 250 copy.png",
+    isAd: true,
+    adWidth: 300,
+  },
+];
+
+/* ================================================================
+   BUILD GALLERY
+   ================================================================ */
+const galleryGrid = document.getElementById('galleryGrid');
+document.getElementById('gallery-count').textContent = IMAGES.length + ' assets';
+
+function escapeHtml(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+IMAGES.forEach((img, i) => {
+  const item = document.createElement('div');
+  item.className = 'gallery-item';
+  item.style.transitionDelay = (i * 0.08) + 's';
+
+  const media = img.isVideo
+    ? `<video src="${escapeHtml(img.src)}" autoplay loop muted playsinline></video>`
+    : `<img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.title)}" loading="lazy" ${img.isAd ? `style="max-width:${img.adWidth}px"` : ''} />`;
+
+  item.innerHTML = `
+    <div class="gallery-img-wrap${img.isAd ? ' is-ad' : ''}">
+      ${media}
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-caption">
+      <div>
+        <div class="caption-title">${escapeHtml(img.title)}</div>
+        <div class="caption-sub">${escapeHtml(img.subtitle)}</div>
+      </div>
+      <div class="caption-num">0${i + 1}</div>
+    </div>
+  `;
+
+  item.addEventListener('click', () => openLightbox(img));
+  item.addEventListener('mouseenter', cursorGrow);
+  item.addEventListener('mouseleave', cursorReset);
+
+  galleryGrid.appendChild(item);
+});
+
+/* ================================================================
+   LIGHTBOX
+   ================================================================ */
+const lightbox = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lb-img');
+const lbVideo  = document.getElementById('lb-video');
+const lbTitle  = document.getElementById('lb-title');
+const lbSub    = document.getElementById('lb-sub');
+const lbClose  = document.getElementById('lb-close');
+
+function openLightbox(img) {
+  if (img.isVideo) {
+    lbVideo.src = img.src;
+    lbVideo.style.display = 'block';
+    lbImg.style.display = 'none';
+    lbImg.src = '';
+  } else {
+    lbImg.src = img.src;
+    lbImg.alt = img.title;
+    lbImg.style.display = 'block';
+    lbVideo.style.display = 'none';
+    lbVideo.removeAttribute('src');
+  }
+  lbTitle.textContent = img.title;
+  lbSub.textContent   = img.subtitle;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+  lbVideo.pause();
+  lbVideo.removeAttribute('src');
+  lbVideo.style.display = 'none';
+  lbImg.style.display = 'block';
+}
+
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+[lbClose].forEach(el => {
+  el.addEventListener('mouseenter', cursorGrow);
+  el.addEventListener('mouseleave', cursorReset);
+});
+
+/* ================================================================
+   SCROLL-TRIGGERED REVEALS (IntersectionObserver)
+   ================================================================ */
+const reveals = document.querySelectorAll('.case-block, .aside-block, .outcome-item, .gallery-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

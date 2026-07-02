@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>Editorial Design — JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif?v=2">
   <script>
   /* ================================================================
      ANIMATED FAVICON (manual frame-cycling — most browsers only
@@ -596,4 +596,452 @@
 
     /* ── KEYFRAMES ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .hero-left { padding: 56px 40px 56px 56px; }
+    }
+    @media (max-width: 1024px) {
+      .back-link { display: none; }
+      .scroll-cta { display: none; }
+      .project-hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 55vw;
+        min-height: auto;
+        padding-top: 82px;
+      }
+      .hero-left {
+        padding: 56px 40px 48px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        justify-content: flex-start;
+      }
+      .hero-right { min-height: 0; }
+      .project-title { font-size: clamp(48px, 14cqi, 88px); }
+      #case-study { padding: 80px 40px; }
+      .case-study-grid { grid-template-columns: 1fr; gap: 56px; }
+      .case-aside { position: static; }
+      .gallery-header { padding: 60px 40px 40px; }
+      .gallery-grid { padding: 40px 40px 0; }
+      footer { padding: 48px 40px; }
+    }
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      #cursor-ring, #cursor-dot { display: none; }
+      .hamburger { display: block; }
+      .menu {
+        position: fixed; left: -100%; top: 82px;
+        gap: 0; flex-direction: column;
+        background: #fff; width: 100%; text-align: center;
+        transition: 0.3s; z-index: 999;
+      }
+      .menu.active { left: 0; }
+      .menu-item { margin: 16px 0; }
+      .hamburger.active .bar:nth-child(2) { opacity: 0; }
+      .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .project-hero { grid-template-rows: auto 70vw; }
+      .hero-left { padding: 40px 24px 40px; }
+      #case-study { padding: 60px 24px; }
+      .gallery-header { padding: 48px 24px 32px; }
+      .gallery-grid { padding: 32px 24px 0; }
+      footer { padding: 40px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .nav-hug { padding: 10px 16px; }
+      .jinha-kang { font-size: 18px; width: auto; }
+      .project-hero { grid-template-rows: auto 80vw; }
+      .hero-tags { gap: 8px; }
+      .hero-tag { padding: 8px 14px; font-size: 9px; }
+      .project-meta-row span { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── CURSORS ── -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+
+<!-- ── BACK LINK ── -->
+<a href="../index.html" class="back-link">← Back to work</a>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav">
+    <div class="nav-hug">
+      <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+      <ul class="menu">
+        <li class="menu-item"><a href="../index.html" class="nav-link">WORK</a></li>
+        <li class="menu-item"><a href="../creative/index.html" class="nav-link">CREATIVE</a></li>
+        <li class="menu-item"><a href="../cv/cv.html" class="nav-link">CV</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <a href="https://www.linkedin.com/in/jinha-kang/" onclick="window.open(this.href,'_blank','width=600,height=300');return false;">
+        <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn" />
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="project-hero">
+  <div class="hero-left">
+    <div class="project-eyebrow">Editorial Design &amp; Infographics &nbsp;/ &nbsp;Daily Mail</div>
+    <h1 class="project-title">Editorial<br>Infographics</h1>
+    <div class="project-meta-row">
+      <span><strong>Role</strong>&nbsp;&nbsp;Multimedia Graphics Editor</span>
+      <span><strong>Scope</strong>&nbsp;&nbsp;Information Design &amp; Illustration</span>
+      <span><strong>Output</strong>&nbsp;&nbsp;Digital editorial graphics, mobile &amp; desktop</span>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">Infographics</span>
+      <span class="hero-tag">Data Visualization</span>
+      <span class="hero-tag">Editorial</span>
+      <span class="hero-tag">Illustrator · Photoshop</span>
+    </div>
+
+    <div class="scroll-cta">
+      <button class="scroll-cta-btn" id="scrollBtn" aria-label="Scroll to gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18">
+          <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span>View work</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div id="hero-img-wrap">
+      <img src="../images/editorial/ISS.jpg" alt="Editorial infographics hero" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASE STUDY ══ -->
+<section id="case-study">
+  <div class="section-label">Case study</div>
+
+  <div class="case-study-grid">
+    <div class="case-body">
+
+      <div class="case-block">
+        <div class="case-block-label">Challenge</div>
+        <h2 class="case-block-title">Complex science, made<br>instantly readable</h2>
+        <p>Daily Mail's science and health desk regularly breaks down dense studies — space missions, climate research, public health findings — for a mass readership scanning quickly on mobile. Each story needed a graphic that communicated the core idea in seconds, without oversimplifying the underlying research.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">Approach</div>
+        <h2 class="case-block-title">A repeatable system for<br>editorial infographics</h2>
+        <p>I built a flexible visual system that could flex across radically different subject matter — orbital mechanics, ocean chemistry, human anatomy — while staying instantly recognizable as Daily Mail's editorial style, readable at both full-page and thumbnail scale.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">Design decisions</div>
+        <ul class="decision-list">
+          <li class="decision-item">
+            <div class="decision-label">Structure</div>
+            <div class="decision-text">Numbered call-outs and step markers guide the eye through sequential processes, from an ISS evacuation procedure to a walking-interval routine, without requiring readers to hunt for the order of operations.</div>
+          </li>
+          <li class="decision-item">
+            <div class="decision-label">Typography</div>
+            <div class="decision-text">Bold, high-contrast headlines anchor each graphic, sized to remain legible even when a story is scanned inside a cropped social thumbnail or a phone screen held at arm's length.</div>
+          </li>
+          <li class="decision-item">
+            <div class="decision-label">Color &amp; Iconography</div>
+            <div class="decision-text">Color-coding separates categories of information — anatomy diagrams, warning states, sequential steps — so the graphic reads correctly even before a single word is read.</div>
+          </li>
+          <li class="decision-item">
+            <div class="decision-label">Format</div>
+            <div class="decision-text">Every graphic was built to survive Daily Mail's publishing pipeline: cropped previews, mobile scroll galleries, and desktop full-width placements, without losing hierarchy.</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <aside class="case-aside">
+      <div class="aside-block">
+        <div class="aside-label">Client</div>
+        <div class="aside-value">Daily Mail</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Tools</div>
+        <div class="aside-value">Illustrator<br>Photoshop</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Role</div>
+        <div class="aside-value">Multimedia Graphics Editor<br>(Information Design)</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Recognition</div>
+        <div class="outcomes-stat">
+          <span class="stat-num">3</span>
+        </div>
+        <span class="stat-label">Design awards</span>
+        <p style="font-size:13px; color:var(--mid); margin-top:14px; line-height:1.65; font-weight:300;">Including a Titan Health Awards Silver honor for the microplastics infographic, recognizing clarity in health science communication.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="section-label" style="border:none; margin:0 0 16px; padding:0;">Selected work</div>
+      <h2 class="gallery-heading">Infographics</h2>
+    </div>
+    <div class="gallery-count" id="gallery-count"></div>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- JS-rendered -->
+  </div>
+</section>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-inner">
+    <div class="lb-top">
+      <div class="lb-meta">
+        <div class="lb-title" id="lb-title"></div>
+        <div class="lb-sub" id="lb-sub"></div>
+      </div>
+      <div class="lb-actions">
+        <button class="lb-close" id="lb-close" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round">
+            <path d="M2 2l12 12M14 2L2 14"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <img id="lb-img" src="" alt="" />
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">jinhakang.usa@gmail.com</div>
+  <div class="footer-right">© <span id="year"></span> Jinha Kang. All rights reserved.</div>
+</footer>
+
+<script>
+/* ================================================================
+   CUSTOM CURSOR
+   ================================================================ */
+const cursorRing = document.getElementById('cursor-ring');
+const cursorDot  = document.getElementById('cursor-dot');
+let cursorX = 0, cursorY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  document.body.classList.add('mouse-moved');
+  cursorX = e.clientX; cursorY = e.clientY;
+  cursorDot.style.left = cursorX + 'px';
+  cursorDot.style.top  = cursorY + 'px';
+});
+
+function animateCursor() {
+  ringX += (cursorX - ringX) * 0.13;
+  ringY += (cursorY - ringY) * 0.13;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+function cursorGrow()  { cursorRing.style.width='52px'; cursorRing.style.height='52px'; cursorRing.style.opacity='0.5'; }
+function cursorReset() { cursorRing.style.width='36px'; cursorRing.style.height='36px'; cursorRing.style.opacity='1'; }
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', cursorGrow);
+  el.addEventListener('mouseleave', cursorReset);
+});
+
+/* ================================================================
+   NAV SCROLL STATE
+   ================================================================ */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+/* ================================================================
+   HAMBURGER MENU
+   ================================================================ */
+const hamburger = document.getElementById('hamburger');
+const menu = document.querySelector('.menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('active');
+});
+document.querySelectorAll('.menu-item a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    menu.classList.remove('active');
+  });
+});
+
+/* ================================================================
+   PARALLAX HERO IMAGE
+   ================================================================ */
+const heroWrap = document.getElementById('hero-img-wrap');
+(function setupParallax() {
+  let latestScroll = 0, ticking = false;
+  function onScroll() {
+    latestScroll = window.scrollY;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const depth = Math.min(latestScroll * 0.18, 140);
+        heroWrap.style.transform = `translateY(${depth}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* ================================================================
+   SCROLL TO GALLERY
+   ================================================================ */
+document.getElementById('scrollBtn')?.addEventListener('click', () => {
+  document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ================================================================
+   IMAGES DATA
+   ================================================================ */
+const IMAGES = [
+  {
+    id: 1,
+    title: "NASA's ISS Evacuation Plan",
+    subtitle: "Step-by-step infographic explaining NASA's emergency evacuation procedure for the International Space Station",
+    src: "../images/editorial/NASA.png",
+  },
+  {
+    id: 2,
+    title: "Controversial Plan to Stop Climate Change",
+    subtitle: "Explainer graphic on a proposed ocean iron fertilization plan to slow global warming",
+    src: "../images/editorial/Controversial.jpg",
+  },
+  {
+    id: 3,
+    title: "Microplastics in the Human Body",
+    subtitle: "Anatomical infographic mapping where microplastics have been found in human organs — Titan Health Awards Silver Winner",
+    src: "../images/editorial/Microplastic.png",
+  },
+  {
+    id: 4,
+    title: "Interval Walking Training",
+    subtitle: "Step-by-step illustrated guide to the interval walking training method",
+    src: "../images/editorial/IntervalWalkingTraining.png",
+  },
+  {
+    id: 5,
+    title: "Early Facial Signs of Dementia",
+    subtitle: "Diagnostic infographic highlighting early facial indicators linked to cognitive decline",
+    src: "../images/editorial/AIHealth.png",
+  },
+];
+
+/* ================================================================
+   BUILD GALLERY
+   ================================================================ */
+const galleryGrid = document.getElementById('galleryGrid');
+document.getElementById('gallery-count').textContent = IMAGES.length + ' assets';
+
+function escapeHtml(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+IMAGES.forEach((img, i) => {
+  const item = document.createElement('div');
+  item.className = 'gallery-item';
+  item.style.transitionDelay = (i * 0.08) + 's';
+
+  item.innerHTML = `
+    <div class="gallery-img-wrap">
+      <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.title)}" loading="lazy" />
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-caption">
+      <div>
+        <div class="caption-title">${escapeHtml(img.title)}</div>
+        <div class="caption-sub">${escapeHtml(img.subtitle)}</div>
+      </div>
+      <div class="caption-num">0${i + 1}</div>
+    </div>
+  `;
+
+  item.addEventListener('click', () => openLightbox(img));
+  item.addEventListener('mouseenter', cursorGrow);
+  item.addEventListener('mouseleave', cursorReset);
+
+  galleryGrid.appendChild(item);
+});
+
+/* ================================================================
+   LIGHTBOX
+   ================================================================ */
+const lightbox = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lb-img');
+const lbTitle  = document.getElementById('lb-title');
+const lbSub    = document.getElementById('lb-sub');
+const lbClose  = document.getElementById('lb-close');
+
+function openLightbox(img) {
+  lbImg.src   = img.src;
+  lbImg.alt   = img.title;
+  lbTitle.textContent = img.title;
+  lbSub.textContent   = img.subtitle;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+}
+
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+[lbClose].forEach(el => {
+  el.addEventListener('mouseenter', cursorGrow);
+  el.addEventListener('mouseleave', cursorReset);
+});
+
+/* ================================================================
+   SCROLL-TRIGGERED REVEALS (IntersectionObserver)
+   ================================================================ */
+const reveals = document.querySelectorAll('.case-block, .aside-block, .gallery-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

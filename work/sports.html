@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>Newcastle Confidential — JINHA KANG</title>
-  <link rel="icon" href="../images/jinha-favicon-fallback.gif">
+  <link rel="icon" href="../images/jinha-favicon-fallback.gif?v=2">
 
   <!-- Fonts — exact match with index.html -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1017,4 +1017,8 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -48
+}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
