@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JINHA KANG</title>
-  <link rel="icon" href="images/jinha-favicon-fallback.gif">
+  <link rel="icon" href="images/jinha-favicon-fallback.gif?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;700;900&family=Urbanist:wght@200;300;400;500;700;900&display=swap" rel="stylesheet" />
@@ -1192,6 +1192,14 @@ function render(ts){
 }
 
 /* ================================================================
+   START ASCII CANVAS
+   ================================================================ */
+initBuckets();
+resize();
+window.addEventListener('resize', resize);
+requestAnimationFrame(render);
+
+/* ================================================================
    CUSTOM CURSOR
    ================================================================ */
 const cursorRing = document.getElementById('cursor-ring');
@@ -1399,28 +1407,6 @@ document.querySelectorAll('.pg-card').forEach(card => {
 
 pwSubmit.addEventListener('click', tryUnlock);
 pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
-pwClose.addEventListener('click', closeModal);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
-
-[pwSubmit, pwClose].forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursorRing.style.width = '52px';
-    cursorRing.style.height = '52px';
-    cursorRing.style.opacity = '0.5';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursorRing.style.width = '36px';
-    cursorRing.style.height = '36px';
-    cursorRing.style.opacity = '1';
-  });
-});
-
-/* ---- BOOT ---- */
-initBuckets();
-resize();
-window.addEventListener('resize', resize);
-requestAnimationFrame(render);
 </script>
 </body>
 </html>
