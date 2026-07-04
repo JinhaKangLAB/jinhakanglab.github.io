@@ -1407,6 +1407,15 @@ document.querySelectorAll('.pg-card').forEach(card => {
 
 pwSubmit.addEventListener('click', tryUnlock);
 pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
+
+// Close modal: X button, Escape key, or click outside the box
+pwClose.addEventListener('click', closeModal);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && overlay.style.display === 'flex') closeModal();
+});
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeModal();
+});
 </script>
 </body>
 </html>
