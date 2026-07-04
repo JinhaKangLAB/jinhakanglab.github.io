@@ -576,6 +576,27 @@ a{
     }
     .pg-card:hover .pg-arrow svg { stroke: var(--bg); }
 
+    /* ── PASSWORD MODAL ENTER BUTTON ── */
+    #pw-submit {
+      background: transparent;
+      color: var(--fg);
+      transition: background .2s ease, color .2s ease;
+    }
+    #pw-submit:hover {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    /* ── PASSWORD MODAL CLOSE (X) ── */
+    #pw-close {
+      color: var(--mid);
+      transition: color .2s ease, transform .2s ease;
+    }
+    #pw-close:hover {
+      color: var(--fg);
+      transform: scale(1.25);
+    }
+
     /* ── KEYFRAMES ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(28px); }
@@ -873,13 +894,12 @@ a{
     <button id="pw-submit"
       style="font-family:'Urbanist',sans-serif; font-size:11px; font-weight:500;
       letter-spacing:.18em; text-transform:uppercase; padding:14px 32px;
-      border:1.5px solid var(--fg); background:transparent; color:var(--fg);
-      cursor:none; transition:background .2s, color .2s;">
+      border:1.5px solid var(--fg); cursor:none;">
       Enter
     </button>
     <button id="pw-close" aria-label="Close"
       style="position:absolute; top:16px; right:20px; background:none; border:none;
-      font-size:18px; color:var(--mid); cursor:none; line-height:1;">✕</button>
+      font-size:18px; cursor:none; line-height:1;">✕</button>
   </div>
 </div>
 
