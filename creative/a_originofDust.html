@@ -12,8 +12,42 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="../images/jinha-favicon.png">
-    </head>
+    
+  <style>
+    /* == CUSTOM CURSOR (same as root index.html) == */
+    body { cursor: none; }
+    #cursor { display: none; } /* legacy cursor div, superseded by ring+dot */
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 36px; height: 36px;
+      border: 1.5px solid #0c0c0c;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width .18s ease, height .18s ease, opacity .18s ease, border-color .18s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 5px; height: 5px;
+      background: #0c0c0c;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    body:not(.mouse-moved) #cursor-ring,
+    body:not(.mouse-moved) #cursor-dot { opacity: 0; }
+    @media (max-width: 900px) {
+      body { cursor: auto; }
+      #cursor-ring, #cursor-dot { display: none; }
+    }
+  </style>
+</head>
     <body>
+<!-- CUSTOM CURSOR -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+
          <div id="cursor"></div>
         <!-- NAV -->
         <nav>
