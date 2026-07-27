@@ -1351,6 +1351,10 @@ position: static;
             margin: 16px 0;
         }
 
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
         .menu.active {
             left: 0;
             z-index: 999;
