@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pocket Transfer — JINHA KANG</title>
+  <link rel="icon" type="image/gif" href="../2026-07-01-animated-favicon-32-literal.gif" />
+  <script>
+  /* ================================================================
+     ANIMATED FAVICON (manual frame-cycling)
+     ================================================================ */
+  (function () {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) return;
+    const base = favicon.href.replace(/[^/]*$/, 'favicon-frames/f');
+    let frame = 0;
+    setInterval(() => {
+      frame = (frame + 1) % 30;
+      favicon.href = base + String(frame).padStart(2, '0') + '.png';
+    }, 80);
+  })();
+  </script>
+
+  <!-- Fonts — exact match with index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;700;900&family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,700;0,900;1,300&family=Inter:wght@300;400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-170PYF8XYX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-170PYF8XYX');
+  </script>
+
+  <!--MS-->
+  <script type="text/javascript">
+   (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+  })(window, document, "clarity", "script", "uiz49swzp7");
+  </script>
+
+  <style>
+    /* ══════════════════════════════════════
+       RESET & TOKENS — mirrors index.html
+    ══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #ffffff;
+      --fg:     #0c0c0c;
+      --mid:    #7a7a7a;
+      --faint:  #F5F5F7;
+      --border: rgba(12,12,12,.09);
+      --accent: #4285f4;          /* Pocket Transfer blue */
+      --accent-soft: #eef4ff;
+      --good: #1a8a4c;
+    }
+
+    html, body {
+      width: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Urbanist', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+
+    /* ── CUSTOM CURSOR (identical to index.html) ── */
+    body { cursor: none; }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--fg);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width .18s ease, height .18s ease, opacity .18s ease, border-color .18s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      width: 5px; height: 5px;
+      background: var(--fg); border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    body:not(.mouse-moved) #cursor-ring,
+    body:not(.mouse-moved) #cursor-dot { opacity: 0; }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      top: 0;
+      width: 100%;
+      border-radius: 0;
+      position: fixed;
+      z-index: 1000;
+      transition: background 0.3s ease;
+      height: 82px;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(6px);
+    }
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .nav-hug {
+      padding: 10px 40px 10px 40px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      align-self: stretch;
+      flex-shrink: 0;
+      height: 82px;
+      position: relative;
+    }
+    .jinha-kang {
+      color: #000000;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+      position: relative;
+      width: 130px;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 46px;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      position: relative;
+      z-index: 999;
+    }
+    .menu-item {
+      color: #000000;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      line-height: 24px;
+      font-weight: 400;
+      position: relative;
+      z-index: 999;
+    }
+    .nav-link { transition: 0.7s ease; }
+    .nav-link:hover { color: #D3D3D3; }
+    .linkedin {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      object-fit: cover;
+      aspect-ratio: 1;
+    }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: black;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      position: fixed; top: 50%; left: 40px; z-index: 100;
+      transform: translateY(-50%);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      transition: color 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.8s both;
+    }
+    .back-link:hover { color: var(--fg); }
+    .back-link::before {
+      content: '';
+      display: block;
+      width: 1px; height: 32px;
+      background: var(--mid);
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+    .back-link:hover::before { background: var(--fg); }
+
+    /* ══════════════════════════════════════
+       HERO — editorial split layout
+    ══════════════════════════════════════ */
+    .project-hero {
+      min-height: 100vh; padding-top: 82px;
+      display: grid;
+      grid-template-columns: 54% 46%;
+    }
+
+    /* LEFT */
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 52px 64px 80px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      container-type: inline-size;
+      container-name: hero-left;
+    }
+    .project-eyebrow {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 28px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .1s both;
+    }
+    .project-eyebrow b { color: var(--accent); font-weight: 600; }
+    .project-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(52px, 14cqi, 108px);
+      font-weight: 500;
+      line-height: .88;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .18s both;
+    }
+    .project-lede {
+      font-size: 16px; line-height: 1.7; font-weight: 300;
+      color: var(--mid); max-width: 520px; margin-bottom: 40px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .22s both;
+    }
+    .project-meta-row {
+      display: flex; flex-direction: column; gap: 6px;
+      margin-bottom: 40px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .26s both;
+    }
+    .project-meta-row span {
+      font-size: 13px; font-weight: 400;
+      letter-spacing: .08em; color: var(--mid);
+    }
+    .project-meta-row strong { font-weight: 500; color: var(--fg); }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      animation: fadeUp .9s cubic-bezier(.22,1,.36,1) .34s both;
+    }
+    .hero-tag {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      padding: 10px 18px;
+      border: 1.5px solid var(--mid);
+      color: var(--mid);
+      border-radius: 50px;
+      transition: border-color .2s, color .2s;
+    }
+    .hero-tag:hover { border-color: var(--fg); color: var(--fg); }
+
+    .scroll-cta {
+      position: absolute; right: 52px; bottom: 64px;
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+      animation: fadeIn 1s ease .7s both;
+    }
+    .scroll-cta-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1.5px solid var(--fg); background: transparent;
+      cursor: none; color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .28s, color .28s, transform .28s;
+    }
+    .scroll-cta-btn:hover {
+      background: var(--fg); color: var(--bg); transform: scale(1.06);
+    }
+
+    /* RIGHT — hero image */
+    .hero-right {
+      position: relative; overflow: hidden;
+      min-height: 420px;
+    }
+    .hero-right::before, .hero-right::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none;
+    }
+    .hero-right::before {
+      top: 0; height: 120px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+    }
+    .hero-right::after {
+      bottom: 0; height: 80px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    #hero-img-wrap {
+      position: absolute; inset: 0; will-change: transform;
+    }
+    #hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      animation: fadeIn 1.1s ease .35s both;
+    }
+
+    /* ══════════════════════════════════════
+       GENERIC SECTION SCAFFOLD
+    ══════════════════════════════════════ */
+    .section {
+      padding: 110px 80px 0;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .section-label b { color: var(--accent); font-weight: 600; }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+    /* ══ OVERVIEW GRID ══ */
+    .overview-grid {
+      display: grid; grid-template-columns: 1fr 320px; gap: 80px; align-items: start;
+    }
+    .block { margin-bottom: 52px; }
+    .block:last-child { margin-bottom: 0; }
+    .block-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .block-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 400; line-height: 1.06;
+      letter-spacing: -.02em; margin-bottom: 20px;
+    }
+    .block p {
+      font-size: 16px; line-height: 1.75; color: var(--fg);
+      font-weight: 300; max-width: 620px;
+    }
+    .block p + p { margin-top: 16px; }
+
+    /* aside */
+    .aside { position: sticky; top: 100px; }
+    .aside-block {
+      padding: 24px 0; border-bottom: 1px solid var(--border);
+    }
+    .aside-block:first-child { padding-top: 0; }
+    .aside-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 10px;
+    }
+    .aside-value { font-size: 15px; font-weight: 400; line-height: 1.6; }
+
+    /* overview full-page shot */
+    .overview-shot {
+      margin-top: 72px;
+      border: 1px solid var(--border);
+      background: #fff; cursor: none;
+      overflow: hidden;
+    }
+    .overview-shot img {
+      width: 100%; height: auto; display: block;
+      transition: transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .overview-shot:hover img { transform: scale(1.01); }
+    .overview-shot figcaption {
+      padding: 16px 20px; border-top: 1px solid var(--border);
+      font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5;
+    }
+
+    /* ══ PAIN POINTS ══ */
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    }
+    .pain-card {
+      background: var(--faint);
+      padding: 32px 26px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .pain-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pain-head { font-size: 17px; font-weight: 600; color: var(--accent); }
+    .pain-body { font-size: 14px; line-height: 1.65; font-weight: 300; color: var(--fg); }
+
+    /* ══ PERSONA ══ */
+    .persona {
+      display: grid; grid-template-columns: 260px 1fr; gap: 48px;
+      align-items: start;
+      background: var(--faint);
+      padding: 48px; border-radius: 4px;
+    }
+    .persona-figure {
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+    }
+    .persona-avatar {
+      width: 150px; height: 150px; border-radius: 50%;
+      overflow: hidden; position: relative; flex-shrink: 0;
+      background: var(--accent-soft);
+    }
+    .persona-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 47% 18%;
+      transform: scale(1.75); transform-origin: 47% 24%;
+    }
+    .persona-name { font-size: 14px; font-weight: 600; text-align: center; }
+    .persona-name span { display: block; font-weight: 300; color: var(--mid); font-size: 12px; margin-top: 4px; }
+    .persona-quote {
+      font-family: 'Inter', sans-serif; font-weight: 400; font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px); line-height: 1.4;
+      letter-spacing: -.01em; color: var(--fg); margin-bottom: 32px;
+    }
+    .persona-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 28px; }
+    .persona-col h4 {
+      font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .persona-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .persona-col li {
+      font-size: 14px; line-height: 1.5; font-weight: 300; padding-left: 18px; position: relative;
+    }
+    .persona-col li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    }
+    .persona-facts {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+      border-top: 1px solid var(--border); padding-top: 24px;
+    }
+    .persona-fact .k {
+      font-size: 9px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 6px;
+    }
+    .persona-fact .v { font-size: 13px; font-weight: 400; line-height: 1.4; }
+
+    /* ══ JOURNEY MAP ══ */
+    .journey {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+      border: 1px solid var(--border);
+    }
+    .journey th {
+      background: var(--accent); color: #fff;
+      font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      text-align: left; padding: 14px 18px;
+    }
+    .journey td {
+      padding: 18px; border-top: 1px solid var(--border);
+      vertical-align: top; font-weight: 300; line-height: 1.5;
+    }
+    .journey tr td:first-child { font-weight: 600; }
+    .journey .feel { color: var(--fg); font-weight: 500; }
+    .journey .opp { color: var(--accent); font-weight: 400; }
+    .journey tbody tr:nth-child(even) { background: var(--faint); }
+
+    /* ══ PROCESS (two-up text blocks) ══ */
+    .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .process-card {
+      background: var(--faint); padding: 40px 36px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .process-card h3 {
+      font-family: 'Inter', sans-serif; font-weight: 500;
+      font-size: 22px; letter-spacing: -.01em;
+    }
+    .process-card p { font-size: 15px; line-height: 1.7; font-weight: 300; color: var(--fg); }
+    .process-kicker {
+      font-size: 10px; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+    }
+
+    /* ══ USABILITY ROUNDS ══ */
+    .rounds { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .round h3 {
+      font-size: 15px; font-weight: 700; letter-spacing: .04em;
+      color: var(--accent); margin-bottom: 20px;
+    }
+    .round ol { list-style: none; counter-reset: r; display: flex; flex-direction: column; gap: 4px; }
+    .round li {
+      counter-increment: r; position: relative;
+      padding: 18px 18px 18px 58px; background: var(--faint);
+      font-size: 15px; line-height: 1.5; font-weight: 300;
+    }
+    .round li::before {
+      content: counter(r); position: absolute; left: 18px; top: 16px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ══ TAKEAWAYS ══ */
+    .takeaways { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .impact-quote {
+      font-family: 'Inter', sans-serif; font-style: italic; font-weight: 400;
+      font-size: clamp(20px, 2.6vw, 30px); line-height: 1.4;
+      letter-spacing: -.01em; margin: 20px 0;
+      padding-left: 24px; border-left: 3px solid var(--accent);
+    }
+
+    /* ══ NEXT STEPS ══ */
+    .next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .next-card {
+      background: var(--faint); padding: 40px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .next-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--fg); color: #fff;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .next-card p { font-size: 15px; line-height: 1.65; font-weight: 300; }
+
+    /* ══ SCREENS GALLERY ══ */
+    #screens { padding-top: 110px; }
+    .gallery-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 420px; gap: 2px;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden; background: var(--faint);
+      cursor: none; display: flex; flex-direction: column;
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item.revealed { opacity: 1; transform: translateY(0); }
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-img-wrap { flex: 1; overflow: hidden; position: relative; background: #fff; }
+    .gallery-img-wrap img {
+      width: 100%; height: 100%; object-fit: contain; object-position: center top;
+      padding: 16px;
+      image-rendering: -webkit-optimize-contrast;
+      display: block; transition: transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-item:hover .gallery-img-wrap img { transform: scale(1.03); }
+    .gallery-caption {
+      padding: 16px 20px; display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+      border-top: 1px solid var(--border); background: #fff;
+    }
+    .caption-title { font-size: 14px; font-weight: 600; line-height: 1.3; }
+    .caption-sub { font-size: 12px; color: var(--mid); margin-top: 4px; font-weight: 300; }
+    .caption-num {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; color: var(--accent); flex-shrink: 0; padding-top: 2px;
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(255,255,255,.94); backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      opacity: 0; pointer-events: none; transition: opacity .35s ease;
+    }
+    #lightbox.open { opacity: 1; pointer-events: all; }
+    .lb-inner {
+      position: relative; max-width: 1080px; width: 100%;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .lb-top { display: flex; align-items: center; justify-content: space-between; }
+    .lb-meta { display: flex; flex-direction: column; gap: 4px; }
+    .lb-title { font-size: 15px; font-weight: 600; }
+    .lb-sub { font-size: 12px; color: var(--mid); font-weight: 300; }
+    .lb-close {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1.5px solid var(--fg); background: transparent; cursor: none;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .lb-close:hover { background: var(--fg); color: var(--bg); }
+    .lb-close svg { stroke: currentColor; }
+    #lb-img { width: auto; max-width: 100%; height: auto; max-height: 86vh; object-fit: contain; margin: 0 auto; box-shadow: 0 24px 60px rgba(20,50,110,.18); }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 120px;
+      padding: 56px 80px;
+      border-top: 1px solid var(--faint);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-left {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--mid);
+    }
+    .footer-right { font-size: 12px; color: var(--mid); }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .hero-left { padding: 56px 40px 56px 56px; }
+    }
+    @media (max-width: 1024px) {
+      .back-link { display: none; }
+      .scroll-cta { display: none; }
+      .project-hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 60vw;
+        min-height: auto; padding-top: 82px;
+      }
+      .hero-left {
+        padding: 56px 40px 48px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        justify-content: flex-start;
+      }
+      .hero-right { min-height: 0; }
+      .project-title { font-size: clamp(48px, 14cqi, 88px); }
+      .section { padding: 80px 40px 0; }
+      .overview-grid { grid-template-columns: 1fr; gap: 48px; }
+      .aside { position: static; }
+      .pain-grid { grid-template-columns: 1fr 1fr; }
+      .persona { grid-template-columns: 1fr; gap: 32px; padding: 36px; }
+      .persona-figure { flex-direction: row; }
+      .process-grid, .rounds, .takeaways, .next-grid { grid-template-columns: 1fr; }
+      .next-grid { gap: 2px; }
+      footer { padding: 48px 40px; }
+    }
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      #cursor-ring, #cursor-dot { display: none; }
+      .hamburger { display: block; }
+      .menu {
+        position: fixed; left: -100%; top: 82px;
+        gap: 0; flex-direction: column;
+        background: #fff; width: 100%; text-align: center;
+        transition: 0.3s; z-index: 999;
+      }
+      .menu.active { left: 0; }
+      .menu-item { margin: 16px 0; }
+      .hamburger.active .bar:nth-child(2) { opacity: 0; }
+      .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .project-hero { grid-template-rows: auto 78vw; }
+      .hero-left { padding: 40px 24px 40px; }
+      .section { padding: 64px 24px 0; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+      .gallery-item.tall { grid-row: auto; }
+      .gallery-img-wrap { min-height: 240px; }
+      .persona-figure { flex-direction: column; }
+      .persona-cols { grid-template-columns: 1fr; gap: 24px; }
+      .persona-facts { grid-template-columns: 1fr 1fr; }
+      /* horizontal-scroll the journey table on small screens */
+      .journey-wrap { overflow-x: auto; }
+      .journey { min-width: 640px; }
+      footer { padding: 40px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .nav-hug { padding: 10px 16px; }
+      .jinha-kang { font-size: 18px; width: auto; }
+      .project-hero { grid-template-rows: auto 88vw; }
+      .hero-tags { gap: 8px; }
+      .hero-tag { padding: 8px 14px; font-size: 9px; }
+      .persona-facts { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── CURSORS ── -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+
+<!-- ── BACK LINK ── -->
+<a href="../index.html" class="back-link">← Back to work</a>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav">
+    <div class="nav-hug">
+      <a href="../index.html"><div class="jinha-kang">JINHA KANG</div></a>
+      <ul class="menu">
+        <li class="menu-item"><a href="../index.html" class="nav-link">WORK</a></li>
+        <li class="menu-item"><a href="../creative/index.html" class="nav-link">CREATIVE</a></li>
+        <li class="menu-item"><a href="../cv/cv.html" class="nav-link">CV</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <a href="https://www.linkedin.com/in/jinha-kang/" onclick="window.open(this.href,'_blank','width=600,height=300');return false;">
+        <img class="linkedin" src="../images/linkedin.png" alt="LinkedIn" />
+      </a>
+    </div>
+  </div>
+</nav>
+<!--
+-->
+<!-- ══ HERO ══ -->
+<section class="project-hero">
+  <div class="hero-left">
+    <div class="project-eyebrow">UX / UI &middot; Product Design &nbsp;/&nbsp; <b>Fintech web app</b></div>
+    <h1 class="project-title">Pockt Transfer</h1>
+    <p class="project-lede">Pocket Transfer compares exchange rates, fees, and coupons across every major provider in real time — so you always know who actually offers the best deal.</p>
+    <div class="project-meta-row">
+      <span><strong>Role</strong>&nbsp;&nbsp;Lead UX Designer</span>
+      <span><strong>Duration</strong>&nbsp;&nbsp;Jun 2026 – Aug 2026</span>
+      <span><strong>Output</strong>&nbsp;&nbsp;Built the product from the ground up through launch</span>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">UX Research</span>
+      <span class="hero-tag">Interaction Design</span>
+      <span class="hero-tag">Prototyping</span>
+      <span class="hero-tag">Fintech</span>
+    </div>
+
+    <div class="scroll-cta">
+      <button class="scroll-cta-btn" id="scrollBtn" aria-label="Scroll to case study">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18">
+          <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span>Read case study</span>
+    </div>
+  </div>
+
+<div class="hero-right">
+    <div id="hero-img-wrap">
+      <img src="../images/pocketTransfer/Herov2.png" alt="Pocket Transfer product hero" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW ══ -->
+<section class="section" id="case-study">
+  <div class="section-label reveal">Project <b>overview</b></div>
+  <div class="overview-grid">
+    <div>
+      <div class="block reveal">
+        <div class="block-label">The problem</div>
+        <h2 class="block-title">True cost is hidden<br>across a dozen tabs</h2>
+        <p>People sending money abroad must manually check multiple provider sites, where hidden fees and marked-up exchange rates make true costs hard to compare. As a result, many overpay without realizing it.</p>
+      </div>
+      <div class="block reveal">
+        <div class="block-label">The goal</div>
+        <h2 class="block-title">One transparent<br>number per provider</h2>
+        <p>Design a web app that shows the true total cost of a transfer across providers in one view, so users can choose with confidence and save money on every transfer.</p>
+      </div>
+      <div class="block reveal">
+        <div class="block-label">The product</div>
+        <p>Pocket Transfer aggregates live quotes and reduces each option to a single "recipient gets" amount — rate markup plus fees minus promotions — for international students, travellers, and people who live abroad.</p>
+      </div>
+    </div>
+
+    <aside class="aside reveal">
+      <div class="aside-block">
+        <div class="aside-label">My role</div>
+        <div class="aside-value">Lead UX Designer <br>(Built the product from 0 to 1)</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Responsibilities</div>
+        <div class="aside-value">User research, personas &amp; journey mapping, paper &amp; digital wireframing, low- and high-fidelity prototyping, two rounds of usability testing, accessibility review</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Timeline</div>
+        <div class="aside-value">Jun 2026 – Aug 2026</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Platform</div>
+        <div class="aside-value">Responsive web app</div>
+      </div>
+    </aside>
+  </div>
+
+  <figure class="overview-shot reveal" id="overviewShot">
+    <img src="../images/pocketTransfer/highfi-homepage.png" alt="Pocket Transfer high-fidelity homepage — full page" loading="lazy" />
+    <figcaption>High-fidelity homepage — the shipped compare view, with providers ranked by amount received. Click to enlarge.</figcaption>
+  </figure>
+</section>
+
+<!-- ══ RESEARCH ══ -->
+<section class="section">
+  <div class="section-label reveal">Understanding the <b>user</b></div>
+  <div class="block reveal" style="margin-bottom:48px;">
+    <div class="block-label">User research · summary</div>
+    <h2 class="block-title">I assumed rate was<br>everything. It wasn't.</h2>
+    <p>I ran remote interviews and surveys with 12 people who send money internationally at least once a month. Going in, I assumed users cared most about the exchange rate alone. Research showed the real struggle is comparing <em>total cost</em> — rate markup plus fees minus promotions — across many providers, and that users distrust "zero fee" claims. This shifted the design toward one transparent "recipient gets" number per provider.</p>
+  </div>
+
+  <div class="block-label reveal" style="color:var(--accent); margin-bottom:16px;">Pain points</div>
+  <div class="pain-grid reveal">
+    <div class="pain-card">
+      <div class="pain-num">1</div>
+      <div class="pain-head">Hidden costs</div>
+      <div class="pain-body">Fees and rate markups are buried across provider sites, so the true cost is unclear. Designs must lead with one all-inclusive "recipient gets" amount.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">2</div>
+      <div class="pain-head">Manual comparison</div>
+      <div class="pain-body">Checking five or more providers one by one takes over 30 minutes, and quotes expire fast. Designs must aggregate live quotes in a single view.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">3</div>
+      <div class="pain-head">Missed promotions</div>
+      <div class="pain-body">Coupons and first-transfer deals are scattered and expire unnoticed. Designs should find and apply valid promos to each quote automatically.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">4</div>
+      <div class="pain-head">Low trust</div>
+      <div class="pain-body">Users doubt "zero fee" marketing and hesitate with unfamiliar providers. Designs need clear cost breakdowns, ratings, and delivery estimates.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PERSONA ══ -->
+<section class="section">
+  <div class="section-label reveal">Persona · <b>Amara</b></div>
+  <div class="persona reveal">
+    <div class="persona-figure">
+      <div class="persona-avatar">
+        <img src="../images/pocketTransfer/amara - Copy.jpeg" alt="Portrait of Amara, a registered nurse" />
+      </div>
+      <div class="persona-name">Amara, 34<span>Registered nurse</span></div>
+    </div>
+    <div class="persona-detail">
+      <p class="persona-quote">"I just want to know which service actually gets the most money to my family — without doing math on five different websites."</p>
+      <div class="persona-cols">
+        <div class="persona-col">
+          <h4>Goals</h4>
+          <ul>
+            <li>Send money home monthly without overpaying in fees</li>
+            <li>Know exactly what her family receives</li>
+            <li>Finish the whole task in minutes</li>
+          </ul>
+        </div>
+        <div class="persona-col">
+          <h4>Frustrations</h4>
+          <ul>
+            <li>Hidden fees and marked-up rates</li>
+            <li>Comparing providers one by one</li>
+            <li>Promo codes that never seem to work</li>
+            <li>"Zero fee" claims she can't verify</li>
+          </ul>
+        </div>
+      </div>
+      <div class="persona-facts">
+        <div class="persona-fact"><div class="k">Age</div><div class="v">34</div></div>
+        <div class="persona-fact"><div class="k">Education</div><div class="v">BSc Nursing</div></div>
+        <div class="persona-fact"><div class="k">Hometown</div><div class="v">Lagos, Nigeria</div></div>
+        <div class="persona-fact"><div class="k">Family</div><div class="v">Parents &amp; two siblings back home</div></div>
+        <div class="persona-fact"><div class="k">Occupation</div><div class="v">Nurse in Houston, TX</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JOURNEY MAP ══ -->
+<section class="section">
+  <div class="section-label reveal">User journey <b>map</b></div>
+  <div class="block reveal" style="margin-bottom:40px;">
+    <p>Mapping Amara's journey of sending her monthly remittance revealed friction before the transfer even begins: gathering quotes, re-checking expiring rates, and hunting for promo codes. This pointed to the comparison stage as the biggest opportunity for improvement.</p>
+  </div>
+  <div class="journey-wrap reveal">
+    <table class="journey">
+      <thead>
+        <tr><th>Stage</th><th>Actions</th><th>Feeling</th><th>Opportunity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 · Decide to send</td><td>Checks family needs, payday timing</td><td class="feel">Motivated</td><td class="opp">Show live rate for her saved corridor</td></tr>
+        <tr><td>2 · Gather quotes</td><td>Opens 5+ provider sites, notes rates and fees</td><td class="feel">Frustrated</td><td class="opp">Aggregate live quotes in one view</td></tr>
+        <tr><td>3 · Compare costs</td><td>Builds mental math of rate + fee − promo</td><td class="feel">Overwhelmed</td><td class="opp">One "recipient gets" number incl. everything</td></tr>
+        <tr><td>4 · Choose provider</td><td>Second-guesses "zero fee" claims, re-checks</td><td class="feel">Anxious</td><td class="opp">Transparent breakdown + trust signals</td></tr>
+        <tr><td>5 · Send &amp; confirm</td><td>Completes transfer, tells family</td><td class="feel">Relieved</td><td class="opp">Deep-link handoff with locked-in quote</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ DESIGN PROCESS ══ -->
+<section class="section">
+  <div class="section-label reveal">Starting the <b>design</b></div>
+  <div class="process-grid reveal">
+    <div class="process-card">
+      <div class="process-kicker">Sitemap</div>
+      <h3>User-focused flows</h3>
+      <p>I built flows so personas can complete key objectives while reducing existing pain points — a Compare path with a customizable quiz and filters (total, lowest rate, lowest fee, fastest, safest), plus Deals, Rate alerts, and Account branches feeding into a single result that deep-links to the provider.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-kicker">Paper wireframes</div>
+      <h3>Six results screens</h3>
+      <p>I sketched six versions of the comparison results screen, prioritizing what research showed matters most. The refined version leads with the amount the recipient actually gets, keeping fee, rate, promo, and delivery time visible without extra clicks.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-kicker">Digital wireframes</div>
+      <h3>Ranked by value received</h3>
+      <p>Providers are ranked by amount received, so the best overall value always appears first. Each result card shows the fee, exchange rate, and applied promo up front — no hidden costs.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-kicker">Low-fidelity prototype</div>
+      <h3>The primary flow, connected</h3>
+      <p>The prototype connects the core path: enter transfer amount and destination, compare live provider quotes, review the cost breakdown, and continue to the chosen provider — no account required to start comparing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCREENS ══ -->
+<section class="section" id="screens">
+  <div class="section-label reveal">Screens &amp; <b>process</b></div>
+  <div class="block reveal" style="margin-bottom:40px;">
+    <p>From six paper explorations of the results screen to a connected low-fidelity flow and the high-fidelity build — every screen leads with the amount the recipient actually gets, keeping fee, rate, promo, and delivery time visible without extra clicks. Click any screen to enlarge.</p>
+  </div>
+  <div class="gallery-grid reveal" id="galleryGrid">
+    <!-- JS-rendered -->
+  </div>
+</section>
+
+<!-- ══ USABILITY ══ -->
+<section class="section">
+  <div class="section-label reveal">Usability study · <b>findings</b></div>
+  <div class="block reveal" style="margin-bottom:44px;">
+    <p>I conducted two rounds of moderated usability studies with five participants each: round 1 tested the low-fidelity prototype and round 2 tested the high-fidelity mockups. Findings guided the designs from wireframes to final mockups.</p>
+  </div>
+  <div class="rounds reveal">
+    <div class="round">
+      <h3>Round 1 — low-fidelity</h3>
+      <ol>
+        <li>Users wanted to see how the total was calculated</li>
+        <li>Users expected promo codes to apply automatically</li>
+        <li>Delivery time mattered nearly as much as price</li>
+      </ol>
+    </div>
+    <div class="round">
+      <h3>Round 2 — high-fidelity</h3>
+      <ol>
+        <li>The comparison view felt crowded; users wanted simpler cards</li>
+        <li>Users wanted to sort by speed as well as best value</li>
+        <li>Trust signals like ratings were too hard to find</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TAKEAWAYS ══ -->
+<section class="section">
+  <div class="section-label reveal">Going <b>forward</b></div>
+  <div class="takeaways reveal">
+    <div>
+      <div class="block-label">Impact</div>
+      <p>Pocket Transfer makes cost transparency the default.</p>
+      <p class="impact-quote">"I can finally see what a transfer really costs — this would save me money every month."</p>
+      <p style="color:var(--mid); font-size:14px;">— Usability study participant</p>
+    </div>
+    <div>
+      <div class="block-label">What I learned</div>
+      <p>I learned that trust is designed, not claimed — showing the math behind each quote changed how users felt more than any visual polish. I also saw how quickly early assumptions fall away once you talk with real users.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEXT STEPS ══ -->
+<section class="section">
+  <div class="section-label reveal">Next <b>steps</b></div>
+  <div class="next-grid reveal">
+    <div class="next-card">
+      <div class="next-num">1</div>
+      <p>Run a third usability study on the live product with real-time provider data to validate quote accuracy and expiry handling.</p>
+    </div>
+    <div class="next-card">
+      <div class="next-num">2</div>
+      <p>Design rate alerts and a "send again" flow so returning users can act when their corridor's exchange rate peaks.</p>
+    </div>
+    <div class="next-card">
+      <div class="next-num">3</div>
+      <p>Partner with providers on deep-link handoff so the fees and promos shown in Pocket Transfer are honored at checkout.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-inner">
+    <div class="lb-top">
+      <div class="lb-meta">
+        <div class="lb-title" id="lb-title"></div>
+        <div class="lb-sub" id="lb-sub"></div>
+      </div>
+      <button class="lb-close" id="lb-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round">
+          <path d="M2 2l12 12M14 2L2 14"/>
+        </svg>
+      </button>
+    </div>
+    <img id="lb-img" src="" alt="" />
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">jinhakang.usa@gmail.com</div>
+  <div class="footer-right">© <span id="year"></span> Jinha Kang. All rights reserved.</div>
+</footer>
+
+<script>
+/* ================================================================
+   CUSTOM CURSOR
+   ================================================================ */
+const cursorRing = document.getElementById('cursor-ring');
+const cursorDot  = document.getElementById('cursor-dot');
+let cursorX = 0, cursorY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  document.body.classList.add('mouse-moved');
+  cursorX = e.clientX; cursorY = e.clientY;
+  cursorDot.style.left = cursorX + 'px';
+  cursorDot.style.top  = cursorY + 'px';
+});
+
+function animateCursor() {
+  ringX += (cursorX - ringX) * 0.13;
+  ringY += (cursorY - ringY) * 0.13;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+function cursorGrow()  { cursorRing.style.width='52px'; cursorRing.style.height='52px'; cursorRing.style.opacity='0.5'; }
+function cursorReset() { cursorRing.style.width='36px'; cursorRing.style.height='36px'; cursorRing.style.opacity='1'; }
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', cursorGrow);
+  el.addEventListener('mouseleave', cursorReset);
+});
+
+/* ================================================================
+   NAV SCROLL STATE
+   ================================================================ */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+/* ================================================================
+   HAMBURGER MENU
+   ================================================================ */
+const hamburger = document.getElementById('hamburger');
+const menu = document.querySelector('.menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('active');
+});
+document.querySelectorAll('.menu-item a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    menu.classList.remove('active');
+  });
+});
+
+/* ================================================================
+   PARALLAX HERO IMAGE
+   ================================================================ */
+const heroWrap = document.getElementById('hero-img-wrap');
+(function setupParallax() {
+  if (!heroWrap) return;
+  let latestScroll = 0, ticking = false;
+  function onScroll() {
+    latestScroll = window.scrollY;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const depth = Math.min(latestScroll * 0.18, 140);
+        heroWrap.style.transform = `translateY(${depth}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* ================================================================
+   SCROLL TO CASE STUDY
+   ================================================================ */
+document.getElementById('scrollBtn')?.addEventListener('click', () => {
+  document.getElementById('case-study').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ================================================================
+   SCROLL-TRIGGERED REVEALS (IntersectionObserver)
+   ================================================================ */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+/* ================================================================
+   SCREENS GALLERY + LIGHTBOX
+   ================================================================ */
+const SCREENS = [
+  {
+    title: "Site map",
+    sub: "Compare, Deals, Rate alerts, and Account branches feeding one result",
+    src: "../images/pocketTransfer/sitemap.png",
+    tall: true,
+  },
+  {
+    title: "Paper wireframes",
+    sub: "Six explorations of the comparison results screen",
+    src: "../images/pocketTransfer/paper-wireframes.png",
+  },
+  {
+    title: "Digital wireframe",
+    sub: "Providers ranked by amount received; fee, rate & promo shown up front",
+    src: "../images/pocketTransfer/digital-wireframe.png",
+    tall: true,
+  },
+];
+
+const galleryGrid = document.getElementById('galleryGrid');
+const screensSection = document.getElementById('screens');
+let loadedCount = 0, settled = 0;
+
+function escapeHtml(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function settleGallery() {
+  settled++;
+  if (settled === SCREENS.length && loadedCount === 0 && screensSection) {
+    screensSection.style.display = 'none'; // no images present yet — hide the section
+  }
+}
+
+SCREENS.forEach((s, i) => {
+  const item = document.createElement('div');
+  item.className = 'gallery-item' + (s.tall ? ' tall' : '');
+  item.style.transitionDelay = (i * 0.08) + 's';
+  item.innerHTML = `
+    <div class="gallery-img-wrap">
+      <img src="${escapeHtml(s.src)}" alt="${escapeHtml(s.title)}" loading="lazy" />
+    </div>
+    <div class="gallery-caption">
+      <div>
+        <div class="caption-title">${escapeHtml(s.title)}</div>
+        <div class="caption-sub">${escapeHtml(s.sub)}</div>
+      </div>
+      <div class="caption-num">0${i + 1}</div>
+    </div>`;
+
+  const imgEl = item.querySelector('img');
+  imgEl.addEventListener('load', () => { loadedCount++; settleGallery(); });
+  imgEl.addEventListener('error', () => { item.remove(); settleGallery(); });
+
+  item.addEventListener('click', () => openLightbox(s));
+  item.addEventListener('mouseenter', cursorGrow);
+  item.addEventListener('mouseleave', cursorReset);
+
+  galleryGrid.appendChild(item);
+  observer.observe(item);
+});
+
+const lightbox = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lb-img');
+const lbTitle = document.getElementById('lb-title');
+const lbSub   = document.getElementById('lb-sub');
+const lbClose = document.getElementById('lb-close');
+
+function openLightbox(s) {
+  lbImg.src = s.src; lbImg.alt = s.title;
+  lbTitle.textContent = s.title;
+  lbSub.textContent = s.sub;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbClose.focus();
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+}
+lbClose.addEventListener('click', closeLightbox);
+
+const overviewShot = document.getElementById('overviewShot');
+if (overviewShot) {
+  overviewShot.addEventListener('click', () => openLightbox({
+    src: '../images/pocketTransfer/highfi-homepage.png',
+    title: 'High-fidelity homepage',
+    sub: 'The shipped compare view — providers ranked by amount received',
+  }));
+  overviewShot.addEventListener('mouseenter', cursorGrow);
+  overviewShot.addEventListener('mouseleave', cursorReset);
+}
+
+lbClose.addEventListener('mouseenter', cursorGrow);
+lbClose.addEventListener('mouseleave', cursorReset);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+/* ================================================================
+   FOOTER YEAR
+   ================================================================ */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
