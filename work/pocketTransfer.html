@@ -382,8 +382,14 @@
     .aside-value { font-size: 15px; font-weight: 400; line-height: 1.6; }
 
     /* overview full-page shot */
-    .overview-shot {
+    .overview-shots {
       margin-top: 72px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 24px;
+      align-items: start;
+    }
+    .overview-shot {
       border: 1px solid var(--border);
       background: #fff; cursor: none;
       overflow: hidden;
@@ -395,6 +401,26 @@
     .overview-shot:hover img { transform: scale(1.01); }
     .overview-shot figcaption {
       padding: 16px 20px; border-top: 1px solid var(--border);
+      font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5;
+    }
+
+    /* overview mobile shot — sits beside the desktop capture */
+    .overview-shot-mobile { cursor: none; }
+    .overview-shot-mobile .mobile-frame {
+      border: 1px solid var(--border);
+      background: var(--faint);
+      border-radius: 4px;
+      padding: 28px 24px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .overview-shot-mobile img {
+      width: 100%; height: auto; max-width: 260px; display: block;
+      transition: transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .overview-shot-mobile:hover img { transform: scale(1.02); }
+    .overview-shot-mobile figcaption {
+      padding: 16px 4px 0;
       font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5;
     }
 
@@ -650,6 +676,9 @@
       .project-title { font-size: clamp(48px, 14cqi, 88px); }
       .section { padding: 80px 40px 0; }
       .overview-grid { grid-template-columns: 1fr; gap: 48px; }
+      .overview-shots { grid-template-columns: 1fr; gap: 32px; }
+      .overview-shot-mobile .mobile-frame { padding: 36px; }
+      .overview-shot-mobile img { max-width: 300px; }
       .aside { position: static; }
       .pain-grid { grid-template-columns: 1fr 1fr; }
       .persona { grid-template-columns: 1fr; gap: 32px; padding: 36px; }
@@ -806,10 +835,18 @@
     </aside>
   </div>
 
-  <figure class="overview-shot reveal" id="overviewShot">
-    <img src="../images/pocketTransfer/highfi-homepage.png" alt="Pocket Transfer high-fidelity homepage — full page" loading="lazy" />
-    <figcaption>High-fidelity homepage — the shipped compare view, with providers ranked by amount received. Click to enlarge.</figcaption>
-  </figure>
+  <div class="overview-shots reveal">
+    <figure class="overview-shot" id="overviewShot">
+      <img src="../images/pocketTransfer/highfi-homepage.png" alt="Pocket Transfer high-fidelity homepage — full page" loading="lazy" />
+      <figcaption>High-fidelity homepage (desktop) — the shipped compare view, with providers ranked by amount received. Click to enlarge.</figcaption>
+    </figure>
+    <figure class="overview-shot-mobile" id="overviewShotMobile">
+      <div class="mobile-frame">
+        <img src="../images/pocketTransfer/mockup-mobile.png" alt="Pocket Transfer high-fidelity homepage — mobile" loading="lazy" />
+      </div>
+      <figcaption>Mobile view — the same compare experience, responsive to phone. Click to enlarge.</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- ══ RESEARCH ══ -->
@@ -1199,8 +1236,7 @@ SCREENS.forEach((s, i) => {
   observer.observe(item);
 });
 
-const lightbox = document.getElementById('lightbox');
-const lbImg   = document.getElementById('lb-img');
+const lightbox = document.getElementById('lightbox');const lbImg   = document.getElementById('lb-img');
 const lbTitle = document.getElementById('lb-title');
 const lbSub   = document.getElementById('lb-sub');
 const lbClose = document.getElementById('lb-close');
@@ -1229,6 +1265,17 @@ if (overviewShot) {
   }));
   overviewShot.addEventListener('mouseenter', cursorGrow);
   overviewShot.addEventListener('mouseleave', cursorReset);
+}
+
+const overviewShotMobile = document.getElementById('overviewShotMobile');
+if (overviewShotMobile) {
+  overviewShotMobile.addEventListener('click', () => openLightbox({
+    src: '../images/pocketTransfer/highfi-mobile.png',
+    title: 'High-fidelity homepage — mobile',
+    sub: 'The same compare experience, responsive to phone',
+  }));
+  overviewShotMobile.addEventListener('mouseenter', cursorGrow);
+  overviewShotMobile.addEventListener('mouseleave', cursorReset);
 }
 
 lbClose.addEventListener('mouseenter', cursorGrow);
