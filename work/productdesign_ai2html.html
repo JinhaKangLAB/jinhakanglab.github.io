@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8" />
@@ -415,7 +414,30 @@
 
     /* == REDUCED TOP MARGIN (style.css gives html+body 40px each = 80px) == */
     html, body { padding-top: 28px !important; } /* 56px total — tweak here */
+
+    /* == FRAMER FLASH-ON-LOAD GUARD ==
+       The Framer block (#main) ships no stylesheet of its own — its CSS is
+       injected at runtime by the async module bundle from framerusercontent.com.
+       Until that lands, the loose SVG assets render at full size in normal flow
+       and every responsive breakpoint variant paints at once (the "blobs").
+       Keep #main hidden until the runtime has hydrated, then fade it in. */
+    #main { opacity: 0; }
+    #main.framer-ready { opacity: 1; transition: opacity .25s ease; }
   </style>
+
+  <script>
+  /* Reveal the Framer block once its runtime bundle has loaded and hydrated.
+     The timeout fallback guarantees the content still appears even if
+     framerusercontent.com is slow, blocked, or offline. */
+  (function () {
+    function reveal() {
+      var m = document.getElementById('main');
+      if (m) m.classList.add('framer-ready');
+    }
+    window.addEventListener('load', function () { setTimeout(reveal, 120); });
+    setTimeout(reveal, 3000);
+  })();
+  </script>
 </head>
 <body>
   <div id="cursor-ring"></div><div id="cursor-dot"></div>
