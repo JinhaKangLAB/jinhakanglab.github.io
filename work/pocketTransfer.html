@@ -393,24 +393,51 @@
       border: 1px solid var(--border);
       background: #fff; cursor: none;
       overflow: hidden;
+      display: flex; flex-direction: column;
     }
-    .overview-shot img {
+    .overview-shot img,
+    .overview-shot video {
       width: 100%; height: auto; display: block;
       transition: transform .65s cubic-bezier(.22,1,.36,1);
     }
-    .overview-shot:hover img { transform: scale(1.01); }
+    .overview-shot:hover img,
+    .overview-shot:hover video { transform: scale(1.01); }
     .overview-shot figcaption {
       padding: 16px 20px; border-top: 1px solid var(--border);
       font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5;
     }
 
+    /* overview pair — the two full-page captures, side by side */
+    .overview-shots-pair {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+    /* equal heights: shared aspect ratio, cropped from the top */
+    .overview-shots-pair .overview-shot {
+      display: flex; flex-direction: column;
+    }
+    .overview-shots-pair .overview-shot img {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .overview-shots-pair .overview-shot figcaption { margin-top: auto; }
+
     /* overview mobile shot — sits beside the desktop capture */
-    .overview-shot-mobile { cursor: none; }
+    .overview-shot-mobile {
+      cursor: none;
+      align-self: stretch;
+      display: flex; flex-direction: column;
+    }
     .overview-shot-mobile .mobile-frame {
       border: 1px solid var(--border);
       background: var(--faint);
       border-radius: 4px;
       padding: 28px 24px;
+      flex: 1;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
@@ -629,6 +656,7 @@
     .lb-close:hover { background: var(--fg); color: var(--bg); }
     .lb-close svg { stroke: currentColor; }
     #lb-img { width: auto; max-width: 100%; height: auto; max-height: 86vh; object-fit: contain; margin: 0 auto; box-shadow: 0 24px 60px rgba(20,50,110,.18); }
+    #lb-video { width: auto; max-width: 100%; height: auto; max-height: 86vh; object-fit: contain; margin: 0 auto; box-shadow: 0 24px 60px rgba(20,50,110,.18); }
 
     /* ── FOOTER ── */
     footer {
@@ -677,6 +705,7 @@
       .section { padding: 80px 40px 0; }
       .overview-grid { grid-template-columns: 1fr; gap: 48px; }
       .overview-shots { grid-template-columns: 1fr; gap: 32px; }
+      .overview-shots-pair { grid-template-columns: 1fr; gap: 32px; margin-top: 32px; }
       .overview-shot-mobile .mobile-frame { padding: 36px; }
       .overview-shot-mobile img { max-width: 300px; }
       .aside { position: static; }
@@ -764,11 +793,11 @@
   <div class="hero-left">
     <div class="project-eyebrow">UX / UI &middot; Product Design &nbsp;/&nbsp; <b>Fintech web app</b></div>
     <h1 class="project-title">Pocket Transfer</h1>
-    <p class="project-lede">Pocket Transfer compares exchange rates, fees, and coupons across every major provider in real time — so you always know who actually offers the best deal.</p>
+    <p class="project-lede">A comparison tool that reads live exchange rates, fees, and promos across every major provider at once, then ranks them by what your recipient actually receives. No math, no guesswork, no overpaying.</p>
     <div class="project-meta-row">
       <span><strong>Role</strong>&nbsp;&nbsp;Lead UX Designer</span>
       <span><strong>Duration</strong>&nbsp;&nbsp;Jun 2026 – Aug 2026</span>
-      <span><strong>Output</strong>&nbsp;&nbsp;Built the product from the ground up through launch</span>
+      <span><strong>Output</strong>&nbsp;&nbsp;End-to-end product, from research to shipped build</span>
     </div>
     <div class="hero-tags">
       <span class="hero-tag">UX Research</span>
@@ -801,17 +830,17 @@
     <div>
       <div class="block reveal">
         <div class="block-label">The problem</div>
-        <h2 class="block-title">True cost is hidden<br>across a dozen tabs</h2>
-        <p>People sending money abroad must manually check multiple provider sites, where hidden fees and marked-up exchange rates make true costs hard to compare. As a result, many overpay without realizing it.</p>
+        <h2 class="block-title">The real cost hides<br>across a dozen tabs</h2>
+        <p>Sending money abroad means opening provider after provider and decoding hidden fees and marked-up exchange rates just to estimate what a transfer really costs. Comparison is so tedious that most people give up and quietly overpay, every single month.</p>
       </div>
       <div class="block reveal">
         <div class="block-label">The goal</div>
-        <h2 class="block-title">One transparent<br>number per provider</h2>
-        <p>Design a web app that shows the true total cost of a transfer across providers in one view, so users can choose with confidence and save money on every transfer.</p>
+        <h2 class="block-title">One honest number<br>per provider</h2>
+        <p>Collapse a messy, multi-tab comparison into a single screen that ranks providers by what the recipient actually receives. Choosing the cheapest, fastest option should take seconds, not half an hour.</p>
       </div>
       <div class="block reveal">
         <div class="block-label">The product</div>
-        <p>Pocket Transfer aggregates live quotes and simplifies each option to a single "recipient gets" amount that already folds in rate markup, fees, and promotions. It's built for the people who feel this most: international students, travellers, and anyone sending money home.</p>
+        <p>Pocket Transfer aggregates live quotes and reduces each option to a single "recipient gets" amount that already folds in rate markup, fees, and promotions. It's built for the people who feel this most: international students, travellers, and anyone sending money home.</p>
       </div>
     </div>
 
@@ -836,15 +865,29 @@
   </div>
 
   <div class="overview-shots reveal">
-    <figure class="overview-shot" id="overviewShot">
-      <img src="../images/pocketTransfer/highfi-homepage.png" alt="Pocket Transfer high-fidelity homepage — full page" loading="lazy" />
-      <figcaption>High-fidelity homepage (desktop) — the shipped compare view, with providers ranked by amount received. Click to enlarge.</figcaption>
+    <figure class="overview-shot" id="overviewShotVideo">
+      <video autoplay loop muted playsinline poster="../images/pocketTransfer/highfi-homepage.png" aria-label="Pocket Transfer high-fidelity homepage shown in an iMac mockup">
+        <source src="../images/pocketTransfer/imac-mockup.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>High-fidelity homepage in motion — the shipped compare view running in an iMac mockup.</figcaption>
     </figure>
     <figure class="overview-shot-mobile" id="overviewShotMobile">
       <div class="mobile-frame">
         <img src="../images/pocketTransfer/mockup-mobile.png" alt="Pocket Transfer high-fidelity homepage — mobile" loading="lazy" />
       </div>
-      <figcaption>Mobile view — the same compare experience, responsive to phone. Click to enlarge.</figcaption>
+      <figcaption>Mobile view. The same compare experience, responsive down to the phone. Click to enlarge.</figcaption>
+    </figure>
+  </div>
+
+  <div class="overview-shots-pair reveal">
+    <figure class="overview-shot" id="overviewShot">
+      <img src="../images/pocketTransfer/highfi-homepage.png" alt="Pocket Transfer high-fidelity homepage — full page" loading="lazy" />
+      <figcaption>High-fidelity homepage (desktop). The shipped compare view, with providers ranked by amount received. Click to enlarge.</figcaption>
+    </figure>
+    <figure class="overview-shot" id="overviewShotCompare">
+      <img src="../images/pocketTransfer/compare.png" alt="Pocket Transfer compare providers page — full page" loading="lazy" />
+      <figcaption>Compare providers (desktop). Side-by-side shortlist above the full ranked list, with sort and delivery-method filters. Click to enlarge.</figcaption>
     </figure>
   </div>
 </section>
@@ -855,7 +898,7 @@
   <div class="block reveal" style="margin-bottom:48px;">
     <div class="block-label">User research · summary</div>
     <h2 class="block-title">I assumed rate was<br>everything. It wasn't.</h2>
-    <p>I ran remote interviews and surveys with 12 people who send money internationally at least once a month. Going in, I assumed users cared most about the exchange rate alone. Research showed the real struggle is comparing <em>total cost</em> — rate markup plus fees minus promotions — across many providers, and that users distrust "zero fee" claims. This shifted the design toward one transparent "recipient gets" number per provider.</p>
+    <p>I ran remote interviews and surveys with 12 people who send money abroad at least once a month. I went in certain the exchange rate was what mattered. It wasn't. What people actually wrestled with was <em>total cost</em>, the tangle of rate markup, fees, and promotions spread across a dozen sites, and they flatly distrusted "zero fee" marketing. That single insight reframed the product around one honest "recipient gets" number per provider.</p>
   </div>
 
   <div class="block-label reveal" style="color:var(--accent); margin-bottom:16px;">Pain points</div>
@@ -863,22 +906,22 @@
     <div class="pain-card">
       <div class="pain-num">1</div>
       <div class="pain-head">Hidden costs</div>
-      <div class="pain-body">Fees and rate markups are buried across provider sites, so the true cost is unclear. Designs must lead with one all-inclusive "recipient gets" amount.</div>
+      <div class="pain-body">Fees and rate markups sit buried across provider sites, so the true cost never surfaces. Response: lead every card with one all-inclusive "recipient gets" amount.</div>
     </div>
     <div class="pain-card">
       <div class="pain-num">2</div>
       <div class="pain-head">Manual comparison</div>
-      <div class="pain-body">Checking five or more providers one by one takes over 30 minutes, and quotes expire fast. Designs must aggregate live quotes in a single view.</div>
+      <div class="pain-body">Checking five or more providers by hand burns 30-plus minutes, and quotes expire before you finish. Response: aggregate live quotes into a single, always-current view.</div>
     </div>
     <div class="pain-card">
       <div class="pain-num">3</div>
       <div class="pain-head">Missed promotions</div>
-      <div class="pain-body">Coupons and first-transfer deals are scattered and expire unnoticed. Designs should find and apply valid promos to each quote automatically.</div>
+      <div class="pain-body">Coupons and first-transfer deals scatter across sites and lapse unnoticed. Response: surface valid promos and apply them to each quote automatically.</div>
     </div>
     <div class="pain-card">
       <div class="pain-num">4</div>
       <div class="pain-head">Low trust</div>
-      <div class="pain-body">Users doubt "zero fee" marketing and hesitate with unfamiliar providers. Designs need clear cost breakdowns, ratings, and delivery estimates.</div>
+      <div class="pain-body">People doubt "zero fee" marketing and stall on providers they don't recognize. Response: pair every quote with a full cost breakdown, ratings, and a delivery estimate.</div>
     </div>
   </div>
 </section>
@@ -894,7 +937,7 @@
       <div class="persona-name">Amara, 34<span>Registered nurse</span></div>
     </div>
     <div class="persona-detail">
-      <p class="persona-quote">"I just want to know which service actually gets the most money to my family — without doing math on five different websites."</p>
+      <p class="persona-quote">"I just want to know which service gets the most money to my family, without doing math across five different websites."</p>
       <div class="persona-cols">
         <div class="persona-col">
           <h4>Goals</h4>
@@ -929,7 +972,7 @@
 <section class="section">
   <div class="section-label reveal">User journey <b>map</b></div>
   <div class="block reveal" style="margin-bottom:40px;">
-    <p>Mapping Amara's journey of sending her monthly remittance revealed friction before the transfer even begins: gathering quotes, re-checking expiring rates, and hunting for promo codes. This pointed to the comparison stage as the biggest opportunity for improvement.</p>
+    <p>Mapping Amara's monthly remittance surfaced most of the friction before the transfer even begins: gathering quotes, re-checking rates that keep expiring, and hunting for promo codes. The comparison stage carried the heaviest emotional load, so that's where I focused the design.</p>
   </div>
   <div class="journey-wrap reveal">
     <table class="journey">
@@ -953,23 +996,23 @@
   <div class="process-grid reveal">
     <div class="process-card">
       <div class="process-kicker">Sitemap</div>
-      <h3>User-focused flows</h3>
-      <p>I built flows so personas can complete key objectives while reducing existing pain points — a Compare path with a customizable quiz and filters (total, lowest rate, lowest fee, fastest, safest), plus Deals, Rate alerts, and Account branches feeding into a single result that deep-links to the provider.</p>
+      <h3>Flows built around intent</h3>
+      <p>I structured the app around what people came to do. A Compare path with a short quiz and filters (total, lowest rate, lowest fee, fastest, safest) sits at the center, with Deals, Rate alerts, and Account as supporting branches. Every path resolves to one ranked result that deep-links straight to the provider.</p>
     </div>
     <div class="process-card">
       <div class="process-kicker">Paper wireframes</div>
-      <h3>Six results screens</h3>
-      <p>I sketched six versions of the comparison results screen, prioritizing what research showed matters most. The refined version leads with the amount the recipient actually gets, keeping fee, rate, promo, and delivery time visible without extra clicks.</p>
+      <h3>Six takes on one screen</h3>
+      <p>I sketched six versions of the results screen, testing each against what research said mattered most. The version I carried forward leads with the amount the recipient actually gets and keeps fee, rate, promo, and delivery time visible without a single extra click.</p>
     </div>
     <div class="process-card">
       <div class="process-kicker">Digital wireframes</div>
       <h3>Ranked by value received</h3>
-      <p>Providers are ranked by amount received, so the best overall value always appears first. Each result card shows the fee, exchange rate, and applied promo up front — no hidden costs.</p>
+      <p>Providers sort by amount received, so the best overall value always lands first. Each card puts the fee, exchange rate, and applied promo up front, with nothing hidden below the fold.</p>
     </div>
     <div class="process-card">
       <div class="process-kicker">Low-fidelity prototype</div>
-      <h3>The primary flow, connected</h3>
-      <p>The prototype connects the core path: enter transfer amount and destination, compare live provider quotes, review the cost breakdown, and continue to the chosen provider — no account required to start comparing.</p>
+      <h3>The core path, connected</h3>
+      <p>The prototype wires up the main journey end to end: enter an amount and destination, compare live quotes, review the cost breakdown, and hand off to the chosen provider. No account needed to start comparing.</p>
     </div>
   </div>
 </section>
@@ -978,7 +1021,7 @@
 <section class="section" id="screens">
   <div class="section-label reveal">Screens &amp; <b>process</b></div>
   <div class="block reveal" style="margin-bottom:40px;">
-    <p>From six paper explorations of the results screen to a connected low-fidelity flow and the high-fidelity build — every screen leads with the amount the recipient actually gets, keeping fee, rate, promo, and delivery time visible without extra clicks. Click any screen to enlarge.</p>
+    <p>From six paper explorations of the results screen, to a connected low-fidelity flow, to the high-fidelity build, one principle held: every screen leads with the amount the recipient actually gets and keeps fee, rate, promo, and delivery time in view without extra clicks. Click any screen to enlarge.</p>
   </div>
   <div class="gallery-grid reveal" id="galleryGrid">
     <!-- JS-rendered -->
@@ -989,11 +1032,11 @@
 <section class="section">
   <div class="section-label reveal">Usability study · <b>findings</b></div>
   <div class="block reveal" style="margin-bottom:44px;">
-    <p>I conducted two rounds of moderated usability studies with five participants each: round 1 tested the low-fidelity prototype and round 2 tested the high-fidelity mockups. Findings guided the designs from wireframes to final mockups.</p>
+    <p>I ran two rounds of moderated usability testing, five participants each. Round 1 pressure-tested the low-fidelity prototype; round 2 validated the high-fidelity mockups. Each round's findings fed directly into the next iteration.</p>
   </div>
   <div class="rounds reveal">
     <div class="round">
-      <h3>Round 1 — low-fidelity</h3>
+      <h3>Round 1 · low-fidelity</h3>
       <ol>
         <li>Users wanted to see how the total was calculated</li>
         <li>Users expected promo codes to apply automatically</li>
@@ -1001,7 +1044,7 @@
       </ol>
     </div>
     <div class="round">
-      <h3>Round 2 — high-fidelity</h3>
+      <h3>Round 2 · high-fidelity</h3>
       <ol>
         <li>The comparison view felt crowded; users wanted simpler cards</li>
         <li>Users wanted to sort by speed as well as best value</li>
@@ -1017,13 +1060,13 @@
   <div class="takeaways reveal">
     <div>
       <div class="block-label">Impact</div>
-      <p>Pocket Transfer turns cost transparency from a chore into the default.</p>
-      <p class="impact-quote">"I can finally see what a transfer really costs — this would save me money every month."</p>
+      <p>Pocket Transfer turns cost transparency from a chore into the default. In testing, participants reached a confident choice in a fraction of the time their old routine took.</p>
+      <p class="impact-quote">"I can finally see what a transfer really costs. This would save me money every month."</p>
       <p style="color:var(--mid); font-size:14px;">— Usability study participant</p>
     </div>
     <div>
       <div class="block-label">What I learned</div>
-      <p>I learned that trust is designed, not claimed — showing the math behind each quote changed how users felt more than any visual polish. I also saw how quickly early assumptions fall away once you talk with real users.</p>
+      <p>Trust is designed, not claimed. Showing the math behind each quote moved people more than any amount of visual polish. And my sharpest early assumption, that rate was everything, didn't survive the first few interviews. Talking to real users early saved me from designing the wrong product.</p>
     </div>
   </div>
 </section>
@@ -1062,6 +1105,7 @@
       </button>
     </div>
     <img id="lb-img" src="" alt="" />
+    <video id="lb-video" src="" autoplay loop muted playsinline style="display:none;"></video>
   </div>
 </div>
 
@@ -1237,12 +1281,21 @@ SCREENS.forEach((s, i) => {
 });
 
 const lightbox = document.getElementById('lightbox');const lbImg   = document.getElementById('lb-img');
+const lbVideo = document.getElementById('lb-video');
 const lbTitle = document.getElementById('lb-title');
 const lbSub   = document.getElementById('lb-sub');
 const lbClose = document.getElementById('lb-close');
 
 function openLightbox(s) {
-  lbImg.src = s.src; lbImg.alt = s.title;
+  const isVideo = s.video || /\.(mp4|webm)$/i.test(s.src);
+  if (isVideo) {
+    lbImg.style.display = 'none'; lbImg.src = '';
+    lbVideo.style.display = 'block'; lbVideo.src = s.src;
+    lbVideo.play().catch(() => {});
+  } else {
+    lbVideo.style.display = 'none'; lbVideo.pause(); lbVideo.src = '';
+    lbImg.style.display = 'block'; lbImg.src = s.src; lbImg.alt = s.title;
+  }
   lbTitle.textContent = s.title;
   lbSub.textContent = s.sub;
   lightbox.classList.add('open');
@@ -1253,6 +1306,7 @@ function closeLightbox() {
   lightbox.classList.remove('open');
   document.body.style.overflow = '';
   lbImg.src = '';
+  lbVideo.pause(); lbVideo.src = '';
 }
 lbClose.addEventListener('click', closeLightbox);
 
@@ -1261,7 +1315,7 @@ if (overviewShot) {
   overviewShot.addEventListener('click', () => openLightbox({
     src: '../images/pocketTransfer/highfi-homepage.png',
     title: 'High-fidelity homepage',
-    sub: 'The shipped compare view — providers ranked by amount received',
+    sub: 'The shipped compare view, providers ranked by amount received',
   }));
   overviewShot.addEventListener('mouseenter', cursorGrow);
   overviewShot.addEventListener('mouseleave', cursorReset);
@@ -1271,11 +1325,34 @@ const overviewShotMobile = document.getElementById('overviewShotMobile');
 if (overviewShotMobile) {
   overviewShotMobile.addEventListener('click', () => openLightbox({
     src: '../images/pocketTransfer/mockup-mobile.png',
-    title: 'High-fidelity homepage — mobile',
+    title: 'High-fidelity homepage (mobile)',
     sub: 'The same compare experience, responsive to phone',
   }));
   overviewShotMobile.addEventListener('mouseenter', cursorGrow);
   overviewShotMobile.addEventListener('mouseleave', cursorReset);
+}
+
+const overviewShotCompare = document.getElementById('overviewShotCompare');
+if (overviewShotCompare) {
+  overviewShotCompare.addEventListener('click', () => openLightbox({
+    src: '../images/pocketTransfer/compare.png',
+    title: 'Compare providers',
+    sub: 'Side-by-side shortlist above the full ranked list, with sort and delivery filters',
+  }));
+  overviewShotCompare.addEventListener('mouseenter', cursorGrow);
+  overviewShotCompare.addEventListener('mouseleave', cursorReset);
+}
+
+const overviewShotVideo = document.getElementById('overviewShotVideo');
+if (overviewShotVideo) {
+  overviewShotVideo.addEventListener('click', () => openLightbox({
+    src: '../images/pocketTransfer/imac-mockup.mp4',
+    video: true,
+    title: 'High-fidelity homepage in motion',
+    sub: 'The shipped compare view running in an iMac mockup',
+  }));
+  overviewShotVideo.addEventListener('mouseenter', cursorGrow);
+  overviewShotVideo.addEventListener('mouseleave', cursorReset);
 }
 
 lbClose.addEventListener('mouseenter', cursorGrow);
