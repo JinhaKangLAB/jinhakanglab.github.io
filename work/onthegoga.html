@@ -415,7 +415,7 @@
     }
 
     /* ══════════════════════════════════════
-       GALLERY — 2-column, tall variants
+       GALLERY — 2-column masonry, uncropped natural ratios
     ══════════════════════════════════════ */
     #gallery {
       padding: 0 0 120px;
@@ -442,31 +442,38 @@
     .gallery-grid {
       max-width: 1280px; margin: 0 auto;
       padding: 48px 80px 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 220px;
-      gap: 2px;
+      column-count: 2;
+      column-gap: 24px;
     }
 
     .gallery-item {
-      position: relative; overflow: hidden;
+      position: relative;
       background: #ffffff;
       cursor: none;
       opacity: 0;
       transform: translateY(32px);
       transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
-      display: flex; flex-direction: column;
+      display: block;
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 24px;
     }
     .gallery-item.revealed { opacity: 1; transform: translateY(0); }
-    .gallery-item.tall { grid-row: span 2; }
 
     .gallery-img-wrap {
-      overflow: hidden; position: relative; flex: 1;
+      overflow: hidden; position: relative;
     }
     .gallery-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%; height: auto;
       display: block;
       transition: transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    /* very tall artwork — scale down whole, never crop */
+    .gallery-item.compact .gallery-img-wrap img {
+      max-height: 460px;
+      width: auto; max-width: 100%;
+      margin: 0 auto;
     }
     .gallery-item:hover .gallery-img-wrap img { transform: scale(1.03); }
 
@@ -606,8 +613,7 @@
       .hero-left { padding: 40px 24px 40px; }
       #case-study { padding: 60px 24px; }
       .gallery-header { padding: 48px 24px 32px; }
-      .gallery-grid { padding: 32px 24px 0; grid-template-columns: 1fr; grid-auto-rows: auto; }
-      .gallery-item.tall { grid-row: auto; }
+      .gallery-grid { padding: 32px 24px 0; column-count: 1; }
       footer { padding: 40px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
     }
     @media (max-width: 480px) {
@@ -858,6 +864,12 @@ document.getElementById('scrollBtn')?.addEventListener('click', () => {
    ================================================================ */
 const IMAGES = [
   {
+    id: 0,
+    title: "Campaign Key Visual",
+    subtitle: "Lead image for the On the GoGa banner system",
+    src: "../images/onthegoga/onthegoga.jpg",
+  },
+  {
     id: 1,
     title: "Storefront Window Display",
     subtitle: "Triple banner mockup shown in a storefront window setting",
@@ -882,6 +894,7 @@ const IMAGES = [
     subtitle: "Flat print-ready artwork for the banner design",
     src: "../images/onthegoga/Frame 43.png",
     tall: true,
+    compact: true,
   },
   {
     id: 5,
@@ -889,6 +902,7 @@ const IMAGES = [
     subtitle: "Alternate print-ready layout crop",
     src: "../images/onthegoga/Frame 44.png",
     tall: true,
+    compact: true,
   },
 ];
 
@@ -907,7 +921,7 @@ function escapeHtml(s) {
 
 IMAGES.forEach((img, i) => {
   const item = document.createElement('div');
-  item.className = 'gallery-item' + (img.tall ? ' tall' : '');
+  item.className = 'gallery-item' + (img.tall ? ' tall' : '') + (img.compact ? ' compact' : '');
   item.style.transitionDelay = (i * 0.08) + 's';
 
   item.innerHTML = `
